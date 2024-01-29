@@ -70,6 +70,7 @@ typedef enum {
     //SubGhzCustomEvent
     SubGhzCustomEventSceneDeleteSuccess = 100,
     SubGhzCustomEventSceneDelete,
+    SubGhzCustomEventSceneDeleteBack,
     SubGhzCustomEventSceneDeleteRAW,
     SubGhzCustomEventSceneDeleteRAWBack,
 
@@ -118,6 +119,7 @@ typedef enum {
     SubGhzCustomEventViewTransmitterBack,
     SubGhzCustomEventViewTransmitterSendStart,
     SubGhzCustomEventViewTransmitterSendStop,
+    SubGhzCustomEventViewTransmitterSendSave,
     SubGhzCustomEventViewTransmitterError,
 
     SubGhzCustomEventViewFreqAnalOkShort,

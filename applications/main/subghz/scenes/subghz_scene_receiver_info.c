@@ -1,4 +1,6 @@
 #include "../subghz_i.h"
+#include "../helpers/subghz_custom_event.h"
+#include "../views/transmitter.h"
 #include <assets_icons.h>
 
 #include <lib/subghz/blocks/custom_btn.h>
@@ -14,20 +16,10 @@ const NotificationSequence subghz_sequence_info_beep = {
     NULL,
 };
 
-void subghz_scene_receiver_info_callback(GuiButtonType result, InputType type, void* context) {
+void subghz_scene_receiver_info_callback(SubGhzCustomEvent event, void* context) {
     furi_assert(context);
     SubGhz* subghz = context;
-
-    if((result == GuiButtonTypeCenter) && (type == InputTypePress)) {
-        view_dispatcher_send_custom_event(
-            subghz->view_dispatcher, SubGhzCustomEventSceneReceiverInfoTxStart);
-    } else if((result == GuiButtonTypeCenter) && (type == InputTypeRelease)) {
-        view_dispatcher_send_custom_event(
-            subghz->view_dispatcher, SubGhzCustomEventSceneReceiverInfoTxStop);
-    } else if((result == GuiButtonTypeRight) && (type == InputTypeShort)) {
-        view_dispatcher_send_custom_event(
-            subghz->view_dispatcher, SubGhzCustomEventSceneReceiverInfoSave);
-    }
+    view_dispatcher_send_custom_event(subghz->view_dispatcher, event);
 }
 
 static bool subghz_scene_receiver_info_update_parser(void* context) {
@@ -49,6 +41,28 @@ static bool subghz_scene_receiver_info_update_parser(void* context) {
             preset->frequency,
             preset->data,
             preset->data_size);
+
+        FuriString* key_str = furi_string_alloc();
+        FuriString* frequency_str = furi_string_alloc();
+        FuriString* modulation_str = furi_string_alloc();
+
+        subghz_protocol_decoder_base_get_string(subghz_txrx_get_decoder(subghz->txrx), key_str);
+        subghz_txrx_get_frequency_and_modulation(subghz->txrx, frequency_str, modulation_str, false);
+        subghz_view_transmitter_add_data_to_show(
+            subghz->subghz_transmitter,
+            furi_string_get_cstr(key_str),
+            furi_string_get_cstr(frequency_str),
+            furi_string_get_cstr(modulation_str),
+            subghz_txrx_protocol_is_transmittable(subghz->txrx, true));
+
+        furi_string_free(frequency_str);
+        furi_string_free(modulation_str);
+        furi_string_free(key_str);
+
+        subghz_view_transmitter_set_radio_device_type(
+            subghz->subghz_transmitter, subghz_txrx_radio_device_get(subghz->txrx));
+        subghz_view_transmitter_set_model_type(
+            subghz->subghz_transmitter, SubGhzViewTransmitterModelTypeInfo);
 
         return true;
     }
@@ -106,33 +120,30 @@ void subghz_scene_receiver_info_draw_widget(SubGhz* subghz) {
                 subghz);
         }
     } else {
-        widget_add_icon_element(subghz->widget, 83, 22, &I_WarningDolphinFlip_45x42);
-        widget_add_string_element(
-            subghz->widget, 13, 8, AlignLeft, AlignBottom, FontSecondary, "Error history parse.");
+        view_dispatcher_send_custom_event(
+            subghz->view_dispatcher, SubGhzCustomEventSceneShowErrorSub);
     }
 }
 
 void subghz_scene_receiver_info_on_enter(void* context) {
     SubGhz* subghz = context;
-
-    subghz_custom_btns_reset();
-
-    subghz_scene_receiver_info_draw_widget(subghz);
-    view_dispatcher_switch_to_view(subghz->view_dispatcher, SubGhzViewIdWidget);
-
-    /* This does not work. The receiving does not happen, and they know it.
-       So, why do we turn on the notification that we receive?
-       THe user thinks its receiving, dont matter if SubGHZ is technically on.
-    if(!subghz_history_get_text_space_left(subghz->history, NULL)) {
-        subghz->state_notifications = SubGhzNotificationStateRx;
+    if(subghz_scene_receiver_info_update_parser(subghz)) {
+    } else {
+        view_dispatcher_send_custom_event(
+            subghz->view_dispatcher, SubGhzCustomEventSceneShowErrorSub);
     }
-	*/
+
+    subghz_view_transmitter_set_callback(
+        subghz->subghz_transmitter, subghz_scene_receiver_info_callback, subghz);
+
+    subghz->state_notifications = SubGhzNotificationStateIDLE;
+    view_dispatcher_switch_to_view(subghz->view_dispatcher, SubGhzViewIdTransmitter);
 }
 
 bool subghz_scene_receiver_info_on_event(void* context, SceneManagerEvent event) {
     SubGhz* subghz = context;
     if(event.type == SceneManagerEventTypeCustom) {
-        if(event.event == SubGhzCustomEventSceneReceiverInfoTxStart) {
+        if(event.event == SubGhzCustomEventViewTransmitterSendStart) {
             if(!subghz_scene_receiver_info_update_parser(subghz)) {
                 return false;
             }
@@ -149,7 +160,7 @@ bool subghz_scene_receiver_info_on_event(void* context, SceneManagerEvent event)
             }
             notification_message(subghz->notifications, &subghz_sequence_info_beep);
             return true;
-        } else if(event.event == SubGhzCustomEventSceneReceiverInfoTxStop) {
+        } else if(event.event == SubGhzCustomEventViewTransmitterSendStop) {
             //CC1101 Stop Tx -> Start RX
             subghz->state_notifications = SubGhzNotificationStateIDLE;
             subghz_txrx_stop(subghz->txrx);
@@ -179,7 +190,7 @@ bool subghz_scene_receiver_info_on_event(void* context, SceneManagerEvent event)
             // }
             // }
             return true;
-        } else if(event.event == SubGhzCustomEventSceneReceiverInfoSave) {
+        } else if(event.event == SubGhzCustomEventViewTransmitterSendSave) {
             //CC1101 Stop RX -> Save
             subghz->state_notifications = SubGhzNotificationStateIDLE;
             // subghz_txrx_hopper_set_state(subghz->txrx, SubGhzHopperStateOFF);
@@ -203,7 +214,11 @@ bool subghz_scene_receiver_info_on_event(void* context, SceneManagerEvent event)
                 scene_manager_next_scene(subghz->scene_manager, SubGhzSceneSaveName);
             }
             return true;
+        } else if(event.event == SubGhzCustomEventSceneShowErrorSub) {
+            furi_string_set(subghz->error_str, "Error history parse.");
+            scene_manager_next_scene(subghz->scene_manager, SubGhzSceneShowErrorSub);
         }
+
     } else if(event.type == SceneManagerEventTypeTick) {
         if(subghz_txrx_hopper_get_state(subghz->txrx) != SubGhzHopperStateOFF) {
             subghz_txrx_hopper_update(subghz->txrx);

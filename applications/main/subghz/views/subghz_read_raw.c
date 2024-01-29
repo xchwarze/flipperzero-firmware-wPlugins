@@ -298,16 +298,10 @@ void subghz_read_raw_draw(Canvas* canvas, SubGhzReadRAWModel* model) {
     canvas_draw_str(canvas, 0, 7, furi_string_get_cstr(model->frequency_str));
     canvas_draw_str(canvas, 35, 7, furi_string_get_cstr(model->preset_str));
 
-    if(model->not_showing_samples) {
-        // TODO
-        canvas_draw_str(
-            canvas,
-            77,
-            7,
-            (model->device_type == SubGhzRadioDeviceTypeInternal) ? "R: Int" : "R: Ext");
+    if(model->device_type == SubGhzRadioDeviceTypeInternal) {
+        canvas_draw_icon(canvas, 109, 0, &I_Internal_ant_1_9x11);
     } else {
-        canvas_draw_str(
-            canvas, 70, 7, (model->device_type == SubGhzRadioDeviceTypeInternal) ? "I" : "E");
+        canvas_draw_icon(canvas, 109, 0, &I_External_ant_1_9x11);
     }
 
     canvas_draw_str_aligned(
