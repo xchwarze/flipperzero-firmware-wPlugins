@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0131-0033-0.93.9-ee992f6](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0131-2042-0.93.9-3f7ed17](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-01-31 19:39 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-01-31 19:39 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-01-31 23:30 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-01-31 23:30 EST`
 - [Added Pirate Profile Pic (By cyberartemio)](https://github.com/cyberartemio/flipper-pirates-asset-pack/blob/main/Pirates/Icons/Passport/passport_okay_46x49.png)
 - Updated: [ESP32 Camera Suite v1.6 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite)
 - Updated: [USB Mass Storage v1.3 (By nminaylov)](https://github.com/flipperdevices/flipperzero-good-faps/tree/nm/usb_mass_storage_app/mass_storage) (Changes from xMasterX)
@@ -51,12 +51,13 @@ This software is for experimental purposes only and is not meant for any illegal
 - SubGHz: [fix dea mio formula (By Leptopt1los)](https://github.com/DarkFlippers/unleashed-firmware/commit/4fd0ce3eb576c1d6de0173dde1f67dda95ec4225)
 - SubGHz: [raw erase fixes (By Willy-JL)](https://github.com/DarkFlippers/unleashed-firmware/commit/289fbe56be11f2de36b66481f1f8e6fa4b24c4a1)
 - Updated: [YuriCable Pro Max v0.1 (By arag0re)](https://github.com/arag0re/fz-yuricable-pro-max)
-- To Be Merged OFW PRs: [3352](https://github.com/flipperdevices/flipperzero-firmware/pull/3352), [3302](https://github.com/flipperdevices/flipperzero-firmware/pull/3302), [3211](https://github.com/flipperdevices/flipperzero-firmware/pull/3211), [3366](https://github.com/flipperdevices/flipperzero-firmware/pull/3366), [3250](https://github.com/flipperdevices/flipperzero-firmware/pull/3250), [3402](https://github.com/flipperdevices/flipperzero-firmware/pull/3402) & [3409](https://github.com/flipperdevices/flipperzero-firmware/pull/3409)
-- UL: LFRFID: Don't Stop emulation after 5 mins to avoid antenna damage if debug is ON (By Leptopt1los)
-- UL: LFRFID: Fixed T5577 custom password input (By Leptopt1los)
+- UL: [LFRFID: Don't Stop emulation after 5 mins to avoid antenna damage if debug is ON (By Leptopt1los)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
+- UL: [LFRFID: Fixed T5577 custom password input (By Leptopt1los)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
+- UL: [OFW PR 3410: lfrfid/em4100: added support for different bit rates (By Mrkvak) (RF/32 full support, RF/16 support without reading (16clk removed for now))](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
 - Updated: [Cross Remote v2.1 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
-- UL: LFRFID: enter password scene events handler fix (By Leptopt1los)
-- UL: OFW PR 3410: lfrfid/em4100: added support for different bit rates (By Mrkvak) (RF/32 full support, RF/16 support without reading (16clk removed for now))
+- UL: [LFRFID: enter password scene events handler fix (By Leptopt1los)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/89955b2585d4e33e3cce7aed8fe0ad9417728a0c)
+- Updated: [Restaurant Pager Trigger v1.2 (By leedave)](https://github.com/leedave/flipper-zero-meal-pager) (Fixes by xMasterX)
+- To Be Merged OFW PRs: [3352](https://github.com/flipperdevices/flipperzero-firmware/pull/3352), [3302](https://github.com/flipperdevices/flipperzero-firmware/pull/3302), [3211](https://github.com/flipperdevices/flipperzero-firmware/pull/3211), [3366](https://github.com/flipperdevices/flipperzero-firmware/pull/3366), [3250](https://github.com/flipperdevices/flipperzero-firmware/pull/3250), [3402](https://github.com/flipperdevices/flipperzero-firmware/pull/3402) & [3409](https://github.com/flipperdevices/flipperzero-firmware/pull/3409)
 
 ## IN THIS BRANCH:
 
@@ -189,9 +190,10 @@ This software is for experimental purposes only and is not meant for any illegal
 - [NFC: EMV Parser Fixes (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/cbab316607ffb81ff07ce0816812935887e2c51a)
 - Updated: [PicoPass (iClass) v1.13 (By Bettse)](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/picopass) [Rework. Part 1 #68 (By gornekich)](https://github.com/flipperdevices/flipperzero-good-faps/pull/68) [Hopefully fix name buffer size issues (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9058c0c6a9980f84f6436673f9d3fbbc82cb3f81) [Save partial #85 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/85) [More info view (raw bytes) #86 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/86) [detect config card #87 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/87) [add additional keys to elite dict #89 (By kitsunehunter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/89) [config SE problem #90 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/90) [handle NR-MAC auth for legacy cards #95(By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/95) [Create seader directory if needed #101](https://github.com/flipperdevices/flipperzero-good-faps/pull/101) [Add support for non-secure cards #106 (By nvx)](https://github.com/flipperdevices/flipperzero-good-faps/pull/106) [Picopass nr mac improvements #108 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/108) [Picopass read improvements #109 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/109) [Picopass: apply card to back view #118 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/118) [Picopass: rename AA1 to card_data #119 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/119)
 - OFW PR: [NFC: fix application opening from browser #3396 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3396) [With patch changes (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3396#issuecomment-1917897042) [With 2nd patch changes (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3396#issuecomment-1919028003)
-- UL: NFC: Fixed EMV txs render (By xMasterX)
-- UL: NFC: Don't Stop emulation after 5 mins to avoid antenna damage if debug is ON (By Leptopt1los)
-- UL: OFW PR 3412: Fixed MyKey LockID (By zProAle)
+- UL: [NFC: Fixed EMV txs render (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
+- UL: [NFC: Dont Stop emulation after 5 mins to avoid antenna damage if debug is ON (By Leptopt1los)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
+- UL: [OFW PR 3412: Fixed MyKey LockID (By zProAle)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
+- UL: [NFC: Fixed crash when reading mifare classic tag then going to add manually menu and adding NFC-A tag (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/34c28700d51d2c8f3bd7f5d78233aec411ad00e7)
 
 <a name="release">
 
