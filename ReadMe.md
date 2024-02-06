@@ -31,11 +31,14 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-02-04 17:41 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-02-04 17:41 EST`
-- Updated: [Cross Remote v2.3 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
 - Updated: [Sub-GHz Bruteforcer v3.9.2 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
 - Updated: [BLE Spam v4.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/noproto/apple_ble_spam_ofw) (Minor note updates)
 - Infrared: [Last Settings Default to Auto-Detect (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/739cc0c3624fc9289a5d2a6f39f6b359cc36d66f)
 - Infrared: [Simpler Last Settings API (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/81208988d1f25119b537aa2bb255a616e1a993f0)
+- Updated: [Authenticator/TOTP v5.11.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
+- Updated: [Cross Remote v2.4 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
+- Added: [Matagotchi v1.0 (By MrModd)](https://github.com/MrModd/Matagotchi)
+- Added: [PacMan WIP v0.1 (By DanieleMaffi)](https://github.com/DanieleMaffi/flipper-pacman)
 - To Be Merged OFW PRs: [3352](https://github.com/flipperdevices/flipperzero-firmware/pull/3352), [3302](https://github.com/flipperdevices/flipperzero-firmware/pull/3302), [3211](https://github.com/flipperdevices/flipperzero-firmware/pull/3211), [3366](https://github.com/flipperdevices/flipperzero-firmware/pull/3366), [3250](https://github.com/flipperdevices/flipperzero-firmware/pull/3250), [3402](https://github.com/flipperdevices/flipperzero-firmware/pull/3402) & [3409](https://github.com/flipperdevices/flipperzero-firmware/pull/3409)
 
 ## IN THIS BRANCH:
@@ -167,13 +170,13 @@ This software is for experimental purposes only and is not meant for any illegal
 - NFC: [EMV Protocol + Parser #700 (By Leptopt1los)](https://github.com/DarkFlippers/unleashed-firmware/pull/700)
 - [NFC/LFRFID: Stop emulation after 5 mins to avoid antenna damage & Typos Fixed (By Leptopt1los)](https://github.com/DarkFlippers/unleashed-firmware/commit/19a5f02d662c77f96fed0048a7984d094bdd67ca)
 - [NFC: EMV Parser Fixes (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/cbab316607ffb81ff07ce0816812935887e2c51a)
-- Updated: [PicoPass (iClass) v1.13 (By Bettse)](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/picopass) [Rework. Part 1 #68 (By gornekich)](https://github.com/flipperdevices/flipperzero-good-faps/pull/68) [Hopefully fix name buffer size issues (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9058c0c6a9980f84f6436673f9d3fbbc82cb3f81) [Save partial #85 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/85) [More info view (raw bytes) #86 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/86) [detect config card #87 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/87) [add additional keys to elite dict #89 (By kitsunehunter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/89) [config SE problem #90 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/90) [handle NR-MAC auth for legacy cards #95(By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/95) [Create seader directory if needed #101](https://github.com/flipperdevices/flipperzero-good-faps/pull/101) [Add support for non-secure cards #106 (By nvx)](https://github.com/flipperdevices/flipperzero-good-faps/pull/106) [Picopass nr mac improvements #108 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/108) [Picopass read improvements #109 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/109) [Picopass: apply card to back view #118 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/118) [Picopass: rename AA1 to card_data #119 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/119)
 - OFW PR: [NFC: fix application opening from browser #3396 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3396) [With patch changes (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3396#issuecomment-1917897042) [With 2nd patch changes (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3396#issuecomment-1919028003)
 - UL: [NFC: Fixed EMV txs render (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
 - UL: [NFC: Dont Stop emulation after 5 mins to avoid antenna damage if debug is ON (By Leptopt1los)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
 - UL: [OFW PR 3412: Fixed MyKey LockID (By zProAle)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
 - UL: [NFC: Fixed crash when reading mifare classic tag then going to add manually menu and adding NFC-A tag (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/34c28700d51d2c8f3bd7f5d78233aec411ad00e7)
 - NFC: [Emv fixes #702 (By wosk)](https://github.com/DarkFlippers/unleashed-firmware/pull/702)
+- Updated: [PicoPass (iClass) v1.13 (By Bettse)](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/picopass) [Rework. Part 1 #68 (By gornekich)](https://github.com/flipperdevices/flipperzero-good-faps/pull/68) [Hopefully fix name buffer size issues (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9058c0c6a9980f84f6436673f9d3fbbc82cb3f81) [Save partial #85 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/85) [More info view (raw bytes) #86 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/86) [detect config card #87 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/87) [add additional keys to elite dict #89 (By kitsunehunter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/89) [config SE problem #90 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/90) [handle NR-MAC auth for legacy cards #95(By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/95) [Create seader directory if needed #101](https://github.com/flipperdevices/flipperzero-good-faps/pull/101) [Add support for non-secure cards #106 (By nvx)](https://github.com/flipperdevices/flipperzero-good-faps/pull/106) [Picopass nr mac improvements #108 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/108) [Picopass read improvements #109 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/109) [Picopass: apply card to back view #118 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/118) [Picopass: rename AA1 to card_data #119 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/119) [Picopass: save written key #126 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/126)
 
 <a name="release">
 
@@ -402,11 +405,13 @@ $ ./fbt dolphin_ext
 - [Heap Defence v1.1 (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fc776446de9fdd553b221c02668b925b689378d8) [(original by wquinoa & Vedmein)](https://github.com/Vedmein/flipperzero-firmware/tree/hd/svisto-perdelki)
 - [JetPack v1.1 (by timstrasser)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/1164e4d214efa38847e08c6387bf53578bc0d366)
 - [Mandelbrot Set v1.1 (By Possibly-Matt)](https://github.com/Possibly-Matt/flipperzero-firmware-wPlugins)
+- [Matagotchi v1.0 (By MrModd)](https://github.com/MrModd/Matagotchi)
 - [Minesweeper v1.2 (By panki27)](https://github.com/panki27/minesweeper)
 - [Minesweeper Redux v1.2 (By squee72564)](https://github.com/squee72564/F0_Minesweeper_Fap)
 - [Monty Hall v1.1 (By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/203)
 - [Multi Counter (By JadePossible)](https://github.com/JadePossible/Flipper-Multi-Counter)
 - [Nu Pogodi! (Ну, погоди!) v1.3 (By sionyx)](https://github.com/sionyx/flipper_nupogodi)
+- [PacMan WIP v0.1 (By DanieleMaffi)](https://github.com/DanieleMaffi/flipper-pacman)
 - [Paper Plane v1.3 (By Larry-the-Pig)](https://github.com/Larry-the-Pig/flipper-plane)
 - [Paint v1.1 (By n-o-T-I-n-s-a-n-e)](https://github.com/n-o-T-I-n-s-a-n-e)
 - [Pong v1.2 (By nmrr)](https://github.com/nmrr/flipperzero-pong) [(Patched By SimplyMinimal)](https://github.com/nmrr/flipperzero-pong/pull/2)
@@ -453,7 +458,7 @@ $ ./fbt dolphin_ext
 - [Analog Clock v1.1 (By scrolltex)](https://github.com/scrolltex/flipper_analog_clock)
 - [APRS Cln Hello World (By NSV47)](https://github.com/NSV47/APRS_hello_world_clean)
 - [Atomic Dice Roller v1.1 (By nmrr)](https://github.com/nmrr/flipperzero-atomicdiceroller)
-- [Authenticator/TOTP v5.10.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
+- [Authenticator/TOTP v5.11.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
 - [AVR Flasher (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/2475)
 - [AZERTY Mouse Jacker (By mothball187)](https://github.com/mothball187/flipperzero-nrf24/tree/main/mousejacker) `Req: NRF24` (Uses AZERTY keyboard - Source Unknown)
 - [Bad KB (Modified PR#738 from pengu1ndev - Original from Willy-JL) #739 (By ESurge)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/739)
@@ -485,7 +490,7 @@ $ ./fbt dolphin_ext
 - [Cookie Clicker v1.0 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/hid/hid_cookie)
 - [Count Down Timer v1.2 (By 0w0mewo)](https://github.com/0w0mewo/fpz_cntdown_timer)
 - [Counter v1.3 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
-- [Cross Remote v2.3 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
+- [Cross Remote v2.4 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
 - [Crypto Dictionary v0.1 (By armixz)](https://github.com/armixz/Flipper-Zero-Crypto-Dictionary)
 - [Dab Timer v1.8 (By RogueMaster)](https://github.com/RogueMaster/flipperzero-dabtimer)
 - [DAP Link v1.1 (By DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1897)
