@@ -525,8 +525,7 @@ static bool
                     scene_manager_has_previous_scene(instance->scene_manager, NfcSceneSetType) ?
                         DolphinDeedNfcAddSave :
                         DolphinDeedNfcSave);
-                const NfcProtocol protocol =
-                    instance->protocols_detected[instance->protocols_detected_selected_idx];
+                const NfcProtocol protocol = nfc_device_get_protocol(instance->nfc_device);
                 consumed =
                     nfc_protocol_support[protocol]->scene_save_name.on_event(instance, event);
             } else {
@@ -587,9 +586,7 @@ static void nfc_protocol_support_scene_emulate_on_enter(NfcApp* instance) {
     } else {
         widget_add_string_element(widget, 90, 13, AlignCenter, AlignTop, FontPrimary, "Emulating");
         if(!furi_string_empty(instance->file_name)) {
-            furi_string_set(
-                temp_str, nfc_device_get_name(instance->nfc_device, NfcDeviceNameTypeFull));
-            furi_string_cat_printf(temp_str, "\n%s", furi_string_get_cstr(instance->file_name));
+            furi_string_set(temp_str, instance->file_name);
         } else {
             furi_string_printf(
                 temp_str,
