@@ -29,10 +29,9 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0206-0000-0.93.9-bbf0731](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-02-06 11:25 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-02-06 11:25 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-02-06 21:20 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-02-06 21:20 EST`
 - Updated: [Sub-GHz Bruteforcer v3.9.2 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
-- Updated: [BLE Spam v4.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/noproto/apple_ble_spam_ofw) (Minor note updates)
 - Infrared: [Last Settings Default to Auto-Detect (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/739cc0c3624fc9289a5d2a6f39f6b359cc36d66f)
 - Infrared: [Simpler Last Settings API (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/81208988d1f25119b537aa2bb255a616e1a993f0)
 - Updated: [Authenticator/TOTP v5.11.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
@@ -40,6 +39,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [Matagotchi v1.0 (By MrModd)](https://github.com/MrModd/Matagotchi)
 - Added: [PacMan WIP v0.1 (By DanieleMaffi)](https://github.com/DanieleMaffi/flipper-pacman)
 - Updated: [BMI Air Mouse v0.9 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
+- Updated: [BLE Spam v4.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/noproto/apple_ble_spam_ofw) BleSpam: Fix click offset (By Willy-JL)
+- OFW: [Direct Draw apps can now be streamed via RPC. #3397 (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/pull/3397)
 - To Be Merged OFW PRs: [3352](https://github.com/flipperdevices/flipperzero-firmware/pull/3352), [3302](https://github.com/flipperdevices/flipperzero-firmware/pull/3302), [3211](https://github.com/flipperdevices/flipperzero-firmware/pull/3211), [3366](https://github.com/flipperdevices/flipperzero-firmware/pull/3366), [3250](https://github.com/flipperdevices/flipperzero-firmware/pull/3250), [3402](https://github.com/flipperdevices/flipperzero-firmware/pull/3402) & [3409](https://github.com/flipperdevices/flipperzero-firmware/pull/3409)
 
 ## IN THIS BRANCH:
@@ -142,7 +143,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Fix MyKey production date parsing #3332 (By augustozanellato)](https://github.com/flipperdevices/flipperzero-firmware/pull/3332)
 - OFW: [NFC: parsers minor cleanup #3329 (By Leptopt1los)](https://github.com/flipperdevices/flipperzero-firmware/pull/3329)
 - OFW: [Ntag success write freeze when not saved card #3354 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3354)
-- Updated: [NFC Maker NTAG215 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
 - NFC: [Parser for NDEF (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ca82f485248e2355a8ee2c31bec3ecbf22de2b38)
 - OFW: [NFC: system dict skip when user dict is skipped fix #3356 (By Leptopt1los)](https://github.com/flipperdevices/flipperzero-firmware/pull/3356)
 - NFC: [Parser for EMV (By Leptopt1los)](https://github.com/Leptopt1los/unleashed-firmware/compare/c85e130...Leptopt1los:unleashed-firmware:d337222)
@@ -170,7 +170,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - UL: [OFW PR 3412: Fixed MyKey LockID (By zProAle)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/54161f3d8362cb8ddc708d0eecb5cbf8901207be)
 - UL: [NFC: Fixed crash when reading mifare classic tag then going to add manually menu and adding NFC-A tag (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/34c28700d51d2c8f3bd7f5d78233aec411ad00e7)
 - NFC: [Emv fixes #702 (By wosk)](https://github.com/DarkFlippers/unleashed-firmware/pull/702)
-- Updated: [PicoPass (iClass) v1.13 (By Bettse)](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/picopass) [Rework. Part 1 #68 (By gornekich)](https://github.com/flipperdevices/flipperzero-good-faps/pull/68) [Hopefully fix name buffer size issues (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9058c0c6a9980f84f6436673f9d3fbbc82cb3f81) [Save partial #85 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/85) [More info view (raw bytes) #86 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/86) [detect config card #87 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/87) [add additional keys to elite dict #89 (By kitsunehunter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/89) [config SE problem #90 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/90) [handle NR-MAC auth for legacy cards #95(By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/95) [Create seader directory if needed #101](https://github.com/flipperdevices/flipperzero-good-faps/pull/101) [Add support for non-secure cards #106 (By nvx)](https://github.com/flipperdevices/flipperzero-good-faps/pull/106) [Picopass nr mac improvements #108 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/108) [Picopass read improvements #109 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/109) [Picopass: apply card to back view #118 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/118) [Picopass: rename AA1 to card_data #119 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/119) [Picopass: save written key #126 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/126)
 - OFW: [NFC: MF Classic parsers read() fix (dictionary attack skip) #3355 (By Leptopt1los)](https://github.com/flipperdevices/flipperzero-firmware/pull/3355)
 - OFW PR: [Slix disable privacy #3425 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/3425)
 - OFW: [NFC: Troika layout fixes #3365 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3365)
@@ -183,6 +182,11 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: NFC: [Parser for ITSO (UK) #3325 (By gsp8181)](https://github.com/flipperdevices/flipperzero-firmware/pull/3325)
 - OFW: [NFC: MFC Unlock with Dictionary #3411 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3411)
 - OFW: [NFC: fix crash on save manually added cards #3430 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/3430)
+- Updated: [PicoPass (iClass) v1.13 (By Bettse)](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/picopass) [Rework. Part 1 #68 (By gornekich)](https://github.com/flipperdevices/flipperzero-good-faps/pull/68) [Hopefully fix name buffer size issues (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9058c0c6a9980f84f6436673f9d3fbbc82cb3f81) [Save partial #85 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/85) [More info view (raw bytes) #86 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/86) [detect config card #87 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/87) [add additional keys to elite dict #89 (By kitsunehunter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/89) [config SE problem #90 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/90) [handle NR-MAC auth for legacy cards #95(By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/95) [Create seader directory if needed #101](https://github.com/flipperdevices/flipperzero-good-faps/pull/101) [Add support for non-secure cards #106 (By nvx)](https://github.com/flipperdevices/flipperzero-good-faps/pull/106) [Picopass nr mac improvements #108 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/108) [Picopass read improvements #109 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/109) [Picopass: apply card to back view #118 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/118) [Picopass: rename AA1 to card_data #119 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/119) [Picopass: save written key #126 (By bettse)](https://github.com/flipperdevices/flipperzero-good-faps/pull/126)
+- NFC: Parsers PartialRead fixes (By Willy-JL)
+- NFC: Improve NDEF parser safety (By Willy-JL)
+- Removed: [NFC Maker NTAG203 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
+- Updated: [NFC Maker v1.2 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
 
 <a name="release">
 
@@ -589,8 +593,7 @@ $ ./fbt dolphin_ext
 - [Mx2125 Step Counter v1.0 (By 47lecoste a.k.a. grugnoymeme)](https://github.com/grugnoymeme/flipperzero-stepcounter-fap)
 - [Name Changer (By ESurge)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/488) (Change Flipper name)
 - [NFC Magic v1.5 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966)
-- [NFC Maker NTAG203 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
-- [NFC Maker NTAG215 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
+- [NFC Maker v1.2 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
 - [NFC Playlist v1.1 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - [NFC Seader v2.3 (By bettse)](https://github.com/bettse/seader)
 - [Nightstand Clock v1.1 (By nymda)](https://github.com/nymda/FlipperNightStand)
