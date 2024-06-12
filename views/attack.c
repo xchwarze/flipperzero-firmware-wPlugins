@@ -438,7 +438,7 @@ FuzzerViewAttack* fuzzer_view_attack_alloc() {
         FuzzerViewAttackModel * model,
         {
             model->time_delay = fuzzer_proto_get_def_idle_time();
-            model->time_delay_min = 0; // model->time_delay;
+            model->time_delay_min = 1; // model->time_delay;
 
             model->emu_time = fuzzer_proto_get_def_emu_time();
 
