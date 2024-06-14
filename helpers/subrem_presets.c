@@ -2,7 +2,7 @@
 
 #define TAG "SubRemPresets"
 
-SubRemSubFilePreset* subrem_sub_file_preset_alloc() {
+SubRemSubFilePreset* subrem_sub_file_preset_alloc(void) {
     SubRemSubFilePreset* sub_preset = malloc(sizeof(SubRemSubFilePreset));
 
     sub_preset->fff_data = flipper_format_string_alloc();
@@ -104,8 +104,17 @@ SubRemLoadSubState subrem_sub_preset_load(
         }
 
         if(!strcmp(furi_string_get_cstr(temp_str), "CUSTOM")) {
-            FURI_LOG_E(TAG, "CUSTOM preset is not supported");
-            break;
+            //TODO Does this work properly?
+            //delete preset if it already exists
+            subghz_setting_delete_custom_preset(setting, furi_string_get_cstr(temp_str));
+            //load custom preset from file
+            if(!subghz_setting_load_custom_preset(
+                   setting, furi_string_get_cstr(temp_str), fff_data_file)) {
+                FURI_LOG_E(TAG, "Missing Custom preset");
+                break;
+            }
+            // FURI_LOG_E(TAG, "CUSTOM preset is not supported");
+            // break;
             // TODO Custom preset loading logic if need
             // sub_preset->freq_preset.preset_index =
             //     subghz_setting_get_inx_preset_by_name(setting, furi_string_get_cstr(temp_str));
