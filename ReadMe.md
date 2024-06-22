@@ -70,7 +70,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Add initial ISO7816 support #3681 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3681)
 - OFW: [cleanup of various warnings from clangd #3682 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3682)
 - Updated: [Restaurant Pager Trigger v1.7 (By leedave)](https://github.com/leedave/flipper-zero-meal-pager)
-- Updated: [PicoPass (iClass) v1.14 (By Bettse)](https://gitlab.com/bettse/picopass)
 - Various app changes for message queue updates (By Willy-JL)
 - Updated: [FlipBoard Keyboard v3.8 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
 - Updated: [DVD Screensaver v1.1 (By shantih19)](https://github.com/shantih19/flipper_dvd_screensaver)
@@ -87,6 +86,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Fix depricated function in canvas (By xMasterX)
 - Updated: [BMI Air Mouse v1.2 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - Updated: [HC-11 Modem v1.0 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11`
+- Updated: [PicoPass (iClass) v1.14 (By Bettse)](https://gitlab.com/bettse/picopass)
 
 <a name="release">
 
