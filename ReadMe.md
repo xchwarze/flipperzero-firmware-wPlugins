@@ -89,6 +89,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [PicoPass (iClass) v1.14 (By Bettse)](https://gitlab.com/bettse/picopass)
 - Updated: [iButton Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware)
 - Updated: [RFID Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By Ganapati)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/245)
+- Updated: [Cross Remote v2.6 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
 
 <a name="release">
 
@@ -418,7 +419,7 @@ $ ./fbt dolphin_ext
 - [Cookie Clicker v1.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/hid/hid_cookie)
 - [Count Down Timer v1.4 (By 0w0mewo)](https://github.com/0w0mewo/fpz_cntdown_timer)
 - [Counter v1.3 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
-- [Cross Remote v2.5 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
+- [Cross Remote v2.6 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
 - [Crypto Dictionary v0.1 (By armixz)](https://github.com/armixz/Flipper-Zero-Crypto-Dictionary)
 - [Dab Timer v1.9.1 (By RogueMaster)](https://github.com/RogueMaster/flipperzero-dabtimer)
 - [DAP Link v1.2 (By DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1897)

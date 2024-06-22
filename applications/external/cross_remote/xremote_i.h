@@ -23,9 +23,6 @@
 #include <gui/modules/button_menu.h>
 #include <gui/modules/button_panel.h>
 #include <gui/modules/variable_item_list.h>
-
-//#include <lib/subghz/protocols/protocol_items.h> //Not found
-
 #include <input/input.h>
 #include <notification/notification_messages.h>
 
@@ -59,7 +56,6 @@
 #define INFRARED_APP_FOLDER ANY_PATH("infrared")
 
 #define SUBGHZ_APP_EXTENSION ".sub"
-#define SUBGHZ_APP_FOLDER ANY_PATH("subghz")
 
 #define TAG "XRemote"
 
