@@ -23,34 +23,39 @@ static void lfrfid_view_read_draw_callback(Canvas* canvas, void* _model) {
     canvas_set_font(canvas, FontPrimary);
 
     if(model->read_mode == LfRfidReadAsk) {
-        canvas_draw_str(canvas, 70, 16, "Reading 1/3");
+        canvas_draw_str(canvas, 70, 8, "Reading 1/3");
 
-        canvas_draw_str(canvas, 77, 29, "ASK");
-        canvas_draw_icon(canvas, 70, 22, &I_ButtonRight_4x7);
-        canvas_draw_icon_animation(canvas, 102, 21, model->icon);
+        canvas_draw_str(canvas, 77, 20, "ASK");
+        canvas_draw_icon(canvas, 70, 13, &I_ButtonRight_4x7);
+        canvas_draw_icon_animation(canvas, 102, 12, model->icon);
 
         canvas_set_font(canvas, FontSecondary);
-        canvas_draw_str(canvas, 77, 43, "PSK");
+        canvas_draw_str(canvas, 77, 33, "PSK");
+        canvas_draw_str(canvas, 77, 46, "RTF");
+        
     } else if(model->read_mode == LfRfidReadPsk) {
-        canvas_draw_str(canvas, 70, 16, "Reading 2/3");
+        canvas_draw_str(canvas, 70, 8, "Reading 2/3");
 
-        canvas_draw_str(canvas, 77, 43, "PSK");
-        canvas_draw_icon(canvas, 70, 36, &I_ButtonRight_4x7);
-        canvas_draw_icon_animation(canvas, 102, 35, model->icon);
+        canvas_draw_str(canvas, 77, 33, "PSK");
+        canvas_draw_icon(canvas, 70, 26, &I_ButtonRight_4x7);
+        canvas_draw_icon_animation(canvas, 102, 25, model->icon);
 
         canvas_set_font(canvas, FontSecondary);
-        canvas_draw_str(canvas, 77, 29, "ASK");
+        canvas_draw_str(canvas, 77, 20, "ASK");
+        canvas_draw_str(canvas, 77, 46, "RTF");
+        
     } else if(model->read_mode == LfRfidReadHitag) {
         if(model->read_state == LfRfidReadScanning) {
             canvas_draw_str(canvas, 70, 8, "Reading 3/3");
 
             canvas_draw_str(canvas, 77, 46, "RTF");
             canvas_draw_icon(canvas, 70, 39, &I_ButtonRight_4x7);
-            canvas_draw_icon_animation(canvas, 112, 38, model->icon);
+            canvas_draw_icon_animation(canvas, 102, 38, model->icon);
 
             canvas_set_font(canvas, FontSecondary);
             canvas_draw_str(canvas, 77, 20, "ASK");
             canvas_draw_str(canvas, 77, 33, "PSK");
+            
         } else if(model->read_state == LfRfidReadTagDetected) { //TODO switch to other scene?
             canvas_draw_str(canvas, 65, 8, "Hitag1 found");
 
@@ -156,4 +161,4 @@ void lfrfid_view_read_set_read_mode(LfRfidReadView* read_view, LfRfidReadViewMod
 void lfrfid_view_read_set_read_state(LfRfidReadView* read_view, LfRfidReadViewState state) {
     with_view_model(
         read_view->view, LfRfidReadViewModel * model, { model->read_state = state; }, true);
-}
+        }
