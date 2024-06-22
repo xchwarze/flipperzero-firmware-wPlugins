@@ -90,6 +90,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [iButton Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware)
 - Updated: [RFID Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By Ganapati)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/245)
 - Updated: [Cross Remote v2.6 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
+- Updated: [DnD Dice v1.3 (By Ka3u6y6a)](https://github.com/Ka3u6y6a/flipper-zero-dice)
 
 <a name="release">
 
