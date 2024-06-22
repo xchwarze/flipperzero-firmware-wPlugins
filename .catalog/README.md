@@ -64,3 +64,9 @@ Due to the nature of how secure picopass works, it is possible to emulate some p
 3. Card will authenticate and read
 4. Suggested to both "Save" the card and "Save as Seader"
 
+
+# Elite Keygen Attack
+
+Background: https://youtu.be/MKSXSKQHz6o?si=DEKkW60x858pUI0a&t=600
+
+The keys used for early Elite systems used the VB6 (yes, as in Visual Basic) RNG to generate the keys.  This attack uses the known VB6 RNG to generate the keys.  This attack is only useful for early Elite systems, as later systems are keyed in some other manor.  Since this can generate an insanely large number of values (and eventually loop), by default it is limited to the first 2000 keys.  Please provide feedback if you would like this increased.  Also, the leaked iCopyX dictionary included 700ish of these, so the first 700 are redundant to the System Elite Dictionary attack run during "Read".  This attack is not useful for iClass SE systems.
