@@ -85,7 +85,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - Fix depricated function in canvas (By xMasterX)
 - Updated: [BMI Air Mouse v1.2 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - Updated: [HC-11 Modem v1.0 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11`
-- Updated: [PicoPass (iClass) v1.14 (By Bettse)](https://gitlab.com/bettse/picopass)
 - Updated: [iButton Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware)
 - Updated: [RFID Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By Ganapati)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/245)
 - Updated: [Cross Remote v2.6 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
@@ -93,6 +92,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [MODBUS v0.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
 - Updated: [Sub-GHz Remote v1.4 (By gid9798)](https://github.com/DarkFlippers/SubGHz_Remote)
 - Updated: [NFC Seader v2.8 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
+- Updated: [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
 
 <a name="release">
 
@@ -551,7 +551,7 @@ $ ./fbt dolphin_ext
 - [Pet a Dolphin (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
 - [pForth (By twisted-pear)](https://github.com/twisted-pear/f0forth)
 - [Pi Terminal v1.0 (By dagnazty & InfoSecREDD)](https://github.com/InfoSecREDD/Flip-pi)
-- [PicoPass (iClass) v1.14 (By Bettse)](https://gitlab.com/bettse/picopass)
+- [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
 - [Plantower PMSx003 sensor reader v1.2 (By 3cky)](https://github.com/3cky/flipperzero-airmon) `Req: Plantower PMS5003/PMS7003/PMS9003`
 - [Plugin Demo v1.0 (By csBlueChip)](https://github.com/csBlueChip/FlipperZero_plugin_howto)
 - [POCSAG Pager v1.2 (By XMasterx & Shmuma)](https://github.com/xMasterX/flipper-pager)
