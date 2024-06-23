@@ -10,6 +10,6 @@ App(
     fap_icon_assets_symbol="qrcode",
     fap_author="Bob Matcuk",
     fap_weburl="https://github.com/bmatcuk/flipperzero-qrcode",
-    fap_version=(2, 0),
+    fap_version="2.1",
     fap_description="Display qrcodes",
 )

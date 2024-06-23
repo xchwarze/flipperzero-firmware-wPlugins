@@ -93,6 +93,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Sub-GHz Remote v1.4 (By gid9798)](https://github.com/DarkFlippers/SubGHz_Remote)
 - Updated: [NFC Seader v2.8 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
 - Updated: [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
+- Updated: [QR Code v2.1 (By bmatcuk)](https://github.com/bmatcuk/flipperzero-qrcode)
 
 <a name="release">
 
@@ -560,7 +561,7 @@ $ ./fbt dolphin_ext
 - [Pomodoro 2 v1.3 (By Th3Un1q3)](https://github.com/Th3Un1q3/flipp_pomodoro)
 - [Programmer Calculator v0.9.2 (By armixz)](https://github.com/armixz/Flipper-Zero-Programmer-Calculator)
 - [Protocol Visualizer v1.1 (By antirez)](https://github.com/antirez/protoview)
-- [QR Code v2.0 (By bmatcuk)](https://github.com/bmatcuk/flipperzero-qrcode)
+- [QR Code v2.1 (By bmatcuk)](https://github.com/bmatcuk/flipperzero-qrcode)
 - [Quac! v0.6 (By rdefeo)](https://github.com/rdefeo/quac)
 - [Radar Scanner v2.0 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/flipper-radar) `Req: RCWL-0516`
 - [Radiation Sensor v1.0 (By sionyx)](https://github.com/sionyx/flipper_radsens) `Req: RadSens`
