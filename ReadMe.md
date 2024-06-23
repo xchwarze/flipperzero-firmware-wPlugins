@@ -45,7 +45,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Text Box: fix displaying text with end text focus #3658 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/3658)
 - OFW: [Replaced obsolete-format delay #3660 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3660)
 - SubGHz: [Added Genie Protocol (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder/protocols)
-- Updated: [NFC Seader v2.8 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
 - Updated: [NFC Playlist v2.1 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - OFW: [Archive: fix condition race on exit #3659 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3659)
 - OFW: [NFC App: fix changing UID #3663 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/3663)
@@ -93,6 +92,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [DnD Dice v1.3 (By Ka3u6y6a)](https://github.com/Ka3u6y6a/flipper-zero-dice)
 - Updated: [MODBUS v0.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
 - Updated: [Sub-GHz Remote v1.4 (By gid9798)](https://github.com/DarkFlippers/SubGHz_Remote)
+- Updated: [NFC Seader v2.8 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
 
 <a name="release">
 

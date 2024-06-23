@@ -387,12 +387,12 @@ void analogValuesParser(void* context, uint8_t* buff, size_t len, FuriString* da
     uint16_t value = 0;
     size_t offset = 0;
 
-    while (offset < len) {
+    while(offset < len) {
         value = 0;
-        if (offset + 1 < len) {
+        if(offset + 1 < len) {
             memcpy(((uint8_t*)&value) + 1, buff + offset, sizeof(uint8_t));
             memcpy((uint8_t*)&value, buff + offset + 1, sizeof(uint8_t));
-        } else if (offset < len) {
+        } else if(offset < len) {
             memcpy(((uint8_t*)&value) + 1, buff + offset, sizeof(uint8_t));
         }
 
