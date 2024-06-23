@@ -95,6 +95,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
 - Updated: [QR Code v2.1 (By bmatcuk)](https://github.com/bmatcuk/flipperzero-qrcode)
 - Updated: [Intervalometer v1.2 (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
+- [RFID Display Fix (By JendrBendr)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1075)
 
 <a name="release">
 
