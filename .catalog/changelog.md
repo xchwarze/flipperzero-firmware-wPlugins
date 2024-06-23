@@ -1,3 +1,7 @@
+## 1.16
+ - Acknowledgements page
+ - Elite VB6 RNG keygen attack
+ - Bump plugin version
 ## 1.15
  - Add downgrade from iClass SR to iClass Legacy
 ## 1.14
