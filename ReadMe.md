@@ -97,6 +97,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [RFID Display Fix (By JendrBendr)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1075)
 - Added: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
 - Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
+- Updated: [Digimon F-Com v1.4 (By TylerWilley)](https://github.com/TylerWilley/flipper-f-com)
 
 <a name="release">
 
@@ -434,7 +435,7 @@ $ ./fbt dolphin_ext
 - [DCF77 Transmitter v1.2 (By arha)](https://github.com/arha/flipper-dcf77)
 - [Deauther PWNDTOOLS V2.6.0 (By HEX0DAYS)](https://github.com/HEX0DAYS/FlipperZero-PWNDTOOLS) `Req: ESP8266` [Original](https://github.com/SpacehuhnTech/esp8266_deauther)
 - [Device Info (By hedger)](https://github.com/hedger/flipperdevinfo)
-- [Digimon F-Com v1.3 (By TylerWilley)](https://github.com/TylerWilley/flipper-f-com)
+- [Digimon F-Com v1.4 (By TylerWilley)](https://github.com/TylerWilley/flipper-f-com)
 - [Distance Sensor v1.2 (By privet971)](https://github.com/privet971/FlipperZeroApps/tree/main/usping) `Req: Parallax (3 wires) SKU 28015`
 - [Distance Sensor v1.1 (By Sanqui)](https://github.com/Sanqui/flipperzero-firmware/tree/hc_sr04) `Req: HC-SR04` Ported/Modified by xMasterX
 - [Dolphin Trainer v1.2 (By nymda)](https://github.com/nymda/FlipperAntidepressants)
