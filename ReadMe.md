@@ -96,6 +96,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [QR Code v2.1 (By bmatcuk)](https://github.com/bmatcuk/flipperzero-qrcode)
 - Updated: [Intervalometer v1.2 (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
 - [RFID Display Fix (By JendrBendr)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1075)
+- Added: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
 
 <a name="release">
 
@@ -539,6 +540,7 @@ $ ./fbt dolphin_ext
 - [NFC Playlist v2.1 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - [NFC Relay v0.2 (By leommxj)](https://github.com/leommxj/nfc_relay)
 - [NFC Seader v2.8 (By bettse)](https://github.com/bettse/seader)
+- [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
 - [Nightstand Clock v1.1 (By nymda)](https://github.com/nymda/FlipperNightStand)
 - [Noptel LRF Sampler v1.9 (By Giraut)](https://github.com/Giraut/flipper_zero_noptel_lrf_sampler)
 - [Notes for FZ WIP (By AdrianN001)](https://github.com/AdrianN001/Flipper-Zero-Note-Application)

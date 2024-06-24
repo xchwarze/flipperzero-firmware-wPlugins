@@ -107,7 +107,7 @@ static void input_callback(InputEvent* input_event, void* ctx) {
 }
 
 static void timer_callback(void* event_queue) {
-//    Проверяем, что контекст не нулевой
+    //    Проверяем, что контекст не нулевой
     furi_assert(event_queue);
 
     ZeitrafferEvent event = {.type = EventTypeTick};

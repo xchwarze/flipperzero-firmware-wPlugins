@@ -1,0 +1,14 @@
+App(
+    appid="nfcurl",
+    name="NFC URL",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="nfcurl_app",
+    stack_size=2 * 1024,
+    fap_category="NFC",
+    fap_icon_assets="images",
+    fap_icon="nfcurl.png",
+    fap_author="Yasper De Jong",
+    fap_weburl="https://github.com/y-dejong/nfcurl",
+    fap_version="1.0",
+    fap_description="Create NFC tags that direct you to a URL",
+)
