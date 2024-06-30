@@ -1,6 +1,6 @@
-# Flipper Mfkey32
+# Flipper MFKey
 
-![](https://thumb.tildacdn.com/tild3332-3839-4061-b663-363464303432/-/resize/214x/-/format/webp/noroot.png)
+<img src="https://github.com/noproto/FlipperMfkey/assets/11845893/475bf66a-2e95-44a8-b884-62f28ca5512f" alt="Dolphin" width="60%" height="60%">
 
 ## What
 This Flipper application ("FAP") cracks Mifare Classic 1K/4K keys on your Flipper Zero. No companion app/desktop needed.
@@ -11,15 +11,13 @@ Official guide: https://docs.flipperzero.one/nfc/mfkey32
 These are the general steps:
 
 1. Use the Detect Reader function to save nonces on your Flipper from the reader
-2. Use the Mfkey32 app to crack the keys
+2. Use the MFKey app to crack the keys
 3. Scan the Mifare Classic card
 
 All cracked nonces are automatically added to your user dictionary, allowing you to clone Mifare Classic 1K/4K cards upon re-scanning them.
 
 ## Builds
-OFW: Included in 0.83.0-rc and up https://github.com/flipperdevices/flipperzero-firmware/releases/tag/0.83.0-rc (if your firmware is at least newer than the May release, you already have it under your NFC menu!)
-
-Currently being migrated to the App Hub and distributed by Flipper Devices (https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/mfkey32)
+OFW: Available in the App Hub ([Download](https://lab.flipper.net/apps/mfkey)) and distributed by Flipper Devices (https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/mfkey).
 
 Published (options):
 * [Unleashed repository](https://github.com/xMasterX/all-the-plugins/tree/main/apps/Tools_Extra)
@@ -30,7 +28,7 @@ Published (options):
 * [RogueMaster firmware](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/releases/latest)
   * Built in to every release, you're good to go!
 
-Manual: Copy the fap/ directory to applications_user/mfkey32/ and build it with fbt
+Manual: Copy the fap/ directory to applications_user/mfkey/ and build it with fbt
 
 ## Why
 This was the only function of the Flipper Zero that was [thought to be impossible on the hardware](https://old.reddit.com/r/flipperzero/comments/is31re/comment/g72077x/). You can still use other methods if you prefer them.
@@ -43,8 +41,8 @@ This was the only function of the Flipper Zero that was [thought to be impossibl
 | Category | Time |
 | -------- | ---- |
 | Best (real world) | 31 seconds |
-| Average | 4.8 min |
-| Worst possible (expected) | 9.6 min |
+| Average | 3.4 min |
+| Worst possible (expected) | 6.8 min |
 
 NB: Keys that are already in the system/user dictionary or nonces with already found keys are cracked instantly. This means on average cracking an arbitrary number of nonces from the same reader will take 4.8 minutes (1 unknown key).
 

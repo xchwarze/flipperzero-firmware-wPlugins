@@ -52,15 +52,18 @@
     ((x) = ((x) >> 8 & 0xff00ff) | ((x) & 0xff00ff) << 8, (x) = (x) >> 16 | (x) << 16)
 //#define SIZEOF(arr) sizeof(arr) / sizeof(*arr)
 
-static int eta_round_time = 56;
-static int eta_total_time = 900;
+static int eta_round_time = 44;
+static int eta_total_time = 705;
 // MSB_LIMIT: Chunk size (out of 256)
 static int MSB_LIMIT = 16;
 
 int check_state(struct Crypto1State* t, MfClassicNonce* n) {
     if(!(t->odd | t->even)) return 0;
     if(n->attack == mfkey32) {
-        rollback_word_noret(t, 0, 0);
+        uint32_t rb = (napi_lfsr_rollback_word(t, 0, 0) ^ n->p64);
+        if(rb != n->ar0_enc) {
+            return 0;
+        }
         rollback_word_noret(t, n->nr0_enc, 1);
         rollback_word_noret(t, n->uid_xor_nt0, 0);
         struct Crypto1State temp = {t->odd, t->even};
@@ -419,6 +422,10 @@ void** allocate_blocks(const size_t* block_sizes, int num_blocks) {
     return block_pointers;
 }
 
+bool is_full_speed() {
+    return MSB_LIMIT == 16;
+}
+
 bool recover(MfClassicNonce* n, int ks2, unsigned int in, ProgramState* program_state) {
     bool found = false;
     const size_t block_sizes[] = {49216, 49216, 5120, 5120, 4096};
@@ -427,9 +434,11 @@ bool recover(MfClassicNonce* n, int ks2, unsigned int in, ProgramState* program_
     void** block_pointers = allocate_blocks(block_sizes, num_blocks);
     if(block_pointers == NULL) {
         // System has less than the guaranteed amount of RAM (140 KB) - adjust some parameters to run anyway at half speed
-        eta_round_time *= 2;
-        eta_total_time *= 2;
-        MSB_LIMIT /= 2;
+        if(is_full_speed()) {
+            //eta_round_time *= 2;
+            eta_total_time *= 2;
+            MSB_LIMIT /= 2;
+        }
         block_pointers = allocate_blocks(reduced_block_sizes, num_blocks);
         if(block_pointers == NULL) {
             // System has less than 70 KB of RAM - should never happen so we don't reduce speed further
@@ -532,7 +541,7 @@ void mfkey(ProgramState* program_state) {
     //FURI_LOG_I(TAG, "Free heap before alloc(): %zub", memmgr_get_free_heap());
     Storage* storage = furi_record_open(RECORD_STORAGE);
     FlipperApplication* app = flipper_application_alloc(storage, firmware_api_interface);
-    flipper_application_preload(app, APP_DATA_PATH("plugins/mfkey_init_plugin.fal"));
+    flipper_application_preload(app, APP_ASSETS_PATH("plugins/mfkey_init_plugin.fal"));
     flipper_application_map_to_memory(app);
     const FlipperAppPluginDescriptor* app_descriptor =
         flipper_application_plugin_get_descriptor(app);
@@ -678,23 +687,27 @@ static void render_callback(Canvas* const canvas, void* ctx) {
     canvas_clear(canvas);
     canvas_draw_frame(canvas, 0, 0, 128, 64);
     canvas_draw_frame(canvas, 0, 15, 128, 64);
+    canvas_set_font(canvas, FontPrimary);
+    canvas_draw_str_aligned(canvas, 5, 4, AlignLeft, AlignTop, "MFKey");
     snprintf(draw_str, sizeof(draw_str), "RAM: %zub", memmgr_get_free_heap());
+    canvas_set_font(canvas, FontSecondary);
     canvas_draw_str_aligned(canvas, 48, 5, AlignLeft, AlignTop, draw_str);
     canvas_draw_icon(canvas, 114, 4, &I_mfkey);
-    if(program_state->mfkey_state == MFKeyAttack) {
+    if(program_state->is_thread_running && program_state->mfkey_state == MFKeyAttack) {
         float eta_round = (float)1 - ((float)program_state->eta_round / (float)eta_round_time);
         float eta_total = (float)1 - ((float)program_state->eta_total / (float)eta_total_time);
         float progress = (float)program_state->num_completed / (float)program_state->total;
-        if(eta_round < 0 || eta_round > 1) {
+        if(eta_round < 0) {
             // Round ETA miscalculated
             eta_round = 1;
             program_state->eta_round = 0;
         }
-        if(eta_total < 0 || eta_total > 1) {
+        if(eta_total < 0) {
             // Total ETA miscalculated
             eta_total = 1;
             program_state->eta_total = 0;
         }
+        canvas_set_font(canvas, FontSecondary);
         snprintf(
             draw_str,
             sizeof(draw_str),
@@ -712,7 +725,8 @@ static void render_callback(Canvas* const canvas, void* ctx) {
         elements_progress_bar_with_text(canvas, 5, 31, 118, eta_round, draw_str);
         snprintf(draw_str, sizeof(draw_str), "Total ETA %03d Sec", program_state->eta_total);
         elements_progress_bar_with_text(canvas, 5, 44, 118, eta_total, draw_str);
-    } else if(program_state->mfkey_state == DictionaryAttack) {
+    } else if(program_state->is_thread_running && program_state->mfkey_state == DictionaryAttack) {
+        canvas_set_font(canvas, FontSecondary);
         snprintf(
             draw_str, sizeof(draw_str), "Dict solves: %d (in progress)", program_state->cracked);
         canvas_draw_str_aligned(canvas, 10, 18, AlignLeft, AlignTop, draw_str);
@@ -721,7 +735,9 @@ static void render_callback(Canvas* const canvas, void* ctx) {
     } else if(program_state->mfkey_state == Complete) {
         // TODO: Scrollable list view to see cracked keys if user presses down
         elements_progress_bar(canvas, 5, 18, 118, 1);
-        canvas_draw_str_aligned(canvas, 40, 31, AlignLeft, AlignTop, "Complete");
+        canvas_set_font(canvas, FontSecondary);
+        snprintf(draw_str, sizeof(draw_str), "Complete");
+        canvas_draw_str_aligned(canvas, 40, 31, AlignLeft, AlignTop, draw_str);
         snprintf(
             draw_str,
             sizeof(draw_str),
@@ -729,16 +745,19 @@ static void render_callback(Canvas* const canvas, void* ctx) {
             program_state->unique_cracked);
         canvas_draw_str_aligned(canvas, 10, 41, AlignLeft, AlignTop, draw_str);
     } else if(program_state->mfkey_state == Ready) {
+        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str_aligned(canvas, 50, 30, AlignLeft, AlignTop, "Ready");
         elements_button_center(canvas, "Start");
         elements_button_right(canvas, "Help");
     } else if(program_state->mfkey_state == Help) {
+        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str_aligned(canvas, 7, 20, AlignLeft, AlignTop, "Collect nonces using Detect");
         canvas_draw_str_aligned(canvas, 7, 30, AlignLeft, AlignTop, "Reader or FlipperNested.");
         canvas_draw_str_aligned(canvas, 7, 40, AlignLeft, AlignTop, "Devs: noproto, AG, ALiberty");
         canvas_draw_str_aligned(canvas, 7, 50, AlignLeft, AlignTop, "Thanks: bettse, Foxushka");
     } else if(program_state->mfkey_state == Error) {
         canvas_draw_str_aligned(canvas, 50, 25, AlignLeft, AlignTop, "Error");
+        canvas_set_font(canvas, FontSecondary);
         if(program_state->err == MissingNonces) {
             canvas_draw_str_aligned(canvas, 25, 36, AlignLeft, AlignTop, "No nonces found");
         } else if(program_state->err == ZeroNonces) {
@@ -751,20 +770,18 @@ static void render_callback(Canvas* const canvas, void* ctx) {
     } else {
         // Unhandled program state
     }
-    canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str_aligned(canvas, 5, 4, AlignLeft, AlignTop, "MFKey");
     furi_mutex_release(program_state->mutex);
 }
 
-static void input_callback(InputEvent* input_event, void* ctx) {
-    FuriMessageQueue* event_queue = ctx;
+static void input_callback(InputEvent* input_event, void* event_queue) {
     furi_assert(event_queue);
 
     PluginEvent event = {.type = EventTypeKey, .input = *input_event};
-    furi_message_queue_put(event_queue, &event, FuriWaitForever);
+    furi_message_queue_put((FuriMessageQueue*)event_queue, &event, FuriWaitForever);
 }
 
 static void mfkey_state_init(ProgramState* program_state) {
+    program_state->is_thread_running = false;
     program_state->mfkey_state = Ready;
     program_state->cracked = 0;
     program_state->unique_cracked = 0;
@@ -776,10 +793,18 @@ static void mfkey_state_init(ProgramState* program_state) {
 // Entrypoint for worker thread
 static int32_t mfkey_worker_thread(void* ctx) {
     ProgramState* program_state = ctx;
+    program_state->is_thread_running = true;
     program_state->mfkey_state = Initializing;
     //FURI_LOG_I(TAG, "Hello from the mfkey worker thread"); // DEBUG
     mfkey(program_state);
+    program_state->is_thread_running = false;
     return 0;
+}
+
+void start_mfkey_thread(ProgramState* program_state) {
+    if(!program_state->is_thread_running) {
+        furi_thread_start(program_state->mfkeythread);
+    }
 }
 
 int32_t mfkey_main() {
@@ -805,8 +830,11 @@ int32_t mfkey_main() {
     Gui* gui = furi_record_open(RECORD_GUI);
     gui_add_view_port(gui, view_port, GuiLayerFullscreen);
 
-    program_state->mfkeythread =
-        furi_thread_alloc_ex("MFKey Worker", 2048, mfkey_worker_thread, program_state);
+    program_state->mfkeythread = furi_thread_alloc();
+    furi_thread_set_name(program_state->mfkeythread, "MFKey Worker");
+    furi_thread_set_stack_size(program_state->mfkeythread, 2048);
+    furi_thread_set_context(program_state->mfkeythread, program_state);
+    furi_thread_set_callback(program_state->mfkeythread, mfkey_worker_thread);
 
     PluginEvent event;
     for(bool main_loop = true; main_loop;) {
@@ -824,24 +852,33 @@ int32_t mfkey_main() {
                     case InputKeyDown:
                         break;
                     case InputKeyRight:
-                        if(program_state->mfkey_state == Ready) {
+                        if(!program_state->is_thread_running &&
+                           program_state->mfkey_state == Ready) {
                             program_state->mfkey_state = Help;
+                            view_port_update(view_port);
                         }
                         break;
                     case InputKeyLeft:
                         break;
                     case InputKeyOk:
-                        if(program_state->mfkey_state == Ready) {
-                            furi_thread_start(program_state->mfkeythread);
+                        if(!program_state->is_thread_running &&
+                           program_state->mfkey_state == Ready) {
+                            start_mfkey_thread(program_state);
+                            view_port_update(view_port);
                         }
                         break;
                     case InputKeyBack:
-                        if(program_state->mfkey_state == Help) {
+                        if(!program_state->is_thread_running &&
+                           program_state->mfkey_state == Help) {
                             program_state->mfkey_state = Ready;
+                            view_port_update(view_port);
                         } else {
                             program_state->close_thread_please = true;
-                            // Wait until thread is finished
-                            furi_thread_join(program_state->mfkeythread);
+                            if(program_state->is_thread_running && program_state->mfkeythread) {
+                                // Wait until thread is finished
+                                furi_thread_join(program_state->mfkeythread);
+                            }
+                            program_state->close_thread_please = false;
                             main_loop = false;
                         }
                         break;
@@ -852,11 +889,10 @@ int32_t mfkey_main() {
             }
         }
 
-        furi_mutex_release(program_state->mutex);
         view_port_update(view_port);
+        furi_mutex_release(program_state->mutex);
     }
 
-    // Thread joined in back event handler
     furi_thread_free(program_state->mfkeythread);
     view_port_enabled_set(view_port, false);
     gui_remove_view_port(gui, view_port);

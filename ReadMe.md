@@ -96,8 +96,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Intervalometer v1.2 (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
 - [RFID Display Fix (By JendrBendr)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1075)
 - Added: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
-- Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
 - Updated: [Digimon F-Com v1.4 (By TylerWilley)](https://github.com/TylerWilley/flipper-f-com)
+- Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
+- Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
 
 <a name="release">
 
@@ -516,7 +517,7 @@ $ ./fbt dolphin_ext
 - [MAX31855 (By skotopes)](https://github.com/skotopes/flipperzero_max31855)
 - [Metronome v1.2 (By panki27)](https://github.com/panki27/Metronome)
 - [MFC Editor v1.0 (By TollyH)](https://github.com/TollyH/flipper-apps)
-- [Mfkey v2.2 (By noproto)](https://github.com/noproto/FlipperMfkey)
+- [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - [MH-Z19 CO2 Sensor v0.2 (By meshchaninov)](https://github.com/meshchaninov/flipper-zero-mh-z19)
 - [MH-Z19 UART (By skotopes)](https://github.com/skotopes/flipperzero_mhz19_uart)
 - [MIDI Ocarina v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_Zero_MIDI_Ocarina)
