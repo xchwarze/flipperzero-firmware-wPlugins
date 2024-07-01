@@ -87,7 +87,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Slot Machine v1.3 (By Daniel-dev-s)](https://github.com/Daniel-dev-s/flipperzero-slots) (Updated from MNTM Apps)
 - Updated: [Wii EC Analyzer v1.1 (By csBlueChip)](https://github.com/csBlueChip/FlipperZero_WiiEC) (Updated from MNTM Apps)
 - Updated: [Video Poker v1.2 (By PixlEmly)](https://github.com/PixlEmly/flipperzero-firmware-testing/blob/420/applications/VideoPoker/poker.c) (Updated from MNTM Apps)
-- Updated: [Many apps version increment only from MNTM Apps (By Willy-JL) (Merged By RogueMaster)]()
+- Updated: [Many apps version increment only from MNTM Apps (By Willy-JL) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/5535ae10e25e2863e45e8309d92d68dbe946401e)
 
 <a name="release">
 
