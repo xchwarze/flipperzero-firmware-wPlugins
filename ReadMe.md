@@ -104,6 +104,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [NRF Sniffer for MS Mouse (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/nrfsniff_ms) `Req: NRF24`
 - Updated: [J305 Geiger Counter v1.3 (By nmrr)](https://github.com/nmrr/flipperzero-geigercounter)
 - Updated: [Quac! v0.6.1 (By rdefeo)](https://github.com/rdefeo/quac)
+- [Fix for Pinned BadUsb Script not working 1074 (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1074)
 
 <a name="release">
 

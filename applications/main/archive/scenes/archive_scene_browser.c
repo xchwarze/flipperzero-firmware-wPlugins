@@ -30,7 +30,7 @@ const char* archive_get_flipper_app_name(ArchiveFileTypeEnum file_type) {
     case ArchiveFileTypeInfraredRemote:
         return EXT_PATH("apps/Infrared/ir_remote.fap");
     case ArchiveFileTypeBadKb:
-        return "Bad KB";
+        return EXT_PATH("apps/USB/bad_kb.fap");
     case ArchiveFileTypeWAV:
         return EXT_PATH("apps/Media/wav_player.fap");
     case ArchiveFileTypeMag:
