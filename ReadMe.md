@@ -89,7 +89,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Video Poker v1.2 (By PixlEmly)](https://github.com/PixlEmly/flipperzero-firmware-testing/blob/420/applications/VideoPoker/poker.c) (Updated from MNTM Apps)
 - Updated: [Many apps version increment only from MNTM Apps (By Willy-JL) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/5535ae10e25e2863e45e8309d92d68dbe946401e)
 - Updated: [Music Beeper (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/pull/1189) (Updated from UL Apps)
-- Updated: [Many apps version increment only from UL Apps (By xMasterX) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [Many apps version increment only from UL Apps (By xMasterX) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/f3e91cd826b298d724742cb0a8fd23ebdb6ab7b8)
 
 <a name="release">
 
