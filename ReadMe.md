@@ -68,6 +68,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [LFRFID Securakey: Add Support for RKKTH Plain Text Format #3728 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3728)
 - NOT MERGED: OFW: [cli: storage: minor subcommand lookup refactor #3739 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3739)
 - NOT MERGED: OFW: [Updater: resource compression #3716 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3716)
+- [Furi Assert Fixes From event_queue to ctx (By RogueMaster)]()
 - Some merge fixes that may have come from xMasterX or Willy-JL...
 - Updated: [Counter v1.4 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
 

@@ -285,16 +285,16 @@ static void draw_callback(Canvas* canvas, void* ctx) {
 }
 
 static void input_callback(InputEvent* input_event, void* context) {
+    furi_assert(context);
     FuriMessageQueue* event_queue = context;
-    furi_assert(event_queue);
 
     AppEvent event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);
 }
 
 static void timer_callback(void* context) {
+    furi_assert(context);
     FuriMessageQueue* event_queue = context;
-    furi_assert(event_queue);
 
     AppEvent event = {.type = EventTypeTick};
     furi_message_queue_put(event_queue, &event, 0);

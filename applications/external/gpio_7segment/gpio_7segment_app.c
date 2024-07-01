@@ -102,8 +102,8 @@ typedef struct {
 // @param input_event the input event that caused the callback to be invoked.
 // @param queue the message queue for queueing key event.
 static void gpio_7segment_input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* queue = ctx;
-    furi_assert(queue);
     GpioEvent event = {.type = GpioEventTypeKey, .input = *input_event};
     furi_message_queue_put(queue, &event, FuriWaitForever);
 }

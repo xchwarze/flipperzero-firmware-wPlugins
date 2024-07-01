@@ -46,8 +46,8 @@ static void mouse_jiggler_render_callback(Canvas* canvas, void* ctx) {
 }
 
 static void mouse_jiggler_input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
 
     UsbMouseEvent event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);

@@ -29,8 +29,8 @@ typedef struct {
 } Clock;
 
 static void clock_input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* queue = ctx;
-    furi_assert(queue);
     ClockEvent event = {.type = ClockEventTypeKey, .input = *input_event};
     furi_message_queue_put(queue, &event, FuriWaitForever);
 }

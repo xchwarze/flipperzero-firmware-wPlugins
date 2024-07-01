@@ -302,8 +302,8 @@ static void montyhall_render_callback(Canvas* const canvas, void* ctx) {
 }
 
 static void montyhall_input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
 
     furi_message_queue_put(event_queue, input_event, FuriWaitForever);
 }

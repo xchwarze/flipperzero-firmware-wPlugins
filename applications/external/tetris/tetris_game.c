@@ -234,8 +234,8 @@ static void tetris_game_render_callback(Canvas* const canvas, void* ctx) {
 }
 
 static void tetris_game_input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
 
     TetrisEvent event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);
@@ -388,8 +388,8 @@ static bool tetris_game_piece_at_bottom(TetrisState* tetris_state, Piece* newPie
 }
 
 static void tetris_game_update_timer_callback(void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
 
     TetrisEvent event = {.type = EventTypeTick};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);

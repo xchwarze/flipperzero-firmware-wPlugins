@@ -26,8 +26,8 @@ bool run = true;
 
 static void cbInput(InputEvent* event, void* ctx) {
     ENTER;
+    furi_assert(ctx);
     FuriMessageQueue* queue = ctx;
-    furi_assert(queue);
     furi_assert(event);
 
     // Put an "input" event message on the message queue
