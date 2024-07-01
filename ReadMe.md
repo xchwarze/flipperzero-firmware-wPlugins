@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0520-1640-0.102.1-13c0834.tgz&channel=RM0520-1640-0.102.1-13c0834&version=0.102.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0630-2141-0.102.4-bd79934.tgz&channel=RM0630-2141-0.102.4-bd79934&version=0.102.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,80 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-06-04 14:02 WITA`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-06-04 14:02 WITA`
-- Updated: [Chess v1.10 (By xtruan)](https://github.com/xtruan/flipper-chess)
-- Updated: [Digimon F-Com v1.3 (By TylerWilley)](https://github.com/TylerWilley/flipper-f-com)
-- Updated: [FlipBIP Crypto Wallet v1.16 (By xtruan)](https://github.com/xtruan/FlipBIP)
-- Patreon Builds Update: [420, 420+18, Anime420 and ManifestSwitcher builds have been updated to have the NuggiePuff animation (By ATOMNFT)](https://github.com/ATOMNFT/Flipper-Vault/tree/main/Animations/Weed%20Themed/NuggiePuff)
-- Patreon Builds Update: [P0KEMON and ManifestSwitcher builds have been updated to have 8 new Haunter animations (By int0xmonkey)](https://github.com/int0xmonkey/Haunter-Asset-Pack/tree/main/Haunter/Anims)
-- Patreon Builds Update: [P0KEMON and ManifestSwitcher builds have been updated to have 12 new Psyduck animations (By naisatoh)](https://github.com/naisatoh/Psyduck-Asset-Pack)
-- Patreon Builds Update: [P0KEMON and ManifestSwitcher builds have been updated to have 8 new starter P0kemon animations (By AbeNaws)](https://github.com/AbeNaws/FlipperZeroAssetPacks/tree/main/Pokemon/Compiled/Pokemon/Anims)
-- Passport added profile images of Haunter (By int0xmonkey), Psyduck (By naisatoh) & Pokemon Trainer (By AbeNaws)
-- Archive: [Disk Image Mount support, Search, support for: SubGHz Remote, SubGHz Playlist, IR Remote, Text Viewer & Hex Viewer, and WAV file integration (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1070)
-- Power: [Show -unplug usb cable- even when locked (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/14940302ca49316cc2ac681cc94898d98573755c)
-- Added: [Strategem Zero v0.1 (By nymda)](https://github.com/nymda/StratagemZero)
-- OFW: [Text Box: fix displaying text with end text focus #3658 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/3658)
-- OFW: [Replaced obsolete-format delay #3660 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3660)
-- SubGHz: [Added Genie Protocol (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder/protocols)
-- Updated: [NFC Playlist v2.1 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- OFW: [Archive: fix condition race on exit #3659 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3659)
-- OFW: [NFC App: fix changing UID #3663 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/3663)
-- Updated: [Count Down Timer v1.4 (By 0w0mewo)](https://github.com/0w0mewo/fpz_cntdown_timer) [Some small fixes and improvements #106 (By puppable)](https://github.com/xMasterX/all-the-plugins/pull/106)
-- RFID: [electra non-initialized encoded epilogue on render fix (By Leptopt1los)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/c58c8ce1f6e05ec3462e2b93ab4e2846ee75853c)
-- Updated: [Reversi v1.3 (By dimat)](https://github.com/dimat/flipperzero-reversi)
-- Updated: [Tone Generator v1.0 (By GEMISIS)](https://github.com/GEMISIS/tone_gen)
-- Updated: [Pokemon Trading v2.0 (By EstebanFuentealba & kbembedded)](https://github.com/EstebanFuentealba/Flipper-Zero-Game-Boy-Trading-Pokemons) (Version Only)
-- Updated: [IFTTT Button (By Ferrazzi)](https://github.com/Ferrazzi/FlipperZero_IFTTT_Virtual_Button) Changes (By Willy-JL)
-- Updated: [Quac! v0.6 (By rdefeo)](https://github.com/rdefeo/quac) Fix (By Willy-JL)
-- Updated: [Sub-GHz Playlist v1.0 (By darmiel)](https://github.com/darmiel/flipper-playlist) Changes (By Willy-JL)
-- Updated: [NFC Maker v1.2 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d) Changes (By Willy-JL)
-- Updated: [Authenticator/TOTP v5.14.1 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
-- Updated: [FlipBoard Blinky v3.5 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- Updated: [FlipBoard Signal v3.10 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- Updated: [FlipBoard Simon v1.9 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- OFW: [Favorite apps navigation fix and text fixes #3670 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3670)
-- OFW: [Furi: wrap message queue in container, prepare it for epoll. Accessor: disable expansion service on start. #3672 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3672)
-- OFW: [Updater: fix inability to update with bigger updater.bin #3676 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3676)
-- OFW: [SubGhz: Princeton protocol add custom guard time #3671 (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/3671)
-- OFW: [fbt, vscode: tweaks for cdb generation for clangd #3680 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3680)
-- OFW: [Add initial ISO7816 support #3681 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3681)
-- OFW: [cleanup of various warnings from clangd #3682 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3682)
-- Updated: [Restaurant Pager Trigger v1.7 (By leedave)](https://github.com/leedave/flipper-zero-meal-pager)
-- Various app changes for message queue updates (By Willy-JL)
-- Updated: [FlipBoard Keyboard v3.8 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- Updated: [DVD Screensaver v1.1 (By shantih19)](https://github.com/shantih19/flipper_dvd_screensaver)
-- Updated: [Noptel LRF Sampler v1.9 (By Giraut)](https://github.com/Giraut/flipper_zero_noptel_lrf_sampler)
-- Archive: Fix favorite's parent folders thinking they are favorited too (By Willy-JL)
-- Version incremented with OFW
-- NFC: Fix Mifare DESFire reading & abbreviated prefix (By Willy-JL)
-- Various app changes for message queue updates (By RogueMaster)
-- Added: [Enigma v1.1 (By xtruan)](https://github.com/xtruan/flipper-enigma)
-- Added: [HC-11 Modem v1.0 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11`
-- Added: [Simultanious UHF RFID Reader v1.0 (By RileyHaffner)](https://github.com/haffnerriley/Simultaneous-UHF-RFID-FlipperZero) `Req: M6e Nano UHF RFID Reader & Raspberry Pi Zero`
-- Updated: [Five Nights at Flipper's v1.3 (By sillygir1)](https://github.com/sillygir1/flipperzero-fnaf)
-- Temp disable FURI_TRACE crash msg, need more DFU (By Willy-JL)
-- Fix depricated function in canvas (By xMasterX)
-- Updated: [BMI Air Mouse v1.2 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
-- Updated: [HC-11 Modem v1.0 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11`
-- Updated: [iButton Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware)
-- Updated: [RFID Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [(Original By Ganapati)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/245)
-- Updated: [Cross Remote v2.6 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
-- Updated: [DnD Dice v1.3 (By Ka3u6y6a)](https://github.com/Ka3u6y6a/flipper-zero-dice)
-- Updated: [MODBUS v0.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
-- Updated: [Sub-GHz Remote v1.4 (By gid9798)](https://github.com/DarkFlippers/SubGHz_Remote)
-- Updated: [QR Code v2.1 (By bmatcuk)](https://github.com/bmatcuk/flipperzero-qrcode)
-- Updated: [Intervalometer v1.2 (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
-- [RFID Display Fix (By JendrBendr)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1075)
-- Added: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
-- Updated: [Digimon F-Com v1.4 (By TylerWilley)](https://github.com/TylerWilley/flipper-f-com)
-- Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader) Fix for TLSF allocator crashes (By Willy-JL) and modifications (By bettse)
-- Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
-- Updated: [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
-- Updated: [Atomic Dice Roller v1.1 (By nmrr)](https://github.com/nmrr/flipperzero-atomicdiceroller)
-- Updated: [Mouse Jacker for MS Mouse v1.2 (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/mousejacker_ms) `Req: NRF24`
-- Updated: [NRF Sniffer for MS Mouse (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/nrfsniff_ms) `Req: NRF24`
-- Updated: [J305 Geiger Counter v1.3 (By nmrr)](https://github.com/nmrr/flipperzero-geigercounter)
-- Updated: [Quac! v0.6.1 (By rdefeo)](https://github.com/rdefeo/quac)
-- [Fix for Pinned BadUsb Script not working 1074 (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1074)
 
 <a name="release">
 
@@ -661,4 +587,4 @@ $ ./fbt dolphin_ext
 - [Desktop Favorite Binds To Allow Opening Custom Game Menu. Whomever can complete this gets 3 months of subscriber builds. Patrons can DM me to add their monthly towards this bounty.](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/756)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0520-1640-0.102.1-13c0834.tgz&channel=RM0520-1640-0.102.1-13c0834&version=0.102.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0630-2141-0.102.4-bd79934.tgz&channel=RM0630-2141-0.102.4-bd79934&version=0.102.1)
