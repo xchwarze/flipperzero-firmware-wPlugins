@@ -284,17 +284,17 @@ static void draw_callback(Canvas* canvas, void* ctx) {
     furi_mutex_release(state->mutex);
 }
 
-static void input_callback(InputEvent* input_event, void* context) {
-    furi_assert(context);
-    FuriMessageQueue* event_queue = context;
+static void input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
+    FuriMessageQueue* event_queue = ctx;
 
     AppEvent event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);
 }
 
-static void timer_callback(void* context) {
-    furi_assert(context);
-    FuriMessageQueue* event_queue = context;
+static void timer_callback(void* ctx) {
+    furi_assert(ctx);
+    FuriMessageQueue* event_queue = ctx;
 
     AppEvent event = {.type = EventTypeTick};
     furi_message_queue_put(event_queue, &event, 0);

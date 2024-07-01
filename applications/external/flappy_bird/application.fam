@@ -11,4 +11,6 @@ App(
     fap_version="1.2",
     fap_description="Flappy Bird Game",
     fap_icon_assets_symbol="flappy_bird",
+    #  [Flappy: Border hitboxes, bigger Pilars (By TQMatvey)](https://github.com/DarkFlippers/unleashed-firmware/pull/114)
+    #  [Increase pilars line width to improve visibility (By ahumeniy)](https://github.com/DarkFlippers/unleashed-firmware/pull/140)
 )
