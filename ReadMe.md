@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0630-2130-0.102.4-54e7e3e](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0701-1758-0.103.2-35a1752](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-01 12:22 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-01 12:22 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-01 17:58 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-01 17:8EST`
 - OFW: [Use static synchronisation primitives #3679 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3679)
 - OFW: [Fix renaming directories with dots in archive #3692 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3692)
 - OFW: [Fixed infinite loop in dictionary attack scene #3686 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3686)
