@@ -29,8 +29,11 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0630-2130-0.102.4-54e7e3e](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-06-04 14:02 WITA`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-06-04 14:02 WITA`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-01 06:05 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-01 06:05 EST`
+- OFW: [ (By )]()
+- Some merge fixes that may have come from xMasterX or Willy-JL...
+- Updated: [Counter v1.4 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
 
 <a name="release">
 
@@ -359,7 +362,7 @@ $ ./fbt dolphin_ext
 - [Control 7-segment display with Flipper Zero (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
 - [Cookie Clicker v1.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/hid/hid_cookie)
 - [Count Down Timer v1.4 (By 0w0mewo)](https://github.com/0w0mewo/fpz_cntdown_timer)
-- [Counter v1.3 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
+- [Counter v1.4 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
 - [Cross Remote v2.6 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
 - [Crypto Dictionary v0.1 (By armixz)](https://github.com/armixz/Flipper-Zero-Crypto-Dictionary)
 - [Dab Timer v1.9.1 (By RogueMaster)](https://github.com/RogueMaster/flipperzero-dabtimer)
