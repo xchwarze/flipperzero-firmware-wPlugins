@@ -20,6 +20,7 @@ App(
     ],
     fap_icon_assets="icons",
     fap_icon_assets_symbol="fuzzer",
+    #  [(Original By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware)
 )
 
 App(
@@ -44,4 +45,5 @@ App(
     ],
     fap_icon_assets="icons",
     fap_icon_assets_symbol="fuzzer",
+    #  [(Original By Ganapati)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/245)
 )

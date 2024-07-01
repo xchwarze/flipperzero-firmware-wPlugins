@@ -200,9 +200,10 @@ static void input_callback(InputEvent* input_event, void* ctx) {
 
 //Timer callback
 static void timer_callback(void* ctx) {
-    furi_assert(ctx);
-    FuriMessageQueue* event_queue = ctx;
     //check eventqueue is not null
+    furi_assert(ctx);
+    //Getting our event queue
+    FuriMessageQueue* event_queue = ctx;
     //creating event and adding it to the event list
     IosTriggerEvent event = {.type = EventTypeTick};
     furi_message_queue_put(event_queue, &event, 0);
