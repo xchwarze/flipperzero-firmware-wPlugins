@@ -89,13 +89,13 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Many apps version increment only from MNTM Apps (By Willy-JL) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/5535ae10e25e2863e45e8309d92d68dbe946401e)
 - Updated: [Music Beeper (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/pull/1189) (Updated from UL Apps)
 - Updated: [Many apps version increment only from UL Apps (By xMasterX) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/f3e91cd826b298d724742cb0a8fd23ebdb6ab7b8)
-- Updated: [Enhanced Sub-Ghz Chat v1.3 (By twisted-pear)](https://github.com/twisted-pear/esubghz_chat) (Updated from MNTM Apps) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
-- Updated: [HC-11 Modem v1.0 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
-- Updated: [LaserCat v1.1 (By DroWez)](https://github.com/DroWez/LaserCat) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
-- Updated: [Multi Counter v1.1 (By JadePossible)](https://github.com/JadePossible/Flipper-Multi-Counter) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
-- Updated: [Pet a Dolphin v1.1 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
-- Updated: [Rock Paper Scissors 2 v1.1 (By benwoo1110)](https://github.com/benwoo1110/rps-FlipperZero) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
-- Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [Enhanced Sub-Ghz Chat v1.3 (By twisted-pear)](https://github.com/twisted-pear/esubghz_chat) (Updated from MNTM Apps) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
+- Updated: [HC-11 Modem v1.0 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
+- Updated: [LaserCat v1.1 (By DroWez)](https://github.com/DroWez/LaserCat) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
+- Updated: [Multi Counter v1.1 (By JadePossible)](https://github.com/JadePossible/Flipper-Multi-Counter) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
+- Updated: [Pet a Dolphin v1.1 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
+- Updated: [Rock Paper Scissors 2 v1.1 (By benwoo1110)](https://github.com/benwoo1110/rps-FlipperZero) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
+- Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
 
 <a name="release">
 
