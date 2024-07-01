@@ -1,6 +1,6 @@
 # Flipper MFKey
 
-<img src="https://github.com/noproto/FlipperMfkey/assets/11845893/475bf66a-2e95-44a8-b884-62f28ca5512f" alt="Dolphin" width="60%" height="60%">
+<img src="https://github.com/noproto/FlipperMfkey/assets/11845893/c10f143b-f8f8-4e20-afb6-f6f2be116f9f" alt="Dolphin" width=25%>
 
 ## What
 This Flipper application ("FAP") cracks Mifare Classic 1K/4K keys on your Flipper Zero. No companion app/desktop needed.
@@ -18,15 +18,6 @@ All cracked nonces are automatically added to your user dictionary, allowing you
 
 ## Builds
 OFW: Available in the App Hub ([Download](https://lab.flipper.net/apps/mfkey)) and distributed by Flipper Devices (https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/mfkey).
-
-Published (options):
-* [Unleashed repository](https://github.com/xMasterX/all-the-plugins/tree/main/apps/Tools_Extra)
-* [FlipC.org](https://flipc.org/noproto/FlipperMfkey?branch=master&root=fap)
-  * Download the FAP at one of the above links then copy the FAP to your Flipper Zero device (using qFlipper or manually copying it to the SD)
-* [Unleashed firmware](https://github.com/DarkFlippers/unleashed-firmware/releases/latest)
-  * Use qFlipper to install the build that ends in "e"
-* [RogueMaster firmware](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/releases/latest)
-  * Built in to every release, you're good to go!
 
 Manual: Copy the fap/ directory to applications_user/mfkey/ and build it with fbt
 
