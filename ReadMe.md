@@ -66,8 +66,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Separate editing and renaming in iButton and LFRFID #3735 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3735)
 - OFW: [Add mf_classic_set_sector_trailer_read function #3733 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3733)
 - OFW: [LFRFID Securakey: Add Support for RKKTH Plain Text Format #3728 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3728)
-- NOT MERGED: OFW: [cli: storage: minor subcommand lookup refactor #3739 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3739)
-- NOT MERGED: OFW: [Updater: resource compression #3716 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3716)
 - Some merge fixes that may have come from xMasterX or Willy-JL...
 - Updated: [Counter v1.4 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
 - [Furi Assert Fixes From event_queue to ctx (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a4879ad592499a8994a572c53aa8e236b6382999)
@@ -100,6 +98,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - NFC: [Parser for CSC Service Works Reloadable Cash Card (By zinongli)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fa9b702dc24f3c892798dec86e4f5f25443432c2)
 - Added: [Tasks v1.0 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
 - [Fix Loader for Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/79ab298fa6b62d809f96423d434e41af489d4359)
+- OFW: [cli: storage: minor subcommand lookup refactor #3739 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3739)
+- NOT MERGED: OFW: [Updater: resource compression #3716 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3716)
 
 <a name="release">
 
