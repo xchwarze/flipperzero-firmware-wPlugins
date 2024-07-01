@@ -1,5 +1,4 @@
 #include "loader.h"
-
 #include <furi.h>
 #include <cli/cli.h>
 #include <applications.h>
@@ -125,21 +124,39 @@ static void loader_cli(Cli* cli, FuriString* args, void* context) {
     FuriString* cmd;
     cmd = furi_string_alloc();
 
-    if(!args_read_string_and_trim(args, cmd)) {
+    do {
+        if(!args_read_string_and_trim(args, cmd)) {
+            loader_cli_print_usage();
+            break;
+        }
+
+        if(furi_string_cmp_str(cmd, "list") == 0) {
+            loader_cli_list();
+            break;
+        }
+
+        if(furi_string_cmp_str(cmd, "open") == 0) {
+            loader_cli_open(args, loader);
+            break;
+        }
+
+        if(furi_string_cmp_str(cmd, "info") == 0) {
+            loader_cli_info(loader);
+            break;
+        }
+
+        if(furi_string_cmp_str(cmd, "close") == 0) {
+            loader_cli_close(loader);
+            break;
+        }
+
+        if(furi_string_cmp_str(cmd, "signal") == 0) {
+            loader_cli_signal(args, loader);
+            break;
+        }
+
         loader_cli_print_usage();
-    } else if(furi_string_equal(cmd, "list")) {
-        loader_cli_list();
-    } else if(furi_string_equal(cmd, "open")) {
-        loader_cli_open(args, loader);
-    } else if(furi_string_equal(cmd, "info")) {
-        loader_cli_info(loader);
-    } else if(furi_string_equal(cmd, "close")) {
-        loader_cli_close(loader);
-    } else if(furi_string_equal(cmd, "signal")) {
-        loader_cli_signal(args, loader);
-    } else {
-        loader_cli_print_usage();
-    }
+    } while(false);
 
     furi_string_free(cmd);
     furi_record_close(RECORD_LOADER);

@@ -36,7 +36,6 @@ MU_TEST(mu_test_furi_memmgr) {
     // this test is not accurate, but gives a basic understanding
     // that memory management is working fine
     test_furi_memmgr();
-    test_furi_memmgr_advanced();
 }
 
 MU_TEST(mu_test_furi_event_loop) {

@@ -13,13 +13,6 @@ void furi_hal_set_is_normal_boot(bool value) {
 }
 
 bool furi_hal_is_normal_boot(void) {
-    if((normal_boot != false) && (normal_boot != true)) {
-        normal_boot = false;
-    }
-
-    if(furi_hal_rtc_get_boot_mode() == FuriHalRtcBootModeNormal) {
-        normal_boot = true;
-    }
     return normal_boot;
 }
 

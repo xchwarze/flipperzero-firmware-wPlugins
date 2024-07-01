@@ -3,7 +3,6 @@
 #include <furi_hal_resources.h>
 #include <furi_hal_cortex.h>
 #include <furi_hal_bus.h>
-#include <furi_hal_power.h>
 
 #include <stm32wbxx_ll_tim.h>
 #include <stm32wbxx_ll_dma.h>

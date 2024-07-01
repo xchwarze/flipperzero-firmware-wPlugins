@@ -99,6 +99,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Incremented FW Version to 0.103.2 with OFW
 - NFC: [Parser for CSC Service Works Reloadable Cash Card (By zinongli)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fa9b702dc24f3c892798dec86e4f5f25443432c2)
 - Added: [Tasks v1.0 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
+- [Fix Loader for Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
 
 <a name="release">
 
