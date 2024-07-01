@@ -5,8 +5,10 @@ App(
     entry_point="music_player_app",
     stack_size=2 * 1024,
     fap_file_assets="resources",
-    fap_icon="icons/music_10px.png",
+    fap_icon="icons/music_player_icon_10px.png",
+    targets=["f7"],
     fap_category="Media",
     fap_icon_assets="icons",
     fap_libs=["music_worker"],
+    fap_version="1.3",
 )

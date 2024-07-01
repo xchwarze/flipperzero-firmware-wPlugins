@@ -28,11 +28,10 @@ typedef struct {
     ClockData* data;
 } Clock;
 
-static void clock_input_callback(InputEvent* input_event, void* ctx) {
-    furi_assert(ctx);
-    FuriMessageQueue* queue = ctx;
+static void clock_input_callback(InputEvent* input_event, void* queue) {
+    furi_assert(queue);
     ClockEvent event = {.type = ClockEventTypeKey, .input = *input_event};
-    furi_message_queue_put(queue, &event, FuriWaitForever);
+    furi_message_queue_put((FuriMessageQueue*)queue, &event, FuriWaitForever);
 }
 
 static void clock_render_callback(Canvas* canvas, void* ctx) {
