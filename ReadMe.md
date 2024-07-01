@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0630-2130-0.102.4-54e7e3e](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-01 06:15 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-01 06:15 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-01 07:10 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-01 07:10 EST`
 - OFW: [Use static synchronisation primitives #3679 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3679)
 - OFW: [Fix renaming directories with dots in archive #3692 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3692)
 - OFW: [Fixed infinite loop in dictionary attack scene #3686 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3686)
@@ -68,9 +68,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [LFRFID Securakey: Add Support for RKKTH Plain Text Format #3728 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3728)
 - NOT MERGED: OFW: [cli: storage: minor subcommand lookup refactor #3739 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3739)
 - NOT MERGED: OFW: [Updater: resource compression #3716 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3716)
-- [Furi Assert Fixes From event_queue to ctx (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a4879ad592499a8994a572c53aa8e236b6382999)
 - Some merge fixes that may have come from xMasterX or Willy-JL...
 - Updated: [Counter v1.4 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
+- [Furi Assert Fixes From event_queue to ctx (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a4879ad592499a8994a572c53aa8e236b6382999)
 
 <a name="release">
 
