@@ -79,7 +79,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [15 v1.2 (By x27)](https://github.com/x27/flipperzero-game15) (Updated from MNTM Apps)
 - Updated: [Barcode App v1.3 (By Kingal1337)](https://github.com/Kingal1337/flipper-barcode-generator) (Updated from MNTM Apps)
 - Updated: [Doom v1.4 (By p4nic4ttack)](https://github.com/p4nic4ttack/doom-flipper-zero) (Updated from MNTM Apps)
-- Updated: [Enhanced Sub-Ghz Chat v1.3 (By twisted-pear)](https://github.com/twisted-pear/esubghz_chat) (Updated from MNTM Apps)
 - Updated: [Mifare Nested v1.6.6 (By AloneLiberty)](https://github.com/AloneLiberty/FlipperNested) [free up some space in mifare nested (By xMasterX)](https://github.com/xMasterX/all-the-plugins/commit/27544eb845e3bd23391394e8ea5817effefb213b) (Updated from MNTM Apps)
 - Updated: [Paint v1.2 (By n-o-T-I-n-s-a-n-e)](https://github.com/n-o-T-I-n-s-a-n-e) (Updated from MNTM Apps)
 - Updated: [Password Generator v1.3 (By anakod)](https://github.com/anakod/flipper_passgen) (Updated from MNTM Apps)
@@ -90,6 +89,13 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Many apps version increment only from MNTM Apps (By Willy-JL) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/5535ae10e25e2863e45e8309d92d68dbe946401e)
 - Updated: [Music Beeper (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/pull/1189) (Updated from UL Apps)
 - Updated: [Many apps version increment only from UL Apps (By xMasterX) (Merged By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/f3e91cd826b298d724742cb0a8fd23ebdb6ab7b8)
+- Updated: [Enhanced Sub-Ghz Chat v1.3 (By twisted-pear)](https://github.com/twisted-pear/esubghz_chat) (Updated from MNTM Apps) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [HC-11 Modem v1.0 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [LaserCat v1.1 (By DroWez)](https://github.com/DroWez/LaserCat) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [Multi Counter v1.1 (By JadePossible)](https://github.com/JadePossible/Flipper-Multi-Counter) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [Pet a Dolphin v1.1 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [Rock Paper Scissors 2 v1.1 (By benwoo1110)](https://github.com/benwoo1110/rps-FlipperZero) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
 
 <a name="release">
 
@@ -338,7 +344,7 @@ $ ./fbt dolphin_ext
 - [Minesweeper v1.2 (By panki27)](https://github.com/panki27/minesweeper)
 - [Minesweeper Redux v1.5 (By squee72564)](https://github.com/squee72564/F0_Minesweeper_Fap)
 - [Monty Hall v1.2 (By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/203)
-- [Multi Counter (By JadePossible)](https://github.com/JadePossible/Flipper-Multi-Counter)
+- [Multi Counter v1.1 (By JadePossible)](https://github.com/JadePossible/Flipper-Multi-Counter)
 - [Nu Pogodi! (Ну, погоди!) v1.3 (By sionyx)](https://github.com/sionyx/flipper_nupogodi)
 - [PacMan WIP v0.1 (By DanieleMaffi)](https://github.com/DanieleMaffi/flipper-pacman)
 - [Paper Plane v1.3 (By Larry-the-Pig)](https://github.com/Larry-the-Pig/flipper-plane)
@@ -350,7 +356,7 @@ $ ./fbt dolphin_ext
 - [Reaction Time (By ihatecsv)](https://github.com/ihatecsv/flipper_reaction_time)
 - [Reversi v1.3 (By dimat)](https://github.com/dimat/flipperzero-reversi)
 - [Rock Paper Scissors v1.5 (By CodeAllNight/jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/plugins/rock_paper_scissors)
-- [Rock Paper Scissors 2 v1.0 (By benwoo1110)](https://github.com/benwoo1110/rps-FlipperZero)
+- [Rock Paper Scissors 2 v1.1 (By benwoo1110)](https://github.com/benwoo1110/rps-FlipperZero)
 - [Root of Life v1.2 (By Xorboo)](https://github.com/Xorboo/root-of-life)
 - [Rubiks Cube Scrambler v1.3 (By RaZeSloth)](https://github.com/RaZeSloth/flipperzero-rubiks-cube-scrambler)
 - [Scorched Tanks v1.3 (By jasniec)](https://github.com/jasniec/flipper-scorched-tanks-game)
@@ -492,7 +498,7 @@ $ ./fbt dolphin_ext
 - [IR Xbox Controller v1.2 (By gebeto)](https://github.com/gebeto/flipper-xbox-controller)
 - [J305 Geiger Counter v1.4 (By nmrr)](https://github.com/nmrr/flipperzero-geigercounter)
 - [JS Runner v1.0 (By nminaylov & DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/3286)
-- [LaserCat v1.0 (By DroWez)](https://github.com/DroWez/LaserCat)
+- [LaserCat v1.1 (By DroWez)](https://github.com/DroWez/LaserCat)
 - [LED Pulsator (By leedave)](https://github.com/leedave/Leeds-Flipper-Zero-Applications)
 - [Lightmeter v1.2 (By oleksiikutuzov)](https://github.com/oleksiikutuzov/flipperzero-lightmeter) `Req: BH1750/MAX44009`
 - [Logic Analyzer (By g3gg0)](https://github.com/g3gg0/flipper-logic_analyzer)
@@ -546,7 +552,7 @@ $ ./fbt dolphin_ext
 - [Orgasmotron (By jbohack)](https://github.com/jbohack)
 - [Password Generator v1.3 (By anakod)](https://github.com/anakod/flipper_passgen)
 - [PC Monitor v1.1 (By TheSainEyereg)](https://github.com/TheSainEyereg/flipper-pc-monitor) _Req: [Backend](https://github.com/TheSainEyereg/flipper-pc-monitor-backend)_
-- [Pet a Dolphin (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
+- [Pet a Dolphin v1.1 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
 - [pForth (By twisted-pear)](https://github.com/twisted-pear/f0forth)
 - [Pi Terminal v1.0 (By dagnazty & InfoSecREDD)](https://github.com/InfoSecREDD/Flip-pi)
 - [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)

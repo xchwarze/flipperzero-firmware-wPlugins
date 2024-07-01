@@ -16,7 +16,7 @@
 #include "hc11_radio_comm.h"
 
 /*** Defines ***/
-#define VERSION "0.1"
+#define VERSION FAP_VERSION
 #define TAG "hc11_modem"
 
 #define CONFIG_FILE "hc11_modem.save"

@@ -33,7 +33,7 @@ typedef struct RPSApp {
     FuriMessageQueue* event_queue;
     ViewPort* view_port;
     Gui* gui;
-    FuriMutex** mutex;
+    FuriMutex* mutex;
     FuriTimer* roll_timer;
     FuriTimer* roll_complete_timer;
 

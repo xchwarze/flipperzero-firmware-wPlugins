@@ -37,7 +37,6 @@ static void draw_callback(Canvas* canvas, void* ctx) {
 // система furi-timer будет вызывать наш определенный обратный вызов
 static void timer_callback(void* ctx) {
     furi_assert(ctx);
-    FuriMessageQueue* event_queue = ctx;
     if(keyonoff == true) {
         currentKeyPressed = "Laser > ON";
         furi_hal_gpio_write(&gpio_ext_pc3, true);

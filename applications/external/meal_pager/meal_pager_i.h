@@ -23,8 +23,6 @@
 
 #define TAG "Meal_Pager"
 
-#define SUBGHZ_APP_EXTENSION ".sub"
-#define SUBGHZ_APP_FOLDER ANY_PATH("subghz")
 #define MEAL_PAGER_VERSION FAP_VERSION
 
 typedef struct Meal_PagerTransmit Meal_PagerTransmit;
