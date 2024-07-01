@@ -102,6 +102,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Atomic Dice Roller v1.1 (By nmrr)](https://github.com/nmrr/flipperzero-atomicdiceroller)
 - Updated: [Mouse Jacker for MS Mouse v1.2 (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/mousejacker_ms) `Req: NRF24`
 - Updated: [NRF Sniffer for MS Mouse (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/nrfsniff_ms) `Req: NRF24`
+- Updated: [J305 Geiger Counter v1.3 (By nmrr)](https://github.com/nmrr/flipperzero-geigercounter)
 
 <a name="release">
 

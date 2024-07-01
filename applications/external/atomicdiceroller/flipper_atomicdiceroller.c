@@ -190,7 +190,7 @@ int32_t flipper_atomicdiceroller_app() {
     furi_hal_gpio_disable_int_callback(&gpio_ext_pa7);
     furi_hal_gpio_remove_int_callback(&gpio_ext_pa7);
 
-    // NEW CALLBACK 
+    // NEW CALLBACK
     furi_hal_gpio_init(&gpio_ext_pa7, GpioModeInterruptFall, GpioPullUp, GpioSpeedVeryHigh);
     furi_hal_gpio_add_int_callback(&gpio_ext_pa7, gpiocallback, event_queue);
     furi_hal_gpio_enable_int_callback(&gpio_ext_pa7);
