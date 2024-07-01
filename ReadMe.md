@@ -97,6 +97,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Rock Paper Scissors 2 v1.1 (By benwoo1110)](https://github.com/benwoo1110/rps-FlipperZero) [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
 - Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
 - Incremented FW Version to 0.103.2 with OFW
+- [NFC parser: Added parse for CSC Service Works Reloadable Cash Card (By zinongli)](https://github.com/Next-Flip/Momentum-Firmware/pull/137)
 
 <a name="release">
 
