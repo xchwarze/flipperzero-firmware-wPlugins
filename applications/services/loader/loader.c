@@ -72,7 +72,7 @@ static const LoaderError err_invalid_flie = {"Invalid File", "Update the app", "
 static const LoaderError err_invalid_manifest =
     {"Invalid Manifest", "Update firmware or app", "err_03", &I_err_03};
 static const LoaderError err_missing_imports =
-    {"Missing Imports", "Update firmware or app", "err_04", &I_err_04};
+    {"Missing Imports", "Update app or firmware", "err_04", &I_err_04};
 static const LoaderError err_hw_target_mismatch =
     {"HW Target\nMismatch", "App not supported", "err_05", &I_err_05};
 /*static const LoaderError err_outdated_app = {"Outdated App", "Update the app", "err_06", &I_err_06};
@@ -103,7 +103,7 @@ static void loader_show_gui_error(
     DialogMessage* message = dialog_message_alloc();
 
     if(status.value == LoaderStatusErrorUnknownApp &&
-       loader_find_external_application_by_name(name) != NULL) {
+       loader_find_external_application_by_name(name, NULL) != NULL) {
         // Special case for external apps
         dialog_message_set_header(message, "Update needed", 64, 3, AlignCenter, AlignTop);
         dialog_message_set_icon(message, &I_WarningDolphinFlip_45x42, 83, 22);
@@ -250,8 +250,11 @@ void loader_show_menu(Loader* loader) {
 }
 
 void loader_show_gamesmenu(Loader* loader) {
+    furi_check(loader);
+
     LoaderMessage message;
     message.type = LoaderMessageTypeShowGamesMenu;
+
     furi_message_queue_put(loader->queue, &message, FuriWaitForever);
 }
 
@@ -338,6 +341,8 @@ static void loader_thread_state_callback(FuriThreadState thread_state, void* con
     }
 }
 
+// implementation
+
 bool loader_menu_load_fap_meta(
     Storage* storage,
     FuriString* path,
@@ -352,7 +357,7 @@ bool loader_menu_load_fap_meta(
     }
     *icon = malloc(sizeof(Icon));
     FURI_CONST_ASSIGN((*icon)->frame_count, 1);
-    FURI_CONST_ASSIGN((*icon)->frame_rate, 0);
+    FURI_CONST_ASSIGN((*icon)->frame_rate, 1);
     FURI_CONST_ASSIGN((*icon)->width, 10);
     FURI_CONST_ASSIGN((*icon)->height, 10);
     FURI_CONST_ASSIGN_PTR((*icon)->frames, malloc(sizeof(const uint8_t*)));
@@ -374,6 +379,7 @@ static void loader_make_mainmenu_file(Storage* storage) {
             }
             stream_write_format(new, "Settings\n");
         }
+        file_stream_close(new);
     }
     file_stream_close(new);
     stream_free(new);
@@ -459,7 +465,6 @@ static Loader* loader_alloc(void) {
                     }
                 }
             }
-
             if(!path && strcmp(furi_string_get_cstr(line), LOADER_APPLICATIONS_NAME) == 0) {
                 label = strdup(LOADER_APPLICATIONS_NAME);
                 icon = &A_Plugins_14;
@@ -754,8 +759,7 @@ static LoaderMessageLoaderStatusResult loader_start_external_app(
     const char* path,
     const char* args,
     FuriString* error_message,
-    FlipperApplicationFlag flags,
-    bool ignore_mismatch) {
+    FlipperApplicationFlag flags) {
     LoaderMessageLoaderStatusResult result;
     result.value = loader_make_success_status(error_message);
     result.error = LoaderStatusErrorUnknown;
@@ -772,47 +776,58 @@ static LoaderMessageLoaderStatusResult loader_start_external_app(
 
         FlipperApplicationPreloadStatus preload_res =
             flipper_application_preload(loader->app.fap, path);
-        if(preload_res != FlipperApplicationPreloadStatusSuccess) {
-            if((preload_res == FlipperApplicationPreloadStatusApiTooOld) ||
-               (preload_res == FlipperApplicationPreloadStatusApiTooNew)) {
-                if(!ignore_api_mismatch) {
-                    DialogsApp* dialogs = furi_record_open(RECORD_DIALOGS);
-                    // Successful map, but found api mismatch -> warn user
-                    const FlipperApplicationManifest* manifest =
-                        flipper_application_get_manifest(loader->app.fap);
+        bool api_mismatch = false;
+        if(preload_res == FlipperApplicationPreloadStatusApiTooOld ||
+           preload_res == FlipperApplicationPreloadStatusApiTooNew) {
+            api_mismatch = true;
+        } else if(preload_res != FlipperApplicationPreloadStatusSuccess) {
+        api_mismatch_bypass_failed:
+            const char* err_msg = flipper_application_preload_status_to_string(preload_res);
+            result.value = loader_make_status_error(
+                LoaderStatusErrorInternal, error_message, "Preload failed, %s: %s", path, err_msg);
+            result.error = loader_status_error_from_preload_status(preload_res);
+            break;
+        }
 
-                    bool app_newer = preload_res == FlipperApplicationPreloadStatusApiTooNew;
-                    const char* header = app_newer ? "App Too New" : "App Too Old";
-                    char text[63];
-                    snprintf(
-                        text,
-                        sizeof(text),
-                        "APP:%i %c FW:%i\nThis app might not work\nContinue anyways?",
-                        manifest->base.api_version.major,
-                        app_newer ? '>' : '<',
-                        firmware_api_interface->api_version_major);
+        FURI_LOG_I(TAG, "Mapping");
+        FlipperApplicationLoadStatus load_status =
+            flipper_application_map_to_memory(loader->app.fap);
+        FURI_LOG_I(TAG, "Loaded in %zums", (size_t)(furi_get_tick() - start));
+        if(load_status != FlipperApplicationLoadStatusSuccess) {
+            if(api_mismatch) goto api_mismatch_bypass_failed;
+            const char* err_msg = flipper_application_load_status_to_string(load_status);
+            result.value = loader_make_status_error(
+                LoaderStatusErrorInternal, error_message, "Load failed, %s: %s", path, err_msg);
+            result.error = loader_status_error_from_load_status(load_status);
+            break;
+        } else if(api_mismatch) {
+            // Successful map, but found api mismatch -> warn user
+            const FlipperApplicationManifest* manifest =
+                flipper_application_get_manifest(loader->app.fap);
 
-                    DialogMessage* message = dialog_message_alloc();
-                    dialog_message_set_header(message, header, 64, 0, AlignCenter, AlignTop);
-                    dialog_message_set_buttons(message, NULL, NULL, "Continue");
-                    dialog_message_set_text(message, text, 64, 32, AlignCenter, AlignCenter);
-                    if(dialog_message_show(dialogs, message) == DialogMessageButtonRight) {
-                        result.value = loader_make_status_error(
-                            LoaderStatusErrorApiMismatch, error_message, "API Mismatch");
-                        result.error = loader_status_error_from_preload_status(preload_res);
-                    } else {
-                        result.value = loader_make_status_error(
-                            LoaderStatusErrorApiMismatchExit, error_message, "API Mismatch");
-                        result.error = loader_status_error_from_preload_status(preload_res);
-                    }
-                    dialog_message_free(message);
-                    furi_record_close(RECORD_DIALOGS);
-                    break;
-                }
-            } else {
+            bool app_newer = preload_res == FlipperApplicationPreloadStatusApiTooNew;
+            const char* header = app_newer ? "App Too New" : "App Too Old";
+            char text[63];
+            snprintf(
+                text,
+                sizeof(text),
+                "APP:%i %c FW:%i\nThis app might not work\nContinue anyways?",
+                manifest->base.api_version.major,
+                app_newer ? '>' : '<',
+                firmware_api_interface->api_version_major);
+
+            DialogMessage* message = dialog_message_alloc();
+            dialog_message_set_header(message, header, 64, 0, AlignCenter, AlignTop);
+            dialog_message_set_buttons(message, "Cancel", NULL, "Continue");
+            dialog_message_set_text(message, text, 64, 32, AlignCenter, AlignCenter);
+            DialogMessageButton res =
+                dialog_message_show(furi_record_open(RECORD_DIALOGS), message);
+            dialog_message_free(message);
+            furi_record_close(RECORD_DIALOGS);
+            if(res != DialogMessageButtonRight) {
                 const char* err_msg = flipper_application_preload_status_to_string(preload_res);
                 result.value = loader_make_status_error(
-                    LoaderStatusErrorInternal,
+                    LoaderStatusErrorAppStarted, // Not LoaderStatusErrorInternal since it would show another popup
                     error_message,
                     "Preload failed, %s: %s",
                     path,
@@ -820,16 +835,6 @@ static LoaderMessageLoaderStatusResult loader_start_external_app(
                 result.error = loader_status_error_from_preload_status(preload_res);
                 break;
             }
-        }
-
-        FlipperApplicationLoadStatus load_status =
-            flipper_application_map_to_memory(loader->app.fap);
-        if(load_status != FlipperApplicationLoadStatusSuccess) {
-            const char* err_msg = flipper_application_load_status_to_string(load_status);
-            result.value = loader_make_status_error(
-                LoaderStatusErrorInternal, error_message, "Load failed, %s: %s", path, err_msg);
-            result.error = loader_status_error_from_load_status(load_status);
-            break;
         }
 
         FURI_LOG_I(TAG, "Loaded in %zums", (size_t)(furi_get_tick() - start));
@@ -869,15 +874,16 @@ static LoaderMessageLoaderStatusResult loader_start_external_app(
 
 // process messages
 
-static void loader_do_menu_show(Loader* loader) {
+static void loader_do_menu_show(Loader* loader, bool settings) {
     if(!loader->loader_menu) {
-        loader->loader_menu = loader_menu_alloc(loader_menu_closed_callback, loader);
+        loader->loader_menu = loader_menu_alloc(loader_menu_closed_callback, loader, settings);
     }
 }
 
-static void loader_do_gamesmenu_show(Loader* loader) {
+static void loader_do_gamesmenu_show(Loader* loader, bool settings) {
     if(!loader->loader_menu) {
-        loader->loader_menu = loader_gamesmenu_alloc(loader_menu_closed_callback, loader);
+        loader->loader_menu =
+            loader_gamesmenu_alloc(loader_menu_closed_callback, loader, settings);
     }
 }
 
@@ -964,12 +970,8 @@ static LoaderMessageLoaderStatusResult loader_do_start_by_name(
         {
             Storage* storage = furi_record_open(RECORD_STORAGE);
             if(storage_file_exists(storage, name)) {
-                status = loader_start_external_app(
-                    loader, storage, name, args, error_message, flags, false);
-                if(status.value == LoaderStatusErrorApiMismatch) {
-                    status = loader_start_external_app(
-                        loader, storage, name, args, error_message, flags, true);
-                }
+                status =
+                    loader_start_external_app(loader, storage, name, args, error_message, flags);
                 furi_record_close(RECORD_STORAGE);
                 break;
             }
@@ -1088,10 +1090,10 @@ int32_t loader_srv(void* p) {
                 break;
             }
             case LoaderMessageTypeShowMenu:
-                loader_do_menu_show(loader);
+                loader_do_menu_show(loader, false);
                 break;
             case LoaderMessageTypeShowGamesMenu:
-                loader_do_gamesmenu_show(loader);
+                loader_do_gamesmenu_show(loader, false);
                 break;
             case LoaderMessageTypeMenuClosed:
                 loader_do_menu_closed(loader);

@@ -274,26 +274,6 @@ FuriThread* flipper_application_alloc_thread(FlipperApplication* app, const char
     return app->thread;
 }
 
-static const char* preload_status_strings[] = {
-    [FlipperApplicationPreloadStatusSuccess] = "Success",
-    [FlipperApplicationPreloadStatusUnspecifiedError] = "Unknown error",
-    [FlipperApplicationPreloadStatusInvalidFile] = "Invalid file",
-    [FlipperApplicationPreloadStatusInvalidManifest] = "Invalid file manifest",
-    [FlipperApplicationPreloadStatusApiTooOld] =
-        "Update Application to use with this Firmware (ApiTooOld)",
-    [FlipperApplicationPreloadStatusApiTooNew] =
-        "Update Firmware to use with this Application (ApiTooNew)",
-    [FlipperApplicationPreloadStatusTargetMismatch] = "Hardware target mismatch",
-};
-
-static const char* load_status_strings[] = {
-    [FlipperApplicationLoadStatusSuccess] = "Success",
-    [FlipperApplicationLoadStatusUnspecifiedError] = "Unknown error",
-    [FlipperApplicationLoadStatusNoFreeMemory] = "Out of memory",
-    [FlipperApplicationLoadStatusMissingImports] =
-        "Update Application/Firmware to use this (MissingImports)",
-};
-
 const char* flipper_application_preload_status_to_string(FlipperApplicationPreloadStatus status) {
     switch(status) {
     case FlipperApplicationPreloadStatusSuccess:
@@ -322,7 +302,7 @@ const char* flipper_application_load_status_to_string(FlipperApplicationLoadStat
     case FlipperApplicationLoadStatusUnspecifiedError:
         return "Unknown error";
     case FlipperApplicationLoadStatusMissingImports:
-        return "Update Firmware to use with this Application (MissingImports)";
+        return "Update Application or Firmware to compatible versions (MissingImports)";
     }
 
     return "Unknown error";

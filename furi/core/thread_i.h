@@ -6,12 +6,10 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
-typedef struct FuriThreadStdout FuriThreadStdout;
-
-struct FuriThreadStdout {
+typedef struct {
     FuriThreadStdoutWriteCallback write_callback;
     FuriString* buffer;
-};
+} FuriThreadStdout;
 
 struct FuriThread {
     StaticTask_t container;
@@ -45,3 +43,6 @@ struct FuriThread {
     bool heap_trace_enabled;
     volatile bool is_active;
 };
+
+// IMPORTANT: container MUST be the FIRST struct member
+static_assert(offsetof(FuriThread, container) == 0);

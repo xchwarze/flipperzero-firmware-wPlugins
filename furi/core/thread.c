@@ -25,9 +25,6 @@
 
 #define THREAD_MAX_STACK_SIZE (UINT16_MAX * sizeof(StackType_t))
 
-// IMPORTANT: container MUST be the FIRST struct member
-static_assert(offsetof(FuriThread, container) == 0);
-
 static size_t __furi_thread_stdout_write(FuriThread* thread, const char* data, size_t size);
 static int32_t __furi_thread_stdout_flush(FuriThread* thread);
 

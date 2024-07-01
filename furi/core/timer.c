@@ -6,6 +6,8 @@
 #include <FreeRTOS.h>
 #include <timers.h>
 
+const char* current_timer_name = NULL;
+
 struct FuriTimer {
     StaticTimer_t container;
     FuriTimerCallback cb_func;
@@ -23,7 +25,9 @@ const char* furi_timer_get_current_name(void) {
 static void TimerCallback(TimerHandle_t hTimer) {
     FuriTimer* instance = pvTimerGetTimerID(hTimer);
     furi_check(instance);
+    current_timer_name = pcTimerGetName(hTimer);
     instance->cb_func(instance->cb_context);
+    current_timer_name = NULL;
 }
 
 FuriTimer* furi_timer_alloc(FuriTimerCallback func, FuriTimerType type, void* context) {
@@ -34,9 +38,12 @@ FuriTimer* furi_timer_alloc(FuriTimerCallback func, FuriTimerType type, void* co
     instance->cb_func = func;
     instance->cb_context = context;
 
+    // Timer name so thread appid works in timers, and so does APP_DATA_PATH()
+    const char* name = furi_thread_get_appid(furi_thread_get_current_id());
+
     const UBaseType_t reload = (type == FuriTimerTypeOnce ? pdFALSE : pdTRUE);
     const TimerHandle_t hTimer = xTimerCreateStatic(
-        NULL, portMAX_DELAY, reload, instance, TimerCallback, &instance->container);
+        name, portMAX_DELAY, reload, instance, TimerCallback, &instance->container);
 
     furi_check(hTimer == (TimerHandle_t)instance);
 

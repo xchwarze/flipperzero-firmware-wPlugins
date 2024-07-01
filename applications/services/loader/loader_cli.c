@@ -80,7 +80,6 @@ static void loader_cli_open(FuriString* args, Loader* loader) {
 #endif
         }
         furi_string_free(error_message);
-
     } while(false);
 
     furi_string_free(app_name);
@@ -155,6 +154,6 @@ static const FlipperAppPluginDescriptor plugin_descriptor = {
     .entry_point = &loader_cli,
 };
 
-const FlipperAppPluginDescriptor* loader_cli_plugin_ep() {
+const FlipperAppPluginDescriptor* loader_cli_plugin_ep(void) {
     return &plugin_descriptor;
 }
