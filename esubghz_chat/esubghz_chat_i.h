@@ -19,7 +19,7 @@
 
 #include "esubghz_chat_icons.h"
 
-#include <assets_icons.h>
+#include <lib/nfclegacy/nfc_worker.h>
 
 #define APPLICATION_NAME "ESubGhzChat"
 
@@ -58,8 +58,8 @@ typedef struct {
     const SubGhzDevice* subghz_device;
 
     // for NFC
-    // NfcWorker* nfc_worker;
-    // NfcDeviceData* nfc_dev_data;
+    NfcWorker* nfc_worker;
+    NfcDeviceData* nfc_dev_data;
 
     // message assembly before TX
     FuriString* name_prefix;
@@ -100,7 +100,7 @@ typedef enum {
     ESubGhzChatEvent_KeyMenuPassword,
     ESubGhzChatEvent_KeyMenuHexKey,
     ESubGhzChatEvent_KeyMenuGenKey,
-    // ESubGhzChatEvent_KeyMenuReadKeyFromNfc,
+    ESubGhzChatEvent_KeyMenuReadKeyFromNfc,
     ESubGhzChatEvent_KeyReadPopupFailed,
     ESubGhzChatEvent_KeyReadPopupSucceeded,
     ESubGhzChatEvent_PassEntered,

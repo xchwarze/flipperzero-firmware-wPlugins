@@ -4,6 +4,7 @@
 #include <gui/gui.h>
 #include <gui/elements.h>
 
+#include <notification/notification.h>
 #include <notification/notification_messages.h>
 #include <notification/notification_app.h>
 
@@ -83,13 +84,15 @@ void handle_down() {
 }
 
 static void clock_input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
+
     PluginEvent event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);
 }
 
 //do you are have stupid?
+// idk who left that comment here, but i don't have stupid sorry
 void elements_progress_bar_vertical(
     Canvas* canvas,
     uint8_t x,

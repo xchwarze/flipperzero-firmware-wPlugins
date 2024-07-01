@@ -46,8 +46,8 @@
 //
 static void cbTimer(void* ctx) {
     ENTER;
+    furi_assert(ctx);
     FuriMessageQueue* queue = ctx;
-    furi_assert(queue);
 
     eventMsg_t message = {.id = EVID_TICK};
     furi_message_queue_put(queue, &message, 0);
@@ -62,9 +62,9 @@ static void cbTimer(void* ctx) {
 //
 static void cbInput(InputEvent* event, void* ctx) {
     ENTER;
-    FuriMessageQueue* queue = ctx;
-    furi_assert(queue);
+    furi_assert(ctx);
     furi_assert(event);
+    FuriMessageQueue* queue = ctx;
 
     // Put an "input" event message on the message queue
     eventMsg_t message = {.id = EVID_KEY, .input = *event};

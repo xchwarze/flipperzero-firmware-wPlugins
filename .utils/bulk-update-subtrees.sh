@@ -6,6 +6,7 @@ if [ "$(git rev-parse --show-prefix)" != "" ]; then
     exit
 fi
 
+shopt -s globstar
 for file in **/.gitsubtree; do
     subtree="$(dirname "${file}")"
     echo -e "\n\nUpdating ${subtree}..."

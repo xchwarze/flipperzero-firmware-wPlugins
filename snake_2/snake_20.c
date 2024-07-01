@@ -192,16 +192,16 @@ static void snake_game_render_callback(Canvas* const canvas, void* ctx) {
 }
 
 static void snake_game_input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
 
     SnakeEvent event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);
 }
 
 static void snake_game_update_timer_callback(void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
 
     SnakeEvent event = {.type = EventTypeTick};
     furi_message_queue_put(event_queue, &event, 0);

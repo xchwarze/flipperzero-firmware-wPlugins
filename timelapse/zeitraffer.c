@@ -7,8 +7,6 @@
 #include "gpio_item.h"
 #include "zeitraffer_icons.h"
 
-#include <assets_icons.h>
-
 #define CONFIG_FILE_PATH APP_DATA_PATH("timelapse.conf")
 
 // Часть кода покрадена из https://github.com/zmactep/flipperzero-hello-world

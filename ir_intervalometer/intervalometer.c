@@ -478,8 +478,8 @@ static void flipvalo_run_state_init(struct flipvalo_run_state* fv_run_state) {
     fv_run_state->tick_cur = 0;
 }
 
-static void input_callback(InputEvent* input_event, void* ctx) {
-    FuriMessageQueue* event_queue = ctx;
+static void input_callback(InputEvent* input_event, void* event_queue_void) {
+    FuriMessageQueue* event_queue = (FuriMessageQueue*)event_queue_void;
     furi_assert(event_queue);
     struct plugin_event event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);

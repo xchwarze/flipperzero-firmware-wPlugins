@@ -136,9 +136,9 @@ static void render_callback(Canvas* const canvas, void* ctx) {
     furi_mutex_release(metronome_state->mutex);
 }
 
-static void input_callback(InputEvent* input_event, void* context) {
-    furi_assert(context);
-    FuriMessageQueue* event_queue = context;
+static void input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
+    FuriMessageQueue* event_queue = ctx;
 
     PluginEvent event = {.type = EventTypeKey, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);
