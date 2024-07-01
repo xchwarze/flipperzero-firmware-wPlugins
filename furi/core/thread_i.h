@@ -6,12 +6,17 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
-typedef struct {
+typedef struct FuriThreadStdout FuriThreadStdout;
+
+struct FuriThreadStdout {
     FuriThreadStdoutWriteCallback write_callback;
     FuriString* buffer;
-} FuriThreadStdout;
+};
 
 struct FuriThread {
+    StaticTask_t container;
+    StackType_t* stack_buffer;
+
     FuriThreadState state;
     int32_t ret;
 
@@ -21,12 +26,15 @@ struct FuriThread {
     FuriThreadStateCallback state_callback;
     void* state_context;
 
+    FuriThreadSignalCallback signal_callback;
+    void* signal_context;
+
     char* name;
     char* appid;
 
     FuriThreadPriority priority;
 
-    TaskHandle_t task_handle;
+    size_t stack_size;
     size_t heap_size;
 
     FuriThreadStdout output;
@@ -35,6 +43,5 @@ struct FuriThread {
     // this ensures that the size of this structure is minimal
     bool is_service;
     bool heap_trace_enabled;
-
-    size_t stack_size;
+    volatile bool is_active;
 };

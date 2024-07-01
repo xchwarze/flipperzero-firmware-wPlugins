@@ -49,7 +49,16 @@ void flipper_init(void) {
     FURI_LOG_I(TAG, "Boot mode %d, starting services", furi_hal_rtc_get_boot_mode());
 
     for(size_t i = 0; i < FLIPPER_SERVICES_COUNT; i++) {
-        flipper_start_service(&FLIPPER_SERVICES[i]);
+        FURI_LOG_D(TAG, "Starting service %s", FLIPPER_SERVICES[i].name);
+
+        FuriThread* thread = furi_thread_alloc_service(
+            FLIPPER_SERVICES[i].name,
+            FLIPPER_SERVICES[i].stack_size,
+            FLIPPER_SERVICES[i].app,
+            NULL);
+        furi_thread_set_appid(thread, FLIPPER_SERVICES[i].appid);
+
+        furi_thread_start(thread);
     }
     if(furi_hal_is_normal_boot()) {
         cfw_settings_load();

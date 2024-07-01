@@ -112,8 +112,8 @@ void dolphin_event_send_async(Dolphin* dolphin, DolphinEvent* event) {
 void dolphin_event_send_wait(Dolphin* dolphin, DolphinEvent* event) {
     furi_assert(dolphin);
     furi_assert(event);
+
     event->flag = furi_event_flag_alloc();
-    furi_check(event->flag);
     furi_check(
         furi_message_queue_put(dolphin->event_queue, event, FuriWaitForever) == FuriStatusOk);
     furi_check(
@@ -161,6 +161,8 @@ int32_t dolphin_srv(void* p) {
 
     if(!furi_hal_is_normal_boot()) {
         FURI_LOG_W(TAG, "Skipping start in special boot mode");
+
+        furi_thread_suspend(furi_thread_get_current_id());
         return 0;
     }
 

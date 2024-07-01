@@ -1,8 +1,116 @@
-#include <furi.h>
-#include <tlsf.h>
-#include <tlsf_block_functions.h>
+/*
+ * FreeRTOS Kernel V10.2.1
+ * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * http://www.FreeRTOS.org
+ * http://aws.amazon.com/freertos
+ *
+ * 1 tab == 4 spaces!
+ */
+
+/*
+ * A sample implementation of pvPortMalloc() and vPortFree() that combines
+ * (coalescences) adjacent memory blocks as they are freed, and in so doing
+ * limits memory fragmentation.
+ *
+ * See heap_1.c, heap_2.c and heap_3.c for alternative implementations, and the
+ * memory management pages of http://www.FreeRTOS.org for more information.
+ */
+
+#include "memmgr_heap.h"
+#include "check.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <stm32wbxx.h>
+#include <stm32wb55_linker.h>
+#include <core/log.h>
+#include <core/common_defines.h>
+
+/* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
+all the API functions to use the MPU wrappers.  That should only be done when
+task.h is included from an application file. */
+#define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
+
 #include <FreeRTOS.h>
 #include <task.h>
+
+#undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
+
+#ifdef HEAP_PRINT_DEBUG
+#error This feature is broken, logging transport must be replaced with RTT
+#endif
+
+/* Block sizes must not get too small. */
+#define heapMINIMUM_BLOCK_SIZE ((size_t)(xHeapStructSize << 1))
+
+/* Assumes 8bit bytes! */
+#define heapBITS_PER_BYTE ((size_t)8)
+
+/* Heap start end symbols provided by linker */
+uint8_t* ucHeap = (uint8_t*)&__heap_start__;
+
+/* Define the linked list structure.  This is used to link free blocks in order
+of their memory address. */
+typedef struct A_BLOCK_LINK {
+    struct A_BLOCK_LINK* pxNextFreeBlock; /*<< The next free block in the list. */
+    size_t xBlockSize; /*<< The size of the free block. */
+} BlockLink_t;
+
+/*-----------------------------------------------------------*/
+
+/*
+ * Inserts a block of memory that is being freed into the correct position in
+ * the list of free memory blocks.  The block being freed will be merged with
+ * the block in front it and/or the block behind it if the memory blocks are
+ * adjacent to each other.
+ */
+static void prvInsertBlockIntoFreeList(BlockLink_t* pxBlockToInsert);
+
+/*
+ * Called automatically to setup the required heap structures the first time
+ * pvPortMalloc() is called.
+ */
+static void prvHeapInit(void);
+
+/*-----------------------------------------------------------*/
+
+/* The size of the structure placed at the beginning of each allocated memory
+block must by correctly byte aligned. */
+static const size_t xHeapStructSize = (sizeof(BlockLink_t) + ((size_t)(portBYTE_ALIGNMENT - 1))) &
+                                      ~((size_t)portBYTE_ALIGNMENT_MASK);
+
+/* Create a couple of list links to mark the start and end of the list. */
+static BlockLink_t xStart, *pxEnd = NULL;
+
+/* Keeps track of the number of free bytes remaining, but says nothing about
+fragmentation. */
+static size_t xFreeBytesRemaining = 0U;
+static size_t xMinimumEverFreeBytesRemaining = 0U;
+
+/* Gets set to the top bit of an size_t type.  When this bit in the xBlockSize
+member of an BlockLink_t structure is set then the block belongs to the
+application.  When the bit is free the block is still part of the free heap
+space. */
+static size_t xBlockAllocatedBit = 0;
+
+/* Furi heap extension */
 #include <m-dict.h>
 
 extern const void __heap_start__;
