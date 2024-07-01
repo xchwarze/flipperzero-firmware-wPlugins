@@ -217,15 +217,15 @@ static void draw_callback(Canvas* canvas, void* model) {
 }
 
 static void input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
     Event event = {.type = KeyEvent, .input = *input_event};
     furi_message_queue_put(event_queue, &event, FuriWaitForever);
 }
 
 static void timer_callback(void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
     Event event = {.type = TickEvent};
     furi_message_queue_put(event_queue, &event, 0);
 }

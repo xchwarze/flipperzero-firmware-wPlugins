@@ -56,8 +56,8 @@ static void cbTimer(void* ctx) {
     // ...furi_assert() is removed at /compile-time/ unless FURI_DEBUG is specified
     // ...if you want checks to be performed on release code, use: furi_check()
     // --> furi/core/check.h
+    furi_assert(ctx);
     FuriMessageQueue* queue = ctx;
-    furi_assert(queue);
 
     // Put a "tick" event message on the message queue
     // furi_message_queue_put  |  furi/core/message_queue.*
@@ -74,8 +74,8 @@ static void cbTimer(void* ctx) {
 //
 static void cbInput(InputEvent* event, void* ctx) {
     ENTER;
+    furi_assert(ctx);
     FuriMessageQueue* queue = ctx;
-    furi_assert(queue);
     furi_assert(event);
 
     // Put an "input" event message on the message queue

@@ -9,6 +9,8 @@ App(
     fap_category="Media",
     fap_icon_assets="images",
     fap_author="DrZlo13 & (ported, fixed by xMasterX), (improved by LTVA1)",
-    fap_version=(1, 1),
+    fap_version="1.2",
     fap_description="Audio player for WAV files, recommended to convert files to unsigned 8-bit PCM stereo, but it may work with others too",
+    #  Updated by Atmanos & RogueMaster To Work.
+    #  [Updated by xMasterX](https://github.com/DarkFlippers/unleashed-firmware/commit/76d3f84a5eb069b749e3ad20df6fdbbc785eb253)
 )

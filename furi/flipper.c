@@ -37,8 +37,7 @@ void flipper_start_service(const FlipperInternalApplication* service) {
     FURI_LOG_D(TAG, "Starting service %s", service->name);
 
     FuriThread* thread =
-        furi_thread_alloc_ex(service->name, service->stack_size, service->app, NULL);
-    furi_thread_mark_as_service(thread);
+        furi_thread_alloc_service(service->name, service->stack_size, service->app, NULL);
     furi_thread_set_appid(thread, service->appid);
 
     furi_thread_start(thread);
@@ -49,7 +48,16 @@ void flipper_init(void) {
     FURI_LOG_I(TAG, "Boot mode %d, starting services", furi_hal_rtc_get_boot_mode());
 
     for(size_t i = 0; i < FLIPPER_SERVICES_COUNT; i++) {
-        flipper_start_service(&FLIPPER_SERVICES[i]);
+        FURI_LOG_D(TAG, "Starting service %s", FLIPPER_SERVICES[i].name);
+
+        FuriThread* thread = furi_thread_alloc_service(
+            FLIPPER_SERVICES[i].name,
+            FLIPPER_SERVICES[i].stack_size,
+            FLIPPER_SERVICES[i].app,
+            NULL);
+        furi_thread_set_appid(thread, FLIPPER_SERVICES[i].appid);
+
+        furi_thread_start(thread);
     }
     if(furi_hal_is_normal_boot()) {
         cfw_settings_load();
@@ -60,17 +68,12 @@ void flipper_init(void) {
     FURI_LOG_I(TAG, "Startup complete");
 }
 
-PLACE_IN_SECTION("MB_MEM2") static StaticTask_t idle_task_tcb;
-PLACE_IN_SECTION("MB_MEM2") static StackType_t idle_task_stack[configIDLE_TASK_STACK_DEPTH];
-PLACE_IN_SECTION("MB_MEM2") static StaticTask_t timer_task_tcb;
-PLACE_IN_SECTION("MB_MEM2") static StackType_t timer_task_stack[configTIMER_TASK_STACK_DEPTH];
-
 void vApplicationGetIdleTaskMemory(
     StaticTask_t** tcb_ptr,
     StackType_t** stack_ptr,
     uint32_t* stack_size) {
-    *tcb_ptr = &idle_task_tcb;
-    *stack_ptr = idle_task_stack;
+    *tcb_ptr = memmgr_alloc_from_pool(sizeof(StaticTask_t));
+    *stack_ptr = memmgr_alloc_from_pool(sizeof(StackType_t) * configIDLE_TASK_STACK_DEPTH);
     *stack_size = configIDLE_TASK_STACK_DEPTH;
 }
 
@@ -78,7 +81,7 @@ void vApplicationGetTimerTaskMemory(
     StaticTask_t** tcb_ptr,
     StackType_t** stack_ptr,
     uint32_t* stack_size) {
-    *tcb_ptr = &timer_task_tcb;
-    *stack_ptr = timer_task_stack;
+    *tcb_ptr = memmgr_alloc_from_pool(sizeof(StaticTask_t));
+    *stack_ptr = memmgr_alloc_from_pool(sizeof(StackType_t) * configTIMER_TASK_STACK_DEPTH);
     *stack_size = configTIMER_TASK_STACK_DEPTH;
 }

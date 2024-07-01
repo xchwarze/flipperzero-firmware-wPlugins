@@ -82,8 +82,8 @@ static void render_callback(Canvas* const canvas, void* cb_ctx) {
 }
 
 static void input_callback(InputEvent* input_event, void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
 
     /* better skip than sorry */
     if(furi_message_queue_get_count(event_queue) < QUEUE_SIZE) {

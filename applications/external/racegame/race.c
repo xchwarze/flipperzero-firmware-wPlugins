@@ -161,8 +161,8 @@ static void input_callback(InputEvent* input_event, void* ctx) {
 }
 
 static void timer_callback(void* ctx) {
+    furi_assert(ctx);
     FuriMessageQueue* event_queue = ctx;
-    furi_assert(event_queue);
     RaceGameEvent event = {.type = EventTypeTick};
     furi_message_queue_put(event_queue, &event, 0);
 }

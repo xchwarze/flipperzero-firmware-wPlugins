@@ -54,12 +54,12 @@ LoaderStatus loader_start_with_gui_error(Loader* loader, const char* name, const
 /**
  * @brief Start application detached with GUI error message
  * @param[in] instance loader instance
- * @param[in] name application name
+ * @param[in] name application name or id
  * @param[in] args application arguments
  */
 void loader_start_detached_with_gui_error(Loader* loader, const char* name, const char* args);
 
-/** 
+/**
  * @brief Lock application start
  * @param[in] instance loader instance
  * @return true on success
@@ -101,6 +101,26 @@ FuriPubSub* loader_get_pubsub(Loader* instance);
 MainMenuList_t* loader_get_mainmenu_apps(Loader* loader);
 
 GamesMenuList_t* loader_get_gamesmenu_apps(Loader* loader);
+
+/**
+ * @brief Send a signal to the currently running application
+ *
+ * @param[in] instance pointer to the loader instance
+ * @param[in] signal signal value to be sent
+ * @param[in,out] arg optional argument (can be of any value, including NULL)
+ *
+ * @return true if the signal was handled by the application, false otherwise
+ */
+bool loader_signal(Loader* instance, uint32_t signal, void* arg);
+
+/**
+ * @brief Get the name of the currently running application
+ *
+ * @param[in] instance pointer to the loader instance
+ * @param[in,out] name pointer to the string to contain the name (must be allocated)
+ * @return true if it was possible to get an application name, false otherwise
+ */
+bool loader_get_application_name(Loader* instance, FuriString* name);
 
 #ifdef __cplusplus
 }

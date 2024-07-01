@@ -10,4 +10,5 @@ App(
     fap_weburl="https://github.com/Jacob-Tate/flipperzero-firmware/blob/dev/applications/mouse_jiggler/mouse_jiggler.c",
     fap_version="1.1",
     fap_description="Jiggles mouse over USB",
+    #  (Original By MuddleBox)
 )

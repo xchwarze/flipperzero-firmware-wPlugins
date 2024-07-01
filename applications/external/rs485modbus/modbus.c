@@ -609,8 +609,8 @@ static int32_t uart_worker(void* context) {
         }
     }
 
-    furi_stream_buffer_free(app->uart->rxBuff);
-    furi_stream_buffer_free(app->msgBuf);
+    // furi_stream_buffer_free(app->uart->rxBuff);
+    // furi_stream_buffer_free(app->msgBuf);
 
     return 0;
 }

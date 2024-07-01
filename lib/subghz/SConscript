@@ -13,7 +13,6 @@ env.Append(
         File("registry.h"),
         File("subghz_worker.h"),
         File("subghz_tx_rx_worker.h"),
-        File("subghz_file_encoder_worker.h"),
         File("transmitter.h"),
         File("protocols/raw.h"),
         File("protocols/public_api.h"),

@@ -9,4 +9,5 @@ App(
     fap_author="OlegSchwann",
     fap_weburl="https://github.com/OlegSchwann/flipperzero-firmware/tree/hackaton/game_2048/applications/game-2048",
     fap_version=(1, 1),
+    #  [(Score By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/186)
 )

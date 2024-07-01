@@ -11,4 +11,5 @@ App(
     fap_weburl="https://github.com/leedave/Leeds-Flipper-Zero-Applications",
     fap_version="1.0",
     fap_description="Vibrate Flipper in different modes",
+    #  [(Original By qqmajikpp)](https://github.com/qqmajikpp/flipperzero-firmware-wPlugins)
 )

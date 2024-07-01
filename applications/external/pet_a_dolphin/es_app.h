@@ -35,7 +35,7 @@ typedef struct {
 typedef struct {
     bool run;
 
-    FuriMutex** mutex;
+    FuriMutex* mutex;
     FuriMessageQueue* queue;
     FuriTimer* timer;
 

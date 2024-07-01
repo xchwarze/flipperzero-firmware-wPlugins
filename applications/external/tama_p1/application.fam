@@ -7,4 +7,6 @@ App(
     fap_file_assets="resources",
     fap_icon="tamaIcon.png",
     fap_category="Games",
+    #  [Original TAMA P1 (By GMMan)](https://github.com/GMMan/flipperzero-firmware/tree/tama-p1)
+    #  [Mute & Settings (By Round-Pi)](https://github.com/Round-Pi/flipperzero-tamagotch-p1)
 )
