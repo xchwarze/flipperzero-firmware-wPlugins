@@ -98,6 +98,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100` [Merge Fixes By RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/29729e4419f36f67ba96927154d13fc37bfd3fb3)
 - Incremented FW Version to 0.103.2 with OFW
 - NFC: [Parser for CSC Service Works Reloadable Cash Card (By zinongli)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fa9b702dc24f3c892798dec86e4f5f25443432c2)
+- Added: [Tasks v1.0 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
 
 <a name="release">
 
@@ -602,6 +603,7 @@ $ ./fbt dolphin_ext
 - [Sub-GHz Rolling Flaws v1.5 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials)
 - [SWD Probe v1.2 (By g3gg0)](https://github.com/g3gg0/flipper-swd_probe)
 - [T5577 Multiwriter v0.2 (By Leptopt1los)](https://github.com/Leptopt1los/t5577_multiwriter)
+- [Tasks v1.0 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
 - [Temp Sensors Reader 1.6 (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: BMP180/BMP280/BME280/BME680/DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD/HTU21x/HDC1080/MAX31855/MAX6675/SCD30`
 - [Text To SAM v1.4 (By RoundPi)](https://github.com/Round-Pi/flipperzero-text2sam)
 - [Text Viewer v1.6 (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae4fc4a54febccb44b010c4025a99c2edef9a7f0)

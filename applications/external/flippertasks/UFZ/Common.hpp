@@ -8,7 +8,9 @@
 #include <gui/view_dispatcher.h>
 
 // Only frees if memory is allocated
-#define FREE_GUARD(x, y) if ((y) != nullptr) x(y); (y) = nullptr;
+#define FREE_GUARD(x, y)     \
+    if((y) != nullptr) x(y); \
+    (y) = nullptr;
 
 #define SEND_CUSTOM_EVENT(x, y) (x)->getViewDispatcher().sendCustomEvent(y)
 
@@ -21,155 +23,167 @@
 #define EXIT_SCENE(x) (x)->getSceneManager().stop()
 #define EXIT_APPLICATION(x) (x)->getViewDispatcher().stop()
 
-namespace UFZ
-{
-    class UWidget;
-    class Application;
+namespace UFZ {
+class UWidget;
+class Application;
 
-    class ViewDispatcher
-    {
-    public:
-        ViewDispatcher() = default;
+class ViewDispatcher {
+public:
+    ViewDispatcher() = default;
 
-        void switchToView(uint32_t id) const noexcept;
+    void switchToView(uint32_t id) const noexcept;
 
-        void sendCustomEvent(uint32_t event) const noexcept;
-        void sendToFront() const noexcept;
-        void sendToBack() const noexcept;
+    void sendCustomEvent(uint32_t event) const noexcept;
+    void sendToFront() const noexcept;
+    void sendToBack() const noexcept;
 
-        void stop() const noexcept;
-    private:
-        friend class Application;
+    void stop() const noexcept;
 
-        void init() noexcept;
-        void free() noexcept;
+private:
+    friend class Application;
 
-        Application* application = nullptr;
-        ::ViewDispatcher* viewDispatcher = nullptr;
-    };
+    void init() noexcept;
+    void free() noexcept;
 
-    class SceneManager
-    {
-    public:
-        SceneManager() = default;
+    Application* application = nullptr;
+    ::ViewDispatcher* viewDispatcher = nullptr;
+};
 
-        void setSceneState(uint32_t id, uint32_t state) const noexcept;
-        [[nodiscard]] uint32_t getSceneState(uint32_t id) const noexcept;
+class SceneManager {
+public:
+    SceneManager() = default;
 
-        [[nodiscard]] bool handleCustomEvent(uint32_t event) const noexcept;
-        [[nodiscard]] bool handleBackEvent() const noexcept;
-        void handleTickEvent() const noexcept;
+    void setSceneState(uint32_t id, uint32_t state) const noexcept;
+    [[nodiscard]] uint32_t getSceneState(uint32_t id) const noexcept;
 
-        void nextScene(uint32_t id) const noexcept;
-        [[nodiscard]] bool previousScene() const noexcept;
-        [[nodiscard]] bool hasPreviousScene(uint32_t id) const noexcept;
+    [[nodiscard]] bool handleCustomEvent(uint32_t event) const noexcept;
+    [[nodiscard]] bool handleBackEvent() const noexcept;
+    void handleTickEvent() const noexcept;
 
-        [[nodiscard]] bool searchAndSwitchToPreviousScene(uint32_t id) const noexcept;
-        bool searchAndSwitchToPreviousSceneOneOf(const uint32_t* ids, size_t idsSize) const noexcept;
-        [[nodiscard]] bool searchAndSwitchToAnotherScene(uint32_t id) const noexcept;
+    void nextScene(uint32_t id) const noexcept;
+    [[nodiscard]] bool previousScene() const noexcept;
+    [[nodiscard]] bool hasPreviousScene(uint32_t id) const noexcept;
 
-        void stop() const noexcept;
-    private:
-        friend class Application;
+    [[nodiscard]] bool searchAndSwitchToPreviousScene(uint32_t id) const noexcept;
+    bool searchAndSwitchToPreviousSceneOneOf(const uint32_t* ids, size_t idsSize) const noexcept;
+    [[nodiscard]] bool searchAndSwitchToAnotherScene(uint32_t id) const noexcept;
 
-        void alloc(const SceneManagerHandlers& handlers, Application& app) noexcept;
-        void free() noexcept;
+    void stop() const noexcept;
 
-        ::SceneManager* sceneManager = nullptr;
-        Application* application = nullptr;
-    };
+private:
+    friend class Application;
 
-    class Filesystem
-    {
-    public:
-        Filesystem() = default;
+    void alloc(const SceneManagerHandlers& handlers, Application& app) noexcept;
+    void free() noexcept;
 
-        FS_Error timestamp(const char* path, uint32_t* timestamp) const noexcept;
-        FS_Error stat(const char* path, FileInfo* fileInfo) const noexcept;
-        bool exists(const char* path) const noexcept;
-        FS_Error remove(const char* path) const noexcept;
+    ::SceneManager* sceneManager = nullptr;
+    Application* application = nullptr;
+};
 
-        FS_Error rename(const char* oldPath, const char* newPath) const noexcept;
+class Filesystem {
+public:
+    Filesystem() = default;
 
-        FS_Error copy(const char* oldPath, const char* newPath) const noexcept;
-        FS_Error merge(const char* oldPath, const char* newPath) const noexcept;
-        FS_Error migrate(const char* source, const char* destination) const noexcept;
+    FS_Error timestamp(const char* path, uint32_t* timestamp) const noexcept;
+    FS_Error stat(const char* path, FileInfo* fileInfo) const noexcept;
+    bool exists(const char* path) const noexcept;
+    FS_Error remove(const char* path) const noexcept;
 
-        FS_Error mkdir(const char* path) const noexcept;
-        FS_Error filesystemInfo(const char* path, uint64_t* totalSpace, uint64_t* freeSpace) const noexcept;
+    FS_Error rename(const char* oldPath, const char* newPath) const noexcept;
 
-        void resolvePathAndEnsureAppDirectory(FuriString* path) const noexcept;
+    FS_Error copy(const char* oldPath, const char* newPath) const noexcept;
+    FS_Error merge(const char* oldPath, const char* newPath) const noexcept;
+    FS_Error migrate(const char* source, const char* destination) const noexcept;
 
-        bool areEquivalent(const char* path1, const char* path2, bool bTruncate) const noexcept;
+    FS_Error mkdir(const char* path) const noexcept;
+    FS_Error
+        filesystemInfo(const char* path, uint64_t* totalSpace, uint64_t* freeSpace) const noexcept;
 
-        [[nodiscard]] static const char* getErrorDescription(FS_Error error) noexcept;
+    void resolvePathAndEnsureAppDirectory(FuriString* path) const noexcept;
 
-        FS_Error SDCardInfo(SDInfo* info) const noexcept;
-        [[nodiscard]] FS_Error SDCardStatus() const noexcept;
+    bool areEquivalent(const char* path1, const char* path2, bool bTruncate) const noexcept;
 
-        bool removeSimple(const char* path) const noexcept;
-        bool removeRecursiveSimple(const char* path) const noexcept;
-        bool mkdirSimple(const char* path) const noexcept;
-        void getNextFilename(const char* dirname, const char* filename, const char* fileExtension, FuriString* nextFilename, uint8_t maxLength) const noexcept;
-    private:
-        friend class Application;
-        friend class File;
-        friend class Directory;
+    [[nodiscard]] static const char* getErrorDescription(FS_Error error) noexcept;
 
-        void init() noexcept;
-        void destroy() noexcept;
+    FS_Error SDCardInfo(SDInfo* info) const noexcept;
+    [[nodiscard]] FS_Error SDCardStatus() const noexcept;
 
-        ::Storage* storage = nullptr;
-    };
+    bool removeSimple(const char* path) const noexcept;
+    bool removeRecursiveSimple(const char* path) const noexcept;
+    bool mkdirSimple(const char* path) const noexcept;
+    void getNextFilename(
+        const char* dirname,
+        const char* filename,
+        const char* fileExtension,
+        FuriString* nextFilename,
+        uint8_t maxLength) const noexcept;
 
-    class Application
-    {
-    public:
-        Application() = default;
-        explicit Application(const std::vector<UWidget*>& widgetsRef, void* userPointer, const std::function<void(Application&)>& begin = [](Application&) -> void {}, uint32_t tickPeriod = 0) noexcept;
-        void run(const std::vector<UWidget*>& widgetsRef, void* userPointer, const std::function<void(Application&)>& begin = [](Application&) -> void {}, uint32_t tickPeriod = 0) noexcept;
+private:
+    friend class Application;
+    friend class File;
+    friend class Directory;
 
-        template<typename T>
-        T* getWidget(size_t i) noexcept
-        {
-            return static_cast<T*>(widgets[i]);
-        }
+    void init() noexcept;
+    void destroy() noexcept;
 
-        const ViewDispatcher& getViewDispatcher() noexcept;
-        const SceneManager& getSceneManager() noexcept;
-        const Filesystem& getFilesystem() noexcept;
+    ::Storage* storage = nullptr;
+};
 
-        void* getUserPointer() noexcept;
+class Application {
+public:
+    Application() = default;
+    explicit Application(
+        const std::vector<UWidget*>& widgetsRef,
+        void* userPointer,
+        const std::function<void(Application&)>& begin = [](Application&) -> void {},
+        uint32_t tickPeriod = 0) noexcept;
+    void run(
+        const std::vector<UWidget*>& widgetsRef,
+        void* userPointer,
+        const std::function<void(Application&)>& begin = [](Application&) -> void {},
+        uint32_t tickPeriod = 0) noexcept;
 
-        void destroy() noexcept;
-    private:
-        friend class ViewDispatcher;
+    template <typename T>
+    T* getWidget(size_t i) noexcept {
+        return static_cast<T*>(widgets[i]);
+    }
 
-        SceneManager sceneManager;
-        ViewDispatcher viewDispatcher;
-        Gui* gui = nullptr;
+    const ViewDispatcher& getViewDispatcher() noexcept;
+    const SceneManager& getSceneManager() noexcept;
+    const Filesystem& getFilesystem() noexcept;
 
-        Filesystem filesystem{};
+    void* getUserPointer() noexcept;
 
-        void* ctx = nullptr;
-        size_t tickInterval = 0;
+    void destroy() noexcept;
 
-        std::vector<AppSceneOnEnterCallback> enterCallbacks{};
-        std::vector<AppSceneOnEventCallback> eventCallbacks{};
-        std::vector<AppSceneOnExitCallback> exitCallbacks{};
+private:
+    friend class ViewDispatcher;
 
-        SceneManagerHandlers handlers{};
+    SceneManager sceneManager;
+    ViewDispatcher viewDispatcher;
+    Gui* gui = nullptr;
 
-        std::vector<UWidget*> widgets;
+    Filesystem filesystem{};
 
-        bool bDestroyed = false;
+    void* ctx = nullptr;
+    size_t tickInterval = 0;
 
-        void initSceneManager() noexcept;
-        void initViewDispatcher() noexcept;
-        void initGUI() noexcept;
+    std::vector<AppSceneOnEnterCallback> enterCallbacks{};
+    std::vector<AppSceneOnEventCallback> eventCallbacks{};
+    std::vector<AppSceneOnExitCallback> exitCallbacks{};
 
-        void freeSceneManager() noexcept;
-        void freeViewDispatcher() noexcept;
-        static void freeGUI() noexcept;
-    };
+    SceneManagerHandlers handlers{};
+
+    std::vector<UWidget*> widgets;
+
+    bool bDestroyed = false;
+
+    void initSceneManager() noexcept;
+    void initViewDispatcher() noexcept;
+    void initGUI() noexcept;
+
+    void freeSceneManager() noexcept;
+    void freeViewDispatcher() noexcept;
+    static void freeGUI() noexcept;
+};
 }
