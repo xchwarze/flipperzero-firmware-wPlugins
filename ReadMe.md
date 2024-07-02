@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0702-0437-0.103.2-e54074a](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-02 04:37 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-02 04:37 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-02 12:05 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-02 12:05 EST`
 - [Smaller internal animations (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0a8ff6b5b83d03acc3919bf35f38b254c595c6c8)
 - [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
@@ -38,6 +38,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI & Improve unit tests QOL & CleanUp (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae8145235b68b6c06a4c19257f08a79e045e3713)
 - OFW: [Updater: Fix double dir cleanup #3743 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3743)
 - Removed broken: [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae8145235b68b6c06a4c19257f08a79e045e3713) Fixed builds to include apps
+- OFW: [Event Loop Timers #3721 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3721)
+- OFW: [updater: slightly smaller image #3740 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3740)
 
 <a name="release">
 
