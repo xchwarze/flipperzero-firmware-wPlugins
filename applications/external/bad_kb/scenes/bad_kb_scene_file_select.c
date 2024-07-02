@@ -1,6 +1,4 @@
 #include "../bad_kb_app_i.h"
-#include <furi_hal_power.h>
-#include <furi_hal_usb.h>
 #include <storage/storage.h>
 
 static bool bad_kb_file_select(BadKbApp* bad_kb) {
@@ -10,7 +8,7 @@ static bool bad_kb_file_select(BadKbApp* bad_kb) {
     Storage* storage = furi_record_open(RECORD_STORAGE);
     if(storage_dir_exists(storage, EXT_PATH("badkb"))) {
         DialogMessage* message = dialog_message_alloc();
-        dialog_message_set_header(message, "Migrate BadUSB?", 64, 0, AlignCenter, AlignTop);
+        dialog_message_set_header(message, "Migrate Scripts?", 64, 0, AlignCenter, AlignTop);
         dialog_message_set_buttons(message, "No", NULL, "Yes");
         dialog_message_set_text(
             message,
@@ -27,6 +25,11 @@ static bool bad_kb_file_select(BadKbApp* bad_kb) {
         if(res == DialogMessageButtonRight) {
             storage_common_copy(storage, EXT_PATH("badkb"), BAD_KB_APP_BASE_FOLDER);
             storage_common_remove(storage, EXT_PATH("badkb"));
+            if(bad_kb->conn_init_thread) {
+                furi_thread_join(bad_kb->conn_init_thread);
+            }
+            bad_kb_load_settings(bad_kb);
+            bad_kb_config_adjust(&bad_kb->config);
         }
     }
     storage_simply_mkdir(storage, BAD_KB_APP_BASE_FOLDER);

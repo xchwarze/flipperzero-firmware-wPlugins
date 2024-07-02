@@ -13,7 +13,7 @@ App(
         "ir_remote",
         "gpio",
         "ibutton",
-        "bad_usb",
+        "bad_kb",
         "u2f",
         "cfw",
         "archive",
