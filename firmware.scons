@@ -82,7 +82,9 @@ env = ENV.Clone(
     FW_API_TABLE=None,
     _APP_ICONS=None,
     APPS=_.split(",") if (_ := GetOption("extra_int_apps")) else [],
-    EXTRA_EXT_APPS=_.split(",") if (_ := GetOption("extra_ext_apps")) else [],
+    EXTRA_EXT_APPS=_.split(",")
+    if (_ := GetOption("extra_ext_apps"))
+    else ENV["EXTRA_EXT_APPS"],
 )
 
 env.PreConfigureFwEnvionment()
@@ -101,6 +103,9 @@ else:
         ],
     )
 env.AppendUnique(CPPDEFINES=["FW_CFG_${FIRMWARE_APP_SET}"])
+
+if env.subst("$FIRMWARE_APP_SET").startswith("unit_tests"):
+    env.Replace(SKIP_EXTERNAL=True)
 
 env.ConfigureForTarget(env.subst("${TARGET_HW}"))
 

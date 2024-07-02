@@ -35,6 +35,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - Updated: [FindMy Flipper v3.5 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/FindMyFlipper)
+- [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI & Improve unit tests QOL & CleanUp (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
 
 <a name="release">
 

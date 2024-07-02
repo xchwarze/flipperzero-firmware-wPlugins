@@ -18,6 +18,12 @@ DEBUG = 0
 # If OS environment has DIST_SUFFIX set, it will be used instead
 DIST_SUFFIX = "RM420FAP"
 
+# Skip external apps by default
+SKIP_EXTERNAL = False
+
+# Appid's to include even when skipping externals
+EXTRA_EXT_APPS = []
+
 # Coprocessor firmware
 COPRO_OB_DATA = "scripts/ob.data"
 
@@ -71,6 +77,17 @@ FIRMWARE_APPS = {
         "settings_apps",
     ],
     "unit_tests": [
+        # Svc
+        "basic_services",
+        # Apps
+        "main_apps",
+        "system_apps",
+        # Settings
+        "settings_apps",
+        # Tests
+        "unit_tests",
+    ],
+    "unit_tests_min": [
         "basic_services",
         "updater_app",
         "radio_device_cc1101_ext",
