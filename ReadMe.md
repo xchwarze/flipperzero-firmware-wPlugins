@@ -37,6 +37,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [FindMy Flipper v3.5 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/FindMyFlipper)
 - [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI & Improve unit tests QOL & CleanUp (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae8145235b68b6c06a4c19257f08a79e045e3713)
 - OFW: [Updater: Fix double dir cleanup #3743 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3743)
+- Removed broken: [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae8145235b68b6c06a4c19257f08a79e045e3713) Fixed builds to include apps
 
 <a name="release">
 
