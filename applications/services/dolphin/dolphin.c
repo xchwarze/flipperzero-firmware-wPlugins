@@ -45,7 +45,7 @@ DolphinDeed getRandomDeed() {
     diceRoll = (rand() % COUNT_OF(returnGrp));
     return returnGrp[diceRoll];
 }
-	
+
 void dolphin_deed(DolphinDeed deed) {
     Dolphin* dolphin = furi_record_open(RECORD_DOLPHIN);
 
