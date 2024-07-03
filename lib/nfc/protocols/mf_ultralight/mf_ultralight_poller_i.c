@@ -166,7 +166,7 @@ MfUltralightError mf_ultralight_poller_authenticate_end(
     furi_check(request);
     furi_check(response);
 
-    uint8_t auth_cmd[MF_ULTRALIGHT_C_ENCRYPTED_PACK_SIZE] = {0xAF};
+    uint8_t auth_cmd[MF_ULTRALIGHT_C_ENCRYPTED_PACK_SIZE] = {0xAF}; //-V1009
     memcpy(&auth_cmd[1], request, MF_ULTRALIGHT_C_AUTH_DATA_SIZE);
     bit_buffer_copy_bytes(instance->tx_buffer, auth_cmd, sizeof(auth_cmd));
 
@@ -295,11 +295,6 @@ MfUltralightError mf_ultralight_poller_write_page(
             break;
         }
         if(!bit_buffer_starts_with_byte(instance->rx_buffer, MF_ULTRALIGHT_CMD_ACK)) {
-            FURI_LOG_D(
-                TAG,
-                "Write page %u NAK'd with %u",
-                page,
-                bit_buffer_get_byte(instance->rx_buffer, 0));
             ret = MfUltralightErrorProtocol;
             break;
         }

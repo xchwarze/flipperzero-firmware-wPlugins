@@ -47,6 +47,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Pet a Dolphin v1.2 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
 - Updated: [WAV Player v1.3 (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/tree/zlo/wav-player) [WAV Player: Reconfigure to use 8-bit memory buffer, halving memory usage #156 (By CookiePLMonster)](https://github.com/xMasterX/all-the-plugins/pull/156)
 - OFW: [Ultralight C authentication with des key #3720 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3720)
+- OFW: [Fix iButton/LFRFID Add Manually results being discarded #3749 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3749)
+- OFW: [Coalesce some allocations #3747 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3747)
+- OFW: [input_srv: Put input state data on the stack of the service #3748 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3748)
 
 <a name="release">
 
