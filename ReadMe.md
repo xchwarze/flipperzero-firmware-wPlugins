@@ -41,7 +41,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Event Loop Timers #3721 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3721)
 - OFW: [updater: slightly smaller image #3740 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3740)
 - Updated: [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite)
-- Updater: [15% faster resource extract (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- Updater: [15% faster resource extract (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2f889313657d444c85a5dcfe2559d44f475f7a98)
 
 <a name="release">
 
