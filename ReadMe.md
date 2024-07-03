@@ -40,6 +40,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Removed broken: [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae8145235b68b6c06a4c19257f08a79e045e3713) Fixed builds to include apps
 - OFW: [Event Loop Timers #3721 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3721)
 - OFW: [updater: slightly smaller image #3740 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3740)
+- Updated: [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite)
+- Updater: [15% faster resource extract (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
 
 <a name="release">
 
@@ -386,7 +388,7 @@ $ ./fbt dolphin_ext
 - [EM4100 Key Generator v1.1 (By Milk-Cool)](https://github.com/Milk-Cool/fz-em4100-generator)
 - [Enhanced Sub-Ghz Chat v1.3 (By twisted-pear)](https://github.com/twisted-pear/esubghz_chat)
 - [Enigma v1.1 (By xtruan)](https://github.com/xtruan/flipper-enigma)
-- [ESP32 Camera Suite v1.7 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite)
+- [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite)
 - [ESP Flasher v1.5 (By 0xchocolate)](https://github.com/0xchocolate/flipperzero-esp-flasher)
 - [ESP WiFi Scanner v1.1 (By SequoiaSan)](https://github.com/SequoiaSan/FlipperZero-WiFi-Scanner_Module-ESP8266) `Req: ESP8266 or ESP32`
 - [ESP32 Gravity v0.6.0 (By chris-bc)](https://github.com/chris-bc/Flipper-Gravity) `Req: ESP32`
