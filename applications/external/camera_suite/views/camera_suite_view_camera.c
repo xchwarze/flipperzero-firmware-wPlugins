@@ -27,7 +27,7 @@ static void draw_pixel_by_orientation(Canvas* canvas, uint8_t x, uint8_t y, uint
         break;
     }
     case 2: { // Camera rotated 180 degrees (upside down)
-        canvas_draw_dot(canvas, FRAME_WIDTH - 1 - x, FRAME_HEIGHT - 1 - y);
+        canvas_draw_dot(canvas, x, FRAME_HEIGHT - 1 - y);
         break;
     }
     case 3: { // Camera rotated 270 degrees
@@ -65,10 +65,11 @@ static void camera_suite_view_camera_draw(Canvas* canvas, void* model) {
         // Clear the screen.
         canvas_clear(canvas);
 
+        // Set the font to the secondary font.
+        canvas_set_font(canvas, FontSecondary);
+
         // Draw the ESP32-CAM module.
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 47, 50, "ESP32");
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 52, 58, "CAM");
         canvas_draw_dot(canvas, 84, 3);
         canvas_draw_box(canvas, 50, 35, 23, 7);
@@ -115,7 +116,7 @@ static void camera_suite_view_camera_draw(Canvas* canvas, void* model) {
         canvas_draw_frame(canvas, 78, 40, 5, 5);
 
         // Draw the pinout lines.
-        canvas_draw_line(canvas, 39, 8, 21, 8);
+        canvas_draw_line(canvas, 39, 12, 21, 12);
         canvas_draw_line(canvas, 87, 24, 83, 24);
         canvas_draw_line(canvas, 87, 32, 83, 32);
         canvas_draw_line(canvas, 88, 23, 88, 13);
@@ -125,27 +126,18 @@ static void camera_suite_view_camera_draw(Canvas* canvas, void* model) {
         canvas_draw_line(canvas, 126, 44, 89, 44);
 
         // Draw the pinout labels.
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 91, 11, "VCC-3V");
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 91, 27, "U0R-TX");
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 91, 43, "U0T-RX");
-        canvas_set_font(canvas, FontSecondary);
-        canvas_draw_str(canvas, 2, 12, "GND");
-        canvas_set_font(canvas, FontSecondary);
-        canvas_draw_str(canvas, 12, 21, "-GND");
+        canvas_draw_str(canvas, 2, 16, "GND");
+        canvas_draw_str(canvas, 12, 25, "-GND");
 
         // Draw the "Please Connect Module!" text.
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 2, 40, "Please");
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 2, 49, "Connect");
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 2, 58, "Module!");
 
         // Draw the "Back" text and button logo.
-        canvas_set_font(canvas, FontSecondary);
         canvas_draw_str(canvas, 92, 57, "Back");
         canvas_draw_line(canvas, 116, 49, 116, 53);
         canvas_draw_line(canvas, 115, 50, 115, 52);
@@ -180,20 +172,11 @@ static void save_image_to_flipper_sd_card(void* model) {
     FuriString* file_name = furi_string_alloc();
 
     // Get the current date and time.
-
-    // Not supported in "Release" F0 build.
-    // TODO: Remove when DateTime is supported in "Release" F0 build.
-    // FuriHalRtcDateTime datetime = {0};
-
-    // Only supported in "RC" & "Dev" builds.
-    // TODO: Uncomment when DateTime is supported in "Release" F0 build.
     DateTime datetime = {0};
 
-    // TODO: Uncomment when DateTime is supported in "Release" F0 build.
     furi_hal_rtc_get_datetime(&datetime);
 
-    // Create the file name using DateTime.
-    // TODO: Uncomment when DateTime is supported in "Release" F0 build.
+    // Create the file name.
     furi_string_printf(
         file_name,
         EXT_PATH("DCIM/%.4d%.2d%.2d-%.2d%.2d%.2d.bmp"),
@@ -203,10 +186,6 @@ static void save_image_to_flipper_sd_card(void* model) {
         datetime.hour,
         datetime.minute,
         datetime.second);
-
-    // Just use a random number for now instead of DateTime.
-    // int random_number = rand();
-    // furi_string_printf(file_name, EXT_PATH("DCIM/%d.bmp"), random_number);
 
     // Open the file for writing. If the file does not exist (it shouldn't),
     // create it.
@@ -635,11 +614,6 @@ CameraSuiteViewCamera* camera_suite_view_camera_alloc() {
 void camera_suite_view_camera_free(CameraSuiteViewCamera* instance) {
     furi_assert(instance);
 
-    // Deinitialize the serial handle and release the control.
-    furi_hal_serial_async_rx_stop(instance->serial_handle);
-    furi_hal_serial_deinit(instance->serial_handle);
-    furi_hal_serial_control_release(instance->serial_handle);
-
     // Free the worker thread.
     furi_thread_flags_set(furi_thread_get_id(instance->camera_worker_thread), WorkerEventStop);
     furi_thread_join(instance->camera_worker_thread);
@@ -647,6 +621,10 @@ void camera_suite_view_camera_free(CameraSuiteViewCamera* instance) {
 
     // Free the allocated stream buffer.
     furi_stream_buffer_free(instance->camera_rx_stream);
+
+    // Deinitialize the serial handle and release the control.
+    furi_hal_serial_deinit(instance->serial_handle);
+    furi_hal_serial_control_release(instance->serial_handle);
 
     with_view_model(
         instance->view, UartDumpModel * model, { UNUSED(model); }, true);
