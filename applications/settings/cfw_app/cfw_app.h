@@ -76,6 +76,9 @@ typedef struct {
     DesktopSettings desktop;
     PassportSettings passport;
 
+    uint8_t main_style_index;
+    uint8_t game_style_index;
+
     CharList_t mainmenu_app_names;
     CharList_t mainmenu_app_paths;
     uint8_t mainmenu_app_index;

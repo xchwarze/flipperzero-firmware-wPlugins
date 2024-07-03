@@ -28,9 +28,9 @@ const char* const menu_style_names[MenuStyleCount] = {
 
 static void cfw_app_scene_interface_mainmenu_menu_style_changed(VariableItem* item) {
     CfwApp* app = variable_item_get_context(item);
-    uint8_t index = variable_item_get_current_value_index(item);
-    variable_item_set_current_value_text(item, menu_style_names[index]);
-    cfw_settings.menu_style = index;
+    app->main_style_index = variable_item_get_current_value_index(item);
+    variable_item_set_current_value_text(item, menu_style_names[app->main_style_index]);
+    cfw_settings.menu_style = app->main_style_index;
     app->save_settings = true;
 }
 
