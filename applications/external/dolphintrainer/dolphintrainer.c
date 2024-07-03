@@ -27,16 +27,17 @@ char strLevel[10];
 int btnIndex = 0;
 uint32_t curLevel = 0;
 
-const int DOLPHIN_LEVELS[DOLPHIN_LEVEL_COUNT] = {500,    1250,   2250,   3500,   5000,  6750,
+const uint32_t DOLPHIN_LEVELS[] = {500,    1250,   2250,   3500,   5000,  6750,
                                                  8750,   11000,  13500,  16250,  19250, 22500,
                                                  26000,  29750,  33750,  38000,  42500, 47250,
                                                  52250,  58250,  65250,  73250,  82250, 92250,
                                                  103250, 115250, 128250, 142250, 157250};
+const size_t DOLPHIN_LEVEL_COUNT = COUNT_OF(DOLPHIN_LEVELS);
 
 #define NUM(a) (sizeof(a) / sizeof(*a))
 
-uint8_t dolphin_get_mylevel(int icounter) {
-    for(int i = 0; i < DOLPHIN_LEVEL_COUNT; ++i) {
+uint8_t dolphin_get_mylevel(uint32_t icounter) {
+    for(size_t i = 0; i < DOLPHIN_LEVEL_COUNT; ++i) {
         if(icounter <= DOLPHIN_LEVELS[i]) {
             return i + 1;
         }

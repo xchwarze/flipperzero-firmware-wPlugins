@@ -1,9 +1,7 @@
 #include "dolphin_state.h"
 #include "dolphin/helpers/dolphin_deed.h"
 
-#include <datetime/datetime.h>
 #include <stdint.h>
-#include <storage/storage.h>
 #include <furi.h>
 #include <furi_hal.h>
 #include <toolbox/saved_struct.h>
@@ -35,25 +33,23 @@ Desired Level XP: 750
 Value in level_array: 1250
 */
 
-const int DOLPHIN_LEVELS[DOLPHIN_LEVEL_COUNT] = {500,    1250,   2250,   3500,   5000,  6750,
-                                                 8750,   11000,  13500,  16250,  19250, 22500,
-                                                 26000,  29750,  33750,  38000,  42500, 47250,
-                                                 52250,  58250,  65250,  73250,  82250, 92250,
-                                                 103250, 115250, 128250, 142250, 157250};
-
 /*
 This calculates the size of an array. This is good as it's used for dynamic for loops below. Therefore, you can just add more values to level_array for more levels.
 */
 #define NUM(a) (sizeof(a) / sizeof(*a))
 
-#define BUTTHURT_MAX 14
-#define BUTTHURT_MIN 0
+const uint32_t DOLPHIN_LEVELS[] = {500,    1250,   2250,   3500,   5000,  6750,
+                                                 8750,   11000,  13500,  16250,  19250, 22500,
+                                                 26000,  29750,  33750,  38000,  42500, 47250,
+                                                 52250,  58250,  65250,  73250,  82250, 92250,
+                                                 103250, 115250, 128250, 142250, 157250};
+const size_t DOLPHIN_LEVEL_COUNT = COUNT_OF(DOLPHIN_LEVELS);
 
 DolphinState* dolphin_state_alloc(void) {
     return malloc(sizeof(DolphinState));
 }
 
-int dolphin_state_max_level() {
+uint8_t dolphin_state_max_level() {
     return NUM(DOLPHIN_LEVELS) + 1;
 }
 
@@ -113,8 +109,8 @@ uint64_t dolphin_state_timestamp(void) {
     return datetime_datetime_to_timestamp(&datetime);
 }
 
-bool dolphin_state_is_levelup(int icounter) {
-    for(int i = 0; i < DOLPHIN_LEVEL_COUNT; ++i) {
+bool dolphin_state_is_levelup(uint32_t icounter) {
+    for(size_t i = 0; i < DOLPHIN_LEVEL_COUNT; ++i) {
         if((icounter == DOLPHIN_LEVELS[i])) {
             return true;
         }
@@ -122,12 +118,12 @@ bool dolphin_state_is_levelup(int icounter) {
     return false;
 }
 
-const int* dolphin_get_levels() {
+const uint32_t* dolphin_get_levels() {
     return DOLPHIN_LEVELS;
 }
 
-uint8_t dolphin_get_level(int icounter) {
-    for(int i = 0; i < DOLPHIN_LEVEL_COUNT; ++i) {
+uint8_t dolphin_get_level(uint32_t icounter) {
+    for(size_t i = 0; i < DOLPHIN_LEVEL_COUNT; ++i) {
         if(icounter <= DOLPHIN_LEVELS[i]) {
             return i + 1;
         }
@@ -135,20 +131,18 @@ uint8_t dolphin_get_level(int icounter) {
     return DOLPHIN_LEVEL_COUNT + 1;
 }
 
-uint32_t dolphin_state_xp_above_last_levelup(int icounter) {
-    for(int i = DOLPHIN_LEVEL_COUNT; i >= 0; --i) {
-        if(icounter >= DOLPHIN_LEVELS[i]) {
-            return icounter - DOLPHIN_LEVELS[i];
-        }
+uint32_t dolphin_state_xp_above_last_levelup(uint32_t icounter) {
+    uint8_t level_idx = dolphin_get_level(icounter) - 1; // Level = index + 1
+    if(level_idx > 0) {
+        return icounter - DOLPHIN_LEVELS[level_idx - 1]; // Get prev level
     }
     return icounter;
 }
 
-uint32_t dolphin_state_xp_to_levelup(int icounter) {
-    for(int i = 0; i < DOLPHIN_LEVEL_COUNT; ++i) {
-        if(icounter <= DOLPHIN_LEVELS[i]) {
-            return DOLPHIN_LEVELS[i] - icounter;
-        }
+uint32_t dolphin_state_xp_to_levelup(uint32_t icounter) {
+    uint8_t level_idx = dolphin_get_level(icounter) - 1; // Level = index + 1
+    if(level_idx < DOLPHIN_LEVEL_COUNT) {
+        return DOLPHIN_LEVELS[level_idx] - icounter;
     }
     return (uint32_t)-1;
 }
@@ -208,7 +202,7 @@ void dolphin_state_on_deed(DolphinState* dolphin_state, DolphinDeed deed) {
 
     FURI_LOG_D(
         TAG,
-        "icounter %ld, butthurt %ld",
+        "icounter %lu, butthurt %ld",
         dolphin_state->data.icounter,
         dolphin_state->data.butthurt);
 }
@@ -230,7 +224,7 @@ void dolphin_state_increase_level(DolphinState* dolphin_state) {
 void dolphin_state_clear_limits(DolphinState* dolphin_state) {
     furi_assert(dolphin_state);
 
-    for(int i = 0; i < DolphinAppMAX; ++i) {
+    for(size_t i = 0; i < DolphinAppMAX; ++i) {
         dolphin_state->data.icounter_daily_limit[i] = 0;
     }
     dolphin_state->data.butthurt_daily_limit = 0;
