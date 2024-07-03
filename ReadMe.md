@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0702-0437-0.103.2-e54074a](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0703-0300-0.103.2-0ab54b5](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-03 02:30 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-03 02:30 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-03 03:00 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-03 03:00 EST`
 - [Smaller internal animations (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0a8ff6b5b83d03acc3919bf35f38b254c595c6c8)
 - [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
@@ -43,7 +43,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite)
 - Updater: [15% faster resource extract (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2f889313657d444c85a5dcfe2559d44f475f7a98)
 - Updated: [Dolphin Trainer v1.3 (By nymda)](https://github.com/nymda/FlipperAntidepressants)
-- Updated: [Event Loop Timers for Dolphin Service (By OFW & Willy-JL & RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/db56d6b7e3b331915b732e29408447ded23c9a38)
+- Updated: [Event Loop Timers for Dolphin Service (By gsurkov & Willy-JL & RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/db56d6b7e3b331915b732e29408447ded23c9a38)
 - Updated: [Pet a Dolphin v1.2 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
 - Updated: [WAV Player v1.3 (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/tree/zlo/wav-player) [WAV Player: Reconfigure to use 8-bit memory buffer, halving memory usage #156 (By CookiePLMonster)](https://github.com/xMasterX/all-the-plugins/pull/156)
 - OFW: [Ultralight C authentication with des key #3720 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3720)
@@ -289,7 +289,7 @@ $ ./fbt dolphin_ext
 - [Hangman v1.5 (By Evgeny Stepanischev & Eva Stepanischeva)](https://github.com/bolknote/Flipper-Zero-Hangman-Game)
 - [Hanoi Towers v1.0 (By AlexTaran)](https://github.com/AlexTaran/flipperzero)
 - [Heap Defence v1.3 (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fc776446de9fdd553b221c02668b925b689378d8)
-- [JetPack v1.1 (by timstrasser)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/1164e4d214efa38847e08c6387bf53578bc0d366)
+- [JetPack v1.2 (by timstrasser)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/1164e4d214efa38847e08c6387bf53578bc0d366)
 - [KC Line v1.2 (By HappyAmos)](https://github.com/HappyAmos/Flipper_FAPS/tree/master/kcline)
 - [Mandelbrot Set v1.2 (By Possibly-Matt)](https://github.com/Possibly-Matt/flipperzero-firmware-wPlugins)
 - [Matagotchi v1.1 (By MrModd)](https://github.com/MrModd/Matagotchi)
