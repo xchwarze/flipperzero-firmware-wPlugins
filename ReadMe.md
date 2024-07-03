@@ -43,6 +43,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite)
 - Updater: [15% faster resource extract (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2f889313657d444c85a5dcfe2559d44f475f7a98)
 - Updated: [Dolphin Trainer v1.3 (By nymda)](https://github.com/nymda/FlipperAntidepressants)
+- Updated: [Event Loop Timers for Dolphin Service (By OFW & Willy-JL & RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/db56d6b7e3b331915b732e29408447ded23c9a38)
+- Updated: [Pet a Dolphin v1.2 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
 
 <a name="release">
 
@@ -500,7 +502,7 @@ $ ./fbt dolphin_ext
 - [Orgasmotron (By jbohack)](https://github.com/jbohack)
 - [Password Generator v1.3 (By anakod)](https://github.com/anakod/flipper_passgen)
 - [PC Monitor v1.1 (By TheSainEyereg)](https://github.com/TheSainEyereg/flipper-pc-monitor) _Req: [Backend](https://github.com/TheSainEyereg/flipper-pc-monitor-backend)_
-- [Pet a Dolphin v1.1 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
+- [Pet a Dolphin v1.2 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
 - [pForth (By twisted-pear)](https://github.com/twisted-pear/f0forth)
 - [Pi Terminal v1.0 (By dagnazty & InfoSecREDD)](https://github.com/InfoSecREDD/Flip-pi)
 - [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)

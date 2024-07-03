@@ -984,14 +984,14 @@ Function,+,dolphin_get_levels,const uint32_t*,
 Function,+,dolphin_get_pubsub,FuriPubSub*,Dolphin*
 Function,-,dolphin_state_alloc,DolphinState*,
 Function,-,dolphin_state_butthurted,void,DolphinState*
-Function,-,dolphin_state_clear_limits,void,DolphinState*
+Function,+,dolphin_state_clear_limits,void,DolphinState*
 Function,-,dolphin_state_free,void,DolphinState*
 Function,-,dolphin_state_increase_level,void,DolphinState*
 Function,-,dolphin_state_is_levelup,_Bool,uint32_t
 Function,-,dolphin_state_load,_Bool,DolphinState*
 Function,+,dolphin_state_max_level,uint8_t,
 Function,-,dolphin_state_on_deed,void,"DolphinState*, DolphinDeed"
-Function,-,dolphin_state_save,_Bool,DolphinState*
+Function,+,dolphin_state_save,_Bool,DolphinState*
 Function,-,dolphin_state_timestamp,uint64_t,
 Function,+,dolphin_state_xp_above_last_levelup,uint32_t,uint32_t
 Function,+,dolphin_state_xp_to_levelup,uint32_t,uint32_t

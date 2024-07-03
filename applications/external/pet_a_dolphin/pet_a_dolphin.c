@@ -9,16 +9,10 @@ static int32_t decrease_butthurt(void* ctx) {
 
     app->data->pet_feeder.active = true;
 
-    DolphinEvent event;
     while(app->data->stats.butthurt && app->data->pet_feeder.active) {
-        app->data->stats = dolphin_stats(app->data->dolphin);
-        event.type = DolphinEventTypeClearLimits;
-        event.deed = DolphinDeedPluginGameWin;
-        event.flag = NULL;
-        furi_check(
-            furi_message_queue_put(app->data->dolphin->event_queue, &event, FuriWaitForever) ==
-            FuriStatusOk);
-        dolphin_deed(DolphinDeedPluginGameWin);
+        dolphin_state_clear_limits(app->data->dolphin->state);
+        dolphin_state_save(app->data->dolphin->state);
+        dolphin_deed(getRandomDeed());
     }
 
     app->data->pet_feeder.active = false;
