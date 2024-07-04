@@ -42,7 +42,7 @@
 
 #include "lib/nfc/protocols/mf_classic/mf_classic_poller.h"
 
-#define NFC_APP_FOLDER ANY_PATH("nfc")
+#define NFC_APP_FOLDER EXT_PATH("nfc")
 #define NFC_APP_EXTENSION ".nfc"
 #define NFC_APP_SHADOW_EXTENSION ".shd"
 
@@ -51,7 +51,6 @@
 
 #define NFC_MAGIC_APP_NAME_SIZE 22
 #define NFC_MAGIC_APP_TEXT_STORE_SIZE 128
-#define NFC_MAGIC_APP_FOLDER ANY_PATH("nfc")
 #define NFC_MAGIC_APP_EXTENSION ".nfc"
 #define NFC_MAGIC_APP_FILENAME_PREFIX "NFC"
 #define NFC_MAGIC_APP_BYTE_INPUT_STORE_SIZE (4)
