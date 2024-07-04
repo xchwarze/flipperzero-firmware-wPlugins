@@ -32,13 +32,13 @@ There are some situations when the offline loclass may not find a key, such as:
  * Custom keyed readers using Standard KDF
  * Custom keyed readers using SE KDF
 
-# NR-MAC read
+# NR-MAC Attack
 
-Due to the nature of how secure picopass works, it is possible to emulate some public fields from a card and capture the reader's response, which can be used to authenticate.  Two of the pieces involved in this are the NR and MAC.  This allows you to get a dump of the card, except for the key, even if you don't know the key.  For picopass in non-HID systems this can allow you to see what the data looks like.  For iClass SE the data is encrypted (SIO), but a friend with a HID SAM can decrypt it.
+Due to the nature of how secure mode picopass works, it is possible to emulate some public fields from a card and capture the reader's response, which can be used to authenticate.  Two of the pieces involved in this are the `NR` and `MAC`.  This allows you to get a dump of the card, except for the key, even if you don't know the key.  For picopass in non-HID systems this can allow you to see what the data looks like.  For iClass SE the data (SIO) is encrypted, but a friend with a HID SAM can decrypt it.
 
 *These instructions are intended to be performed all at the same time.  If you use the card with the reader between Card Part 1 and Card Part 2, then Card Part 2 will fail.*
 
-## Card Part 1
+## First: Card Part 1
 
 1. Place card against Flipper Zero
 2. Run _Read_ from the picopass main menu
@@ -46,23 +46,23 @@ Due to the nature of how secure picopass works, it is possible to emulate some p
 4. Select the "Menu" option
 5. Select "Save Partial"  (regardless if this card has been saved previously)
 6. Name file something you'll remember
-7. Immediately proceed to Reader Part
+7. *Immediately* proceed to Reader Part
 
-## Reader Part
+## Second: Reader Part
 
 1. Select _Saved_ from the picopass main menu
 2. Select the file name you saved in last step of Card Part 1
 3. Select _Emulate_
 4. Expose Flipper Zero to reader (It may work better a few inches from the reader, as opposed to physically touching)
-5. Flipper will buzz and screen will say "NR-MAC Saved!"
-6. Immediately proceed to Card Part 2
+5. Flipper will buzz and screen will say "NR-MAC Saved!" (may be very brief)
+6. *Immediately* proceed to Card Part 2
 
-## Card Part 2
+## Third: Card Part 2
 
 1. Place card against Flipper Zero
 2. Run _Read_ from the picopass main menu
 3. Card will authenticate and read
-4. Suggested to both "Save" the card and "Save as Seader"
+4. Suggested to do both "Save" and "Save as Seader"
 
 
 # Elite Keygen Attack

@@ -51,6 +51,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Coalesce some allocations #3747 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3747)
 - OFW: [input_srv: Put input state data on the stack of the service #3748 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3748)
 - Updated: [NFC Playlist v2.3 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
+- Updated: [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
 
 <a name="release">
 
