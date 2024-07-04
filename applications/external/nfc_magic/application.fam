@@ -2,12 +2,13 @@ App(
     appid="nfc_magic",
     name="NFC Magic",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="nfc_magic_app",
     stack_size=4 * 1024,
     fap_icon="assets/Nfc_10px.png",
     fap_category="NFC",
     fap_icon_assets="assets",
-    fap_version="1.11",
+    fap_version="1.12",
     fap_description="Application for writing to NFC tags with modifiable sector 0",
     #  [NFC Magic Gen4 Support #2238 (By nullableVoidPtr)](https://github.com/flipperdevices/flipperzero-firmware/pull/2238)
     #  [rework #67 (By gornekich)](https://github.com/flipperdevices/flipperzero-good-faps/pull/67)
@@ -18,4 +19,6 @@ App(
     #  [Gen4 shadow mode management support #98 (By Leptopt1los)](https://github.com/flipperdevices/flipperzero-good-faps/pull/98)
     #  Removed due to card corruption: [Magic Gen2 support #143 (By Astrrra)](https://github.com/flipperdevices/flipperzero-good-faps/pull/143)
     #  [NFC Magic: New functions for Gen4 cards (DW to block 0/shadow mode) #98 (By Leptopt1los)](https://github.com/flipperdevices/flipperzero-good-faps/pull/98)
+    #  [Gen1 backdoor read support #228 (By Astrrra)](https://github.com/flipperdevices/flipperzero-good-faps/pull/228)
+    #  [Update nfc_magic_scene_not_magic.c #232 (By equipter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/232)
 )

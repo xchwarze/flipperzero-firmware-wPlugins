@@ -53,6 +53,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [NFC Playlist v2.3 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Updated: [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
 - OFW: [copro: bumped to 1.20.0 #3727 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3727)
+- Updated: [NFC Magic v1.12 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966) [Gen1 backdoor read support #228 (By Astrrra)](https://github.com/flipperdevices/flipperzero-good-faps/pull/228) [Update nfc_magic_scene_not_magic.c #232 (By equipter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/232)
 
 <a name="release">
 
@@ -492,7 +493,7 @@ $ ./fbt dolphin_ext
 - [Mx2125 Dual-Axis Accelerometer (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
 - [Mx2125 Step Counter v1.0 (By 47lecoste a.k.a. grugnoymeme)](https://github.com/grugnoymeme/flipperzero-stepcounter-fap)
 - [Name Changer (By ESurge)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/488)
-- [NFC Magic v1.11 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966)
+- [NFC Magic v1.12 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966)
 - [NFC Maker v1.2 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
 - [NFC Playlist v2.3 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - [NFC Relay v0.2 (By leommxj)](https://github.com/leommxj/nfc_relay)
