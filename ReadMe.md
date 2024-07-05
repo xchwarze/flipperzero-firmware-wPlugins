@@ -57,6 +57,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [LF RFID: Update T5577 password list (By korden32)](https://github.com/DarkFlippers/unleashed-firmware/pull/774)
 - Remove: [Added lfrfid protocol EM4100/40/RAW #722 (By hippocache)](https://github.com/DarkFlippers/unleashed-firmware/pull/722) (Implentation specific to a system)
 - OFW: PR: NFC: [Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
+- NFC: [Cleanup of some unused images/code (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/31756cca0678c01e7c68e3887379d23cdb82d695)
 - [NFC: Cache plugin name not full path, saves some RAM (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/223de97d8c3783d6164467a47d3d936774befcaa)
 - [Updated display info to DEZ 8 (actual one) #777 (By mishamyte)](https://github.com/DarkFlippers/unleashed-firmware/pull/777)
 
