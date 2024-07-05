@@ -119,7 +119,11 @@ static const NfcSupportedCardsPlugin* nfc_supported_cards_get_plugin(
         if(instance->app) flipper_application_free(instance->app);
         instance->app = flipper_application_alloc(instance->storage, api_interface);
 
-        if(flipper_application_preload(instance->app, furi_string_get_cstr(plugin_path)) !=
+        // Reconstruct path
+        path_concat(NFC_SUPPORTED_CARDS_PLUGINS_PATH, name, instance->file_path);
+        furi_string_cat(instance->file_path, NFC_SUPPORTED_CARDS_PLUGIN_SUFFIX);
+
+        if(flipper_application_preload(instance->app, furi_string_get_cstr(instance->file_path)) !=
            FlipperApplicationPreloadStatusSuccess)
             break;
         if(!flipper_application_is_plugin(instance->app)) break;
@@ -155,15 +159,9 @@ static const NfcSupportedCardsPlugin* nfc_supported_cards_get_next_plugin(
         size_t file_name_len = strlen(instance->file_name);
         if(file_name_len <= suffix_len) break;
 
-        size_t suffix_start_pos = file_name_len - suffix_len;
-        if(memcmp(
-               &instance->file_name[suffix_start_pos],
-               NFC_SUPPORTED_CARDS_PLUGIN_SUFFIX,
-               suffix_len) != 0)
-            break;
-
-        // Trim suffix from file_name to save memory. The suffix will be concatenated on plugin load.
-        instance->file_name[suffix_start_pos] = '\0';
+        size_t trim_suffix =
+            furi_string_size(instance->file_path) - strlen(NFC_SUPPORTED_CARDS_PLUGIN_SUFFIX);
+        instance->file_name[trim_suffix] = '\0';
 
         plugin = nfc_supported_cards_get_plugin(instance, instance->file_name, api_interface);
     } while(plugin == NULL); //-V654

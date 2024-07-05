@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0704-0134-0.103.2-8aa6dde](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-04 01:31 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-04 01:31 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-05 02:02 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-05 02:02 EST`
 - [Smaller internal animations (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0a8ff6b5b83d03acc3919bf35f38b254c595c6c8)
 - [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
@@ -57,6 +57,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - [LF RFID: Update T5577 password list (By korden32)](https://github.com/DarkFlippers/unleashed-firmware/pull/774)
 - Remove: [Added lfrfid protocol EM4100/40/RAW #722 (By hippocache)](https://github.com/DarkFlippers/unleashed-firmware/pull/722) (Implentation specific to a system)
 - OFW: PR: NFC: [Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
+- [NFC: Cache plugin name not full path, saves some RAM (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/223de97d8c3783d6164467a47d3d936774befcaa)
+- [Updated display info to DEZ 8 (actual one) #777 (By mishamyte)](https://github.com/DarkFlippers/unleashed-firmware/pull/777)
 
 <a name="release">
 
