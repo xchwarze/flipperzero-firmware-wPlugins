@@ -490,9 +490,11 @@ void render_callback(Canvas* const canvas, void* ctx) {
         draw_poly(canvas, &ShipFirePoly, app->ship.x, app->ship.y, app->ship.rot);
     }
 
-    for(int j = 0; j < app->bullets_num; j++) draw_bullet(canvas, &app->bullets[j]);
+    for(int j = 0; j < app->bullets_num; j++)
+        draw_bullet(canvas, &app->bullets[j]);
 
-    for(int j = 0; j < app->asteroids_num; j++) draw_asteroid(canvas, &app->asteroids[j]);
+    for(int j = 0; j < app->asteroids_num; j++)
+        draw_asteroid(canvas, &app->asteroids[j]);
 
     for(int j = 0; j < app->powerUps_num; j++) {
         draw_powerUps(canvas, &app->powerUps[j]);

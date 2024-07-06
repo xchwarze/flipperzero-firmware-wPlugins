@@ -417,8 +417,7 @@ static void trade_draw_timer_callback(void* context) {
 
     struct trade_ctx* trade = (struct trade_ctx*)context;
 
-    with_view_model(
-        trade->view, struct trade_model * model, { model->ledon ^= 1; }, true);
+    with_view_model(trade->view, struct trade_model * model, { model->ledon ^= 1; }, true);
 }
 
 static void trade_draw_callback(Canvas* canvas, void* view_model) {
@@ -939,8 +938,7 @@ void* trade_alloc(
 
     view_set_context(trade->view, trade);
     view_allocate_model(trade->view, ViewModelTypeLockFree, sizeof(struct trade_model));
-    with_view_model(
-        trade->view, struct trade_model * model, { model->pdata = pdata; }, false);
+    with_view_model(trade->view, struct trade_model * model, { model->pdata = pdata; }, false);
 
     view_set_draw_callback(trade->view, trade_draw_callback);
     view_set_input_callback(trade->view, trade_input_callback);

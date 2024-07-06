@@ -735,8 +735,7 @@ FlipBipScene1* flipbip_scene_1_alloc() {
 void flipbip_scene_1_free(FlipBipScene1* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, FlipBipScene1Model * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, FlipBipScene1Model * model, { UNUSED(model); }, true);
 
     // free the address node
     memzero(s_addr_node, sizeof(HDNode));

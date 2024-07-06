@@ -398,8 +398,7 @@ GBCartridgeScene1* gb_cartridge_scene_1_alloc() {
 void gb_cartridge_scene_1_free(GBCartridgeScene1* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, GameBoyCartridgeModel * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, GameBoyCartridgeModel * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

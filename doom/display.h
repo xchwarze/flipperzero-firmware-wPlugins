@@ -202,7 +202,8 @@ void drawPixel(int8_t x, int8_t y, bool color, bool raycasterViewport, Canvas* c
 void drawChar(int8_t x, int8_t y, char ch, Canvas* const canvas) {
     uint8_t lsb;
     uint8_t c = 0;
-    while(CHAR_MAP[c] != ch && CHAR_MAP[c] != '\0') c++;
+    while(CHAR_MAP[c] != ch && CHAR_MAP[c] != '\0')
+        c++;
     for(uint8_t i = 0; i < 6; i++) {
         //lsb = (char_arr[c][i] >> 4);
         lsb = reverse_bits(char_arr[c][i]);

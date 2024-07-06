@@ -100,8 +100,7 @@ XRemoteInfoscreen* xremote_infoscreen_alloc() {
 void xremote_infoscreen_free(XRemoteInfoscreen* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, XRemoteInfoscreenModel * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, XRemoteInfoscreenModel * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

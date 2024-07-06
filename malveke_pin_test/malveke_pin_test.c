@@ -139,8 +139,7 @@ static UartEchoApp* gb_live_camera_app_alloc() {
     view_set_input_callback(app->view, gb_live_camera_view_input_callback);
     view_allocate_model(app->view, ViewModelTypeLocking, sizeof(UartDumpModel));
 
-    with_view_model(
-        app->view, UartDumpModel * model, { model->pin = 2; }, true);
+    with_view_model(app->view, UartDumpModel * model, { model->pin = 2; }, true);
 
     view_set_previous_callback(app->view, gb_live_camera_exit);
     view_dispatcher_add_view(app->view_dispatcher, 0, app->view);

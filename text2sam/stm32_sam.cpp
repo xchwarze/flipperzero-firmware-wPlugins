@@ -3304,7 +3304,8 @@ void STM32SAM::AddInflection(unsigned char mem48, unsigned char phase1) {
 
     // FIXME: Explain this fix better, it's not obvious
     // ML : A =, fixes a problem with invalid pitch with '.'
-    while((A = pitches[X]) == 127) X++;
+    while((A = pitches[X]) == 127)
+        X++;
 
 pos48398:
     //48398: CLC
@@ -3787,7 +3788,8 @@ int STM32SAM::Parser1() {
     Y = 0;
 
     // CLEAR THE STRESS TABLE
-    for(i = 0; i < 256; i++) stress[i] = 0;
+    for(i = 0; i < 256; i++)
+        stress[i] = 0;
 
     // THIS CODE MATCHES THE PHONEME LETTERS TO THE TABLE
     // pos41078:

@@ -154,8 +154,7 @@ void xremote_transmit_enter(void* context) {
 void xremote_transmit_free(XRemoteTransmit* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, XRemoteTransmitModel * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, XRemoteTransmitModel * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }
