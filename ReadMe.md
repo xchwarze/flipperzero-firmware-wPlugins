@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0706-0339-0.103.2-f295614](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-06 08:30 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-06 08:30 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-06 11:11 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-06 11:11 EST`
 - [Smaller internal animations (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0a8ff6b5b83d03acc3919bf35f38b254c595c6c8)
 - [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
@@ -66,6 +66,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Updating bench flipper search algorithm #3742 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3742)
 - OFW: [CCID: Improve request and response data handling #3741 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3741)
 - OFW: [NFC: Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
+- OFW: [Fix PVS Warnings #3760 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3760)
 
 <a name="release">
 
