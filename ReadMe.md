@@ -62,6 +62,10 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [toolchain: v37 #3746 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3746)
 - Updated: [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite) (From MNTM Apps)
 - JS: [Improve and fix subghz module (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/49a63bf10b0926824e3075296b1b92c84cb1da2e#diff-afacb17452f409b612d2c6a6a6e6fd8509150fa785d0a3d03fb26ff47d62ac1b)
+- OFW: [Furi: count ISR time. Cli: show ISR time in top. #3751 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3751)
+- OFW: [Updating bench flipper search algorithm #3742 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3742)
+- OFW: [CCID: Improve request and response data handling #3741 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3741)
+- OFW: [NFC: Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
 
 <a name="release">
 
