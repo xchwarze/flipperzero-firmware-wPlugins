@@ -221,7 +221,8 @@ static void on_uart_irq_callback(FuriHalSerialHandle* hndl, FuriHalSerialRxEvent
 void strcpy_rstrip(char* dst, uint8_t* src) {
     uint8_t i;
 
-    for(i = 0; src[i] > 32 && src[i] < 127; i++) dst[i] = src[i];
+    for(i = 0; src[i] > 32 && src[i] < 127; i++)
+        dst[i] = src[i];
     dst[i] = 0;
 }
 
@@ -230,7 +231,8 @@ static uint8_t checkbyte(uint8_t* data, uint16_t len) {
     uint8_t checksum = 0;
     uint16_t i;
 
-    for(i = 0; i < len; i++) checksum += data[i];
+    for(i = 0; i < len; i++)
+        checksum += data[i];
 
     checksum ^= 0x50;
 

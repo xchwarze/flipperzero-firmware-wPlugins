@@ -117,7 +117,8 @@ static bool mj_get_ducky_key(char* key, size_t keylen, MJDuckyKey* dk) {
 static void checksum(uint8_t* payload, size_t len) {
     // MS checksum algorithm - as per KeyKeriki paper
     payload[len - 1] = 0x00;
-    for(size_t n = 0; n < len - 2; n++) payload[len - 1] ^= payload[n];
+    for(size_t n = 0; n < len - 2; n++)
+        payload[len - 1] ^= payload[n];
     payload[len - 1] = ~payload[len - 1] & 0xff;
 }
 

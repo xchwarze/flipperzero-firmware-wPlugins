@@ -165,7 +165,8 @@ void level_reader_load_level(Level* ret_level, FileLinesReader* reader, int leve
     ret_level->level_width = 0;
     ret_level->level_height = 0;
     for(int i = 0; i < MAX_BOARD_SIZE; i++)
-        for(int j = 0; j < MAX_BOARD_SIZE; j++) ret_level->board[i][j] = CellType_Empty;
+        for(int j = 0; j < MAX_BOARD_SIZE; j++)
+            ret_level->board[i][j] = CellType_Empty;
 
     for(int currentLevelFound = 0; currentLevelFound <= levelIndex; currentLevelFound++) {
         char line[MAX_READ_BUFFER_SIZE];

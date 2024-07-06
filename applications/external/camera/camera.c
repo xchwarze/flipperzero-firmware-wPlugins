@@ -205,8 +205,7 @@ static int32_t camera_worker(void* context) {
             } while(length > 0);
 
             notification_message(app->notification, &sequence_notification);
-            with_view_model(
-                app->view, UartDumpModel * model, { UNUSED(model); }, true);
+            with_view_model(app->view, UartDumpModel * model, { UNUSED(model); }, true);
         }
     }
 

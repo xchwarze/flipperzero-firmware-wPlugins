@@ -243,7 +243,8 @@ static StartPositions* start_positions_alloc() {
     positions->pinky = (Point*)malloc(sizeof(Point));
     positions->clyde = (Point*)malloc(sizeof(Point));
     positions->teleports = (Point**)malloc(sizeof(Point*) * 2);
-    for(int i = 0; i < 2; i++) positions->teleports[i] = (Point*)malloc(sizeof(Point));
+    for(int i = 0; i < 2; i++)
+        positions->teleports[i] = (Point*)malloc(sizeof(Point));
     return positions;
 }
 
@@ -808,8 +809,7 @@ static bool pacman_view_game_custom_event_callback(uint32_t event, void* context
         // Redraw screen by passing true to last parameter of with_view_model.
         {
             bool redraw = true;
-            with_view_model(
-                app->view_game, PacmanGameModel * _model, { UNUSED(_model); }, redraw);
+            with_view_model(app->view_game, PacmanGameModel * _model, { UNUSED(_model); }, redraw);
             return true;
         }
     case PacmanEventIdOkPressed:

@@ -128,8 +128,7 @@ FuriString* doc_description_get_string(DocDescription* instance) {
     furi_assert(instance);
 
     FuriString* text;
-    with_view_model(
-        instance->view, DocDescriptionViewModel * vm, { text = vm->text; }, true);
+    with_view_model(instance->view, DocDescriptionViewModel * vm, { text = vm->text; }, true);
 
     return text;
 }
@@ -154,8 +153,7 @@ void doc_description_set_category(DocDescription* instance, uint8_t category) {
 void doc_description_set_size(DocDescription* instance, uint8_t size) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, DocDescriptionViewModel * vm, { vm->size = size; }, true);
+    with_view_model(instance->view, DocDescriptionViewModel * vm, { vm->size = size; }, true);
 }
 
 void doc_description_request_redraw(DocDescription* instance) {
@@ -167,7 +165,6 @@ void doc_description_request_redraw(DocDescription* instance) {
 
 void doc_description_force_redraw(DocDescription* instance) {
     furi_assert(instance);
-    with_view_model(
-        instance->view, DocDescriptionViewModel * vm, { UNUSED(vm); }, true);
+    with_view_model(instance->view, DocDescriptionViewModel * vm, { UNUSED(vm); }, true);
 }
 //? Custom Functions End

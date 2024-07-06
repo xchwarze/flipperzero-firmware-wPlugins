@@ -20,7 +20,8 @@ static void nfcurl_scene_save_text_callback(void* context) {
 }
 
 static void clear_text_buffer(char* buffer, uint32_t len) {
-    for(unsigned i = 0; i < len; ++i) buffer[i] = '\0';
+    for(unsigned i = 0; i < len; ++i)
+        buffer[i] = '\0';
 }
 
 static bool nfcurl_export_nfc_file(NfcUrlApp* app) {

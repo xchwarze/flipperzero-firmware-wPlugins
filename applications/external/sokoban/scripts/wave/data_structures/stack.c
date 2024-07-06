@@ -60,7 +60,8 @@ void* stack_discard_bottom(Stack* stack) {
 
     StackNode* newLast = stack->head;
 
-    for(int i = 0; i < stack->count - 2; i++) newLast = newLast->next;
+    for(int i = 0; i < stack->count - 2; i++)
+        newLast = newLast->next;
 
     StackNode* last = newLast->next;
     furi_assert(last != NULL);

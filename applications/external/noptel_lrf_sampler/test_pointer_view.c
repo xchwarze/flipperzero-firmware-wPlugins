@@ -108,8 +108,7 @@ void testpointer_view_enter_callback(void* ctx) {
     /* Set the backlight on all the time */
     set_backlight(&app->backlight_control, BL_ON);
 
-    with_view_model(
-        app->testpointer_view, TestPointerModel * _model, { UNUSED(_model); }, false);
+    with_view_model(app->testpointer_view, TestPointerModel * _model, { UNUSED(_model); }, false);
 }
 
 /** Test pointer view exit callback **/

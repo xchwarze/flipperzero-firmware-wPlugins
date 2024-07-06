@@ -302,7 +302,8 @@ void free_store(void) {
         ListenFields = NULL;
     }
     if(Read_cmd_Total) {
-        for(uint16_t i = 0; i < Read_cmd_Total; i++) furi_string_free(Read_cmd[i]);
+        for(uint16_t i = 0; i < Read_cmd_Total; i++)
+            furi_string_free(Read_cmd[i]);
         Read_cmd_Total = 0;
     }
     if(Read_cmd) {
@@ -310,7 +311,8 @@ void free_store(void) {
         Read_cmd = NULL;
     }
     if(ReadBatch_cmd_Total) {
-        for(uint16_t i = 0; i < ReadBatch_cmd_Total; i++) furi_string_free(ReadBatch_cmd[i]);
+        for(uint16_t i = 0; i < ReadBatch_cmd_Total; i++)
+            furi_string_free(ReadBatch_cmd[i]);
         ReadBatch_cmd_Total = 0;
     }
     if(ReadBatch_cmd) {
@@ -318,7 +320,8 @@ void free_store(void) {
         ReadBatch_cmd = NULL;
     }
     if(WriteBatch_cmd_Total) {
-        for(uint16_t i = 0; i < WriteBatch_cmd_Total; i++) furi_string_free(WriteBatch_cmd[i]);
+        for(uint16_t i = 0; i < WriteBatch_cmd_Total; i++)
+            furi_string_free(WriteBatch_cmd[i]);
         WriteBatch_cmd_Total = 0;
     }
     if(WriteBatch_cmd) {
@@ -326,7 +329,8 @@ void free_store(void) {
         WriteBatch_cmd = NULL;
     }
     if(SetBatch_cmd_Total) {
-        for(uint16_t i = 0; i < SetBatch_cmd_Total; i++) furi_string_free(SetBatch_cmd[i]);
+        for(uint16_t i = 0; i < SetBatch_cmd_Total; i++)
+            furi_string_free(SetBatch_cmd[i]);
         SetBatch_cmd_Total = 0;
     }
     if(SetBatch_cmd) {
@@ -1065,7 +1069,8 @@ static void save_batch(void) {
                     stream_write_cstring(file_stream, "={");
                     p = (p2 += 2);
                     do {
-                        while(is_digit(p2, true) || *p2 == 'x') p2++;
+                        while(is_digit(p2, true) || *p2 == 'x')
+                            p2++;
                         stream_write(file_stream, (uint8_t*)p, p2 - p);
                         char c = *p2;
                         if(c == '\0') break;
@@ -1886,7 +1891,8 @@ int32_t nrf24batch_app(void* p) {
                                             }
                                             if(is_digit(p, Edit_hex)) {
                                                 Edit_start = p;
-                                                while(is_digit(p, Edit_hex)) p++;
+                                                while(is_digit(p, Edit_hex))
+                                                    p++;
                                                 Edit_pos = p - 1;
                                                 Edited = true;
                                                 Edit = 1;

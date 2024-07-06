@@ -131,8 +131,7 @@ FlipperTagStartscreen* flippertag_startscreen_alloc() {
 void flippertag_startscreen_free(FlipperTagStartscreen* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, FlipperTagStartscreenModel * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, FlipperTagStartscreenModel * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

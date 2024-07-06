@@ -23,8 +23,7 @@ static void lrf_ident_handler(LRFIdent* lrf_ident, void* ctx) {
     lrfinfo_model->has_ident = true;
 
     /* Trigger an LRF info view redraw */
-    with_view_model(
-        app->lrfinfo_view, LRFInfoModel * _model, { UNUSED(_model); }, true);
+    with_view_model(app->lrfinfo_view, LRFInfoModel * _model, { UNUSED(_model); }, true);
 }
 
 /** LRF information handler
@@ -39,8 +38,7 @@ static void lrf_info_handler(LRFInfo* lrf_info, void* ctx) {
     lrfinfo_model->has_info = true;
 
     /* Trigger an LRF info view redraw */
-    with_view_model(
-        app->lrfinfo_view, LRFInfoModel * _model, { UNUSED(_model); }, true);
+    with_view_model(app->lrfinfo_view, LRFInfoModel * _model, { UNUSED(_model); }, true);
 }
 
 /** LRF info view enter callback **/
@@ -139,7 +137,8 @@ void lrfinfo_view_draw_callback(Canvas* canvas, void* model) {
     /* Do we have valid information to display? */
     if(lrfinfo_model->has_info) {
         /* Black out the left of the bottom line */
-        for(y = 49; y < 64; y++) canvas_draw_line(canvas, 0, y, 72, y);
+        for(y = 49; y < 64; y++)
+            canvas_draw_line(canvas, 0, y, 72, y);
 
         /* Switch to reverse video */
         canvas_invert_color(canvas);
@@ -193,8 +192,7 @@ bool lrfinfo_view_input_callback(InputEvent* evt, void* ctx) {
 
         /* Trigger an LRF info view redraw to clear the information currently
        displayed - if any */
-        with_view_model(
-            app->lrfinfo_view, LRFInfoModel * _model, { UNUSED(_model); }, true);
+        with_view_model(app->lrfinfo_view, LRFInfoModel * _model, { UNUSED(_model); }, true);
 
         /* Send a send-identification-frame command */
         send_lrf_command(app->lrf_serial_comm_app, send_ident);

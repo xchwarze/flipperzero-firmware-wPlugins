@@ -7,7 +7,8 @@ static void nfcurl_scene_enter_url_text_callback(void* context) {
 }
 
 static void clear_text_buffer(char* buffer, uint32_t len) {
-    for(unsigned i = 0; i < len; ++i) buffer[i] = '\0';
+    for(unsigned i = 0; i < len; ++i)
+        buffer[i] = '\0';
 }
 
 void nfcurl_scene_enter_url_on_enter(void* context) {

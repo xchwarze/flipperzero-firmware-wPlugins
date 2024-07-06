@@ -163,16 +163,14 @@ void doc_selection_free(DocSelection* instance) {
 void doc_selection_set_title(DocSelection* instance, const char* title) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, DocSelectionViewModel * vm, { vm->title = title; }, true);
+    with_view_model(instance->view, DocSelectionViewModel * vm, { vm->title = title; }, true);
 }
 
 FuriString* doc_selection_get_string(DocSelection* instance) {
     furi_assert(instance);
 
     FuriString* text;
-    with_view_model(
-        instance->view, DocSelectionViewModel * vm, { text = vm->text; }, true);
+    with_view_model(instance->view, DocSelectionViewModel * vm, { text = vm->text; }, true);
 
     return text;
 }
@@ -180,8 +178,7 @@ FuriString* doc_selection_get_string(DocSelection* instance) {
 void doc_selection_set_footer(DocSelection* instance, const char* footer) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, DocSelectionViewModel * vm, { vm->footer = footer; }, true);
+    with_view_model(instance->view, DocSelectionViewModel * vm, { vm->footer = footer; }, true);
 }
 
 void doc_selection_set_index(DocSelection* instance, uint8_t index) {
@@ -217,8 +214,7 @@ void doc_selection_set_index(DocSelection* instance, uint8_t index) {
 void doc_selection_set_size(DocSelection* instance, uint8_t size) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, DocSelectionViewModel * vm, { vm->size = size; }, true);
+    with_view_model(instance->view, DocSelectionViewModel * vm, { vm->size = size; }, true);
 }
 
 void doc_selection_request_redraw(DocSelection* instance) {
@@ -230,7 +226,6 @@ void doc_selection_request_redraw(DocSelection* instance) {
 
 void doc_selection_force_redraw(DocSelection* instance) {
     furi_assert(instance);
-    with_view_model(
-        instance->view, DocSelectionViewModel * vm, { UNUSED(vm); }, true);
+    with_view_model(instance->view, DocSelectionViewModel * vm, { UNUSED(vm); }, true);
 }
 //? Custom Functions End

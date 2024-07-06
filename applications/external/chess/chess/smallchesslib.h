@@ -119,8 +119,7 @@ void SCL_randomBetterSeed(uint16_t seed);
 */
 typedef uint8_t SCL_SquareSet[8];
 
-#define SCL_SQUARE_SET_EMPTY \
-    { 0, 0, 0, 0, 0, 0, 0, 0 }
+#define SCL_SQUARE_SET_EMPTY {0, 0, 0, 0, 0, 0, 0, 0}
 
 void SCL_squareSetClear(SCL_SquareSet squareSet);
 void SCL_squareSetAdd(SCL_SquareSet squareSet, uint8_t square);
@@ -221,13 +220,25 @@ typedef char SCL_Board[SCL_BOARD_STATE_SIZE];
 #define _SCL_EXTRA_BYTE_VALUE 0
 #endif
 
-#define SCL_BOARD_START_STATE                                                                   \
-    {                                                                                           \
-        82, 78, 66, 81, 75, 66, 78, 82, 80, 80, 80, 80, 80, 80, 80, 80, 46, 46, 46, 46, 46, 46, \
-            46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, \
-            46, 46, 46, 46, 46, 112, 112, 112, 112, 112, 112, 112, 112, 114, 110, 98, 113, 107, \
-            98, 110, 114, (char)0xff, 0, 0, _SCL_EXTRA_BYTE_VALUE, 0                            \
-    }
+#define SCL_BOARD_START_STATE                     \
+    {82,         78,  66,  81,                    \
+     75,         66,  78,  82,                    \
+     80,         80,  80,  80,                    \
+     80,         80,  80,  80,                    \
+     46,         46,  46,  46,                    \
+     46,         46,  46,  46,                    \
+     46,         46,  46,  46,                    \
+     46,         46,  46,  46,                    \
+     46,         46,  46,  46,                    \
+     46,         46,  46,  46,                    \
+     46,         46,  46,  46,                    \
+     46,         46,  46,  46,                    \
+     112,        112, 112, 112,                   \
+     112,        112, 112, 112,                   \
+     114,        110, 98,  113,                   \
+     107,        98,  110, 114,                   \
+     (char)0xff, 0,   0,   _SCL_EXTRA_BYTE_VALUE, \
+     0}
 
 #define SCL_FEN_START "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
@@ -268,7 +279,7 @@ typedef struct {
   Converts square in common notation (e.g. 'c' 8) to square number. Only accepts
   lowercase column.
 */
-#define SCL_SQUARE(colChar, rowInt) (((rowInt)-1) * 8 + ((colChar) - 'a'))
+#define SCL_SQUARE(colChar, rowInt) (((rowInt) - 1) * 8 + ((colChar) - 'a'))
 #define SCL_S(c, r) SCL_SQUARE(c, r)
 
 void SCL_boardInit(SCL_Board board);
@@ -764,7 +775,8 @@ void SCL_randomBetterSeed(uint16_t seed) {
 }
 
 void SCL_squareSetClear(SCL_SquareSet squareSet) {
-    for(uint8_t i = 0; i < 8; ++i) squareSet[i] = 0;
+    for(uint8_t i = 0; i < 8; ++i)
+        squareSet[i] = 0;
 }
 
 uint8_t SCL_stringToSquare(const char* square) {
@@ -877,7 +889,8 @@ void SCL_boardInit(SCL_Board board) {
         *b2 = 'p';
     }
 
-    for(uint8_t i = 0; i < 32; ++i, b++) *b = '.';
+    for(uint8_t i = 0; i < 32; ++i, b++)
+        *b = '.';
 
     b += 8;
 
@@ -898,7 +911,8 @@ void SCL_boardInit(SCL_Board board) {
     *b = 'r';
     b++;
 
-    for(uint8_t i = 0; i < SCL_BOARD_STATE_SIZE - SCL_BOARD_SQUARES; ++i, ++b) *b = 0;
+    for(uint8_t i = 0; i < SCL_BOARD_STATE_SIZE - SCL_BOARD_SQUARES; ++i, ++b)
+        *b = 0;
 
     board[SCL_BOARD_ENPASSANT_CASTLE_BYTE] = (char)0xff;
 
@@ -970,7 +984,8 @@ void SCL_boardInit960(SCL_Board board, uint16_t positionNumber) {
 
     _SCL_boardPlaceOnNthAvailable(board, 0, rooks == 2 ? 'N' : 'R');
 
-    for(uint8_t i = 0; i < 8; ++i) board[56 + i] = SCL_pieceToColor(board[i], 0);
+    for(uint8_t i = 0; i < 8; ++i)
+        board[56 + i] = SCL_pieceToColor(board[i], 0);
 
 #if SCL_960_CASTLING
     _SCL_board960RememberRookPositions(board);
@@ -1048,7 +1063,8 @@ void SCL_recordFromPGN(SCL_Record r, const char* pgn) {
 
             uint8_t ranks = 0, files = 0;
 
-            for(uint8_t i = 0; i < 4; ++i) coords[i] = -1;
+            for(uint8_t i = 0; i < 4; ++i)
+                coords[i] = -1;
 
             while(*pgn != ' ' && *pgn != '\n' && *pgn != '\t' && *pgn != '{' && *pgn != 0) {
                 if(*pgn == '=') promotion = 1;
@@ -1129,7 +1145,8 @@ void SCL_recordFromPGN(SCL_Record r, const char* pgn) {
 
             while(*pgn == ' ' || *pgn == '\n' || *pgn == '\t' || *pgn == '{') {
                 if(*pgn == '{')
-                    while(*pgn != '}') pgn++;
+                    while(*pgn != '}')
+                        pgn++;
 
                 pgn++;
             }
@@ -1159,7 +1176,8 @@ uint16_t SCL_recordLength(const SCL_Record r) {
 
     uint16_t result = 0;
 
-    while((r[result] & 0xc0) == 0) result += 2;
+    while((r[result] & 0xc0) == 0)
+        result += 2;
 
     return (result / 2) + 1;
 }
@@ -1565,7 +1583,8 @@ uint8_t SCL_squareSetGetRandom(const SCL_SquareSet squareSet, SCL_RandomFunction
 }
 
 void SCL_boardCopy(const SCL_Board boardFrom, SCL_Board boardTo) {
-    for(uint8_t i = 0; i < SCL_BOARD_STATE_SIZE; ++i) boardTo[i] = boardFrom[i];
+    for(uint8_t i = 0; i < SCL_BOARD_STATE_SIZE; ++i)
+        boardTo[i] = boardFrom[i];
 }
 
 uint8_t SCL_boardSquareAttacked(SCL_Board board, uint8_t square, uint8_t byWhite) {
@@ -1965,7 +1984,8 @@ void SCL_boardGetMoves(SCL_Board board, uint8_t pieceSquare, SCL_SquareSet resul
 
     SCL_squareSetClear(allMoves);
 
-    for(uint8_t i = 0; i < 8; ++i) result[i] = 0;
+    for(uint8_t i = 0; i < 8; ++i)
+        result[i] = 0;
 
     SCL_boardGetPseudoMoves(board, pieceSquare, 1, allMoves);
 
@@ -2125,7 +2145,8 @@ void SCL_printBoard(
     uint8_t labels,
     uint8_t blackDown) {
     if(labels) {
-        for(uint8_t i = 0; i < offset + 2; ++i) putCharFunc(' ');
+        for(uint8_t i = 0; i < offset + 2; ++i)
+            putCharFunc(' ');
 
         for(uint8_t i = 0; i < 8; ++i) {
             if((format != SCL_PRINT_FORMAT_COMPACT) && (format != SCL_PRINT_FORMAT_COMPACT_UTF8))
@@ -2146,7 +2167,8 @@ void SCL_printBoard(
     }
 
     for(int8_t row = 0; row < 8; ++row) {
-        for(uint8_t j = 0; j < offset; ++j) putCharFunc(' ');
+        for(uint8_t j = 0; j < offset; ++j)
+            putCharFunc(' ');
 
         if(labels) {
             putCharFunc(!blackDown ? ('8' - row) : ('1' + row));
@@ -3248,7 +3270,8 @@ void SCL_printPGN(SCL_Record r, SCL_PutCharFunction putCharFunc, SCL_Board initi
     SCL_Board board;
 
     if(initialState != 0)
-        for(uint8_t i = 0; i < SCL_BOARD_STATE_SIZE; ++i) board[i] = initialState[i];
+        for(uint8_t i = 0; i < SCL_BOARD_STATE_SIZE; ++i)
+            board[i] = initialState[i];
     else
         SCL_boardInit(board);
 
@@ -3356,7 +3379,8 @@ void SCL_printPGN(SCL_Record r, SCL_PutCharFunction putCharFunc, SCL_Board initi
 }
 
 void SCL_recordCopy(SCL_Record recordFrom, SCL_Record recordTo) {
-    for(uint16_t i = 0; i < SCL_RECORD_MAX_SIZE; ++i) recordTo[i] = recordFrom[i];
+    for(uint16_t i = 0; i < SCL_RECORD_MAX_SIZE; ++i)
+        recordTo[i] = recordFrom[i];
 }
 
 void SCL_gameInit(SCL_Game* game, const SCL_Board startState) {
@@ -3369,7 +3393,8 @@ void SCL_gameInit(SCL_Game* game, const SCL_Board startState) {
 
     SCL_recordInit(game->record);
 
-    for(uint8_t i = 0; i < 14; ++i) game->prevMoves[i] = 0;
+    for(uint8_t i = 0; i < 14; ++i)
+        game->prevMoves[i] = 0;
 
     game->state = SCL_GAME_STATE_PLAYING;
     game->ply = 0;
@@ -3419,7 +3444,8 @@ void SCL_gameMakeMove(SCL_Game* game, uint8_t squareFrom, uint8_t squareTo, char
 
     game->ply++;
 
-    for(uint8_t i = 0; i < 14 - 2; ++i) game->prevMoves[i] = game->prevMoves[i + 2];
+    for(uint8_t i = 0; i < 14 - 2; ++i)
+        game->prevMoves[i] = game->prevMoves[i + 2];
 
     game->prevMoves[12] = squareFrom;
     game->prevMoves[13] = squareTo;

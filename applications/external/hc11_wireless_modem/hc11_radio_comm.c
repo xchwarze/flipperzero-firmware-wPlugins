@@ -470,7 +470,8 @@ static int32_t hc11_rx_tx_thread(void* ctx) {
             /* We should never get here with bytes remaining in the RX FIFO. But if
          we do, flush it and warn the user that something is very wrong */
             if(num_rxbytes) {
-                while(num_rxbytes--) cc1101_read_reg(spi, CC1101_FIFO, regval);
+                while(num_rxbytes--)
+                    cc1101_read_reg(spi, CC1101_FIFO, regval);
                 if(loglevel == FuriLogLevelTrace)
                     FURI_LOG_T(TAG, "Error: too many bytes in RX FIFO for packet size!");
             }

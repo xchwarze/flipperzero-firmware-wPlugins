@@ -102,7 +102,8 @@ static void checksum(uint8_t* payload, size_t len) {
     // This is also from the KeyKeriki paper
     // Thanks Thorsten and Max!
     uint8_t cksum = 0xff;
-    for(size_t n = 0; n < len - 2; n++) cksum = (cksum - payload[n]) & 0xff;
+    for(size_t n = 0; n < len - 2; n++)
+        cksum = (cksum - payload[n]) & 0xff;
     cksum = (cksum + 1) & 0xff;
     payload[len - 1] = cksum;
 }

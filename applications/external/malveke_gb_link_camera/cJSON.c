@@ -277,7 +277,8 @@ double string_to_double(const char* str, char** endptr) {
     int sign = 1;
     const char* p = str;
 
-    while(isspace((unsigned char)*p)) p++;
+    while(isspace((unsigned char)*p))
+        p++;
 
     if(*p == '-') {
         sign = -1;

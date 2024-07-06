@@ -120,8 +120,7 @@ FlipEnigmaStartscreen* flipenigma_startscreen_alloc() {
 void flipenigma_startscreen_free(FlipEnigmaStartscreen* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, FlipEnigmaStartscreenModel * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, FlipEnigmaStartscreenModel * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

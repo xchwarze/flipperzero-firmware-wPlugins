@@ -115,8 +115,7 @@ BoilerplateStartscreen* boilerplate_startscreen_alloc() {
 void boilerplate_startscreen_free(BoilerplateStartscreen* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, BoilerplateStartscreenModel * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, BoilerplateStartscreenModel * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

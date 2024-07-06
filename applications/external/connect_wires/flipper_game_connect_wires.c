@@ -72,7 +72,8 @@ const char* AboutStrings[] = {
 
 uint8_t menuSize(const MenuEntry* menu) {
     uint8_t res = 0;
-    while(menu[res].text != 0) res++;
+    while(menu[res].text != 0)
+        res++;
     return res;
 }
 
@@ -571,7 +572,8 @@ void draw_menu(Canvas* canvas, const MenuEntry* menu, uint8_t selectedIndex) {
 
 void draw_about(Canvas* canvas) {
     uint8_t nitems = 0;
-    while(AboutStrings[nitems] != NULL) ++nitems;
+    while(AboutStrings[nitems] != NULL)
+        ++nitems;
     canvas_set_font(canvas, FontSecondary);
     int item_h = canvas_current_font_height(canvas);
     int max_width = 0;
@@ -665,7 +667,8 @@ static void game_input_callback(InputEvent* input_event, void* ctx) {
 uint8_t add_delta_looped(uint8_t idx, uint8_t nitems, int8_t delta) {
     int8_t v = (int8_t)idx;
     v += delta;
-    while(v < 0) v += nitems;
+    while(v < 0)
+        v += nitems;
     v %= nitems;
     return (uint8_t)v;
 }

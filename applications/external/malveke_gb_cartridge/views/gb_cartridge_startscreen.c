@@ -143,8 +143,7 @@ GBCartridgeStartscreen* gb_cartridge_startscreen_alloc() {
 void gb_cartridge_startscreen_free(GBCartridgeStartscreen* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, GBCartridgeStartscreenModel * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, GBCartridgeStartscreenModel * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

@@ -177,7 +177,8 @@ void draw_analog_clock(Canvas* canvas, ClockConfig* cfg, DateTime* dt, uint16_t 
             draw_line(canvas, cfg->ofs_x, m, CopyBoth);
         }
     }
-    for(; i < 14; i++, m++) draw_line(canvas, cfg->ofs_x, m, CopyBoth);
+    for(; i < 14; i++, m++)
+        draw_line(canvas, cfg->ofs_x, m, CopyBoth);
     draw_line(canvas, cfg->ofs_x, &cfg->face.minutes[0], CopyVer);
     draw_line(canvas, cfg->ofs_x, &cfg->face.minutes[15], CopyHor);
     float s_ang = M_TWOPI / 60.0 * dt->second + M_TWOPI / 60000.0 * ms;

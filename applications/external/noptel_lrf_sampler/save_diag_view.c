@@ -71,8 +71,7 @@ static void diag_data_handler(LRFDiag* lrf_diag, void* ctx) {
 
             /* Trigger a save diagnostic view redraw to bring the progress bar to
          50% before saving */
-            with_view_model(
-                app->savediag_view, SaveDiagModel * _model, { UNUSED(_model); }, true);
+            with_view_model(app->savediag_view, SaveDiagModel * _model, { UNUSED(_model); }, true);
             last_update_display = furi_get_tick();
 
             /* Get the current date / time */
@@ -299,8 +298,7 @@ static void diag_data_handler(LRFDiag* lrf_diag, void* ctx) {
     }
 
     /* Trigger a save diagnostic view redraw */
-    with_view_model(
-        app->savediag_view, SaveDiagModel * _model, { UNUSED(_model); }, true);
+    with_view_model(app->savediag_view, SaveDiagModel * _model, { UNUSED(_model); }, true);
 }
 
 /** Save diagnostic view enter callback **/
@@ -442,8 +440,7 @@ bool savediag_view_input_callback(InputEvent* evt, void* ctx) {
 
             /* Trigger a save diagnostic view redraw to clear the information
          currently displayed - if any */
-            with_view_model(
-                app->savediag_view, SaveDiagModel * _model, { UNUSED(_model); }, true);
+            with_view_model(app->savediag_view, SaveDiagModel * _model, { UNUSED(_model); }, true);
 
             /* Send a send-identification-frame command */
             send_lrf_command(app->lrf_serial_comm_app, send_ident);

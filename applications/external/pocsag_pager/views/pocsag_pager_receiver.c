@@ -459,8 +459,7 @@ View* pcsg_view_receiver_get_view(PCSGReceiver* pcsg_receiver) {
 uint16_t pcsg_view_receiver_get_idx_menu(PCSGReceiver* pcsg_receiver) {
     furi_assert(pcsg_receiver);
     uint32_t idx = 0;
-    with_view_model(
-        pcsg_receiver->view, PCSGReceiverModel * model, { idx = model->idx; }, false);
+    with_view_model(pcsg_receiver->view, PCSGReceiverModel * model, { idx = model->idx; }, false);
     return idx;
 }
 

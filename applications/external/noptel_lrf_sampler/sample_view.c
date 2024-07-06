@@ -338,8 +338,7 @@ static void sample_view_timer_callback(void* ctx) {
         }
 
         /* Trigger a sample view redraw */
-        with_view_model(
-            app->sample_view, SampleModel * _model, { UNUSED(_model); }, true);
+        with_view_model(app->sample_view, SampleModel * _model, { UNUSED(_model); }, true);
 
         sample_model->samples_updated = false;
     }

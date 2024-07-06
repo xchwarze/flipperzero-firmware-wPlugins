@@ -116,7 +116,8 @@ int dcf77_clock_sync_app_main(void* p) {
     while(!exit) {
         int silence_ms = 0;
         // wait next second
-        while(app->dt.second == sec) furi_hal_rtc_get_datetime(&app->dt);
+        while(app->dt.second == sec)
+            furi_hal_rtc_get_datetime(&app->dt);
 
         if(app->dt.second < 59) {
             if(running) {

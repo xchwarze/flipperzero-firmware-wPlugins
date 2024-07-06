@@ -38,8 +38,7 @@ static void test_laser_view_timer_callback(void* ctx) {
     /* Did the IR receiver change state? */
     if(testlaser_model->ir_received != testlaser_model->ir_received_prev) {
         /* Trigger a test laser view redraw */
-        with_view_model(
-            app->testlaser_view, TestLaserModel * _model, { UNUSED(_model); }, true);
+        with_view_model(app->testlaser_view, TestLaserModel * _model, { UNUSED(_model); }, true);
 
         testlaser_model->ir_received_prev = testlaser_model->ir_received;
     }
@@ -127,8 +126,7 @@ void testlaser_view_enter_callback(void* ctx) {
     /* Set the backlight on all the time */
     set_backlight(&app->backlight_control, BL_ON);
 
-    with_view_model(
-        app->testlaser_view, TestLaserModel * _model, { UNUSED(_model); }, false);
+    with_view_model(app->testlaser_view, TestLaserModel * _model, { UNUSED(_model); }, false);
 }
 
 /** Test laser view exit callback **/

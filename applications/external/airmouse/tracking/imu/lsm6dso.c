@@ -38,7 +38,8 @@ bool lsm6dso_begin() {
 
     lsm6dso_reset_set(&lsm6dso_ctx, PROPERTY_ENABLE);
     uint8_t rst = PROPERTY_ENABLE;
-    while(rst) lsm6dso_reset_get(&lsm6dso_ctx, &rst);
+    while(rst)
+        lsm6dso_reset_get(&lsm6dso_ctx, &rst);
 
     lsm6dso_block_data_update_set(&lsm6dso_ctx, PROPERTY_ENABLE);
     lsm6dso_fifo_mode_set(&lsm6dso_ctx, LSM6DSO_BYPASS_MODE);

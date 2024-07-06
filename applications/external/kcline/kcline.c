@@ -145,7 +145,8 @@ const MenuEntry MAIN_MENU[] = {
 
 uint8_t menuSize(const MenuEntry* menu) {
     uint8_t res = 0;
-    while(menu[res].text != 0) res++;
+    while(menu[res].text != 0)
+        res++;
     return res;
 }
 
@@ -192,7 +193,8 @@ static uint8_t count_multiples(uint16_t input, uint16_t output) {
 uint8_t add_delta_looped(uint8_t idx, uint8_t nitems, int8_t delta) {
     int8_t v = (int8_t)idx;
     v += delta;
-    while(v < 0) v += nitems;
+    while(v < 0)
+        v += nitems;
     v %= nitems;
     return (uint8_t)v;
 }
@@ -263,7 +265,8 @@ static void draw_scene_scene_about(Canvas* canvas, App* app) {
     uint8_t nrows =
         MAX_ROWS / item_h; // Calculate the number of rows this font can display on screen
 
-    while(string[nitems] != NULL) ++nitems; // count the number of items in about string thing
+    while(string[nitems] != NULL)
+        ++nitems; // count the number of items in about string thing
 
     app->scrollMax = nitems - 1; // sets the maximum for our app->scrollIndex incrementor
 

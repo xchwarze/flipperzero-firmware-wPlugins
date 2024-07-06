@@ -862,7 +862,8 @@ bool nrf24_read_newpacket() {
                 while(shifted++ <
                       shift_max) { // Shift packet left by one bit if minimum payload fits
                     uint8_t i = 0;
-                    for(; i < packetsize - 1; i++) ptr[i] = (ptr[i] << 1) | (ptr[i + 1] >> 7);
+                    for(; i < packetsize - 1; i++)
+                        ptr[i] = (ptr[i] << 1) | (ptr[i + 1] >> 7);
                     ptr[i] <<= 1;
                     if(check_packet(ptr, packetsize - (shifted >> 3) - 1)) goto x_valid;
                 }
@@ -1107,7 +1108,8 @@ static void render_callback(Canvas* const canvas, void* ctx) {
                         }
                         if(view_log_arr_x == 0) {
                             add_to_str_hex_bytes(screen_buf, (char*)ptr, adrsize);
-                            for(int8_t j = 5 - adrsize; j > 0; j--) strcat(screen_buf, "  ");
+                            for(int8_t j = 5 - adrsize; j > 0; j--)
+                                strcat(screen_buf, "  ");
                             strcat(screen_buf, "-");
                             pre += 5 * 2 + 1;
                         } else {

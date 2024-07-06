@@ -7,7 +7,8 @@ char* strcat(char* dest, const char* src) {
     size_t i, j;
     for(i = 0; dest[i] != '\0'; i++)
         ;
-    for(j = 0; src[j] != '\0'; j++) dest[i + j] = src[j];
+    for(j = 0; src[j] != '\0'; j++)
+        dest[i + j] = src[j];
     dest[i + j] = '\0';
     return dest;
 }
@@ -760,6 +761,5 @@ void* text_input_get_validator_callback_context(TextInput* text_input) {
 
 void text_input_set_header_text(TextInput* text_input, const char* text) {
     furi_check(text_input);
-    with_view_model(
-        text_input->view, TextInputModel * model, { model->header = text; }, true);
+    with_view_model(text_input->view, TextInputModel * model, { model->header = text; }, true);
 }

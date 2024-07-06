@@ -39,7 +39,8 @@ void si4713_trx_command(
     furi_hal_i2c_trx(I2C_BUS, device->address << 1, commands, length, rx, rx_length, I2C_TIMEOUT);
     furi_hal_i2c_release(I2C_BUS);
     FURI_LOG_D(TAG, "Received %d bytes:", rx_length);
-    for(uint8_t* p = rx; p < rx + rx_length; p++) FURI_LOG_D(TAG, "%d", *p);
+    for(uint8_t* p = rx; p < rx + rx_length; p++)
+        FURI_LOG_D(TAG, "%d", *p);
 }
 
 void si4713_set_property(SI4713Device* device, uint16_t property, uint16_t value) {
@@ -137,7 +138,8 @@ void si4713_tune_fm(SI4713Device* device, uint16_t freq) {
     device->buffer[2] = freq >> 8;
     device->buffer[3] = freq & 0xFF;
     si4713_send_command(device, device->buffer, 4);
-    while((si4713_get_status(device) & 0x81) != 0x81) furi_delay_ms(10);
+    while((si4713_get_status(device) & 0x81) != 0x81)
+        furi_delay_ms(10);
 }
 
 // C0 (pin 16) -> SCL

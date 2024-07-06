@@ -79,7 +79,8 @@ typedef struct {
 
 uint8_t menuSize(const MenuEntry* menu) {
     uint8_t res = 0;
-    while(menu[res].text != 0) res++;
+    while(menu[res].text != 0)
+        res++;
     return res;
 }
 
@@ -182,7 +183,8 @@ uint8_t calculateRelativeTower(uint8_t towerId, bool dir) {
 uint8_t add_delta_looped(uint8_t idx, uint8_t nitems, int8_t delta) {
     int8_t v = (int8_t)idx;
     v += delta;
-    while(v < 0) v += nitems;
+    while(v < 0)
+        v += nitems;
     v %= nitems;
     return (uint8_t)v;
 }
@@ -348,7 +350,8 @@ void draw_menu(Canvas* canvas, const MenuEntry* menu, uint8_t selectedIndex) {
 
 void draw_about(Canvas* canvas) {
     uint8_t nitems = 0;
-    while(AboutStrings[nitems] != NULL) ++nitems;
+    while(AboutStrings[nitems] != NULL)
+        ++nitems;
     canvas_set_font(canvas, FontSecondary);
     int item_h = canvas_current_font_height(canvas);
     int max_width = 0;
@@ -373,7 +376,8 @@ void draw_about(Canvas* canvas) {
 
 void draw_message_box(Canvas* canvas, const MessageBoxLine* lines) {
     uint8_t nlines = 0;
-    while(lines[nlines].text != NULL) nlines++;
+    while(lines[nlines].text != NULL)
+        nlines++;
 
     uint8_t totalH = 0;
     uint8_t maxW = 0;
@@ -451,9 +455,12 @@ void draw_finishing(Canvas* canvas, GameState* gs) {
     line4[0] = line4src[0];
     char line5[23];
     line5[0] = line5src[0];
-    for(uint8_t i = 1; i < 24; ++i) line3[i] = line3[i - 1] ^ line3src[i];
-    for(uint8_t i = 1; i < 17; ++i) line4[i] = line4[i - 1] ^ line4src[i];
-    for(uint8_t i = 1; i < 23; ++i) line5[i] = line5[i - 1] ^ line5src[i];
+    for(uint8_t i = 1; i < 24; ++i)
+        line3[i] = line3[i - 1] ^ line3src[i];
+    for(uint8_t i = 1; i < 17; ++i)
+        line4[i] = line4[i - 1] ^ line4src[i];
+    for(uint8_t i = 1; i < 23; ++i)
+        line5[i] = line5[i - 1] ^ line5src[i];
 
     size_t line2len = snprintf(NULL, 0, line2pattern, gs->totalMoves) + 1;
     char line2[line2len];

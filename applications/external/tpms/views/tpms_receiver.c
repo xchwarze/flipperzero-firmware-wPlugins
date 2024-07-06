@@ -490,8 +490,7 @@ View* tpms_view_receiver_get_view(TPMSReceiver* tpms_receiver) {
 uint16_t tpms_view_receiver_get_idx_menu(TPMSReceiver* tpms_receiver) {
     furi_assert(tpms_receiver);
     uint32_t idx = 0;
-    with_view_model(
-        tpms_receiver->view, TPMSReceiverModel * model, { idx = model->idx; }, false);
+    with_view_model(tpms_receiver->view, TPMSReceiverModel * model, { idx = model->idx; }, false);
     return idx;
 }
 

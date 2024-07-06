@@ -17,7 +17,8 @@
 
 bool get_parity(uint16_t data) {
     bool result = 0;
-    for(int i = 0; i < 16; i++) result ^= ((data >> i) & 1);
+    for(int i = 0; i < 16; i++)
+        result ^= ((data >> i) & 1);
     return result;
 }
 

@@ -213,8 +213,7 @@ FlipperTagScene1* flippertag_scene_1_alloc() {
 void flippertag_scene_1_free(FlipperTagScene1* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, FlipperTagScene1Model * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, FlipperTagScene1Model * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

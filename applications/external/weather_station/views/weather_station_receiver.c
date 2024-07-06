@@ -451,8 +451,7 @@ View* ws_view_receiver_get_view(WSReceiver* ws_receiver) {
 uint16_t ws_view_receiver_get_idx_menu(WSReceiver* ws_receiver) {
     furi_assert(ws_receiver);
     uint32_t idx = 0;
-    with_view_model(
-        ws_receiver->view, WSReceiverModel * model, { idx = model->idx; }, false);
+    with_view_model(ws_receiver->view, WSReceiverModel * model, { idx = model->idx; }, false);
     return idx;
 }
 

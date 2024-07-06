@@ -197,8 +197,7 @@ static int32_t wifi_map_worker(void* context) {
             } while(length > 0);
 
             notification_message(app->notification, &sequence_notification);
-            with_view_model(
-                app->view, WifiMapModel * model, { UNUSED(model); }, true);
+            with_view_model(app->view, WifiMapModel * model, { UNUSED(model); }, true);
         }
     }
 

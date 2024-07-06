@@ -652,8 +652,7 @@ void flipchess_scene_1_exit(void* context) {
     furi_assert(context);
     FlipChessScene1* instance = (FlipChessScene1*)context;
 
-    with_view_model(
-        instance->view, FlipChessScene1Model * model, { model->paramExit = 0; }, true);
+    with_view_model(instance->view, FlipChessScene1Model * model, { model->paramExit = 0; }, true);
 }
 
 void flipchess_scene_1_enter(void* context) {
@@ -714,8 +713,7 @@ FlipChessScene1* flipchess_scene_1_alloc() {
 void flipchess_scene_1_free(FlipChessScene1* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, FlipChessScene1Model * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, FlipChessScene1Model * model, { UNUSED(model); }, true);
 
     view_free(instance->view);
     free(instance);

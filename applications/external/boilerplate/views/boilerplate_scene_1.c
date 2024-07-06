@@ -106,8 +106,7 @@ BoilerplateScene1* boilerplate_scene_1_alloc() {
 void boilerplate_scene_1_free(BoilerplateScene1* instance) {
     furi_assert(instance);
 
-    with_view_model(
-        instance->view, BoilerplateScene1Model * model, { UNUSED(model); }, true);
+    with_view_model(instance->view, BoilerplateScene1Model * model, { UNUSED(model); }, true);
     view_free(instance->view);
     free(instance);
 }

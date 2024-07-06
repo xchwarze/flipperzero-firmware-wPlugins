@@ -320,7 +320,8 @@ RingBuffer* ring_buffer_alloc() {
     RingBuffer* buffer = malloc(sizeof(RingBuffer));
     buffer->writeIdx = 0;
     buffer->delimiterIdx = 0;
-    for(uint8_t i = 0; i < 32; i++) buffer->delimiters[i] = 255;
+    for(uint8_t i = 0; i < 32; i++)
+        buffer->delimiters[i] = 255;
     return buffer;
 }
 void ring_buffer_free(RingBuffer* buffer) {
@@ -469,24 +470,28 @@ void pduParser(void* context, bool slave, uint8_t* buf, size_t len, FuriString* 
 void ErrParser(uint8_t* buf, size_t len, FuriString* data) {
     furi_string_cat_printf(
         data, "\nException code (%02X):\n%s\n", FUNCTION, exceptionCodes[EXCEPTION]);
-    for(size_t i = 0; i < len; i++) furi_string_cat_printf(data, "%02X", buf[i]);
+    for(size_t i = 0; i < len; i++)
+        furi_string_cat_printf(data, "%02X", buf[i]);
 }
 void ModbusParser(uint8_t* buf, size_t len, App* app, FuriString* data) {
     if(FUNCTION > 0x80) {
         ErrParser(buf, len, data);
     } else if((FUNCTION > 0x06 && FUNCTION < 0x0F) || FUNCTION > 0x10) {
         furi_string_cat_printf(data, "\nUNSUPPORTED!!!\nFUNCTION(0x%02X)\n", FUNCTION);
-        for(size_t i = 0; i < len; i++) furi_string_cat_printf(data, "%02X", buf[i]);
+        for(size_t i = 0; i < len; i++)
+            furi_string_cat_printf(data, "%02X", buf[i]);
     } else if(FixedPaket && len - 4 != FixedModbusSize) {
         furi_string_cat_str(data, "\nLength-Type MissMatch!!!\n");
-        for(size_t i = 0; i < len; i++) furi_string_cat_printf(data, "%02X", buf[i]);
+        for(size_t i = 0; i < len; i++)
+            furi_string_cat_printf(data, "%02X", buf[i]);
         furi_string_cat_printf(
             data,
             "\nCheck Reponse TimeOut!!!\nCurrent: %dms",
             app->uart->cfg->timeout * TIMEOUT_SCALER);
     } else {
         if(!app->modbus->slave) {
-            for(size_t i = 0; i < len; i++) app->msgBuf[i] = buf[i];
+            for(size_t i = 0; i < len; i++)
+                app->msgBuf[i] = buf[i];
             writeRingBuffer(app->ringBuffer, buf, len);
             app->msgLen = len;
         }
@@ -506,7 +511,8 @@ void handle_rx_data_cb(uint8_t* buf, size_t len, void* context) {
         ModbusParser(buf, len, app, data);
     } else {
         furi_string_cat_str(data, "\nCRC check Failed:\n");
-        for(size_t i = 0; i < len; i++) furi_string_cat_printf(data, "%02X", buf[i]);
+        for(size_t i = 0; i < len; i++)
+            furi_string_cat_printf(data, "%02X", buf[i]);
         furi_string_cat_str(data, "\nPlease check UART Settings!!!");
     }
     //*/

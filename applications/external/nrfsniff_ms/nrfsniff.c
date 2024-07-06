@@ -226,7 +226,8 @@ void alt_address(uint8_t* addr, uint8_t* altaddr) {
     uint8_t tmpaddr[5];
 
     // swap bytes
-    for(int i = 0; i < 5; i++) tmpaddr[i] = addr[4 - i];
+    for(int i = 0; i < 5; i++)
+        tmpaddr[i] = addr[4 - i];
 
     // get address into 32-bit and 8-bit variables
     memcpy(macmess_hi_b, tmpaddr, 4);
@@ -244,7 +245,8 @@ void alt_address(uint8_t* addr, uint8_t* altaddr) {
     tmpaddr[4] = macmess_lo;
 
     // swap bytes back
-    for(int i = 0; i < 5; i++) altaddr[i] = tmpaddr[4 - i];
+    for(int i = 0; i < 5; i++)
+        altaddr[i] = tmpaddr[4 - i];
 }
 
 static bool previously_confirmed(uint8_t* addr) {

@@ -81,9 +81,11 @@ static void select_gender_selected_callback(void* context, uint32_t index) {
      * Where percent is (255/100)
      */
     if(index) {
-        while((atk_iv * 17) <= ratio) atk_iv++;
+        while((atk_iv * 17) <= ratio)
+            atk_iv++;
     } else {
-        while((atk_iv * 17) > ratio) atk_iv--;
+        while((atk_iv * 17) > ratio)
+            atk_iv--;
     }
 
     pokemon_stat_set(pdata, STAT_ATK_IV, NONE, atk_iv);
