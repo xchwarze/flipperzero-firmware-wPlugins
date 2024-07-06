@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0704-0134-0.103.2-8aa6dde](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-05 22:20 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-05 22:20 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-06 03:32 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-06 03:32 EST`
 - [Smaller internal animations (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0a8ff6b5b83d03acc3919bf35f38b254c595c6c8)
 - [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
@@ -61,7 +61,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [Updated display info to DEZ 8 (actual one) #777 (By mishamyte)](https://github.com/DarkFlippers/unleashed-firmware/pull/777)
 - OFW: [toolchain: v37 #3746 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3746)
 - Updated: [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite) (From MNTM Apps)
-- JS: [SubGHz Updates (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/49a63bf10b0926824e3075296b1b92c84cb1da2e#diff-afacb17452f409b612d2c6a6a6e6fd8509150fa785d0a3d03fb26ff47d62ac1b)
+- JS: [Improve and fix subghz module (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/49a63bf10b0926824e3075296b1b92c84cb1da2e#diff-afacb17452f409b612d2c6a6a6e6fd8509150fa785d0a3d03fb26ff47d62ac1b)
 
 <a name="release">
 
