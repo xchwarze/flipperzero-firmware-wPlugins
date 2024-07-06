@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0706-0339-0.103.2-f295614](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-06 03:39 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-06 03:39 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-06 08:30 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-06 08:30 EST`
 - [Smaller internal animations (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0a8ff6b5b83d03acc3919bf35f38b254c595c6c8)
 - [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
 - [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
