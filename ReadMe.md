@@ -67,6 +67,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [CCID: Improve request and response data handling #3741 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3741)
 - OFW: [NFC: Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
 - OFW: [Fix PVS Warnings #3760 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3760)
+- OFW: [Updater: reset various debug flags on production build flash #3762 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3762)
 
 <a name="release">
 
