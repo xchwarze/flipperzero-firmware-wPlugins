@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0701-1811-0.103.2-81bf0be.tgz&channel=RM0701-1811-0.103.2-81bf0be&version=0.103.2)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0707-1103-0.103.2-46e000f.tgz&channel=RM0707-1103-0.103.2-46e000f&version=0.103.2)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,44 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-07 10:24 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-07 10:24 EST`
-- [Smaller internal animations (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0a8ff6b5b83d03acc3919bf35f38b254c595c6c8)
-- [Other small tweaks for Bad KB improvement (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
-- [BadKB replaces BadUSB on Main Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fad0872759b50032fa2a0214d5e1a6fc4f18de3c)
-- Updated: [FindMy Flipper v3.5 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/FindMyFlipper)
-- [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI & Improve unit tests QOL & CleanUp (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae8145235b68b6c06a4c19257f08a79e045e3713)
-- OFW: [Updater: Fix double dir cleanup #3743 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3743)
-- Removed broken: [FBT: New SKIP_EXTERNAL option & Can set EXTRA_EXT_APPS from config, not only CLI (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae8145235b68b6c06a4c19257f08a79e045e3713) Fixed builds to include apps
-- OFW: [Event Loop Timers #3721 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3721)
-- OFW: [updater: slightly smaller image #3740 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3740)
-- Updater: [15% faster resource extract (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2f889313657d444c85a5dcfe2559d44f475f7a98)
-- Updated: [Dolphin Trainer v1.3 (By nymda)](https://github.com/nymda/FlipperAntidepressants)
-- Updated: [Event Loop Timers for Dolphin Service (By gsurkov & Willy-JL & RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/db56d6b7e3b331915b732e29408447ded23c9a38)
-- Updated: [Pet a Dolphin v1.2 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
-- Updated: [WAV Player v1.3 (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/tree/zlo/wav-player) [WAV Player: Reconfigure to use 8-bit memory buffer, halving memory usage #156 (By CookiePLMonster)](https://github.com/xMasterX/all-the-plugins/pull/156)
-- OFW: [Ultralight C authentication with des key #3720 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3720)
-- OFW: [Fix iButton/LFRFID Add Manually results being discarded #3749 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3749)
-- OFW: [Coalesce some allocations #3747 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3747)
-- OFW: [input_srv: Put input state data on the stack of the service #3748 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3748)
-- Updated: [NFC Playlist v2.3 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Updated: [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
-- OFW: [copro: bumped to 1.20.0 #3727 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3727)
-- Updated: [NFC Magic v1.11 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966) [Gen1 backdoor read support #228 (By Astrrra)](https://github.com/flipperdevices/flipperzero-good-faps/pull/228) [Update nfc_magic_scene_not_magic.c #232 (By equipter)](https://github.com/flipperdevices/flipperzero-good-faps/pull/232)
-- [LF RFID: Update T5577 password list (By korden32)](https://github.com/DarkFlippers/unleashed-firmware/pull/774)
-- Remove: [Added lfrfid protocol EM4100/40/RAW #722 (By hippocache)](https://github.com/DarkFlippers/unleashed-firmware/pull/722) (Implentation specific to a system)
-- OFW: PR: NFC: [Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
-- NFC: [Cleanup of some unused images/code (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/31756cca0678c01e7c68e3887379d23cdb82d695)
-- [NFC: Cache plugin name not full path, saves some RAM (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/223de97d8c3783d6164467a47d3d936774befcaa)
-- [Updated display info to DEZ 8 (actual one) #777 (By mishamyte)](https://github.com/DarkFlippers/unleashed-firmware/pull/777)
-- OFW: [toolchain: v37 #3746 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3746)
-- Updated: [ESP32 Camera Suite v1.8 (By CodyTolene)](https://github.com/CodyTolene/Flipper-Zero-Camera-Suite) (From MNTM Apps)
-- JS: [Improve and fix subghz module (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/49a63bf10b0926824e3075296b1b92c84cb1da2e#diff-afacb17452f409b612d2c6a6a6e6fd8509150fa785d0a3d03fb26ff47d62ac1b)
-- OFW: [Furi: count ISR time. Cli: show ISR time in top. #3751 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3751)
-- OFW: [Updating bench flipper search algorithm #3742 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3742)
-- OFW: [CCID: Improve request and response data handling #3741 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3741)
-- OFW: [NFC: Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
-- OFW: [Fix PVS Warnings #3760 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3760)
-- OFW: [Updater: reset various debug flags on production build flash #3762 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3762)
-- Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
 
 <a name="release">
 
@@ -626,4 +588,4 @@ $ ./fbt dolphin_ext
 - [Desktop Favorite Binds To Allow Opening Custom Game Menu. Whomever can complete this gets 3 months of subscriber builds. Patrons can DM me to add their monthly towards this bounty.](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/756)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0701-1811-0.103.2-81bf0be.tgz&channel=RM0701-1811-0.103.2-81bf0be&version=0.103.2)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0707-1103-0.103.2-46e000f.tgz&channel=RM0707-1103-0.103.2-46e000f&version=0.103.2)
