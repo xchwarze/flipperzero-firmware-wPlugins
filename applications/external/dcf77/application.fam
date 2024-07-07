@@ -2,6 +2,7 @@ App(
     appid="dcf77",
     name="DCF77 Transmitter",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="dcf77_app_main",
     stack_size=1 * 1024,
     fap_icon="icons/app.png",

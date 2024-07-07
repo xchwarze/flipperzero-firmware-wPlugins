@@ -2,6 +2,7 @@ App(
     appid="tullave",
     name="TuLlave",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="tullave_main",
     targets=["f7"],
     fap_icon="app_assets/tullave_logo_10px.png",

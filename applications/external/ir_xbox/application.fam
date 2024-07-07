@@ -2,6 +2,7 @@ App(
     appid="xbox_controller",
     name="Xbox Controller",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="xbox_controller_app",
     stack_size=1 * 1024,
     fap_icon="xbox_controller.png",

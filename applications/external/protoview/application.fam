@@ -2,6 +2,7 @@ App(
     appid="protoview",
     name="Protocols Visualizer",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="protoview_app_entry",
     stack_size=8 * 1024,
     fap_icon="appicon.png",

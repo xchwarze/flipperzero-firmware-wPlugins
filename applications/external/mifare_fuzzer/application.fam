@@ -2,6 +2,7 @@ App(
     appid="mifare_fuzzer",
     name="Mifare Fuzzer",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="mifare_fuzzer_app",
     stack_size=4 * 1024,
     fap_icon="images/mifare_fuzzer_10px.png",

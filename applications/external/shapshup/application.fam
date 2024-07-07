@@ -2,6 +2,7 @@ App(
     appid="shapshup",
     name="ShapShup",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="shapshup_app",
     stack_size=2 * 1024,
     fap_icon="images/shapshup_10px.png",
@@ -10,6 +11,6 @@ App(
     fap_icon_assets_symbol="shapshup",
     fap_author="derskythe",
     fap_weburl="https://github.com/derskythe/flipperzero-shapshup",
-    fap_version=(1, 2),
+    fap_version="1.2",
     fap_description="A simple application for viewing SubGhz RAW files in the form of a signal level as it is shows in SubGHz RAW read mode.",
 )

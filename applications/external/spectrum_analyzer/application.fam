@@ -2,6 +2,7 @@ App(
     appid="spectrum_analyzer",
     name="Spectrum Analyzer",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="spectrum_analyzer_app",
     stack_size=2 * 1024,
     fap_icon="spectrum_10px.png",

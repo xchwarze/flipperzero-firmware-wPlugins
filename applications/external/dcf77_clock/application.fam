@@ -2,6 +2,7 @@ App(
     appid="dcf77_clock_sync",
     name="DCF77 Clock Sync",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="dcf77_clock_sync_app_main",
     stack_size=1 * 1024,
     fap_icon="icons/app_10x10.png",

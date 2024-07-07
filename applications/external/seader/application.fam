@@ -2,6 +2,7 @@ App(
     appid="seader",
     name="Seader",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="seader_app",
     stack_size=5 * 1024,
     sources=[

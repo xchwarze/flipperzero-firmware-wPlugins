@@ -6,6 +6,7 @@ App(
     appid="subghz_remote_refactored",
     name="Sub-GHz Remote",
     apptype=FlipperAppType.MENUEXTERNAL,
+    targets=["f7"],
     entry_point="subghz_remote_app",
     icon="A_SubGHzRemote_14",
     stack_size=2 * 1024,

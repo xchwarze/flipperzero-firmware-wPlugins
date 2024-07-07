@@ -2,6 +2,7 @@ App(
     appid="mitsubishi_ac_remote",
     name="Mitsubishi AC Remote",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="ac_remote_app",
     stack_size=1 * 2048,
     fap_icon="ac_remote.png",

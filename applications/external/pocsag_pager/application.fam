@@ -2,6 +2,7 @@ App(
     appid="pocsag_pager",
     name="POCSAG Pager",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="pocsag_pager_app",
     stack_size=4 * 1024,
     fap_icon="pocsag_pager_10px.png",

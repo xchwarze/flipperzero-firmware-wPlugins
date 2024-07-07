@@ -27,6 +27,7 @@ App(
     appid="subghz_fap",
     name="Sub-GHz",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="subghz_fap",
     stack_size=3 * 1024,
     sources=["subghz_fap.c"],

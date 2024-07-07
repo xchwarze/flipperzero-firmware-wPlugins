@@ -19,6 +19,7 @@ App(
     appid="vb_migrate",
     name="VB Migration Assistant",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="vb_migrate_app",
     stack_size=2 * 1024,
     fap_libs=[],
