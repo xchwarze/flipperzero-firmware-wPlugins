@@ -2,6 +2,7 @@ App(
     appid="mfkey",
     name="MFKey",
     apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
     entry_point="mfkey_main",
     stack_size=1 * 1024,
     fap_icon="mfkey.png",

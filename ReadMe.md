@@ -68,6 +68,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [NFC: Cache plugin name not full path, saves some RAM #3737 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3737)
 - OFW: [Fix PVS Warnings #3760 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3760)
 - OFW: [Updater: reset various debug flags on production build flash #3762 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3762)
+- Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
 
 <a name="release">
 
