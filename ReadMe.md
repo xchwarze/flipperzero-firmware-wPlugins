@@ -36,7 +36,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - NFC: [Update mfc_default_keys.dic (By CountParadox and others) (Approved by iceman1001)](https://github.com/RfidResearchGroup/proxmark3/pulls?q=mfc_default_keys.dic+is%3Amerged+)
 - OFW: [Desktop: allow to close blocking bad sd animation #3776 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3776)
 - [Infrared: Correct Samsung.ir CH+ command (By skyhawkillusions)](https://github.com/Next-Flip/Momentum-Firmware/pull/156)
-- JS: [Fix repeats for multi-packet protocols (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
+- JS: [Fix repeats for multi-packet protocols (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fdbee5d9529fc45a77cc73d354eba726673ccb62)
 
 <a name="release">
 
