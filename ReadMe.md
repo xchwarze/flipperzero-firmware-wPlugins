@@ -29,13 +29,14 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0708-1301-0.103.2-148d7bf](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-08 13:01 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-08 13:01 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-09 19:23 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-09 19:23 EST`
 - OFW: [Increase github action timeouts #3763 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3763)
 - UL: [subghz add novoferm support, fix decoderaw scene, fm238 mod for sommer add manually for rare cases, remove broken preset mod, subghz add manually fixes and improvements, keeloq custom buttons improvements, hormann_ecostar add manually support and custom button & hormann hsm static code btn decode fix (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commits/dev/?since=2024-07-07&until=2024-07-08)
 - NFC: [Update mfc_default_keys.dic (By CountParadox and others) (Approved by iceman1001)](https://github.com/RfidResearchGroup/proxmark3/pulls?q=mfc_default_keys.dic+is%3Amerged+)
 - OFW: [Desktop: allow to close blocking bad sd animation #3776 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3776)
--[Infrared: Correct Samsung.ir CH+ command (By skyhawkillusions)](https://github.com/Next-Flip/Momentum-Firmware/pull/156)
+- [Infrared: Correct Samsung.ir CH+ command (By skyhawkillusions)](https://github.com/Next-Flip/Momentum-Firmware/pull/156)
+- JS: [Fix repeats for multi-packet protocols (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
 
 <a name="release">
 
