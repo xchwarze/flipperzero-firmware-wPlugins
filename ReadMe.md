@@ -41,6 +41,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [SubGHz: Hormann HSM static - Fix button decode #3767 (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3767)
 - NFC: [Add parser for CSC Service Works Reloadable Cash Card (By zinongli with updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/137)
 - Updated: [Authenticator/TOTP v5.15.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
+- Added: [CAN Commander v0.1 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/CAN_Commander/tree/main/FlipperZeroEnvironment/CANCommander_Boilerplate) `Req: CAN Commander Board`
 
 <a name="release">
 
@@ -359,6 +360,7 @@ $ ./fbt dolphin_ext
 - [Calendar (By Adiras)](https://github.com/Adiras/flipperzero-calendar)
 - [Calendar TECHART v1.1 (By techartdev)](https://github.com/techartdev/Calendar)
 - [Camera (By Z4urce)](https://github.com/Z4urce/flipper-camera) `Req: ESP32-CAM`
+- [CAN Commander v0.1 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/CAN_Commander/tree/main/FlipperZeroEnvironment/CANCommander_Boilerplate) `Req: CAN Commander Board`
 - [Canon Intervalometer v1.0 (By TravisCG)](https://github.com/TravisCG/canonivm)
 - [Caesar Cipher v1.2 (By panki27)](https://github.com/panki27/caesar-cipher)
 - [CFW Settings v1.6 - Imported/Modified By RogueMaster (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ecf91524a956f773881d564c4ada833f844264ca)
