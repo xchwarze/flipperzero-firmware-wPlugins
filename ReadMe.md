@@ -42,6 +42,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - NFC: [Add parser for CSC Service Works Reloadable Cash Card (By zinongli with updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/137)
 - Updated: [Authenticator/TOTP v5.15.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
 - Added: [CAN Commander v0.1 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/CAN_Commander/tree/main/FlipperZeroEnvironment/CANCommander_Boilerplate) `Req: CAN Commander Board`
+- SubGHz: [Choose RSSI threshold for Hopping mode (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9240b1a45fc1d367e208d7ffa444f22846129f91)
 
 <a name="release">
 
