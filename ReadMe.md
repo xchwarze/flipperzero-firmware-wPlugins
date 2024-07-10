@@ -45,6 +45,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - SubGHz: [Choose RSSI threshold for Hopping mode (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9240b1a45fc1d367e208d7ffa444f22846129f91)
 - OFW: [SubGHz: Keeloq - Add Novoferm remotes decode support #3768 (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3768)
 - OFW: [lib: sconscript todo cleanup #3769 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3769)
+- OFW: [ufbt: added ARGS to commandline parser #3770 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3770)
 
 <a name="release">
 
