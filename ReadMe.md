@@ -37,6 +37,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Desktop: allow to close blocking bad sd animation #3776 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3776)
 - [Infrared: Correct Samsung.ir CH+ command (By skyhawkillusions)](https://github.com/Next-Flip/Momentum-Firmware/pull/156)
 - JS: [Fix repeats for multi-packet protocols (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fdbee5d9529fc45a77cc73d354eba726673ccb62)
+- OFW: [Intruder animation #3779 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3779)
+- OFW: [SubGHz: Hormann HSM static - Fix button decode #3767 (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3767)
+- NFC: [Add parser for CSC Service Works Reloadable Cash Card (By zinongli with updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/137)
 
 <a name="release">
 
