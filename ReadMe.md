@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0710-0931-0.103.2-ac06a30](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-10 12:04 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-10 12:04 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-12 00:50 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-12 00:50 EST`
 - OFW: [Increase github action timeouts #3763 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3763)
 - UL: [subghz add novoferm support, fix decoderaw scene, fm238 mod for sommer add manually for rare cases, remove broken preset mod, subghz add manually fixes and improvements, keeloq custom buttons improvements, hormann_ecostar add manually support and custom button & hormann hsm static code btn decode fix (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commits/dev/?since=2024-07-07&until=2024-07-08)
 - NFC: [Update mfc_default_keys.dic (By CountParadox and others) (Approved by iceman1001)](https://github.com/RfidResearchGroup/proxmark3/pulls?q=mfc_default_keys.dic+is%3Amerged+)
