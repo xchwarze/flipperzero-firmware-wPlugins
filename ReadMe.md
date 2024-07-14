@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0712-1006-0.103.2-a41107a](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-14 00:52 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-14 00:52 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-14 11:40 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-14 11:40 EST`
 - OFW: [Increase github action timeouts #3763 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3763)
 - UL: [subghz add novoferm support, fix decoderaw scene, fm238 mod for sommer add manually for rare cases, remove broken preset mod, subghz add manually fixes and improvements, keeloq custom buttons improvements, hormann_ecostar add manually support and custom button & hormann hsm static code btn decode fix (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commits/dev/?since=2024-07-07&until=2024-07-08)
 - NFC: [Update mfc_default_keys.dic (By CountParadox and others) (Approved by iceman1001)](https://github.com/RfidResearchGroup/proxmark3/pulls?q=mfc_default_keys.dic+is%3Amerged+)
@@ -48,6 +48,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [ufbt: added ARGS to commandline parser #3770 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3770)
 - NFC: [Update MFC dict, new keys from RRG pm3 repo and UberGuidoZ dump (From MNTM)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a4ad1d8b92b4fb81bd77ac2530220881396780ca)
 - OFW: [NFC: ISO15693 Render Typo Fix #3784 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3784)
+- [Archive: Fix rename extension show/hide behavior (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fbf5be55e65887146b196c3c685fd9ad3c2c2b16)
+- [FBT: Close current app when flashing firmware (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2a86f1b1e9ec4b55822bf512a1eaa297a80380c6)
+- [Loader: Remove old unused error formatting (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/3b390f9361fe3fed4ab4fcacd078eccd26dc6a2e)
 
 <a name="release">
 
