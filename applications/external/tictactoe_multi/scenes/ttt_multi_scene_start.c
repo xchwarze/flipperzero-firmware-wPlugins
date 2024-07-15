@@ -1,6 +1,10 @@
 #include "../ttt_multi.h"
 
-enum SubmenuIndex { SubmenuIndexCreate, SubmenuIndexJoin, SubmenuIndexLocal };
+enum SubmenuIndex {
+    SubmenuIndexCreate,
+    SubmenuIndexJoin,
+    SubmenuIndexLocal
+};
 
 void ttt_multi_scene_start_submenu_callback(void* context, uint32_t index) {
     TttMultiApp* ttt_multi = context;

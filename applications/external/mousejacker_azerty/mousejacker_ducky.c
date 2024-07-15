@@ -12,13 +12,13 @@ static uint8_t LOGITECH_KEEPALIVE[] = {0x00, 0x40, 0x00, 0x55, 0x6B};
 
 uint8_t prev_hid = 0;
 
-#define RT_THRESHOLD 50
-#define LOGITECH_MIN_CHANNEL 2
-#define LOGITECH_MAX_CHANNEL 83
-#define LOGITECH_KEEPALIVE_SIZE 5
+#define RT_THRESHOLD               50
+#define LOGITECH_MIN_CHANNEL       2
+#define LOGITECH_MAX_CHANNEL       83
+#define LOGITECH_KEEPALIVE_SIZE    5
 #define LOGITECH_HID_TEMPLATE_SIZE 10
-#define LOGITECH_HELLO_SIZE 10
-#define TAG "mousejacker_ducky"
+#define LOGITECH_HELLO_SIZE        10
+#define TAG                        "mousejacker_ducky"
 
 MJDuckyKey mj_ducky_keys[] = {{" ", 44, 0},         {"!", 56, 0},         {"\"", 32, 0},
                               {"#", 32, 64},        {"$", 48, 0},         {"%", 52, 2},

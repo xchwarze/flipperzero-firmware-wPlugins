@@ -5,9 +5,9 @@
 
 #include "dmcomm_printonly.h"
 
-#define DMCOMM_TEXT_DIGIROM_SIZE 72
-#define DMCOMM_CLASSIC_RESULT_SIZE 21
-#define DMCOMM_WORDS_RESULT_SIZE 5
+#define DMCOMM_TEXT_DIGIROM_SIZE         72
+#define DMCOMM_CLASSIC_RESULT_SIZE       21
+#define DMCOMM_WORDS_RESULT_SIZE         5
 #define DMCOMM_WORDS_RESULT_SEGMENT_SIZE 8
 
 namespace DMComm {

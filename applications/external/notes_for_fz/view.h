@@ -8,7 +8,7 @@
 
 #ifndef MAX_NUMBER_OF_NOTES
 #define MAX_NUMBER_OF_NOTES 10
-#define MAX_LENGTH_OF_NOTE 30
+#define MAX_LENGTH_OF_NOTE  30
 #endif
 
 struct App {
@@ -36,9 +36,14 @@ typedef enum {
     Notes_TextInput_View
 } Views; // They are the type of pages
 
-typedef enum { Notes_Main_menu_Add_Item, Notes_Main_menu_List_Item } Submenu_Choices;
+typedef enum {
+    Notes_Main_menu_Add_Item,
+    Notes_Main_menu_List_Item
+} Submenu_Choices;
 
-typedef enum { Notes_Text_Input_Save_Event } Notes_Input_Event;
+typedef enum {
+    Notes_Text_Input_Save_Event
+} Notes_Input_Event;
 
 void notes_main_menu_callback(void* context, uint32_t index) {
     struct App* app = context;

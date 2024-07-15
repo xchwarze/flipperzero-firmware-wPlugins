@@ -6,7 +6,12 @@
 
 #define MAX_BANK_SIZE 256
 // storage enum
-typedef enum { ReservedBank, EPCBank, TIDBank, UserBank } BankType;
+typedef enum {
+    ReservedBank,
+    EPCBank,
+    TIDBank,
+    UserBank
+} BankType;
 
 // Reserved Memory Bank
 typedef struct {

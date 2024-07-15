@@ -24,7 +24,10 @@ typedef struct {
     InputEvent input;
 } PluginEvent;
 
-enum Page { Tunings, Notes };
+enum Page {
+    Tunings,
+    Notes
+};
 
 typedef struct {
     FuriMutex* mutex;

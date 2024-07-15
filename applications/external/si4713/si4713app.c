@@ -6,8 +6,8 @@
 #include "si4713app.h"
 #include "views/transmit_view.h"
 
-#define TAG "SI4713Tuner"
-#define SI4713_ADDRESS 0x63
+#define TAG              "SI4713Tuner"
+#define SI4713_ADDRESS   0x63
 #define SI4713_RESET_PIN &gpio_usart_rx
 
 static void input_callback(InputEvent* input_event, void* ctx) {

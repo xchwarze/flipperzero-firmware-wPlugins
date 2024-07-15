@@ -16,17 +16,17 @@
 #include <notification/notification_messages.h>
 
 #define Y_FIELD_SIZE 6
-#define Y_LAST (Y_FIELD_SIZE - 1)
+#define Y_LAST       (Y_FIELD_SIZE - 1)
 #define X_FIELD_SIZE 12
-#define X_LAST (X_FIELD_SIZE - 1)
+#define X_LAST       (X_FIELD_SIZE - 1)
 
 #define DRAW_X_OFFSET 4
 
 #define TAG "HeDe"
 
-#define BOX_HEIGHT 10
-#define BOX_WIDTH 10
-#define TIMER_UPDATE_FREQ 8
+#define BOX_HEIGHT          10
+#define BOX_WIDTH           10
+#define TIMER_UPDATE_FREQ   8
 #define BOX_GENERATION_RATE 15
 
 static IconAnimation* BOX_DESTROYED;
@@ -61,7 +61,11 @@ typedef struct {
     uint8_t y;
 } Position;
 
-typedef enum { PlayerRising = 1, PlayerFalling = -1, PlayerNothing = 0 } PlayerStates;
+typedef enum {
+    PlayerRising = 1,
+    PlayerFalling = -1,
+    PlayerNothing = 0
+} PlayerStates;
 
 typedef struct {
     Position p;
@@ -90,7 +94,10 @@ typedef struct {
 
 typedef Box** Field;
 
-typedef enum { EventGameTick, EventKeyPress } EventType;
+typedef enum {
+    EventGameTick,
+    EventKeyPress
+} EventType;
 
 typedef struct {
     EventType type;

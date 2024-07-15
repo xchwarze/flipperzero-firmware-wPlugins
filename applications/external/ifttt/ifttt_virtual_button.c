@@ -1,12 +1,14 @@
 #include "ifttt_virtual_button.h"
 #include <expansion/expansion.h>
 
-#define IFTTT_FOLDER "/ext/apps_data/ifttt"
+#define IFTTT_FOLDER        "/ext/apps_data/ifttt"
 #define IFTTT_CONFIG_FOLDER "/ext/apps_data/ifttt/config"
 const char* CONFIG_FILE_PATH = "/ext/apps_data/ifttt/config/config.settings";
 
 #define FLIPPERZERO_SERIAL_BAUD 115200
-typedef enum ESerialCommand { ESerialCommand_Config } ESerialCommand;
+typedef enum ESerialCommand {
+    ESerialCommand_Config
+} ESerialCommand;
 
 Settings save_settings(Settings settings) {
     Storage* storage = furi_record_open(RECORD_STORAGE);

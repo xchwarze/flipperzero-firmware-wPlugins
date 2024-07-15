@@ -14,7 +14,7 @@
 #define SAMPLE_RATE_TIMER TIM2
 
 #define FURI_HAL_SPEAKER_CHANNEL LL_TIM_CHANNEL_CH1
-#define DMA_INSTANCE DMA1, LL_DMA_CHANNEL_1
+#define DMA_INSTANCE             DMA1, LL_DMA_CHANNEL_1
 
 void wav_player_speaker_init(uint32_t sample_rate) {
     // Enable bus

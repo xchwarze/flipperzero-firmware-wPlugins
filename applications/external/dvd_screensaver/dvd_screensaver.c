@@ -3,7 +3,7 @@
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
 
-#define SPEED 100
+#define SPEED  100
 #define LOGO_W 32
 #define LOGO_H 16
 

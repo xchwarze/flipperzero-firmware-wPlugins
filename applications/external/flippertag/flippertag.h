@@ -26,13 +26,17 @@
 #define TAG "FlipperTag"
 
 #define SUBGHZ_APP_EXTENSION ".sub"
-#define SUBGHZ_APP_FOLDER ANY_PATH("subghz")
+#define SUBGHZ_APP_FOLDER    ANY_PATH("subghz")
 
 #define DEFAULT_HEALTH 25
-#define DEFAULT_AMMO 10
+#define DEFAULT_AMMO   10
 #define DEFAULT_SHIELD 10
 
-typedef enum { FlipperTagSolo, FlipperTagTeam1, FlipperTagTeam2 } FlipperTagTeam;
+typedef enum {
+    FlipperTagSolo,
+    FlipperTagTeam1,
+    FlipperTagTeam2
+} FlipperTagTeam;
 
 typedef struct {
     Gui* gui;

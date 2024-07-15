@@ -19,7 +19,7 @@
 #define FLIPENIGMA_VERSION FAP_VERSION
 
 // "To make cryptanalysis harder, messages were limited to 250 characters."
-#define TEXT_SIZE 250
+#define TEXT_SIZE        250
 #define TEXT_BUFFER_SIZE (TEXT_SIZE + (TEXT_SIZE / 5) + 1)
 
 typedef struct {

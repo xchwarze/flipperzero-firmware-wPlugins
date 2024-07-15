@@ -7,7 +7,11 @@
 #include "wave/graphics/icon_drawing.h"
 #include "gui/canvas.h"
 
-typedef enum Screen { Screen_ControlsGuide, Screen_Credits, Screen_COUNT } Screen;
+typedef enum Screen {
+    Screen_ControlsGuide,
+    Screen_Credits,
+    Screen_COUNT
+} Screen;
 
 static Screen currentScreen;
 

@@ -6,17 +6,17 @@
 #include <gui/elements.h>
 
 #define STATUS_BAR_Y_SHIFT 14
-#define TAG "SubBruteMainView"
+#define TAG                "SubBruteMainView"
 
-#define ITEMS_ON_SCREEN 3
-#define ITEMS_INTERVAL 1
-#define ITEM_WIDTH 14
-#define ITEM_Y 27
-#define ITEM_HEIGHT 13
-#define TEXT_X 6
-#define TEXT_Y 37
-#define TEXT_INTERVAL 3
-#define TEXT_WIDTH 12
+#define ITEMS_ON_SCREEN   3
+#define ITEMS_INTERVAL    1
+#define ITEM_WIDTH        14
+#define ITEM_Y            27
+#define ITEM_HEIGHT       13
+#define TEXT_X            6
+#define TEXT_Y            37
+#define TEXT_INTERVAL     3
+#define TEXT_WIDTH        12
 #define ITEM_FRAME_RADIUS 2
 
 struct SubBruteMainView {

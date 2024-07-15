@@ -4,8 +4,8 @@
 #define RX_BUF_SIZE 1024
 
 #define START_SCAN 0
-#define TEST_BTN 1
-#define UART_INIT 2
+#define TEST_BTN   1
+#define UART_INIT  2
 
 typedef struct UART_TerminalApp {
     uint8_t uart_ch;

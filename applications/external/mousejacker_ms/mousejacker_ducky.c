@@ -30,11 +30,11 @@ static uint8_t MICROSOFT_HID_TEMPLATE[] = {
 uint8_t prev_hid = 0;
 uint8_t sequence_num = 0;
 
-#define RT_THRESHOLD 50
-#define MICROSOFT_MIN_CHANNEL 2
-#define MICROSOFT_MAX_CHANNEL 83
+#define RT_THRESHOLD                50
+#define MICROSOFT_MIN_CHANNEL       2
+#define MICROSOFT_MAX_CHANNEL       83
 #define MICROSOFT_HID_TEMPLATE_SIZE 19
-#define TAG "mousejacker_ducky"
+#define TAG                         "mousejacker_ducky"
 
 MJDuckyKey mj_ducky_keys[] = {{" ", 44, 0},         {"!", 30, 2},         {"\"", 52, 2},
                               {"#", 32, 2},         {"$", 33, 2},         {"%", 34, 2},

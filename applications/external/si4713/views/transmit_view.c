@@ -6,7 +6,7 @@
 #include <si4713tuner_icons.h>
 
 // 115 dBuV is the upper limit of the board
-#define SI4713_TXPOWER_LIMIT 115
+#define SI4713_TXPOWER_LIMIT   115
 #define TXPOWER_HOLD_INCREMENT 5
 
 void render_transmit_view(Canvas* const canvas, void* ctx) {

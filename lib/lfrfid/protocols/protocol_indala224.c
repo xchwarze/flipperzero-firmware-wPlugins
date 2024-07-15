@@ -7,7 +7,7 @@
 // Parameter Definitions
 //----------------------------------------------------------------
 
-#define INDALA224_PREAMBLE_BIT_SIZE (32)
+#define INDALA224_PREAMBLE_BIT_SIZE  (32)
 #define INDALA224_PREAMBLE_DATA_SIZE (4)
 
 #define INDALA224_ENCODED_BIT_SIZE (224)
@@ -15,10 +15,10 @@
     (((INDALA224_ENCODED_BIT_SIZE) / 8) + INDALA224_PREAMBLE_DATA_SIZE)
 #define INDALA224_ENCODED_DATA_LAST ((INDALA224_ENCODED_BIT_SIZE) / 8)
 
-#define INDALA224_DECODED_BIT_SIZE (224)
+#define INDALA224_DECODED_BIT_SIZE  (224)
 #define INDALA224_DECODED_DATA_SIZE (28)
 
-#define INDALA224_US_PER_BIT (255)
+#define INDALA224_US_PER_BIT             (255)
 #define INDALA224_ENCODER_PULSES_PER_BIT (16)
 
 //----------------------------------------------------------------
@@ -90,22 +90,22 @@ void psk2_to_psk1(uint8_t* data, size_t size) {
 ProtocolIndala224* protocol_indala224_alloc(void) {
     ProtocolIndala224* protocol = malloc(sizeof(ProtocolIndala224));
     return protocol;
-};
+}
 
 void protocol_indala224_free(ProtocolIndala224* protocol) {
     free(protocol);
-};
+}
 
 uint8_t* protocol_indala224_get_data(ProtocolIndala224* protocol) {
     return protocol->data;
-};
+}
 
 void protocol_indala224_decoder_start(ProtocolIndala224* protocol) {
     memset(protocol->encoded_data, 0, INDALA224_ENCODED_DATA_SIZE);
     memset(protocol->negative_encoded_data, 0, INDALA224_ENCODED_DATA_SIZE);
     memset(protocol->corrupted_encoded_data, 0, INDALA224_ENCODED_DATA_SIZE);
     memset(protocol->corrupted_negative_encoded_data, 0, INDALA224_ENCODED_DATA_SIZE);
-};
+}
 
 static bool protocol_indala224_check_preamble(uint8_t* data, size_t bit_index) {
     // Preamble 10000000__00000000__00000000__00000001
@@ -210,7 +210,7 @@ bool protocol_indala224_decoder_feed(ProtocolIndala224* protocol, bool level, ui
     }
 
     return result;
-};
+}
 
 bool protocol_indala224_encoder_start(ProtocolIndala224* protocol) {
     memset(protocol->encoded_data, 0, INDALA224_ENCODED_DATA_SIZE);
@@ -233,7 +233,7 @@ bool protocol_indala224_encoder_start(ProtocolIndala224* protocol) {
     protocol->encoder.bit_clock_index = 0;
 
     return true;
-};
+}
 
 LevelDuration protocol_indala224_encoder_yield(ProtocolIndala224* protocol) {
     LevelDuration level_duration;
@@ -263,7 +263,7 @@ LevelDuration protocol_indala224_encoder_yield(ProtocolIndala224* protocol) {
     }
 
     return level_duration;
-};
+}
 
 void protocol_indala224_render_data_internal(
     ProtocolIndala224* protocol,
@@ -317,7 +317,7 @@ bool protocol_indala224_write_data(ProtocolIndala224* protocol, void* data) {
         result = true;
     }
     return result;
-};
+}
 
 //----------------------------------------------------------------
 // Indala 224 Protocol

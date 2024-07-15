@@ -2,8 +2,8 @@
 #include "create_view.h"
 #include <math.h>
 
-#define LINE_HEIGHT 16
-#define TEXT_PADDING 4
+#define LINE_HEIGHT      16
+#define TEXT_PADDING     4
 #define TOTAL_MENU_ITEMS 5
 
 typedef enum {

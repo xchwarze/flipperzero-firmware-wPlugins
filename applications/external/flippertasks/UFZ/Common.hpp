@@ -20,7 +20,7 @@
 // Navigates to a new scene and wipes the scenes stack
 #define FORCE_NEXT_SCENE(x, y) UNUSED((x)->getSceneManager().searchAndSwitchToAnotherScene(y))
 
-#define EXIT_SCENE(x) (x)->getSceneManager().stop()
+#define EXIT_SCENE(x)       (x)->getSceneManager().stop()
 #define EXIT_APPLICATION(x) (x)->getViewDispatcher().stop()
 
 namespace UFZ {

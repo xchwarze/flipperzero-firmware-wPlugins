@@ -17,7 +17,7 @@
 #include "infrared_signal.h"
 #include "infrared_remote.h"
 #include "infrared_remote_button.h"
-#define TAG "ir_remote"
+#define TAG            "ir_remote"
 #define MENU_BTN_TXT_X 36
 
 #include <flipper_format/flipper_format.h>

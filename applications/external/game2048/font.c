@@ -30,7 +30,7 @@ static uint8_t font[10][3] = {
 };
 
 #define FONT_HEIGHT 8
-#define FONT_WIDTH 3
+#define FONT_WIDTH  3
 
 static void game_2048_draw_black_point(Canvas* const canvas, uint8_t x, uint8_t y) {
     canvas_set_color(canvas, ColorBlack);

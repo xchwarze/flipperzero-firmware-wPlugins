@@ -11,10 +11,10 @@
 
 #include "assets.h"
 
-#define PLAYFIELD_WIDTH 16
+#define PLAYFIELD_WIDTH  16
 #define PLAYFIELD_HEIGHT 7
-#define TILE_WIDTH 8
-#define TILE_HEIGHT 8
+#define TILE_WIDTH       8
+#define TILE_HEIGHT      8
 
 #define MINECOUNT 20
 
@@ -44,7 +44,10 @@ typedef enum {
     TileTypeMine
 } TileType;
 
-typedef enum { FieldEmpty, FieldMine } Field;
+typedef enum {
+    FieldEmpty,
+    FieldMine
+} Field;
 
 typedef struct {
     Field minefield[PLAYFIELD_WIDTH][PLAYFIELD_HEIGHT];

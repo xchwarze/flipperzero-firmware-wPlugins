@@ -1,9 +1,9 @@
 #include <stdint.h>
 #include "constants.h"
 
-#define BULLET_X 12
+#define BULLET_X      12
 #define BULLET_OFFSET 3
-#define BULLET_NEXT BULLET_X + 5
+#define BULLET_NEXT   BULLET_X + 5
 
 void weapon_try_fire_bullet(GameState* const state) {
     int8_t slot = -1;

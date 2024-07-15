@@ -4,8 +4,8 @@
 #include <furi_hal.h>
 
 #define SUBREM_APP_APP_FILE_VERSION 1
-#define SUBREM_APP_APP_FILE_TYPE "Flipper SubRem Map file"
-#define SUBREM_APP_EXTENSION ".txt"
+#define SUBREM_APP_APP_FILE_TYPE    "Flipper SubRem Map file"
+#define SUBREM_APP_EXTENSION        ".txt"
 
 typedef enum {
     SubRemSubKeyNameUp = (0U),

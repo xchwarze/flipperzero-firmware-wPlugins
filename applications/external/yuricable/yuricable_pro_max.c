@@ -2,8 +2,8 @@
 #include <yuricable_pro_max_icons.h>
 
 #define BACKLIGHT_ON 1
-#define TAG "YURICABLE_PRO_MAX"
-#define SDQ_PIN gpio_ext_pa7 // GPIO 2
+#define TAG          "YURICABLE_PRO_MAX"
+#define SDQ_PIN      gpio_ext_pa7 // GPIO 2
 
 const char* yuricable_get_submenu_title_string(YuriCableProMaxSubmenuTitles title) {
     if(title < YuriCableProMaxSubmenuTitlesCount) {

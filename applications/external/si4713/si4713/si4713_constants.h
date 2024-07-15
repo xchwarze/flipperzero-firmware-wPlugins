@@ -1,21 +1,21 @@
 // all constants taken from https://github.com/adafruit/Adafruit-Si4713-Library/blob/master/Adafruit_Si4713.h
 
-#define SI4710_ADDR0 0x11 ///< if SEN is low
-#define SI4710_ADDR1 0x63 ///< if SEN is high, default!
+#define SI4710_ADDR0      0x11 ///< if SEN is low
+#define SI4710_ADDR1      0x63 ///< if SEN is high, default!
 #define SI4710_STATUS_CTS 0x80 ///< read status
 
 /* COMMANDS */
 #define SI4710_CMD_POWER_UP \
     0x01 ///< Power up device and mode selection. Modes include FM transmit and
 ///< analog/digital audio interface configuration.
-#define SI4710_CMD_GET_REV 0x10 ///< Returns revision information on the device.
-#define SI4710_CMD_POWER_DOWN 0x11 ///< Power down device
-#define SI4710_CMD_SET_PROPERTY 0x12 ///< Sets the value of a property.
-#define SI4710_CMD_GET_PROPERTY 0x13 ///< Retrieves a property’s value.
+#define SI4710_CMD_GET_REV        0x10 ///< Returns revision information on the device.
+#define SI4710_CMD_POWER_DOWN     0x11 ///< Power down device
+#define SI4710_CMD_SET_PROPERTY   0x12 ///< Sets the value of a property.
+#define SI4710_CMD_GET_PROPERTY   0x13 ///< Retrieves a property’s value.
 #define SI4710_CMD_GET_INT_STATUS 0x14 ///< Read interrupt status bits.
-#define SI4710_CMD_PATCH_ARGS 0x15 ///< Reserved command used for patch file downloads.
-#define SI4710_CMD_PATCH_DATA 0x16 ///< Reserved command used for patch file downloads.
-#define SI4710_CMD_TX_TUNE_FREQ 0x30 ///< Tunes to given transmit frequency.
+#define SI4710_CMD_PATCH_ARGS     0x15 ///< Reserved command used for patch file downloads.
+#define SI4710_CMD_PATCH_DATA     0x16 ///< Reserved command used for patch file downloads.
+#define SI4710_CMD_TX_TUNE_FREQ   0x30 ///< Tunes to given transmit frequency.
 #define SI4710_CMD_TX_TUNE_POWER \
     0x31 ///< Sets the output power level and tunes the antenna capacitor
 #define SI4710_CMD_TX_TUNE_MEASURE \
@@ -28,11 +28,11 @@
     0x35 ///< Queries the status of the RDS Group Buffer and loads new data into
 ///< buffer.
 #define SI4710_CMD_TX_RDS_PS 0x36 ///< Set up default PS strings
-#define SI4710_CMD_GPO_CTL 0x80 ///< Configures GPO3 as output or Hi-Z.
-#define SI4710_CMD_GPO_SET 0x81 ///< Sets GPO3 output level (low or high).
+#define SI4710_CMD_GPO_CTL   0x80 ///< Configures GPO3 as output or Hi-Z.
+#define SI4710_CMD_GPO_SET   0x81 ///< Sets GPO3 output level (low or high).
 
 /* Parameters */
-#define SI4713_PROP_GPO_IEN 0x0001 ///< Enables interrupt sources.
+#define SI4713_PROP_GPO_IEN              0x0001 ///< Enables interrupt sources.
 #define SI4713_PROP_DIGITAL_INPUT_FORMAT 0x0101 ///< Configures the digital input format.
 #define SI4713_PROP_DIGITAL_INPUT_SAMPLE_RATE \
     0x0103 ///< Configures the digital input sample rate in 10 Hz steps. Default
@@ -96,7 +96,7 @@
 ///< the high threshold in order to detect a high audio condition.
 #define SI4713_PROP_TX_RDS_INTERRUPT_SOURCE \
     0x2C00 ///< Configure RDS interrupt sources. Default is none selected.
-#define SI4713_PROP_TX_RDS_PI 0x2C01 ///< Sets transmit RDS program identifier.
+#define SI4713_PROP_TX_RDS_PI     0x2C01 ///< Sets transmit RDS program identifier.
 #define SI4713_PROP_TX_RDS_PS_MIX 0x2C02 ///< Configures mix of RDS PS Group with RDS Group Buffer.
 #define SI4713_PROP_TX_RDS_PS_MISC \
     0x2C03 ///< Miscellaneous bits to transmit along with RDS_PS Groups.

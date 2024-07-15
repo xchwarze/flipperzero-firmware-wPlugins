@@ -20,7 +20,7 @@ super serious because the flipper is pretty easy to just reboot)
 #include "dmcomm_link.h"
 
 #define MAX_FILENAME_LEN 64
-#define MAX_DIGIROM_LEN 128
+#define MAX_DIGIROM_LEN  128
 
 typedef struct AppState {
     char current_code[MAX_DIGIROM_LEN]; // What the user loaded

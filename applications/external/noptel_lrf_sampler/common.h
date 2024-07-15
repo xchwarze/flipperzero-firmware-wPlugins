@@ -18,9 +18,9 @@
 
 /*** Defines ***/
 #define VERSION FAP_VERSION
-#define TAG "noptel_lrf_sampler"
+#define TAG     "noptel_lrf_sampler"
 
-#define CONFIG_FILE "noptel_lrf_sampler.save"
+#define CONFIG_FILE                       "noptel_lrf_sampler.save"
 #define SMM_PREFIX_CONFIG_DEFINITION_FILE "smm_prefix_config.def"
 
 //#define USE_5V_PIN		/* As well as PC1, for power control */
@@ -112,7 +112,6 @@ extern const uint16_t passthru_view_update_every;
 
 /** Submenu items **/
 typedef enum {
-
     /* Configuration view */
     submenu_config = 0,
 

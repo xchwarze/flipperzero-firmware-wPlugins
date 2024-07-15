@@ -11,16 +11,16 @@
 
 #include "flippy_road_icons.h"
 
-#define TAG "Flippy Road"
+#define TAG       "Flippy Road"
 #define SAVE_FILE APP_DATA_PATH("flippy_road.save")
 
-#define WIDTH 128
-#define HEIGHT 64
-#define GRID_UNIT 8
-#define ROWS (HEIGHT / GRID_UNIT)
-#define COLS (WIDTH / GRID_UNIT)
+#define WIDTH         128
+#define HEIGHT        64
+#define GRID_UNIT     8
+#define ROWS          (HEIGHT / GRID_UNIT)
+#define COLS          (WIDTH / GRID_UNIT)
 #define MAX_OBSTACLES 3
-#define LOG_LENGTH 3
+#define LOG_LENGTH    3
 
 typedef enum {
     TickEvent,

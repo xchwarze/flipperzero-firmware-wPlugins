@@ -2,9 +2,9 @@
 #include "usb/usb_midi_driver.h"
 #include "midi/usb_message.h"
 
-#define MIDI_NOTE_ON_MSG 0x90
+#define MIDI_NOTE_ON_MSG  0x90
 #define MIDI_NOTE_OFF_MSG 0x80
-#define MIDI_VELOCITY 0x7F
+#define MIDI_VELOCITY     0x7F
 
 void test_midi_draw_callback(Canvas* canvas, void* ctx) {
     UNUSED(ctx);

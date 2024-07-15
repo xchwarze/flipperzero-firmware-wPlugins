@@ -6,9 +6,9 @@
 #include <lib/toolbox/saved_struct.h>
 #include <storage/storage.h>
 
-#define PASSPORT_SETTINGS_PATH EXT_PATH(PASSPORT_SETTINGS_FILE_NAME)
+#define PASSPORT_SETTINGS_PATH    EXT_PATH(PASSPORT_SETTINGS_FILE_NAME)
 #define PASSPORT_SETTINGS_VERSION (4)
-#define PASSPORT_SETTINGS_MAGIC (0x20)
+#define PASSPORT_SETTINGS_MAGIC   (0x20)
 
 bool passport_settings_load(PassportSettings* passport_settings) {
     furi_assert(passport_settings);

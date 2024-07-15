@@ -1,6 +1,8 @@
 #include "../tullave_i.h"
 
-enum SubmenuIndex { SubmenuIndexRead };
+enum SubmenuIndex {
+    SubmenuIndexRead
+};
 
 void tullave_scene_start_submenu_callback(void* context, uint32_t index) {
     TuLlaveApp* instance = context;

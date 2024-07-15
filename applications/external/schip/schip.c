@@ -6,20 +6,20 @@
 #include <dialogs/dialogs.h>
 #include <storage/storage.h>
 
-#define TAG "schip"
-#define FONT_SIZE 180
-#define MEM_SIZE 0x1000
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
+#define TAG             "schip"
+#define FONT_SIZE       180
+#define MEM_SIZE        0x1000
+#define SCREEN_WIDTH    128
+#define SCREEN_HEIGHT   64
 #define REGISTERS_COUNT 16
-#define STACK_SIZE 16
-#define KEYPAD_WIDTH 4
-#define KEYPAD_HEIGHT 4
-#define BUTTONS_COUNT 16
-#define ROM_START 0x200
-#define FILES_PATH APP_ASSETS_PATH("")
-#define FILE_EXTENSION ".ch8"
-#define RPL_COUNT 8
+#define STACK_SIZE      16
+#define KEYPAD_WIDTH    4
+#define KEYPAD_HEIGHT   4
+#define BUTTONS_COUNT   16
+#define ROM_START       0x200
+#define FILES_PATH      APP_ASSETS_PATH("")
+#define FILE_EXTENSION  ".ch8"
+#define RPL_COUNT       8
 
 const uint8_t font[FONT_SIZE] = {
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0

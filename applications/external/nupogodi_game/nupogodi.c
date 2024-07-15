@@ -12,8 +12,8 @@
 #include "notifications.h"
 #include <dolphin/dolphin.h>
 
-#define TAG "NuPogodi"
-#define WIN_SCORES 100
+#define TAG           "NuPogodi"
+#define WIN_SCORES    100
 #define EGGS_2_SCORES 10
 #define EGGS_3_SCORES 20
 #define EGGS_4_SCORES 50

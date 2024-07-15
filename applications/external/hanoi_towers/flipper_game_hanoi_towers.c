@@ -13,19 +13,19 @@
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
 
-#define MAX_TOWER_LENGTH 8
+#define MAX_TOWER_LENGTH   8
 #define FINAL_TOWER_LENGTH 8
 
 #define DIR_RIGHT true
-#define DIR_LEFT false
+#define DIR_LEFT  false
 
-#define SCREEN_WIDTH 128
+#define SCREEN_WIDTH  128
 #define SCREEN_HEIGHT 64
 
 #define LOG_TAG "hanoi_towers" // For logging
 
-#define SAVE_VERSION 1 // Increase when changing save format
-#define SAVE_DIR "/ext/apps/Games"
+#define SAVE_VERSION  1 // Increase when changing save format
+#define SAVE_DIR      "/ext/apps/Games"
 #define SAVE_FILENAME SAVE_DIR "/game_hanoi_towers.save"
 
 enum AppStatus {

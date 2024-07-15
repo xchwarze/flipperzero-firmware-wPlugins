@@ -16,7 +16,13 @@
 
 #include "uart.h"
 
-typedef enum { subMenuSetup, subMenuScan, subMenuWeapon, subMenuConsole, subMenuAbout } subMenu;
+typedef enum {
+    subMenuSetup,
+    subMenuScan,
+    subMenuWeapon,
+    subMenuConsole,
+    subMenuAbout
+} subMenu;
 
 typedef enum {
     subMenuViewMain,
@@ -27,7 +33,11 @@ typedef enum {
     subMenuViewSetup
 } ViewList;
 
-typedef enum { Weapon_OKLOK_UNLOCK, Weapon_Aerlang, Weapon_COUNT } Weapon_List;
+typedef enum {
+    Weapon_OKLOK_UNLOCK,
+    Weapon_Aerlang,
+    Weapon_COUNT
+} Weapon_List;
 
 typedef struct {
     ViewDispatcher* view_dispatcher;

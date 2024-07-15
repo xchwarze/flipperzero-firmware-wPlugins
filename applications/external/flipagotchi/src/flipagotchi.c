@@ -13,7 +13,7 @@
 #include "../include/constants.h"
 #include "../include/message_queue.h"
 
-#define LINES_ON_SCREEN 6
+#define LINES_ON_SCREEN   6
 #define COLUMNS_ON_SCREEN 21
 
 typedef struct PwnDumpModel PwnDumpModel;

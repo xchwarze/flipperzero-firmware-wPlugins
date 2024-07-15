@@ -1,9 +1,9 @@
 #include "as_reader_worker.h"
 #include <nfc/protocols/iso14443_4a/iso14443_4a_poller.h>
 
-#define TAG "AsReaderWorker"
-#define WORKERSTOP (1UL << 0UL)
-#define POLLERFINISH (1UL << 1UL)
+#define TAG             "AsReaderWorker"
+#define WORKERSTOP      (1UL << 0UL)
+#define POLLERFINISH    (1UL << 1UL)
 #define POLLERTRXFINISH (1UL << 2UL)
 
 void as_reader_worker_change_state(AsReaderWorker* as_reader_worker, AsReaderWorkerState state) {

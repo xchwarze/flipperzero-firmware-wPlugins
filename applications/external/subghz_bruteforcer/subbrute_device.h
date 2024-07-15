@@ -8,8 +8,8 @@
 #include "helpers/subbrute_radio_device_loader.h"
 
 #define SUBBRUTE_MAX_LEN_NAME 64
-#define SUBBRUTE_PATH EXT_PATH("subghz")
-#define SUBBRUTE_FILE_EXT ".sub"
+#define SUBBRUTE_PATH         EXT_PATH("subghz")
+#define SUBBRUTE_FILE_EXT     ".sub"
 
 /**
  * @enum SubBruteFileResult

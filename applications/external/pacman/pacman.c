@@ -18,7 +18,7 @@
 
 #define MAP_SIZE_W 30
 #define MAP_SIZE_H 37
-#define WALL_SIZE 2
+#define WALL_SIZE  2
 
 // Change this to BACKLIGHT_AUTO if you don't want the backlight to be continuously on.
 #define BACKLIGHT_ON 1
@@ -97,7 +97,11 @@ typedef struct {
     bool is_in_base;
 } Character;
 
-typedef enum { GhostsModeScatter, GhostsModeChase, GhostsModeFrightened } GhostsMode;
+typedef enum {
+    GhostsModeScatter,
+    GhostsModeChase,
+    GhostsModeFrightened
+} GhostsMode;
 
 typedef struct {
     uint8_t x;

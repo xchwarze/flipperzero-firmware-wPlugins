@@ -4,12 +4,12 @@
 #include <stdint.h>
 
 #define LED_BRIGHTNESS_MAX 3
-#define LED_COUNT 100
+#define LED_COUNT          100
 
 #define RGB_UINT(R, G, B) (((G) << 16) | ((R) << 8) | (B))
-#define RGB_R(V) ((V >> 8) & 0xFF)
-#define RGB_G(V) ((V >> 16) & 0xFF)
-#define RGB_B(V) (V & 0xFF)
+#define RGB_R(V)          ((V >> 8) & 0xFF)
+#define RGB_G(V)          ((V >> 16) & 0xFF)
+#define RGB_B(V)          (V & 0xFF)
 
 void led_init();
 void led_deinit();

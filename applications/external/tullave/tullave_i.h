@@ -25,7 +25,11 @@
 // #include <assets_icons.h>
 #include <tullave_icons.h>
 
-typedef enum { TuLlaveViewMenu, TuLlaveViewWidget, TuLlaveViewPopup } TuLlaveView;
+typedef enum {
+    TuLlaveViewMenu,
+    TuLlaveViewWidget,
+    TuLlaveViewPopup
+} TuLlaveView;
 
 // Main structure for the application
 struct TuLlaveApp {

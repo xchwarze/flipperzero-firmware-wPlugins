@@ -4,7 +4,11 @@
 
 #include "si4713/si4713.h"
 
-typedef enum { DeviceOn, DeviceOff, DeviceDisconnected } DeviceState;
+typedef enum {
+    DeviceOn,
+    DeviceOff,
+    DeviceDisconnected
+} DeviceState;
 
 typedef enum {
     MainView,

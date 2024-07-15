@@ -8,7 +8,7 @@
 
 #define TAG "DolphinState"
 
-#define DOLPHIN_STATE_HEADER_MAGIC 0xD0
+#define DOLPHIN_STATE_HEADER_MAGIC   0xD0
 #define DOLPHIN_STATE_HEADER_VERSION 0x01
 
 /*

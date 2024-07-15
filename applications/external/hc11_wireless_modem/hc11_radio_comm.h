@@ -9,8 +9,8 @@
 
 /*** Defines ***/
 #define CC1101_MAX_PKT_SIZE 256
-#define RX_BUF_SIZE 1024
-#define TX_BUF_SIZE 1024
+#define RX_BUF_SIZE         1024
+#define TX_BUF_SIZE         1024
 
 /*** Parameters ***/
 extern const uint32_t baudrate_values[];

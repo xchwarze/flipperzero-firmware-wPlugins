@@ -17,7 +17,7 @@
 
 #include "includes/game_state.h"
 
-#define TAG "Jetpack Game"
+#define TAG             "Jetpack Game"
 #define SAVING_FILENAME APP_DATA_PATH("jetpack.save")
 static GameState* global_state;
 

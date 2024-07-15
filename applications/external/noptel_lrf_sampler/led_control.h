@@ -9,9 +9,9 @@
 #include <notification/notification.h>
 
 /*** Defines ***/
-#define RED 1
+#define RED   1
 #define GREEN 2
-#define BLUE 3
+#define BLUE  3
 
 /*** Types ***/
 typedef struct {

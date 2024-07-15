@@ -35,4 +35,4 @@ cell_t sdInputChar(FileStream* Stream);
 ** printf() is only used for debugging purposes.
 ** It is not required for normal operation.
 */
-#define PRT(x) /* No printf(). */
+#define PRT(x)      /* No printf(). */

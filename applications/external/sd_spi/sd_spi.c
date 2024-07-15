@@ -5,7 +5,7 @@
 #include <furi/core/core_defines.h>
 
 #define SD_SPI_DEBUG 1
-#define TAG "SdSpi"
+#define TAG          "SdSpi"
 
 #ifdef SD_SPI_DEBUG
 #define sd_spi_debug(...) FURI_LOG_I(TAG, __VA_ARGS__)
@@ -13,11 +13,11 @@
 #define sd_spi_debug(...)
 #endif
 
-#define LOCK_UNLOCK_ATTEMPS 3
-#define SD_CMD_LENGTH 6
-#define SD_DUMMY_BYTE 0xFF
+#define LOCK_UNLOCK_ATTEMPS   3
+#define SD_CMD_LENGTH         6
+#define SD_DUMMY_BYTE         0xFF
 #define SD_ANSWER_RETRY_COUNT 8
-#define SD_IDLE_RETRY_COUNT 100
+#define SD_IDLE_RETRY_COUNT   100
 
 #define FLAG_SET(x, y) (((x) & (y)) == (y))
 FuriHalSpiBusHandle* furi_hal_sd_spi_handle = NULL;

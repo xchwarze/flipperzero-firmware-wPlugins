@@ -17,7 +17,7 @@
 
 /*** Defines ***/
 #define VERSION FAP_VERSION
-#define TAG "hc11_modem"
+#define TAG     "hc11_modem"
 
 #define CONFIG_FILE "hc11_modem.save"
 
@@ -81,7 +81,6 @@ extern const uint16_t passthru_view_update_every;
 
 /** Submenu items **/
 typedef enum {
-
     /* Configuration view */
     submenu_config = 0,
 

@@ -1,7 +1,7 @@
 #include "imu.h"
 #include "../../lib/lsm6ds3tr-api/lsm6ds3tr-c_reg.h"
 
-#define LSM6DS3_TAG "LSM6DS3"
+#define LSM6DS3_TAG         "LSM6DS3"
 #define LSM6DS3_DEV_ADDRESS (0x6A << 1)
 
 stmdev_ctx_t lsm6ds3trc_ctx;

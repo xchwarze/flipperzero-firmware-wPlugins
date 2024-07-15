@@ -15,10 +15,10 @@
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
 
-#define MAX_FIELD_WIDTH 16
+#define MAX_FIELD_WIDTH  16
 #define MAX_FIELD_HEIGHT 8
 
-#define SCREEN_WIDTH 128
+#define SCREEN_WIDTH  128
 #define SCREEN_HEIGHT 64
 
 #define LOG_TAG "connect_wires" // For logging
@@ -32,7 +32,6 @@ enum AppStatus {
 };
 
 enum MenuEntryId {
-
     MN_NEWGAME,
     MN_ABOUT,
     MN_EXIT,
@@ -77,7 +76,12 @@ uint8_t menuSize(const MenuEntry* menu) {
     return res;
 }
 
-enum EdgeDir { DIR_LEFT, DIR_TOP, DIR_RIGHT, DIR_BOTTOM };
+enum EdgeDir {
+    DIR_LEFT,
+    DIR_TOP,
+    DIR_RIGHT,
+    DIR_BOTTOM
+};
 
 static const int8_t DX[4] = {-1, 0, 1, 0};
 static const int8_t DY[4] = {0, -1, 0, 1};

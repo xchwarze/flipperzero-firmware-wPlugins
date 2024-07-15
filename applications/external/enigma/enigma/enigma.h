@@ -14,10 +14,10 @@
 // --------------------------------------------------------------
 // DATA STRUCTURES, DEFINES and TYPE ALIASES
 
-#define ALPHABET_SIZE 26
+#define ALPHABET_SIZE  26
 #define PLUGBOARD_SIZE 10
-#define LABEL_LENGTH 42
-#define ROTORS_N 3
+#define LABEL_LENGTH   42
+#define ROTORS_N       3
 
 typedef uint8_t u8;
 typedef size_t usize;
@@ -78,7 +78,7 @@ typedef struct {
 
 // TODO: expand this function so we can support a bigger alphabet and
 // not just english uppercase.
-#define CHAR2CODE(ch) ((u8)((ch) - 'A'))
+#define CHAR2CODE(ch)   ((u8)((ch) - 'A'))
 #define CODE2CHAR(code) ((char)('A' + (code)))
 
 // Function signatures

@@ -13,14 +13,14 @@
 
 #define TAG "DesktopSrv"
 
-#define CLOCK_APP EXT_PATH("apps/Main/dab_timer.fap")
-#define DOOM_APP EXT_PATH("apps/Games/doom.fap")
+#define CLOCK_APP         EXT_PATH("apps/Main/dab_timer.fap")
+#define DOOM_APP          EXT_PATH("apps/Games/doom.fap")
 #define IMPROVED_2048_APP EXT_PATH("apps/Games/2048_improved.fap")
-#define PASSPORT_APP EXT_PATH("apps/Settings/passport.fap")
-#define SNAKE_APP EXT_PATH("apps/Games/snake.fap")
-#define TETRIS_APP EXT_PATH("apps/Games/tetris.fap")
-#define ZOMBIEZ_APP EXT_PATH("apps/Games/zombiez.fap")
-#define JETPACK_APP EXT_PATH("apps/Games/jetpack.fap")
+#define PASSPORT_APP      EXT_PATH("apps/Settings/passport.fap")
+#define SNAKE_APP         EXT_PATH("apps/Games/snake.fap")
+#define TETRIS_APP        EXT_PATH("apps/Games/tetris.fap")
+#define ZOMBIEZ_APP       EXT_PATH("apps/Games/zombiez.fap")
+#define JETPACK_APP       EXT_PATH("apps/Games/jetpack.fap")
 
 static void desktop_scene_main_new_idle_animation_callback(void* context) {
     furi_assert(context);

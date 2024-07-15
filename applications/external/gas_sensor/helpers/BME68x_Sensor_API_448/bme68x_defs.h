@@ -57,22 +57,22 @@
 /********************************************************* */
 #ifdef __KERNEL__
 #if !defined(UINT8_C) && !defined(INT8_C)
-#define INT8_C(x) S8_C(x)
+#define INT8_C(x)  S8_C(x)
 #define UINT8_C(x) U8_C(x)
 #endif
 
 #if !defined(UINT16_C) && !defined(INT16_C)
-#define INT16_C(x) S16_C(x)
+#define INT16_C(x)  S16_C(x)
 #define UINT16_C(x) U16_C(x)
 #endif
 
 #if !defined(INT32_C) && !defined(UINT32_C)
-#define INT32_C(x) S32_C(x)
+#define INT32_C(x)  S32_C(x)
 #define UINT32_C(x) U32_C(x)
 #endif
 
 #if !defined(INT64_C) && !defined(UINT64_C)
-#define INT64_C(x) S64_C(x)
+#define INT64_C(x)  S64_C(x)
 #define UINT64_C(x) U64_C(x)
 #endif
 #endif
@@ -499,26 +499,26 @@
 #define BME68X_MAX_TEMPERATURE INT16_C(6000)
 
 /* 900 hecto Pascals */
-#define BME68X_MIN_PRESSURE UINT32_C(90000)
+#define BME68X_MIN_PRESSURE    UINT32_C(90000)
 
 /* 1100 hecto Pascals */
-#define BME68X_MAX_PRESSURE UINT32_C(110000)
+#define BME68X_MAX_PRESSURE    UINT32_C(110000)
 
 /* 20% relative humidity */
-#define BME68X_MIN_HUMIDITY UINT32_C(20000)
+#define BME68X_MIN_HUMIDITY    UINT32_C(20000)
 
 /* 80% relative humidity*/
-#define BME68X_MAX_HUMIDITY UINT32_C(80000)
+#define BME68X_MAX_HUMIDITY    UINT32_C(80000)
 
 #endif
 
-#define BME68X_HEATR_DUR1 UINT16_C(1000)
-#define BME68X_HEATR_DUR2 UINT16_C(2000)
+#define BME68X_HEATR_DUR1       UINT16_C(1000)
+#define BME68X_HEATR_DUR2       UINT16_C(2000)
 #define BME68X_HEATR_DUR1_DELAY UINT32_C(1000000)
 #define BME68X_HEATR_DUR2_DELAY UINT32_C(2000000)
-#define BME68X_N_MEAS UINT8_C(6)
-#define BME68X_LOW_TEMP UINT8_C(150)
-#define BME68X_HIGH_TEMP UINT16_C(350)
+#define BME68X_N_MEAS           UINT8_C(6)
+#define BME68X_LOW_TEMP         UINT8_C(150)
+#define BME68X_HIGH_TEMP        UINT16_C(350)
 
 /* Mask macros */
 /* Mask for number of conversions */

@@ -4,11 +4,11 @@
 #include <core/record.h>
 #include <core/log.h>
 
-#define NUMBER_OF_MONTHS 12
-#define COLUMN_GAP_PX 30
-#define ROW_GAP_PX 17
+#define NUMBER_OF_MONTHS      12
+#define COLUMN_GAP_PX         30
+#define ROW_GAP_PX            17
 #define GRID_TEMPLATE_COLUMNS 4
-#define GRID_TEMPLATE_ROWS 3
+#define GRID_TEMPLATE_ROWS    3
 
 struct MonthPicker {
     View* view;

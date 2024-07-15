@@ -6,7 +6,10 @@
 #include "../flipp_pomodoro_app.h"
 #include "../views/flipp_pomodoro_timer_view.h"
 
-enum { SceneEventConusmed = true, SceneEventNotConusmed = false };
+enum {
+    SceneEventConusmed = true,
+    SceneEventNotConusmed = false
+};
 
 static char* work_hints[] = {
     "Can you explain the problem as if I'm five?",

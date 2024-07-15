@@ -353,7 +353,7 @@ void protocol_em4100_render_data(ProtocolEM4100* protocol, FuriString* result) {
         (uint16_t)((data[3] << 8) | (data[4])),
         protocol->clock_per_bit,
         (uint32_t)((data[2] << 16) | (data[3] << 8) | (data[4])));
-};
+}
 
 const ProtocolBase protocol_em4100 = {
     .name = "EM4100",

@@ -5,7 +5,10 @@
 #include "../flipp_pomodoro_app.h"
 #include "../views/flipp_pomodoro_info_view.h"
 
-enum { SceneEventConusmed = true, SceneEventNotConusmed = false };
+enum {
+    SceneEventConusmed = true,
+    SceneEventNotConusmed = false
+};
 
 void flipp_pomodoro_scene_info_on_back_to_timer(void* ctx) {
     furi_assert(ctx);

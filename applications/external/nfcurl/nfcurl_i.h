@@ -59,6 +59,8 @@ typedef enum {
     NfcUrlViewButtonMenu
 } NfcUrlView;
 
-enum NfcUrlCustomEventType { NfcUrlCustomEventTypeTextEditDone };
+enum NfcUrlCustomEventType {
+    NfcUrlCustomEventTypeTextEditDone
+};
 
 void nfcurl_create_tag(NfcUrlApp* app);

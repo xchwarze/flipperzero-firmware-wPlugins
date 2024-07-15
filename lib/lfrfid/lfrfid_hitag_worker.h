@@ -25,10 +25,10 @@
 
 #include <dolphin/dolphin.h>
 
-#define HITAG_BLOCKS 16
+#define HITAG_BLOCKS     16
 #define HITAG_BLOCKPAGES 4
-#define HITAG_PAGES 64
-#define HITAG_PAGEBYTES 4
+#define HITAG_PAGES      64
+#define HITAG_PAGEBYTES  4
 
 #ifdef __cplusplus
 extern "C" {

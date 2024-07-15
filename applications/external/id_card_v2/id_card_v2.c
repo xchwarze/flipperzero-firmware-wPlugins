@@ -9,8 +9,8 @@
 #include <string.h>
 #include <flipper_format/flipper_format.h>
 
-#define TAG "ID"
-#define ID_SAVE_PATH EXT_PATH("id.txt")
+#define TAG              "ID"
+#define ID_SAVE_PATH     EXT_PATH("id.txt")
 #define TEXT_BUFFER_SIZE 256
 
 typedef enum {

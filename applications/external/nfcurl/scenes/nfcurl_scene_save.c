@@ -9,10 +9,13 @@
 
 #include <furi/core/log.h>
 
-#define NFC_APP_FOLDER ANY_PATH("nfc")
+#define NFC_APP_FOLDER    ANY_PATH("nfc")
 #define NFC_APP_EXTENSION ".nfc"
 
-enum SubmenuIndex { SubmenuIndexSave = 0, SubmenuIndexExport = 1 };
+enum SubmenuIndex {
+    SubmenuIndexSave = 0,
+    SubmenuIndexExport = 1
+};
 
 static void nfcurl_scene_save_text_callback(void* context) {
     NfcUrlApp* app = context;

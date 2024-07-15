@@ -7,7 +7,7 @@
 #include <gui/modules/submenu.h>
 #include <gui/modules/text_input.h>
 
-#define TAG "voltcalc_app"
+#define TAG             "voltcalc_app"
 #define TEXT_INPUT_SIZE 11
 
 typedef enum {

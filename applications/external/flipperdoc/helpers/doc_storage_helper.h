@@ -4,7 +4,7 @@
 #include <storage/storage.h>
 
 #define DOC_BACKUP_FILE_EXTENSION ".lvl"
-#define DOC_APP_FOLDER "/data/"
+#define DOC_APP_FOLDER            "/data/"
 
 bool doc_get_backup_path(Doc* app);
 

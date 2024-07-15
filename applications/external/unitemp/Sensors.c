@@ -25,11 +25,11 @@ const GpioPin TX_13 = {.pin = LL_GPIO_PIN_6, .port = GPIOB};
 const GpioPin RX_14 = {.pin = LL_GPIO_PIN_7, .port = GPIOB};
 
 //Количество доступных портов ввода/вывода
-#define GPIO_ITEMS (sizeof(GPIOList) / sizeof(GPIO))
+#define GPIO_ITEMS             (sizeof(GPIOList) / sizeof(GPIO))
 //Количество интерфейсов
 #define INTERFACES_TYPES_COUNT (int)(sizeof(interfaces) / sizeof(const Interface*))
 //Количество типов датчиков
-#define SENSOR_TYPES_COUNT (int)(sizeof(sensorTypes) / sizeof(const SensorType*))
+#define SENSOR_TYPES_COUNT     (int)(sizeof(sensorTypes) / sizeof(const SensorType*))
 
 //Перечень достуных портов ввода/вывода
 static const GPIO GPIOList[] = {

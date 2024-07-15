@@ -8,14 +8,13 @@
 #pragma once
 
 /*** Defines ***/
-#define UART_RX_BUF_SIZE 256
+#define UART_RX_BUF_SIZE           256
 #define DIAG_PROGRESS_UPDATE_EVERY 250 /*ms*/
 
 /*** Types ***/
 
 /** LRF command **/
 typedef enum {
-
     /* Trigger one SMM measurement */
     smm = 0,
 

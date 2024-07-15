@@ -3,7 +3,7 @@
 
 #define TAG "SpaceImpact"
 
-#define FRAMES 25 //12
+#define FRAMES         25 //12
 #define DESTROY_FRAMES 2
 
 #define HERO_SIZE 8
@@ -12,7 +12,7 @@
 #define HERO_MAX_Y SCREEN_HEIGHT - HERO_SIZE
 
 #define BULLET_PULL 25
-#define ENEMY_PULL 10
+#define ENEMY_PULL  10
 
 #define ENEMY_UI_SIZE 52
 

@@ -19,9 +19,9 @@ Kinda janky but works well enough for this...
 #define EXTERNC
 #endif
 
-#define HIGH true
-#define LOW false
-#define INPUT 1
+#define HIGH   true
+#define LOW    false
+#define INPUT  1
 #define OUTPUT 0
 
 typedef uint8_t byte;

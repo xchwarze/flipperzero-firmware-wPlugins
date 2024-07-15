@@ -4,13 +4,13 @@
 #include "../helpers/passport_settings.h"
 
 #define CFW_PASSPORT_SELECT_BACKGROUND 0
-#define CFW_PASSPORT_SELECT_IMAGE 1
-#define CFW_PASSPORT_SELECT_NAME 2
-#define CFW_PASSPORT_SELECT_MOOD_SET 3
-#define CFW_PASSPORT_SELECT_LEVEL 4
-#define CFW_PASSPORT_SELECT_XP_TEXT 5
-#define CFW_PASSPORT_SELECT_XP_MODE 6
-#define CFW_PASSPORT_SELECT_MULTIPAGE 7
+#define CFW_PASSPORT_SELECT_IMAGE      1
+#define CFW_PASSPORT_SELECT_NAME       2
+#define CFW_PASSPORT_SELECT_MOOD_SET   3
+#define CFW_PASSPORT_SELECT_LEVEL      4
+#define CFW_PASSPORT_SELECT_XP_TEXT    5
+#define CFW_PASSPORT_SELECT_XP_MODE    6
+#define CFW_PASSPORT_SELECT_MULTIPAGE  7
 
 const char* const xp_mode_count_text[XP_MODE_COUNT] =
     {"Bar", "%", "Inv. %", "Retro 3", "Retro 5", "Bar %", "None"};

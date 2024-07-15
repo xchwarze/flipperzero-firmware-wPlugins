@@ -12,7 +12,7 @@
 #include <dolphin/dolphin.h>
 #include <toolbox/hex.h>
 
-#define TAG "BadKb"
+#define TAG        "BadKb"
 #define WORKER_TAG TAG "Worker"
 
 #define BADKB_ASCII_TO_KEY(script, x) \

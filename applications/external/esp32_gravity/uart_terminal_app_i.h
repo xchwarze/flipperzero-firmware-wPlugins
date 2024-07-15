@@ -16,9 +16,9 @@
 
 #define NUM_MENU_ITEMS (23)
 
-#define UART_TERMINAL_TEXT_BOX_STORE_SIZE (1024)
+#define UART_TERMINAL_TEXT_BOX_STORE_SIZE   (1024)
 #define UART_TERMINAL_TEXT_INPUT_STORE_SIZE (512)
-#define UART_CH (FuriHalSerialIdUsart)
+#define UART_CH                             (FuriHalSerialIdUsart)
 
 /* GRAVITY: Import GravityMode etc. */
 #include "esp_flip_struct.h"

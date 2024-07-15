@@ -2,7 +2,7 @@
 #include <toolbox/protocols/protocol.h>
 #include "lfrfid_protocols.h"
 
-#define HITAG1_PAGES 64
+#define HITAG1_PAGES     64
 #define HITAG1_DATA_SIZE HITAG1_PAGES * 4 + HITAG1_PAGES
 
 typedef struct {
@@ -13,20 +13,20 @@ ProtocolHitag1* protocol_hitag1_alloc(void) {
     ProtocolHitag1* protocol = malloc(sizeof(ProtocolHitag1));
 
     return protocol;
-};
+}
 
 void protocol_hitag1_free(ProtocolHitag1* protocol) {
     free(protocol);
-};
+}
 
 uint8_t* protocol_hitag1_get_data(ProtocolHitag1* protocol) {
     return protocol->tagData;
-};
+}
 
 void protocol_hitag1_decoder_start(ProtocolHitag1* protocol) {
     UNUSED(protocol);
     // Not applicalble, encoding & decoding is handled in lfrfid_hitag_worker...
-};
+}
 
 bool protocol_hitag1_decoder_feed(ProtocolHitag1* protocol, bool level, uint32_t duration) {
     UNUSED(protocol);
@@ -36,14 +36,14 @@ bool protocol_hitag1_decoder_feed(ProtocolHitag1* protocol, bool level, uint32_t
 
     bool result = false;
     return result;
-};
+}
 
 bool protocol_hitag1_encoder_start(ProtocolHitag1* protocol) {
     UNUSED(protocol);
     // Not applicalble, encoding & decoding is handled in lfrfid_hitag_worker...
 
     return false;
-};
+}
 
 LevelDuration protocol_hitag1_encoder_yield(ProtocolHitag1* protocol) {
     UNUSED(protocol);
@@ -52,7 +52,7 @@ LevelDuration protocol_hitag1_encoder_yield(ProtocolHitag1* protocol) {
     bool level = 0;
     uint32_t duration = 0;
     return level_duration_make(level, duration);
-};
+}
 
 bool protocol_hitag1_write_data(ProtocolHitag1* protocol, void* data) {
     UNUSED(protocol);
@@ -61,7 +61,7 @@ bool protocol_hitag1_write_data(ProtocolHitag1* protocol, void* data) {
     //this protocol cannot be simply written to card --> don't do anything, just return false
 
     return false;
-};
+}
 
 void protocol_hitag1_render_data(ProtocolHitag1* protocol, FuriString* result) {
     uint8_t pages = 0;
@@ -77,7 +77,7 @@ void protocol_hitag1_render_data(ProtocolHitag1* protocol, FuriString* result) {
         protocol->tagData[2],
         protocol->tagData[3],
         pages);
-};
+}
 
 const ProtocolBase protocol_hitag1 = {
     .name = "Hitag1",

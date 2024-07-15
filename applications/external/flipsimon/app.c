@@ -9,7 +9,7 @@
 #include "./common/flipboard_model_ref.h"
 #include "./common/leds.h"
 
-#define MAX_SONG_LENGTH 12
+#define MAX_SONG_LENGTH      12
 #define SIMON_TEACH_DELAY_MS 1000
 
 uint16_t delays[] = {500, 500, 400, 300, 250, 200, 150, 100, 80};

@@ -14,8 +14,8 @@
 
 #include <flipper_format/flipper_format.h>
 
-#define PATH_SUBGHZ EXT_PATH("subghz") "/assets/extend_range.txt"
-#define KEY_EXTEND_RANGE "use_ext_range_at_own_risk"
+#define PATH_SUBGHZ        EXT_PATH("subghz") "/assets/extend_range.txt"
+#define KEY_EXTEND_RANGE   "use_ext_range_at_own_risk"
 #define KEY_IGNORE_DEFAULT "ignore_default_tx_region"
 
 struct UserSelection {

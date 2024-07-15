@@ -12,11 +12,11 @@
 #include "blocks.h"
 #include "manipulations.h"
 
-#define TICK_VALUE 0.002
+#define TICK_VALUE     0.002
 #define SIN_MULTIPLIER 10
-#define ROTATION (sin(ticks) * SIN_MULTIPLIER)
-#define ROTATION_LAST (sin(ticks - TICK_VALUE) * SIN_MULTIPLIER)
-#define ROTATION_DIFF (ROTATION - ROTATION_LAST)
+#define ROTATION       (sin(ticks) * SIN_MULTIPLIER)
+#define ROTATION_LAST  (sin(ticks - TICK_VALUE) * SIN_MULTIPLIER)
+#define ROTATION_DIFF  (ROTATION - ROTATION_LAST)
 
 #define G_CONSTANT 9.8
 

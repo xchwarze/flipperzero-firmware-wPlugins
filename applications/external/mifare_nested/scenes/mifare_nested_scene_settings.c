@@ -1,7 +1,10 @@
 #include "../mifare_nested_i.h"
 #include <lib/toolbox/value_index.h>
 
-enum MifareNestedSettingsIndex { MifareNestedIndexBlock, MifareNestedIndexHardNested };
+enum MifareNestedSettingsIndex {
+    MifareNestedIndexBlock,
+    MifareNestedIndexHardNested
+};
 
 #define HARD_NESTED_COUNT 2
 const char* const hard_nested_text[HARD_NESTED_COUNT] = {

@@ -34,7 +34,7 @@ SOFTWARE.
 
 #define TAG "WCH_SWIO_FL"
 
-#define SYSTEM_DEFAULTS_MAGIC 0xCAFED00D
+#define SYSTEM_DEFAULTS_MAGIC    0xCAFED00D
 #define SYSTEM_DEFAULTS_FILENAME "defaults.txt"
 
 typedef struct {

@@ -10,7 +10,7 @@
 #include "rps_icons.h"
 
 #define QUEUE_SIZE 8
-#define LOG_TAG "RPS"
+#define LOG_TAG    "RPS"
 
 // ##############
 // GAME LOGIC

@@ -10,7 +10,7 @@
 #include "game_structs.h"
 
 #define VIBRATION_ENABLED(game_state) game_state->settings.vibration
-#define SOUND_ENABLED(game_state) game_state->settings.sound
+#define SOUND_ENABLED(game_state)     game_state->settings.sound
 
 static void init_persistent_settings_object(struct GameState* game_state) {
     // Init the struct with default values

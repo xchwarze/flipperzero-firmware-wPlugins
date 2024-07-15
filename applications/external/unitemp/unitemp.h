@@ -38,15 +38,15 @@
 
 /* Объявление макроподстановок */
 //Имя приложения
-#define APP_NAME "Unitemp"
+#define APP_NAME              "Unitemp"
 //Версия приложения
-#define UNITEMP_APP_VER "1.4-store"
+#define UNITEMP_APP_VER       "1.4-store"
 //Путь хранения файлов плагина
-#define APP_PATH_FOLDER "/ext/apps_data/unitemp"
+#define APP_PATH_FOLDER       "/ext/apps_data/unitemp"
 //Имя файла с настройками
 #define APP_FILENAME_SETTINGS "settings.cfg"
 //Имя файла с датчиками
-#define APP_FILENAME_SENSORS "sensors.cfg"
+#define APP_FILENAME_SENSORS  "sensors.cfg"
 
 //Размер буффера текста
 #define BUFF_SIZE 32
@@ -61,7 +61,11 @@
 
 /* Объявление перечислений */
 //Единицы измерения температуры
-typedef enum { UT_TEMP_CELSIUS, UT_TEMP_FAHRENHEIT, UT_TEMP_COUNT } tempMeasureUnit;
+typedef enum {
+    UT_TEMP_CELSIUS,
+    UT_TEMP_FAHRENHEIT,
+    UT_TEMP_COUNT
+} tempMeasureUnit;
 //Единицы измерения давления
 typedef enum {
     UT_PRESSURE_MM_HG,

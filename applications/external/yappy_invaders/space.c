@@ -7,15 +7,15 @@
 #include <math.h>
 #include <yapinvaders_icons.h>
 
-#define PROJECTILES_MAX 10
-#define ENEMIES_MAX 12
-#define BARRIERS_MAX 5
-#define BARRIER_WIDTH 10
-#define BARRIER_HEIGHT 3
-#define PROJECTILE_WIDTH 4
-#define PROJECTILE_HEIGHT 8
+#define PROJECTILES_MAX        10
+#define ENEMIES_MAX            12
+#define BARRIERS_MAX           5
+#define BARRIER_WIDTH          10
+#define BARRIER_HEIGHT         3
+#define PROJECTILE_WIDTH       4
+#define PROJECTILE_HEIGHT      8
 #define ENEMY_PROJECTILE_SPEED .5
-#define ENEMY_PROJECTILES_MAX 10
+#define ENEMY_PROJECTILES_MAX  10
 
 int enemy_movement_direction = 1;
 int move_down_step = 0;

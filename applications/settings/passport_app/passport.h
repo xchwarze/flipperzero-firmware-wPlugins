@@ -16,7 +16,7 @@
 #include "passport_settings/passport_settings.h"
 #include "passport_icons.h"
 
-#define MOODS_TOTAL 1
+#define MOODS_TOTAL  1
 #define BUTTHURT_MAX 14
 
 typedef enum {
@@ -31,7 +31,10 @@ typedef enum {
 
 static IconAnimation* animations[AniMaxNum];
 
-typedef enum { EventGameTick, EventKeyPress } EventType;
+typedef enum {
+    EventGameTick,
+    EventKeyPress
+} EventType;
 
 typedef struct {
     EventType type;

@@ -11,9 +11,9 @@
 
 #define SCREEN_SIZE_X 128
 #define SCREEN_SIZE_Y 64
-#define DCF77_FREQ 77500
-#define DCF77_OFFSET 60
-#define SYNC_DELAY 50
+#define DCF77_FREQ    77500
+#define DCF77_OFFSET  60
+#define SYNC_DELAY    50
 
 char* WEEKDAYS[] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 

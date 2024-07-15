@@ -19,7 +19,6 @@ typedef struct TotpBtTypeCodeWorkerContext TotpBtTypeCodeWorkerContext;
  * @brief Bluetooth token input automation worker events
  */
 enum TotpBtTypeCodeWorkerEvents {
-
     /**
      * @brief Reserved, should not be used anywhere
      */

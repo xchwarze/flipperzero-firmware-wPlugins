@@ -38,7 +38,7 @@
 #include <lib/subghz/devices/cc1101_int/cc1101_int_interconnect.h>
 
 #define DEFAULT_RETURN_DEPTH (512)
-#define DEFAULT_USER_DEPTH (512)
+#define DEFAULT_USER_DEPTH   (512)
 
 struct thread_callback_ctx {
     ExecToken XT;

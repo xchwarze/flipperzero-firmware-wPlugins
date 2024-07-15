@@ -18,11 +18,11 @@
 #include "dcf77_util.h"
 
 // the TAG is used for displaying a relevant prefix in logs. update it.
-#define TAG "__ARHA_FLIPPERAPP"
-#define TIMER_HZ 30
-#define TIME_ZERO 24
-#define TIME_ONE 27
-#define LF_FREQ 77500 * 2
+#define TAG        "__ARHA_FLIPPERAPP"
+#define TIMER_HZ   30
+#define TIME_ZERO  24
+#define TIME_ONE   27
+#define LF_FREQ    77500 * 2
 #define OUTPUT_PIN &gpio_ext_pc3
 // #define TIME_ZERO 15
 // #define TIME_ONE 5
@@ -30,7 +30,14 @@
 uint8_t dcf77_message_buffer[8];
 uint8_t dcf77_next_buffer[8];
 
-typedef enum { KeyNone, KeyUp, KeyRight, KeyDown, KeyLeft, KeyOK } KeyCode;
+typedef enum {
+    KeyNone,
+    KeyUp,
+    KeyRight,
+    KeyDown,
+    KeyLeft,
+    KeyOK
+} KeyCode;
 
 typedef enum {
     EventTimerTick,

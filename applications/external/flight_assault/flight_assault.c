@@ -6,11 +6,11 @@
 #include <stdlib.h>
 
 // Define screen dimensions
-#define SCREEN_WIDTH 128
+#define SCREEN_WIDTH  128
 #define SCREEN_HEIGHT 64
 
 // Player properties
-#define PLAYER_WIDTH 11
+#define PLAYER_WIDTH  11
 #define PLAYER_HEIGHT 15
 static const uint8_t player_bitmap[] = {0x07, 0x00, 0x09, 0x00, 0x11, 0x00, 0x21, 0x00,
                                         0x41, 0x00, 0x81, 0x00, 0x02, 0x03, 0x04, 0x04,
@@ -57,7 +57,10 @@ int score = 0;
 char score_str[8];
 
 // Game states
-typedef enum { PLAYING, GAME_OVER } GameState;
+typedef enum {
+    PLAYING,
+    GAME_OVER
+} GameState;
 
 GameState game_state = PLAYING;
 

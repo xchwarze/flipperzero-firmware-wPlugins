@@ -6,7 +6,7 @@
 #include <cfw/cfw.h>
 
 #define RX_BUF_SIZE 1024
-#define UART_CH (cfw_settings.uart_nmea_channel)
+#define UART_CH     (cfw_settings.uart_nmea_channel)
 
 static const int gps_baudrates[6] = {4800, 9600, 19200, 38400, 57600, 115200};
 static int current_gps_baudrate = 1;
@@ -26,7 +26,12 @@ typedef struct {
     int time_seconds;
 } GpsStatus;
 
-typedef enum { KNOTS, KPH, MPH, INVALID } SpeedUnit;
+typedef enum {
+    KNOTS,
+    KPH,
+    MPH,
+    INVALID
+} SpeedUnit;
 
 typedef enum {
     CHANGE_BAUDRATE,

@@ -13,17 +13,17 @@
 #define TAG "LED_LL"
 
 #define LED_BPP 24
-#define ARR_TX 59
+#define ARR_TX  59
 
-#define CCR_US_PERIOD 125
-#define CCR_US_0 40
-#define CCR_US_1 80
-#define CCR_0 (ARR_TX * CCR_US_0 / CCR_US_PERIOD)
-#define CCR_1 (ARR_TX * CCR_US_1 / CCR_US_PERIOD)
-#define CCR_RESET 0
+#define CCR_US_PERIOD        125
+#define CCR_US_0             40
+#define CCR_US_1             80
+#define CCR_0                (ARR_TX * CCR_US_0 / CCR_US_PERIOD)
+#define CCR_1                (ARR_TX * CCR_US_1 / CCR_US_PERIOD)
+#define CCR_RESET            0
 #define CCR_BUFFER_LEDS_HALF 8
-#define CCR_BUFFER_LEDS (CCR_BUFFER_LEDS_HALF * 2)
-#define CCR_BUFFER_LEN (CCR_BUFFER_LEDS * LED_BPP)
+#define CCR_BUFFER_LEDS      (CCR_BUFFER_LEDS_HALF * 2)
+#define CCR_BUFFER_LEN       (CCR_BUFFER_LEDS * LED_BPP)
 
 static uint32_t rgb_buf[LED_COUNT];
 static uint32_t* rgb = rgb_buf;

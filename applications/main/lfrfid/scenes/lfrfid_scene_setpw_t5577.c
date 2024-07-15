@@ -2,12 +2,12 @@
 #include "../helpers/lfrfid_dialog.h"
 #include <lfrfid_icons.h>
 
-#define LFRFID_T5577_BITRATE_RF_64 0x00140000
+#define LFRFID_T5577_BITRATE_RF_64         0x00140000
 #define LFRFID_T5577_MODULATION_MANCHESTER 0x00008000
-#define LFRFID_T5577_PWD 0x00000010
-#define LFRFID_T5577_MAXBLOCK_SHIFT 5
-#define LFRFID_T5577_TESTMODE_DISABLED 0x60000000
-#define LFRFID_T5577_PASSWORD_BLOCK_NO 7
+#define LFRFID_T5577_PWD                   0x00000010
+#define LFRFID_T5577_MAXBLOCK_SHIFT        5
+#define LFRFID_T5577_TESTMODE_DISABLED     0x60000000
+#define LFRFID_T5577_PASSWORD_BLOCK_NO     7
 
 static void lfrfid_setpw_t5577_password_and_config_to_EM(LfRfid* app) {
     Popup* popup = app->popup;

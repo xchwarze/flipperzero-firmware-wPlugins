@@ -3,12 +3,12 @@
 
 #define TAG "SubBruteSceneLoadFile"
 
-#define MIN_TD 0
-#define MAX_TD 255
+#define MIN_TD  0
+#define MAX_TD  255
 #define MIN_REP 1
 #define MAX_REP 100
-#define MIN_TE 100
-#define MAX_TE 600
+#define MIN_TE  100
+#define MAX_TE  600
 
 enum SubBruteVarListIndex {
     SubBruteVarListIndexTimeDelay,

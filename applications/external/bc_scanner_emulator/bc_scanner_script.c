@@ -6,12 +6,12 @@
 #include "cli/cli_vcp.h"
 #include "cli/cli.h"
 
-#define TAG "BarCodeScanner"
-#define WORKER_TAG TAG "Worker"
+#define TAG             "BarCodeScanner"
+#define WORKER_TAG      TAG "Worker"
 #define FILE_BUFFER_LEN 50
 
-#define SCRIPT_STATE_ERROR (-1)
-#define SCRIPT_STATE_END (-2)
+#define SCRIPT_STATE_ERROR     (-1)
+#define SCRIPT_STATE_END       (-2)
 #define SCRIPT_STATE_NEXT_LINE (-3)
 
 #define UART_BAUD 19200

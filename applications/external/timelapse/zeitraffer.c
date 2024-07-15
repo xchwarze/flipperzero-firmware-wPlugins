@@ -8,7 +8,7 @@
 #include "zeitraffer_icons.h"
 
 #define CONFIG_FILE_DIRECTORY_PATH "/ext/apps_data/intervalometer"
-#define CONFIG_FILE_PATH CONFIG_FILE_DIRECTORY_PATH "/intervalometer.conf"
+#define CONFIG_FILE_PATH           CONFIG_FILE_DIRECTORY_PATH "/intervalometer.conf"
 
 // Часть кода покрадена из https://github.com/zmactep/flipperzero-hello-world
 

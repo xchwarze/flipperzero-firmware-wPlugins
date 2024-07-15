@@ -13,10 +13,19 @@
 #include <tarot_icons.h>
 
 /* ids for all scenes used by the app */
-typedef enum { AppScene_MainMenu, AppScene_About, AppScene_Game, AppScene_count } AppScene;
+typedef enum {
+    AppScene_MainMenu,
+    AppScene_About,
+    AppScene_Game,
+    AppScene_count
+} AppScene;
 
 /* ids for the 2 types of view used by the app */
-typedef enum { AppView_Submenu, AppView_Popup, AppView_Widget } AppView;
+typedef enum {
+    AppView_Submenu,
+    AppView_Popup,
+    AppView_Widget
+} AppView;
 
 /* the app context struct */
 typedef struct {
@@ -28,12 +37,18 @@ typedef struct {
 } App;
 
 /* all custom events */
-typedef enum { AppEvent_ShowGame, AppEvent_ShowAbout } AppEvent;
+typedef enum {
+    AppEvent_ShowGame,
+    AppEvent_ShowAbout
+} AppEvent;
 
 /* main menu scene */
 
 /* indices for menu items */
-typedef enum { AppMenuSelection_Run, AppMenuSelection_About } AppMenuSelection;
+typedef enum {
+    AppMenuSelection_Run,
+    AppMenuSelection_About
+} AppMenuSelection;
 
 /* main menu callback - sends a custom event to the scene manager based on the menu selection */
 void tarot_app_menu_callback_main_menu(void* context, uint32_t index) {

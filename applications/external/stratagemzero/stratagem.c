@@ -11,7 +11,7 @@
 #include "tinyfont.h"
 
 #define TIME_PENALTY_MULTIPLIER 0.10
-#define TIME_REWARD_MULTIPLIER 0.10
+#define TIME_REWARD_MULTIPLIER  0.10
 #define TIME_DECREASE_MULTIPLER 0.125
 
 typedef struct {

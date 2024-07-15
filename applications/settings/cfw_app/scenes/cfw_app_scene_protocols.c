@@ -10,10 +10,10 @@ enum VarItemListIndex {
     VarItemListIndexUartNmeaChannel,
 };
 
-#define SPI_DEFAULT "Default 4"
-#define SPI_EXTRA "Extra 7"
+#define SPI_DEFAULT  "Default 4"
+#define SPI_EXTRA    "Extra 7"
 #define UART_DEFAULT "Default 13,14"
-#define UART_EXTRA "Extra 15,16"
+#define UART_EXTRA   "Extra 15,16"
 
 void cfw_app_scene_protocols_var_item_list_callback(void* context, uint32_t index) {
     CfwApp* app = context;

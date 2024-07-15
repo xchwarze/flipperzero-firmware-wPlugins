@@ -3,7 +3,7 @@
 #include <furi_hal.h>
 #include <storage/storage.h>
 
-#define TAG "WIFI_MAP"
+#define TAG       "WIFI_MAP"
 #define FILE_NAME "wifi_map_data.csv"
 
 #include <gui/gui.h>
@@ -15,11 +15,11 @@
 #include <locale/locale.h>
 #include <expansion/expansion.h>
 
-#define MAX_AP_LIST 20
+#define MAX_AP_LIST        20
 #define WORKER_EVENTS_MASK (WorkerEventStop | WorkerEventRx)
 
 // Screen is 128x64 px
-#define SCREEN_WIDTH 128
+#define SCREEN_WIDTH  128
 #define SCREEN_HEIGHT 64
 
 typedef struct {

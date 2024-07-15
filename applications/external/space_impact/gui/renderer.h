@@ -2,7 +2,7 @@
 #include <gui/canvas.h>
 #include <space_impact_icons.h>
 
-#define SCREEN_WIDTH 128
+#define SCREEN_WIDTH  128
 #define SCREEN_HEIGHT 64
 
 static bool isInverted;

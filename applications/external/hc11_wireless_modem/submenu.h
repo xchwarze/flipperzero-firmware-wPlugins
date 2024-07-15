@@ -7,7 +7,6 @@
 
 /** Views **/
 typedef enum {
-
     /* Submenu */
     view_submenu,
 

@@ -6,7 +6,10 @@
 
 #define TAG "TicTacToe"
 
-typedef enum { EventTypeTick, EventTypeKey } EventType;
+typedef enum {
+    EventTypeTick,
+    EventTypeKey
+} EventType;
 
 typedef struct {
     FuriMutex* mutex;

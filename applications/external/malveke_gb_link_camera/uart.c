@@ -1,8 +1,8 @@
 #include "uart.h"
 
-#define UART_CH (FuriHalSerialIdUsart)
+#define UART_CH    (FuriHalSerialIdUsart)
 #define LP_UART_CH (FuriHalSerialIdLpuart)
-#define BAUDRATE (115200UL)
+#define BAUDRATE   (115200UL)
 
 struct Uart {
     void* app;

@@ -9,8 +9,8 @@
 #include <notification/notification.h>
 
 /*** Defines ***/
-#define BL_OFF 0
-#define BL_ON 1
+#define BL_OFF  0
+#define BL_ON   1
 #define BL_AUTO 2
 
 /*** Types ***/

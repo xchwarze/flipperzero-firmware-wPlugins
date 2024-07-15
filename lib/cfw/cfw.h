@@ -10,13 +10,13 @@
 extern "C" {
 #endif
 
-#define CFW_SETTINGS_PATH CFG_PATH("cfw_settings.txt")
-#define CFW_MENU_PATH CFG_PATH("cfw_mainmenu.txt")
+#define CFW_SETTINGS_PATH       CFG_PATH("cfw_settings.txt")
+#define CFW_MENU_PATH           CFG_PATH("cfw_mainmenu.txt")
 #define CFW_MENU_GAMESMODE_PATH CFG_PATH("cfw_gamesmenu.txt")
-#define CFW_APPS_PATH CFW_MENU_PATH
-#define NAMESPOOF_HEADER "Flipper Name File"
-#define NAMESPOOF_VERSION 1
-#define NAMESPOOF_PATH EXT_PATH("dolphin/name.txt")
+#define CFW_APPS_PATH           CFW_MENU_PATH
+#define NAMESPOOF_HEADER        "Flipper Name File"
+#define NAMESPOOF_VERSION       1
+#define NAMESPOOF_PATH          EXT_PATH("dolphin/name.txt")
 
 typedef enum {
     MenuStyleList,

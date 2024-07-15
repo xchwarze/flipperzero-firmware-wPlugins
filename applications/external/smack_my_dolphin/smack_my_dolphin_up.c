@@ -3,7 +3,7 @@
 #include <power/power_service/power.h>
 #include <storage/storage.h>
 
-#define TAG "Smack My Dolphin Up!"
+#define TAG                     "Smack My Dolphin Up!"
 #define DOLPHIN_STATE_FILE_PATH "/int/.dolphin.state"
 
 typedef enum {

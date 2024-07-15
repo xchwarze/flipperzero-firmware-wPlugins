@@ -6,7 +6,10 @@ enum TuLlaveReadViewEvent {
     TuLlaveReadViewOnMore,
     TuLlaveReadViewOnShowHistory
 };
-enum MoreSubmenuIndex { MoreSubmenuShowHistory, MoreSubmenuEmulate };
+enum MoreSubmenuIndex {
+    MoreSubmenuShowHistory,
+    MoreSubmenuEmulate
+};
 
 void tullave_scene_read_widget_callback(GuiButtonType result, InputType type, void* context) {
     TuLlaveApp* instance = context;

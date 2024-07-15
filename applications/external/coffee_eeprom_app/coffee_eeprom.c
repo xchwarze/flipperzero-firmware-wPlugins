@@ -10,7 +10,7 @@
 #include <dialogs/dialogs.h>
 #include <lib/toolbox/name_generator.h>
 
-#define TAG "COFFEE EEPROM"
+#define TAG        "COFFEE EEPROM"
 #define MAX_CREDIT 655.35
 #define MIN_CREDIT 0.01
 

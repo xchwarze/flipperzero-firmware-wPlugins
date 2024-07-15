@@ -9,7 +9,7 @@
 #include <notification/notification_messages.h>
 #include <expansion/expansion.h>
 
-#define TAG_MEMSIC "memsic_2125_app"
+#define TAG_MEMSIC  "memsic_2125_app"
 #define TAG_COUNTER "step_counter_app"
 
 typedef struct {

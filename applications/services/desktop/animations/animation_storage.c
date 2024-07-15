@@ -14,8 +14,8 @@
 #include <assets_dolphin_blocking.h>
 
 #define ANIMATION_META_FILE "meta.txt"
-#define ANIMATION_DIR EXT_PATH("dolphin")
-#define TAG "AnimationStorage"
+#define ANIMATION_DIR       EXT_PATH("dolphin")
+#define TAG                 "AnimationStorage"
 
 static void animation_storage_free_bubbles(BubbleAnimation* animation);
 static void animation_storage_free_frames(BubbleAnimation* animation);

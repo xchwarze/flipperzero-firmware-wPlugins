@@ -4,7 +4,7 @@
 #include <string>
 #include "../UFZ/UI.hpp"
 
-#define CTX(x) ((FTasks::ApplicationData*)(x))
+#define CTX(x)               ((FTasks::ApplicationData*)(x))
 #define TASKS_TODO_DATA_FILE STORAGE_APP_DATA_PATH_PREFIX "/todo.save"
 #define TASKS_DONE_DATA_FILE STORAGE_APP_DATA_PATH_PREFIX "/done.save"
 
@@ -24,10 +24,16 @@ enum Scenes {
 }
 
 namespace Dialogs {
-enum Dialogs { DESCRIPTION, DONE, RENAME, EDIT_DESCRIPTION, DELETE };
+enum Dialogs {
+    DESCRIPTION,
+    DONE,
+    RENAME,
+    EDIT_DESCRIPTION,
+    DELETE
+};
 }
 
-typedef std::vector<std::pair<std::string, std::string> > NoteContainer;
+typedef std::vector<std::pair<std::string, std::string>> NoteContainer;
 
 struct Containers {
     NoteContainer todo{{"+ New task", "Describes a new task"}};

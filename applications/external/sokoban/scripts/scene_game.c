@@ -19,10 +19,10 @@
 #include <storage/storage.h>
 
 #define MAX_READ_BUFFER_SIZE 256
-#define MAX_FILENAME_LEN 256
-#define MAX_BOARD_SIZE 50
-#define CELL_SIZE 9
-#define MAX_UNDO_STATES 10
+#define MAX_FILENAME_LEN     256
+#define MAX_BOARD_SIZE       50
+#define CELL_SIZE            9
+#define MAX_UNDO_STATES      10
 
 typedef enum {
     CellType_Empty,

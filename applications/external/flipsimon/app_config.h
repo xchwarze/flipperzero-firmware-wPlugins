@@ -1,5 +1,5 @@
-#define TAG "FlipBoardSimon"
-#define FLIPBOARD_APP_NAME "simon"
+#define TAG                         "FlipBoardSimon"
+#define FLIPBOARD_APP_NAME          "simon"
 #define FLIPBOARD_PRIMARY_ITEM_NAME "Play Simon"
 
 // Uncomment the next line to use the LED driver, or comment to use bit-banging the WS2812B LEDs.

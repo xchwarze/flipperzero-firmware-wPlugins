@@ -1,5 +1,5 @@
-#define TAG "FlipboardKeyboard"
-#define FLIPBOARD_APP_NAME "keyboard"
+#define TAG                         "FlipboardKeyboard"
+#define FLIPBOARD_APP_NAME          "keyboard"
 #define FLIPBOARD_PRIMARY_ITEM_NAME "Flipboard Keyboard"
 
 // Uncomment the next line to use the LED driver, or comment to use bit-banging the WS2812B LEDs.

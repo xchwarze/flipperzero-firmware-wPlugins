@@ -7,7 +7,12 @@
 #include "../../constants.h"
 #include "../../settings_management.h"
 
-enum ButtonIndexes { reset_game, vibration, sound, about };
+enum ButtonIndexes {
+    reset_game,
+    vibration,
+    sound,
+    about
+};
 
 static const char* off_on_options[] = {"OFF", "ON"};
 

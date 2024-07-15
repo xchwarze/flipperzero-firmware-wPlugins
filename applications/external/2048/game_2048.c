@@ -17,14 +17,14 @@
 #include "digits.h"
 #include "array_utils.h"
 
-#define CELLS_COUNT 4
+#define CELLS_COUNT     4
 #define CELL_INNER_SIZE 14
-#define FRAME_LEFT 10
-#define FRAME_TOP 1
-#define FRAME_SIZE 61
+#define FRAME_LEFT      10
+#define FRAME_TOP       1
+#define FRAME_SIZE      61
 
 #define SAVING_DIRECTORY EXT_PATH("apps_data/game_2048")
-#define SAVING_FILENAME SAVING_DIRECTORY "/game_2048.save"
+#define SAVING_FILENAME  SAVING_DIRECTORY "/game_2048.save"
 
 typedef enum {
     GameStateMenu,

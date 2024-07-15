@@ -17,8 +17,8 @@
 
 #define UART_RX_STREAM_BUF_SIZE 1024
 
-#define CR 13
-#define LF 10
+#define CR    13
+#define LF    10
 #define SLASH 47
 
 /*** Parameters ***/

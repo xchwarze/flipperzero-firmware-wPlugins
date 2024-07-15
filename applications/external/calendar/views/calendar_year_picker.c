@@ -4,10 +4,10 @@
 #include <core/record.h>
 #include <core/log.h>
 
-#define COLUMN_GAP_PX 28
-#define ROW_GAP_PX 13
+#define COLUMN_GAP_PX         28
+#define ROW_GAP_PX            13
 #define GRID_TEMPLATE_COLUMNS 4
-#define GRID_TEMPLATE_ROWS 4
+#define GRID_TEMPLATE_ROWS    4
 
 struct YearPicker {
     View* view;

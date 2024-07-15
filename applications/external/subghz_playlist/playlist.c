@@ -23,13 +23,13 @@
 #include "canvas_helper.h"
 
 #define PLAYLIST_EXT ".txt"
-#define TAG "Playlist"
+#define TAG          "Playlist"
 
-#define STATE_NONE 0
+#define STATE_NONE     0
 #define STATE_OVERVIEW 1
-#define STATE_SENDING 2
+#define STATE_SENDING  2
 
-#define WIDTH 128
+#define WIDTH  128
 #define HEIGHT 64
 
 typedef struct {

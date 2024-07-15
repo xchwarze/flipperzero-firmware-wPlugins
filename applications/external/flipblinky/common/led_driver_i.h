@@ -17,12 +17,12 @@
 #define LED_DRIVER_TIMER_NANOSECOND (1000U / (SystemCoreClock / 1000000U))
 
 // Timings for WS2812B
-#define LED_DRIVER_T0H 400U
-#define LED_DRIVER_T1H 800U
-#define LED_DRIVER_T0L 850U
-#define LED_DRIVER_T1L 450U
+#define LED_DRIVER_T0H     400U
+#define LED_DRIVER_T1H     800U
+#define LED_DRIVER_T0L     850U
+#define LED_DRIVER_T1L     450U
 #define LED_DRIVER_TRESETL 55 * 1000U
-#define LED_DRIVER_TDONE 2000U
+#define LED_DRIVER_TDONE   2000U
 
 // Max wait for the DMA to complete. NOTE: 4000 leds*(850ns+450ns)*24 = 124.8ms + 50ms blanking = 174.8ms
 #define LED_DRIVER_SETINEL_WAIT_MS 200

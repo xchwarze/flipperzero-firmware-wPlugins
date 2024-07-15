@@ -48,7 +48,7 @@
   board).
 */
 #define SCL_CHESS_PIECE_MAX_MOVES 25
-#define SCL_BOARD_SQUARES 64
+#define SCL_BOARD_SQUARES         64
 
 typedef uint8_t (*SCL_RandomFunction)(void);
 
@@ -210,9 +210,9 @@ uint8_t SCL_squareSetGetRandom(const SCL_SquareSet squareSet, SCL_RandomFunction
 typedef char SCL_Board[SCL_BOARD_STATE_SIZE];
 
 #define SCL_BOARD_ENPASSANT_CASTLE_BYTE 64
-#define SCL_BOARD_PLY_BYTE 65
-#define SCL_BOARD_MOVE_COUNT_BYTE 66
-#define SCL_BOARD_EXTRA_BYTE 67
+#define SCL_BOARD_PLY_BYTE              65
+#define SCL_BOARD_MOVE_COUNT_BYTE       66
+#define SCL_BOARD_EXTRA_BYTE            67
 
 #if SCL_960_CASTLING
 #define _SCL_EXTRA_BYTE_VALUE (0 | (7 << 3)) // rooks on classic positions
@@ -265,22 +265,22 @@ typedef struct {
                                 en passant */
 } SCL_MoveUndo;
 
-#define SCL_GAME_STATE_PLAYING 0x00
-#define SCL_GAME_STATE_WHITE_WIN 0x01
-#define SCL_GAME_STATE_BLACK_WIN 0x02
-#define SCL_GAME_STATE_DRAW 0x10 ///< further unspecified draw
-#define SCL_GAME_STATE_DRAW_STALEMATE 0x11 ///< draw by stalemate
+#define SCL_GAME_STATE_PLAYING         0x00
+#define SCL_GAME_STATE_WHITE_WIN       0x01
+#define SCL_GAME_STATE_BLACK_WIN       0x02
+#define SCL_GAME_STATE_DRAW            0x10 ///< further unspecified draw
+#define SCL_GAME_STATE_DRAW_STALEMATE  0x11 ///< draw by stalemate
 #define SCL_GAME_STATE_DRAW_REPETITION 0x12 ///< draw by repetition
-#define SCL_GAME_STATE_DRAW_50 0x13 ///< draw by 50 move rule
-#define SCL_GAME_STATE_DRAW_DEAD 0x14 ///< draw by dead position
-#define SCL_GAME_STATE_END 0xff ///< end without known result
+#define SCL_GAME_STATE_DRAW_50         0x13 ///< draw by 50 move rule
+#define SCL_GAME_STATE_DRAW_DEAD       0x14 ///< draw by dead position
+#define SCL_GAME_STATE_END             0xff ///< end without known result
 
 /**
   Converts square in common notation (e.g. 'c' 8) to square number. Only accepts
   lowercase column.
 */
 #define SCL_SQUARE(colChar, rowInt) (((rowInt) - 1) * 8 + ((colChar) - 'a'))
-#define SCL_S(c, r) SCL_SQUARE(c, r)
+#define SCL_S(c, r)                 SCL_SQUARE(c, r)
 
 void SCL_boardInit(SCL_Board board);
 void SCL_boardCopy(const SCL_Board boardFrom, SCL_Board boardTo);
@@ -423,11 +423,11 @@ uint8_t SCL_boardMoveIsLegal(SCL_Board board, uint8_t squareFrom, uint8_t square
 */
 uint8_t SCL_boardMovePossible(SCL_Board board);
 
-#define SCL_POSITION_NORMAL 0x00
-#define SCL_POSITION_CHECK 0x01
-#define SCL_POSITION_MATE 0x02
+#define SCL_POSITION_NORMAL    0x00
+#define SCL_POSITION_CHECK     0x01
+#define SCL_POSITION_MATE      0x02
 #define SCL_POSITION_STALEMATE 0x03
-#define SCL_POSITION_DEAD 0x04
+#define SCL_POSITION_DEAD      0x04
 
 uint8_t SCL_boardGetPosition(SCL_Board board);
 
@@ -524,10 +524,10 @@ static inline uint8_t SCL_coordsToSquare(uint8_t row, uint8_t column);
 */
 typedef uint8_t SCL_Record[SCL_RECORD_MAX_SIZE];
 
-#define SCL_RECORD_CONT 0x00
+#define SCL_RECORD_CONT  0x00
 #define SCL_RECORD_W_WIN 0x40
 #define SCL_RECORD_B_WIN 0x80
-#define SCL_RECORD_END 0xc0
+#define SCL_RECORD_END   0xc0
 
 #define SCL_RECORD_PROM_Q 0x00
 #define SCL_RECORD_PROM_R 0x40
@@ -637,10 +637,10 @@ void SCL_recordApply(const SCL_Record r, SCL_Board b, uint16_t moves);
 int16_t SCL_pieceValue(char piece);
 int16_t SCL_pieceValuePositive(char piece);
 
-#define SCL_PRINT_FORMAT_NONE 0
-#define SCL_PRINT_FORMAT_NORMAL 1
-#define SCL_PRINT_FORMAT_COMPACT 2
-#define SCL_PRINT_FORMAT_UTF8 3
+#define SCL_PRINT_FORMAT_NONE         0
+#define SCL_PRINT_FORMAT_NORMAL       1
+#define SCL_PRINT_FORMAT_COMPACT      2
+#define SCL_PRINT_FORMAT_UTF8         3
 #define SCL_PRINT_FORMAT_COMPACT_UTF8 4
 
 /**
@@ -2328,16 +2328,16 @@ int16_t SCL_pieceValue(char piece) {
     return 0;
 }
 
-#define ATTACK_BONUS 3
-#define MOBILITY_BONUS 10
-#define CENTER_BONUS 7
-#define CHECK_BONUS 5
-#define KING_CASTLED_BONUS 30
-#define KING_BACK_BONUS 15
+#define ATTACK_BONUS          3
+#define MOBILITY_BONUS        10
+#define CENTER_BONUS          7
+#define CHECK_BONUS           5
+#define KING_CASTLED_BONUS    30
+#define KING_BACK_BONUS       15
 #define KING_NOT_CENTER_BONUS 15
 #define PAWN_NON_DOUBLE_BONUS 3
-#define PAWN_PAIR_BONUS 3
-#define KING_CENTERNESS 10
+#define PAWN_PAIR_BONUS       3
+#define KING_CENTERNESS       10
 
 int16_t _SCL_rateKingEndgamePosition(uint8_t position) {
     int16_t result = 0;

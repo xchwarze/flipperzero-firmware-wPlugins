@@ -24,8 +24,8 @@
 // #include <sd_spi_app_icons.h>
 
 #define TEXT_BOX_STORE_SIZE (4096)
-#define PASSWORD_MAX_LEN (16)
-#define ALERT_MAX_LEN 32
+#define PASSWORD_MAX_LEN    (16)
+#define ALERT_MAX_LEN       32
 
 #define STORAGE_LOCKED_FILE "pwd.txt"
 
@@ -61,7 +61,12 @@ typedef struct {
 } SDSPIApp;
 
 /** all custom events */
-typedef enum { AppEvent_Status, AppEvent_Confirmation, AppEvent_Password, AppEvent_Info } AppEvent;
+typedef enum {
+    AppEvent_Status,
+    AppEvent_Confirmation,
+    AppEvent_Password,
+    AppEvent_Info
+} AppEvent;
 
 /** indices for menu items */
 typedef enum {

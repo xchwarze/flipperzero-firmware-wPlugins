@@ -20,10 +20,10 @@
 #include "lib/nfclegacy/nfc_device.h"
 #include "mifare_nested_icons.h"
 
-#define NESTED_VERSION_APP FAP_VERSION
-#define NESTED_GITHUB_LINK "https://github.com/AloneLiberty/FlipperNested"
+#define NESTED_VERSION_APP              FAP_VERSION
+#define NESTED_GITHUB_LINK              "https://github.com/AloneLiberty/FlipperNested"
 #define NESTED_RECOVER_KEYS_GITHUB_LINK "https://github.com/AloneLiberty/FlipperNestedRecovery"
-#define NESTED_NONCE_FORMAT_VERSION "3"
+#define NESTED_NONCE_FORMAT_VERSION     "3"
 #define NESTED_AUTHOR \
     "@AloneLiberty (t.me/libertydev)\nMade it work with latest firmware by @xMasterX"
 
@@ -74,7 +74,11 @@ typedef struct {
     bool only_hardnested;
 } MifareNestedSettings;
 
-typedef enum { NestedRunIdle, NestedRunCheckKeys, NestedRunAttack } NestedRunNext;
+typedef enum {
+    NestedRunIdle,
+    NestedRunCheckKeys,
+    NestedRunAttack
+} NestedRunNext;
 
 struct MifareNested {
     MifareNestedWorker* worker;

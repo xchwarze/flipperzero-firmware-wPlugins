@@ -14,11 +14,15 @@
 #include <dialogs/dialogs.h>
 #include <storage/storage.h>
 
-#define MUSIC_PLAYER_APP_EXTENSION "*"
-#define TAG "FMF2USB_MIDI"
+#define MUSIC_PLAYER_APP_EXTENSION   "*"
+#define TAG                          "FMF2USB_MIDI"
 #define MUSIC_PLAYER_APP_PATH_FOLDER "/ext/music_player"
 
-typedef enum { FmStatus_Idle, FmStatus_Loading, FmStatus_Sending } FmStatus;
+typedef enum {
+    FmStatus_Idle,
+    FmStatus_Loading,
+    FmStatus_Sending
+} FmStatus;
 
 typedef struct {
     Gui* gui;

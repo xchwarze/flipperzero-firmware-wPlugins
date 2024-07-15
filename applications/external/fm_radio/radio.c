@@ -48,7 +48,7 @@ struct Station {
 };
 
 #define NUM_VOLUME_VALUES (sizeof(volume_values) / sizeof(volume_values[0]))
-#define NUM_STATIONS (sizeof(stations) / sizeof(stations[0]))
+#define NUM_STATIONS      (sizeof(stations) / sizeof(stations[0]))
 
 // Array of Stations
 struct Station stations[] = {

@@ -3,7 +3,7 @@
 #include <furi_hal_i2c.h>
 #include <furi_hal_resources.h>
 
-#define I2C_BUS &furi_hal_i2c_handle_external
+#define I2C_BUS     &furi_hal_i2c_handle_external
 #define I2C_TIMEOUT 50
 
 typedef struct {

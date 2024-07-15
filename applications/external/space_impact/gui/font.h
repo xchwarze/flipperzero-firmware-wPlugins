@@ -4,7 +4,7 @@
 #include "renderer.h"
 
 #define FONT_HEIGHT 5
-#define FONT_WIDTH 3
+#define FONT_WIDTH  3
 
 static uint8_t font[10][15] = {
     {1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1}, // 0

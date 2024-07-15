@@ -19,17 +19,17 @@
 #define RPS_GAME_FOLDER      \
     RPS_APPS_DATA_FOLDER "/" \
                          "rock_paper_scissors"
-#define RPS_GAME_FILE_NAME "games.txt"
-#define RPS_GAME_PATH RPS_GAME_FOLDER "/" RPS_GAME_FILE_NAME
+#define RPS_GAME_FILE_NAME   "games.txt"
+#define RPS_GAME_PATH        RPS_GAME_FOLDER "/" RPS_GAME_FILE_NAME
 #define RPS_SOCIAL_FILE_NAME "social.me"
-#define RPS_SOCIAL_PATH RPS_GAME_FOLDER "/" RPS_SOCIAL_FILE_NAME
+#define RPS_SOCIAL_PATH      RPS_GAME_FOLDER "/" RPS_SOCIAL_FILE_NAME
 
 // This is sent at the beginning of all RF messages (after the flipper name).
 #define RPS_GAME_NAME "RPS"
-#define TAG "rock_paper_scissors_app"
+#define TAG           "rock_paper_scissors_app"
 
 // Name for "N", followed by your name without any spaces.
-#define CONTACT_INFO "_"
+#define CONTACT_INFO      "_"
 #define CONTACT_INFO_NONE "_"
 
 // The message max length should be no larger than a value around 60 to 64.
@@ -46,9 +46,9 @@
 
 // Temporary timings, since I don't have second Flipper & send commands via laptop.
 #define DURATION_NO_MOVE_DETECTED_ERROR 60000
-#define DURATION_SHOW_ERROR 3000
-#define DURATION_SHOW_MOVES 500
-#define DURATION_WIN_LOSS_TIE 10000
+#define DURATION_SHOW_ERROR             3000
+#define DURATION_SHOW_MOVES             500
+#define DURATION_WIN_LOSS_TIE           10000
 
 typedef enum {
     DolphinLocalLooking = 0,
@@ -286,7 +286,7 @@ typedef struct {
 } GameContext;
 
 #define KEYBOARD_BACKSPACE 0xAB
-#define KEYBOARD_ENTER 0xBB
+#define KEYBOARD_ENTER     0xBB
 
 char keyboard[4][14] = {
     {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '.', '_', KEYBOARD_BACKSPACE},

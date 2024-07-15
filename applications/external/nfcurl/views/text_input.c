@@ -38,9 +38,9 @@ static const uint8_t keyboard_origin_x = 1;
 static const uint8_t keyboard_origin_y = 29;
 static const uint8_t keyboard_row_count = 3;
 
-#define ENTER_KEY '\r'
+#define ENTER_KEY     '\r'
 #define BACKSPACE_KEY '\b'
-#define SYMBOLS_KEY '^'
+#define SYMBOLS_KEY   '^'
 
 static const TextInputKey keyboard_keys_row_1[] = {
     {'q', 1, 8},

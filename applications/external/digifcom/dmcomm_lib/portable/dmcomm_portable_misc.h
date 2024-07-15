@@ -21,7 +21,11 @@ enum SignalType {
     kSignalTypeError
 };
 
-enum ResultSegmentType { kDataSent, kDataReceived, kNoData };
+enum ResultSegmentType {
+    kDataSent,
+    kDataReceived,
+    kNoData
+};
 
 enum ReceiveStatus {
     kStatusReceived,

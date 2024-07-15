@@ -18,7 +18,7 @@
 #include "helpers/color_guess_storage.h"
 
 #define COLOR_GUESS_VERSION FAP_VERSION
-#define TAG "Color_Guess"
+#define TAG                 "Color_Guess"
 
 typedef struct {
     Gui* gui;

@@ -16,36 +16,36 @@
 #include <storage/storage.h>
 #include <dialogs/dialogs.h>
 
-#define PATHAPP "apps_data/modbus"
+#define PATHAPP    "apps_data/modbus"
 #define PATHAPPEXT EXT_PATH(PATHAPP)
-#define PATHLOGS PATHAPPEXT "/logs"
+#define PATHLOGS   PATHAPPEXT "/logs"
 
-#define BR_VALUES 12
-#define DATAWIDTH_VALUES 3
-#define STOPBITS_VALUES 4
-#define PARITY_VALUES 3
-#define TIMEOUT_VALUES 255
+#define BR_VALUES            12
+#define DATAWIDTH_VALUES     3
+#define STOPBITS_VALUES      4
+#define PARITY_VALUES        3
+#define TIMEOUT_VALUES       255
 #define DIGITALFORMAT_VALUES 2
-#define ANALOGFORMAT_VALUES 2
-#define SAVE_LOG_VALUES 2
+#define ANALOGFORMAT_VALUES  2
+#define SAVE_LOG_VALUES      2
 
-#define RX_BUF_SIZE 255
-#define UART_CH FuriHalSerialIdUsart
-#define TEXT_BOX_LEN 4096
+#define RX_BUF_SIZE                        255
+#define UART_CH                            FuriHalSerialIdUsart
+#define TEXT_BOX_LEN                       4096
 #define FURI_HAL_SERIAL_USART_OVERSAMPLING 0x00000000U
-#define TIMEOUT_SCALER 50
+#define TIMEOUT_SCALER                     50
 
 #define FixedModbusSize 4
 #define FixedPaket \
     ((!app->modbus->slave && FUNCTION <= 0x06) || (app->modbus->slave && FUNCTION >= 0x0F))
-#define SLAVE buf[0]
-#define FUNCTION buf[1]
-#define EXCEPTION buf[2] - 1
+#define SLAVE        buf[0]
+#define FUNCTION     buf[1]
+#define EXCEPTION    buf[2] - 1
 #define STARTADDRESS (buf[2] << 8 | buf[3])
-#define QUANTITY (buf[4] << 8 | buf[5])
-#define BYTECOUNT buf[6]
-#define CRCH buf[len - 2]
-#define CRCL buf[len - 1]
+#define QUANTITY     (buf[4] << 8 | buf[5])
+#define BYTECOUNT    buf[6]
+#define CRCH         buf[len - 2]
+#define CRCL         buf[len - 1]
 
 //////////////////////////   Defining Structs  //////////////////////////
 typedef enum {
@@ -58,7 +58,12 @@ typedef enum {
     MSGsBuffer_Scene,
     Scene_Num
 } Scenes;
-typedef enum { Submenu_View, VarList_View, TextBox_View, ByteInput_View } Views;
+typedef enum {
+    Submenu_View,
+    VarList_View,
+    TextBox_View,
+    ByteInput_View
+} Views;
 typedef enum {
     Settings_Option,
     Sniffer_Option,
@@ -136,7 +141,9 @@ typedef enum {
     SaveLOG_Option
 } Settings_Options;
 
-typedef enum { Refresh = 0 } UartEvents;
+typedef enum {
+    Refresh = 0
+} UartEvents;
 
 void BuildSender(App* app, uint8_t* buf);
 

@@ -9,7 +9,9 @@
 #include <power/power_service/power.h>
 #include "lib/sdq/sdq_device.c"
 
-typedef enum { EventTypeKey } EventType;
+typedef enum {
+    EventTypeKey
+} EventType;
 
 typedef enum {
     YuriCableProMaxMainMenuScene,

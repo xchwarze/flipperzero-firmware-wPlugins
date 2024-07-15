@@ -5,12 +5,12 @@
 #include <core/log.h>
 #include <furi_hal_rtc.h>
 
-#define COLUMN_GAP_PX 17
-#define ROW_GAP_PX 11
-#define GRID_OFFSET_X 3
-#define GRID_OFFSET_Y 8
+#define COLUMN_GAP_PX         17
+#define ROW_GAP_PX            11
+#define GRID_OFFSET_X         3
+#define GRID_OFFSET_Y         8
 #define GRID_TEMPLATE_COLUMNS 7
-#define GRID_TEMPLATE_ROWS 5
+#define GRID_TEMPLATE_ROWS    5
 
 struct MonthBrowser {
     View* view;

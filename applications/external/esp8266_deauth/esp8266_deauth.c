@@ -20,7 +20,7 @@
 #define DEAUTH_APP_DEBUG 0
 
 #if DEAUTH_APP_DEBUG
-#define APP_NAME_TAG "WiFi_Deauther"
+#define APP_NAME_TAG                  "WiFi_Deauther"
 #define DEAUTH_APP_LOG_I(format, ...) FURI_LOG_I(APP_NAME_TAG, format, ##__VA_ARGS__)
 #define DEAUTH_APP_LOG_D(format, ...) FURI_LOG_D(APP_NAME_TAG, format, ##__VA_ARGS__)
 #define DEAUTH_APP_LOG_E(format, ...) FURI_LOG_E(APP_NAME_TAG, format, ##__VA_ARGS__)
@@ -30,11 +30,12 @@
 #define DEAUTH_APP_LOG_E(format, ...)
 #endif // WIFI_APP_DEBUG
 
-#define ENABLE_MODULE_POWER 1
+#define ENABLE_MODULE_POWER     1
 #define ENABLE_MODULE_DETECTION 1
 
 typedef enum EEventType // app internally defined event types
-{ EventTypeKey // flipper input.h type
+{
+    EventTypeKey // flipper input.h type
 } EEventType;
 
 typedef struct SPluginEvent {

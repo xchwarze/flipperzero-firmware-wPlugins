@@ -27,7 +27,11 @@ static CdcCallbacks cdc_callbacks =
     {vcp_on_cdc_tx_complete, vcp_on_cdc_rx, vcp_on_state_change, NULL, NULL};
 
 /*** Virtual COM port RX/TX thread events ***/
-typedef enum { stop = 1, data_avail = 2, data_to_send = 4 } vcp_rx_tx_thread_evts;
+typedef enum {
+    stop = 1,
+    data_avail = 2,
+    data_to_send = 4
+} vcp_rx_tx_thread_evts;
 
 /*** Hexadecimal digit icons ***/
 static const Icon* hex_icons[] = {

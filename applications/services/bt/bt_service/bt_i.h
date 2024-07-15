@@ -20,7 +20,7 @@
 #include <bt/bt_service/bt_keys_storage.h>
 
 #define BT_KEYS_STORAGE_OLD_PATH INT_PATH(".bt.keys")
-#define BT_KEYS_STORAGE_PATH CFG_PATH("bt.keys")
+#define BT_KEYS_STORAGE_PATH     CFG_PATH("bt.keys")
 
 typedef enum {
     BtMessageTypeUpdateStatus,

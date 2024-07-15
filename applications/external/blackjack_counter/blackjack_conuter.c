@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-#define HOT_COUNT_THRESHOLD 4
+#define HOT_COUNT_THRESHOLD  4
 #define BLACKJACK_MENU_TITLE "BlackJack Counter"
 
 int count = 0;

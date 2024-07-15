@@ -14,12 +14,12 @@
 #include <dolphin/dolphin.h>
 #include "nrf24_mouse_jacker_icons.h"
 
-#define TAG "mousejacker"
-#define LOGITECH_MAX_CHANNEL 85
+#define TAG                                "mousejacker"
+#define LOGITECH_MAX_CHANNEL               85
 #define NRFSNIFF_APP_PATH_FOLDER_ADDRESSES EXT_PATH("apps_data/nrfsniff/addresses.txt")
-#define LOCAL_BADUSB_FOLDER EXT_PATH("badusb")
-#define MOUSEJACKER_APP_PATH_EXTENSION ".txt"
-#define MAX_ADDRS 100
+#define LOCAL_BADUSB_FOLDER                EXT_PATH("badusb")
+#define MOUSEJACKER_APP_PATH_EXTENSION     ".txt"
+#define MAX_ADDRS                          100
 
 typedef enum {
     EventTypeTick,

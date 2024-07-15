@@ -4,78 +4,78 @@
     4000 //I need to keep this big enough? to have enough time inbetween HT & TC events perhaps?
 #define HITAG_CMD_BUFFER_SIZE 100 //this was originally 1000, but can be lowered
 
-#define READ_BUFFER_SIZE 4000
+#define READ_BUFFER_SIZE  4000
 #define READ_BUFFER_COUNT 4
 
-#define EMULATE_BUFFER_SIZE 50
+#define EMULATE_BUFFER_SIZE  50
 #define EMULATE_BUFFER_COUNT 50
 
 //bitlength/ID for read cmd structure
-#define HITAG_STOP 102
-#define HITAG_ON 101
-#define HITAG_OFF 100
-#define HITAG_SET 5
+#define HITAG_STOP   102
+#define HITAG_ON     101
+#define HITAG_OFF    100
+#define HITAG_SET    5
 #define HITAG_SELECT 5
-#define HITAG_CMD 4
-#define HITAG_BYTE 8
-#define HITAG_CRC 8
+#define HITAG_CMD    4
+#define HITAG_BYTE   8
+#define HITAG_CRC    8
 
 //carrier periods for read cmd structure
-#define HITAG_LOW 7
+#define HITAG_LOW       7
 #define HITAG_STOP_HIGH 40
-#define HITAG_1_HIGH 21
-#define HITAG_0_HIGH 15
+#define HITAG_1_HIGH    21
+#define HITAG_0_HIGH    15
 
 //bitlength for emulate reply cmd structure
-#define HITAG_PAGE 32
-#define HITAG_STARTBIT 1
+#define HITAG_PAGE      32
+#define HITAG_STARTBIT  1
 #define HITAG_STARTBIT3 3
 #define HITAG_STARTBIT6 6
-#define HITAG_ACK 3
-#define HITAG_ACK_ADV 8
+#define HITAG_ACK       3
+#define HITAG_ACK_ADV   8
 
 #define HITAG_BASEPERIOD 8
 
 //carrier periods for read reply decoding
-#define HITAG_DURATION_S 256
-#define HITAG_DURATION_M 384
-#define HITAG_DURATION_L 512
+#define HITAG_DURATION_S            256
+#define HITAG_DURATION_M            384
+#define HITAG_DURATION_L            512
 #define HITAG_DURATION_ERROR_MARGIN 0.15
 
 #define HITAG_BITPERIODS_AC 64
 #define HITAG_BITPERIODS_MC 32
 
 //MISC
-#define READ 1
+#define READ  1
 #define WRITE 2
 
-#define CRC_PRESET 0xFF
+#define CRC_PRESET  0xFF
 #define CRC_POLYNOM 0x1D
 
 #define TAG "LFRFIDHitagWorker"
 
 // TIMER definitions
-#define CARRIER_OUT_TIMER TIM1
-#define CARRIER_OUT_TIMER_BUS FuriHalBusTIM1
+#define CARRIER_OUT_TIMER         TIM1
+#define CARRIER_OUT_TIMER_BUS     FuriHalBusTIM1
 //#define CARRIER_OUT_TIMER_IRQ FuriHalInterruptIdTIM1 //TODO am i using this?
 #define CARRIER_OUT_TIMER_CHANNEL LL_TIM_CHANNEL_CH1 // or LL_TIM_CHANNEL_CH1N
 
-#define CARRIER_IN_TIMER TIM2
-#define CARRIER_IN_TIMER_BUS FuriHalBusTIM2
+#define CARRIER_IN_TIMER        TIM2
+#define CARRIER_IN_TIMER_BUS    FuriHalBusTIM2
 #define CARRIER_IN_TIMER_IND_CH LL_TIM_CHANNEL_CH2 //no longer used via ETR setup
 #define CARRIER_IN_TIMER_DIR_CH LL_TIM_CHANNEL_CH1 //no longer used via ETR setup
 
-#define CARRIER_IN_REFERENCE_TIMER TIM1
+#define CARRIER_IN_REFERENCE_TIMER     TIM1
 #define CARRIER_IN_REFERENCE_TIMER_BUS FuriHalBusTIM1
 
-#define PULL_OUT_TIMER TIM2
-#define PULL_OUT_TIMER_BUS FuriHalBusTIM2
+#define PULL_OUT_TIMER         TIM2
+#define PULL_OUT_TIMER_BUS     FuriHalBusTIM2
 #define PULL_OUT_TIMER_CHANNEL LL_TIM_CHANNEL_CH3
 
 // DMA Channels definition
-#define PULL_OUT_DMA DMA2
-#define PULL_OUT_DMA_CH1 LL_DMA_CHANNEL_1
-#define PULL_OUT_DMA_CH2 LL_DMA_CHANNEL_2
+#define PULL_OUT_DMA         DMA2
+#define PULL_OUT_DMA_CH1     LL_DMA_CHANNEL_1
+#define PULL_OUT_DMA_CH2     LL_DMA_CHANNEL_2
 #define PULL_OUT_DMA_CH1_IRQ FuriHalInterruptIdDma2Ch1
 #define PULL_OUT_DMA_CH1_DEF PULL_OUT_DMA, PULL_OUT_DMA_CH1
 #define PULL_OUT_DMA_CH2_DEF PULL_OUT_DMA, PULL_OUT_DMA_CH2

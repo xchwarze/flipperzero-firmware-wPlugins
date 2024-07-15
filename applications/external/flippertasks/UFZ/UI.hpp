@@ -37,26 +37,26 @@ public:                                                          \
     using UWidget::UWidget;                                      \
     inline operator ::x*() noexcept {                            \
         return y;                                                \
-    };                                                           \
+    }                                                            \
     x() = default;                                               \
     inline virtual UFZ::View getWidgetView() noexcept override { \
         return UFZ::View(FROM_PREFIX(y, get_view)(y));           \
     }                                                            \
     inline virtual void reset() noexcept override {              \
         FROM_PREFIX(y, reset)(y);                                \
-    };                                                           \
+    }                                                            \
                                                                  \
 private:                                                         \
     ::x* y = nullptr;                                            \
     inline virtual void alloc() noexcept override {              \
         (y) = FROM_PREFIX(y, alloc)();                           \
-    };                                                           \
+    }                                                            \
     inline virtual void free() noexcept override {               \
         FREE_GUARD(FROM_PREFIX(y, free), y);                     \
-    };
+    }
 
 #define GET_WIDGET_P(x, y, z) ((UFZ::Application*)(x))->getWidget<y>(z)
-#define RENDER_VIEW(x, y) ((UFZ::Application*)(x))->getViewDispatcher().switchToView(y)
+#define RENDER_VIEW(x, y)     ((UFZ::Application*)(x))->getViewDispatcher().switchToView(y)
 
 namespace UFZ {
 class Application;
@@ -109,10 +109,11 @@ public:
         AppSceneOnEnterCallback onEnter,
         AppSceneOnEventCallback onEvent,
         AppSceneOnExitCallback onExit,
-        const std::vector<View*>& additionalViews = {}) noexcept : enter(onEnter),
-                                                                   event(onEvent),
-                                                                   exit(onExit),
-                                                                   views(additionalViews) {
+        const std::vector<View*>& additionalViews = {}) noexcept
+        : enter(onEnter)
+        , event(onEvent)
+        , exit(onExit)
+        , views(additionalViews) {
     }
 
     void destroy() noexcept;

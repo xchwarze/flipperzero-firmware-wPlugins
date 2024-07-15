@@ -11,7 +11,12 @@ typedef enum {
     OPEN_HELP
 } ActionType;
 // Command availability in different modes
-typedef enum { OFF = 0, TEXT_MODE = 1, HEX_MODE = 2, BOTH_MODES = 3 } ModeMask;
+typedef enum {
+    OFF = 0,
+    TEXT_MODE = 1,
+    HEX_MODE = 2,
+    BOTH_MODES = 3
+} ModeMask;
 
 #define MAX_OPTIONS (8)
 

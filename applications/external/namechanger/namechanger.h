@@ -18,7 +18,7 @@
 #include "scenes/namechanger_scene.h"
 
 #define NAMECHANGER_TEXT_STORE_SIZE 9
-#define NAMECHANGER_HEADER "Flipper Name File"
+#define NAMECHANGER_HEADER          "Flipper Name File"
 
 #define TAG "NameChanger"
 

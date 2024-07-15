@@ -23,7 +23,7 @@
 #define TAG "Boilerplate"
 
 #define SUBGHZ_APP_EXTENSION ".sub"
-#define SUBGHZ_APP_FOLDER ANY_PATH("subghz")
+#define SUBGHZ_APP_FOLDER    ANY_PATH("subghz")
 
 typedef struct {
     Gui* gui;

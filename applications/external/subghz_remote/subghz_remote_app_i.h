@@ -27,7 +27,7 @@
 
 #include <flipper_format/flipper_format_i.h>
 
-#define SUBREM_APP_FOLDER EXT_PATH("subghz/subghz_remote")
+#define SUBREM_APP_FOLDER   EXT_PATH("subghz/subghz_remote")
 #define SUBREM_MAX_LEN_NAME 64
 
 typedef struct {

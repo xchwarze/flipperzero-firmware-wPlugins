@@ -3,11 +3,11 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define MAX_LEVEL 30
+#define MAX_LEVEL    30
 #define MAX_BUTTHURT 14
 
-#define DOLPHIN_STATE_PATH CFG_PATH("dolphin.state")
-#define DOLPHIN_STATE_HEADER_MAGIC 0xD0
+#define DOLPHIN_STATE_PATH           CFG_PATH("dolphin.state")
+#define DOLPHIN_STATE_HEADER_MAGIC   0xD0
 #define DOLPHIN_STATE_HEADER_VERSION 0x01
 
 #define BUTTHURT_MIN 0

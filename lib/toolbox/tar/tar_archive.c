@@ -109,11 +109,11 @@ int32_t gunzip_seek(Gunzip* gunzip, size_t pos) {
     return (pos == gunzip->dest_pos) ? 0 : -1;
 }
 
-#define TAG "TarArch"
-#define MAX_NAME_LEN 254
+#define TAG             "TarArch"
+#define MAX_NAME_LEN    254
 #define FILE_BLOCK_SIZE (10 * 1024)
 
-#define FILE_OPEN_NTRIES 10
+#define FILE_OPEN_NTRIES      10
 #define FILE_OPEN_RETRY_DELAY 25
 
 typedef struct TarArchive {
@@ -459,7 +459,7 @@ bool tar_archive_unpack_to(
     FURI_LOG_I(TAG, "Restoring '%s'", destination);
 
     return (mtar_foreach(&archive->tar, archive_extract_foreach_cb, &param) == MTAR_ESUCCESS);
-};
+}
 
 bool tar_archive_add_file(
     TarArchive* archive,

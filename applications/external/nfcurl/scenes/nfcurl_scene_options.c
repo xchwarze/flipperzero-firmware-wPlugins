@@ -1,7 +1,10 @@
 #include "../nfcurl_i.h"
 #include "nfcurl_scene.h"
 
-enum SubmenuIndex { SubmenuIndexSave = 0, SubmenuIndexExport = 1 };
+enum SubmenuIndex {
+    SubmenuIndexSave = 0,
+    SubmenuIndexExport = 1
+};
 
 void nfcurl_scene_options_submenu_callback(void* context, uint32_t index) {
     NfcUrlApp* app = context;

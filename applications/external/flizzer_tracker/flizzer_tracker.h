@@ -22,10 +22,10 @@
 #include "sound_engine/sound_engine_filter.h"
 #include "tracker_engine/tracker_engine_defs.h"
 
-#define APPSDATA_FOLDER "/ext/apps_assets"
-#define FLIZZER_TRACKER_FOLDER APP_ASSETS_PATH("")
+#define APPSDATA_FOLDER                    "/ext/apps_assets"
+#define FLIZZER_TRACKER_FOLDER             APP_ASSETS_PATH("")
 #define FLIZZER_TRACKER_INSTRUMENTS_FOLDER APP_ASSETS_PATH("instruments")
-#define FILE_NAME_LEN 64
+#define FILE_NAME_LEN                      64
 
 typedef enum {
     EventTypeInput,

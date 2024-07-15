@@ -8,7 +8,7 @@
 #include <input/input.h>
 #include "midi_rx_icons.h"
 
-#define MIDI_UART_BUFFER_SIZE 256
+#define MIDI_UART_BUFFER_SIZE  256
 #define MAX_SIMULTANEOUS_NOTES 10
 
 float note_to_frequency(int note) {
