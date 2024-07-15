@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-#define RECORD_LOADER "loader"
+#define RECORD_LOADER            "loader"
 #define LOADER_APPLICATIONS_NAME "Apps"
 
 typedef struct Loader Loader;

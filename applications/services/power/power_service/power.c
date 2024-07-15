@@ -5,8 +5,9 @@
 #include <furi_hal.h>
 #include <cfw/cfw.h>
 
-#define POWER_OFF_TIMEOUT 90
 #define TAG "Power"
+
+#define POWER_OFF_TIMEOUT 90
 
 void power_draw_battery_callback(Canvas* canvas, void* context) {
     furi_assert(context);

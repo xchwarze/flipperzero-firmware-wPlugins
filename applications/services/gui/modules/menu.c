@@ -545,7 +545,7 @@ void menu_free(Menu* menu) {
 
 View* menu_get_view(Menu* menu) {
     furi_check(menu);
-    return (menu->view);
+    return menu->view;
 }
 
 void menu_add_item(

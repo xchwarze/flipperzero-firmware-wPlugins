@@ -442,7 +442,7 @@ void subghz_unlock(SubGhz* subghz) {
 
 bool subghz_is_locked(SubGhz* subghz) {
     furi_assert(subghz);
-    return (subghz->lock == SubGhzLockOn);
+    return subghz->lock == SubGhzLockOn;
 }
 
 bool subghz_is_legal(FuriString* val_str) {
