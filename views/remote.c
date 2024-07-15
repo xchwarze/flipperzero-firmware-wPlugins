@@ -7,8 +7,8 @@
 #include <lib/toolbox/path.h>
 
 #define SUBREM_VIEW_REMOTE_MAX_LABEL_LENGTH 30
-#define SUBREM_VIEW_REMOTE_LEFT_OFFSET 10
-#define SUBREM_VIEW_REMOTE_RIGHT_OFFSET 0
+#define SUBREM_VIEW_REMOTE_LEFT_OFFSET      10
+#define SUBREM_VIEW_REMOTE_RIGHT_OFFSET     0
 
 struct SubRemViewRemote {
     View* view;
