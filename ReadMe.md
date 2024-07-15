@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0707-1103-0.103.2-46e000f.tgz&channel=RM0707-1103-0.103.2-46e000f&version=0.103.2)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0715-1017-0.103.2-2c8f998.tgz&channel=RM0715-1017-0.103.2-2c8f998&version=0.103.2)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,29 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-15 10:03 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-15 10:03 EST`
-- OFW: [Increase github action timeouts #3763 (By doomwastaken)](https://github.com/flipperdevices/flipperzero-firmware/pull/3763)
-- UL: [subghz add novoferm support, fix decoderaw scene, fm238 mod for sommer add manually for rare cases, remove broken preset mod, subghz add manually fixes and improvements, keeloq custom buttons improvements, hormann_ecostar add manually support and custom button & hormann hsm static code btn decode fix (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commits/dev/?since=2024-07-07&until=2024-07-08)
-- NFC: [Update mfc_default_keys.dic (By CountParadox and others) (Approved by iceman1001)](https://github.com/RfidResearchGroup/proxmark3/pulls?q=mfc_default_keys.dic+is%3Amerged+)
-- OFW: [Desktop: allow to close blocking bad sd animation #3776 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3776)
-- [Infrared: Correct Samsung.ir CH+ command (By skyhawkillusions)](https://github.com/Next-Flip/Momentum-Firmware/pull/156)
-- JS: [Fix repeats for multi-packet protocols (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fdbee5d9529fc45a77cc73d354eba726673ccb62)
-- OFW: [Intruder animation #3779 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3779)
-- OFW: [SubGHz: Hormann HSM static - Fix button decode #3767 (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3767)
-- NFC: [Add parser for CSC Service Works Reloadable Cash Card (By zinongli with updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/137)
-- Updated: [Authenticator/TOTP v5.15.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
-- Added: [CAN Commander v0.1 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/CAN_Commander/tree/main/FlipperZeroEnvironment/CANCommander_Boilerplate) `Req: CAN Commander Board`
-- SubGHz: [Choose RSSI threshold for Hopping mode (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/9240b1a45fc1d367e208d7ffa444f22846129f91)
-- OFW: [SubGHz: Keeloq - Add Novoferm remotes decode support #3768 (By xMasterX)](https://github.com/flipperdevices/flipperzero-firmware/pull/3768)
-- OFW: [lib: sconscript todo cleanup #3769 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3769)
-- OFW: [ufbt: added ARGS to commandline parser #3770 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3770)
-- NFC: [Update MFC dict, new keys from RRG pm3 repo and UberGuidoZ dump (From MNTM)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a4ad1d8b92b4fb81bd77ac2530220881396780ca)
-- OFW: [NFC: ISO15693 Render Typo Fix #3784 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3784)
-- [Archive: Fix rename extension show/hide behavior (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fbf5be55e65887146b196c3c685fd9ad3c2c2b16)
-- [FBT: Close current app when flashing firmware (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2a86f1b1e9ec4b55822bf512a1eaa297a80380c6)
-- [Loader: Remove old unused error formatting (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/3b390f9361fe3fed4ab4fcacd078eccd26dc6a2e)
-- OFW: [toolchain: v38; clangd as default language server #3774 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3774)
-- OFW: [scripts: runfap: fixed starting apps with spaces in path #3782 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3782)
-- OFW: [Code formatting update #3765 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3765)
 
 <a name="release">
 
@@ -612,4 +589,4 @@ $ ./fbt dolphin_ext
 - [Desktop Favorite Binds To Allow Opening Custom Game Menu. Whomever can complete this gets 3 months of subscriber builds. Patrons can DM me to add their monthly towards this bounty.](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/756)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0707-1103-0.103.2-46e000f.tgz&channel=RM0707-1103-0.103.2-46e000f&version=0.103.2)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0715-1017-0.103.2-2c8f998.tgz&channel=RM0715-1017-0.103.2-2c8f998&version=0.103.2)
