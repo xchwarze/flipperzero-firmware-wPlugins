@@ -38,8 +38,7 @@ static void wendigo_scene_start_var_list_enter_callback(void* context, uint32_t 
         app->is_command = true;
 
         if(app->hex_mode) {
-            view_dispatcher_send_custom_event(
-                app->view_dispatcher, Wendigo_EventStartKeyboardHex);
+            view_dispatcher_send_custom_event(app->view_dispatcher, Wendigo_EventStartKeyboardHex);
         } else {
             view_dispatcher_send_custom_event(
                 app->view_dispatcher, Wendigo_EventStartKeyboardText);

@@ -30,7 +30,7 @@ static void wendigo_scene_setup_channel_var_list_enter_callback(void* context, u
 
     // TODO: if index == SETUP_MAC_IDX
     //          display view
-    //          if selected_option_index == OPTION_MAC_SET 
+    //          if selected_option_index == OPTION_MAC_SET
     //              // Is there a way to make it mutable/immutable?
     // if index == SETUP_CHANNEL_IDX
     //      if selected_option_index == OPTION_CHANNEL_SELECTED

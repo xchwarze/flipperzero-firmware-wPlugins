@@ -40,8 +40,6 @@ void wendigo_scene_text_input_on_enter(void* context) {
         WENDIGO_TEXT_INPUT_STORE_SIZE,
         false);
 
-    text_input_add_illegal_symbols(text_input);
-
     view_dispatcher_switch_to_view(app->view_dispatcher, WendigoAppViewTextInput);
 }
 

@@ -15,13 +15,13 @@
 #include <gui/modules/byte_input.h>
 #include "wendigo_hex_input.h"
 
-#define START_MENU_ITEMS (6)
-#define SETUP_MENU_ITEMS (5)
+#define START_MENU_ITEMS         (6)
+#define SETUP_MENU_ITEMS         (5)
 #define SETUP_CHANNEL_MENU_ITEMS (13)
 
 #define MAX_OPTIONS (3)
 
-#define WENDIGO_TEXT_BOX_STORE_SIZE (4096)
+#define WENDIGO_TEXT_BOX_STORE_SIZE   (4096)
 #define WENDIGO_TEXT_INPUT_STORE_SIZE (512)
 
 // Command action type
@@ -34,7 +34,12 @@ typedef enum {
     OPEN_HELP
 } ActionType;
 // Command availability in different modes
-typedef enum { OFF = 0, TEXT_MODE = 1, HEX_MODE = 2, BOTH_MODES = 3 } ModeMask;
+typedef enum {
+    OFF = 0,
+    TEXT_MODE = 1,
+    HEX_MODE = 2,
+    BOTH_MODES = 3
+} ModeMask;
 
 typedef struct {
     const char* item_string;
@@ -58,7 +63,7 @@ struct WendigoApp {
     Widget* widget;
     VariableItemList* var_item_list;
     Wendigo_Uart* uart;
-    ByteInput *setup_mac;
+    ByteInput* setup_mac;
 
     int setup_selected_menu_index;
     int setup_selected_option_index[SETUP_MENU_ITEMS];

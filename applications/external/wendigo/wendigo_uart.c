@@ -24,10 +24,7 @@ void wendigo_uart_set_handle_rx_data_cb(
 
 #define WORKER_ALL_RX_EVENTS (WorkerEvtStop | WorkerEvtRxDone)
 
-void wendigo_uart_on_irq_cb(
-    FuriHalSerialHandle* handle,
-    FuriHalSerialRxEvent event,
-    void* context) {
+void wendigo_uart_on_irq_cb(FuriHalSerialHandle* handle, FuriHalSerialRxEvent event, void* context) {
     Wendigo_Uart* uart = (Wendigo_Uart*)context;
 
     if(event == FuriHalSerialRxEventData) {

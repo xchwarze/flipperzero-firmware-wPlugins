@@ -2,7 +2,6 @@
 #include "wendigo_text_input.h"
 #include <gui/elements.h>
 #include "wendigo_icons.h"
-#include <assets_icons.h>
 #include "wendigo_app_i.h"
 #include <furi.h>
 
@@ -39,7 +38,7 @@ static const uint8_t keyboard_origin_x = 5;
 static const uint8_t keyboard_origin_y = 28;
 static const uint8_t keyboard_row_count = 2;
 
-#define ENTER_KEY '\r'
+#define ENTER_KEY     '\r'
 #define BACKSPACE_KEY '\b'
 
 static const Wendigo_TextInputKey keyboard_keys_row_1[] = {
@@ -212,7 +211,9 @@ static void wendigo_hex_input_view_draw_callback(Canvas* canvas, void* _model) {
     }
 }
 
-static void wendigo_hex_input_handle_up(Wendigo_TextInput* wendigo_text_input, Wendigo_TextInputModel* model) {
+static void wendigo_hex_input_handle_up(
+    Wendigo_TextInput* wendigo_text_input,
+    Wendigo_TextInputModel* model) {
     UNUSED(wendigo_text_input);
     if(model->selected_row > 0) {
         model->selected_row--;
@@ -222,8 +223,9 @@ static void wendigo_hex_input_handle_up(Wendigo_TextInput* wendigo_text_input, W
     }
 }
 
-static void
-    wendigo_hex_input_handle_down(Wendigo_TextInput* wendigo_text_input, Wendigo_TextInputModel* model) {
+static void wendigo_hex_input_handle_down(
+    Wendigo_TextInput* wendigo_text_input,
+    Wendigo_TextInputModel* model) {
     UNUSED(wendigo_text_input);
     if(model->selected_row < keyboard_row_count - 1) {
         model->selected_row++;
@@ -233,8 +235,9 @@ static void
     }
 }
 
-static void
-    wendigo_hex_input_handle_left(Wendigo_TextInput* wendigo_text_input, Wendigo_TextInputModel* model) {
+static void wendigo_hex_input_handle_left(
+    Wendigo_TextInput* wendigo_text_input,
+    Wendigo_TextInputModel* model) {
     UNUSED(wendigo_text_input);
     if(model->selected_column > 0) {
         model->selected_column--;
@@ -243,8 +246,9 @@ static void
     }
 }
 
-static void
-    wendigo_hex_input_handle_right(Wendigo_TextInput* wendigo_text_input, Wendigo_TextInputModel* model) {
+static void wendigo_hex_input_handle_right(
+    Wendigo_TextInput* wendigo_text_input,
+    Wendigo_TextInputModel* model) {
     UNUSED(wendigo_text_input);
     if(model->selected_column < get_row_size(model->selected_row) - 1) {
         model->selected_column++;
@@ -389,7 +393,8 @@ Wendigo_TextInput* wendigo_hex_input_alloc() {
     Wendigo_TextInput* wendigo_text_input = malloc(sizeof(Wendigo_TextInput));
     wendigo_text_input->view = view_alloc();
     view_set_context(wendigo_text_input->view, wendigo_text_input);
-    view_allocate_model(wendigo_text_input->view, ViewModelTypeLocking, sizeof(Wendigo_TextInputModel));
+    view_allocate_model(
+        wendigo_text_input->view, ViewModelTypeLocking, sizeof(Wendigo_TextInputModel));
     view_set_draw_callback(wendigo_text_input->view, wendigo_hex_input_view_draw_callback);
     view_set_input_callback(wendigo_text_input->view, wendigo_hex_input_view_input_callback);
 

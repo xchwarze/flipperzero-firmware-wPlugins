@@ -69,16 +69,15 @@ WendigoApp* wendigo_app_alloc() {
     view_dispatcher_add_view(
         app->view_dispatcher, WendigoAppViewTextInput, text_input_get_view(app->text_input));
 
-// TODO: Ditch the hex input
+    // TODO: Ditch the hex input
     app->hex_input = wendigo_hex_input_alloc();
     view_dispatcher_add_view(
-        app->view_dispatcher,
-        WendigoAppViewHexInput,
-        wendigo_hex_input_get_view(app->hex_input));
-    
+        app->view_dispatcher, WendigoAppViewHexInput, wendigo_hex_input_get_view(app->hex_input));
+
     /* Initialise MAC address view */
     app->setup_mac = byte_input_alloc();
-    view_dispatcher_add_view(app->view_dispatcher, WendigoAppViewSetupMAC, byte_input_get_view(app->setup_mac));
+    view_dispatcher_add_view(
+        app->view_dispatcher, WendigoAppViewSetupMAC, byte_input_get_view(app->setup_mac));
 
     app->setup_selected_option_index[BAUDRATE_ITEM_IDX] = DEFAULT_BAUDRATE_OPT_IDX;
 
