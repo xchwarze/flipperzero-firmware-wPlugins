@@ -16,20 +16,21 @@
 #include <asteroids_icons.h>
 
 #define TAG "Asteroids" // Used for logging
-#define DEBUG_MSG 0
-#define SCREEN_XRES 128
-#define SCREEN_YRES 64
-#define GAME_START_LIVES 3
-#define MAXLIVES 5 /* Max bonus lives allowed. */
-#define TTLBUL 30 /* Bullet time to live, in ticks. */
-#define MAXBUL 50 /* Max bullets on the screen. */
+
+#define DEBUG_MSG              0
+#define SCREEN_XRES            128
+#define SCREEN_YRES            64
+#define GAME_START_LIVES       3
+#define MAXLIVES               5 /* Max bonus lives allowed. */
+#define TTLBUL                 30 /* Bullet time to live, in ticks. */
+#define MAXBUL                 50 /* Max bullets on the screen. */
 //@todo MAX Asteroids
-#define MAXAST 32 /* Max asteroids on the screen. */
-#define MAXPOWERUPS 3 /* Max powerups allowed on screen */
-#define POWERUPSTTL 400 /* Max powerup time to live, in ticks. */
+#define MAXAST                 32 /* Max asteroids on the screen. */
+#define MAXPOWERUPS            3 /* Max powerups allowed on screen */
+#define POWERUPSTTL            400 /* Max powerup time to live, in ticks. */
 #define SHIP_HIT_ANIMATION_LEN 15
-#define SAVING_DIRECTORY STORAGE_APP_DATA_PATH_PREFIX
-#define SAVING_FILENAME SAVING_DIRECTORY "/game_asteroids.save"
+#define SAVING_DIRECTORY       STORAGE_APP_DATA_PATH_PREFIX
+#define SAVING_FILENAME        SAVING_DIRECTORY "/game_asteroids.save"
 #ifndef PI
 #define PI 3.14159265358979f
 #endif

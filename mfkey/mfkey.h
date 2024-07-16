@@ -64,7 +64,10 @@ typedef struct {
     FuriThread* mfkeythread;
 } ProgramState;
 
-typedef enum { mfkey32, static_nested } AttackType;
+typedef enum {
+    mfkey32,
+    static_nested
+} AttackType;
 
 typedef struct {
     AttackType attack;

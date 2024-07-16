@@ -184,8 +184,8 @@ static struct flipvalo_trigger* flipvalo_get_trigger(enum flipvalo_trigger_varia
     return NULL;
 }
 
-#define ITEM_H 64 / 3
-#define ITEM_W 128
+#define ITEM_H  64 / 3
+#define ITEM_W  128
 #define VALUE_X 100
 #define VALUE_W 45
 static void flipvalo_config_edit_draw(Canvas* canvas, struct flipvalo_config_edit_view* view) {

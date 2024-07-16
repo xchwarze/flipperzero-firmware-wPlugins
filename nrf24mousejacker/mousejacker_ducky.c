@@ -17,13 +17,13 @@ static bool holding_shift = false;
 static bool holding_alt = false;
 static bool holding_gui = false;
 
-#define RT_THRESHOLD 50
-#define LOGITECH_MIN_CHANNEL 2
-#define LOGITECH_MAX_CHANNEL 83
-#define LOGITECH_KEEPALIVE_SIZE 5
+#define RT_THRESHOLD               50
+#define LOGITECH_MIN_CHANNEL       2
+#define LOGITECH_MAX_CHANNEL       83
+#define LOGITECH_KEEPALIVE_SIZE    5
 #define LOGITECH_HID_TEMPLATE_SIZE 10
-#define LOGITECH_HELLO_SIZE 10
-#define TAG "mousejacker_ducky"
+#define LOGITECH_HELLO_SIZE        10
+#define TAG                        "mousejacker_ducky"
 
 MJDuckyKey mj_ducky_keys[] = {{" ", 44, 0},         {"!", 30, 2},         {"\"", 52, 2},
                               {"#", 32, 2},         {"$", 33, 2},         {"%", 34, 2},

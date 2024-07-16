@@ -4,8 +4,8 @@
 
 #include <momentum/momentum.h>
 
-#define UART_CH (momentum_settings.uart_esp_channel)
-#define BAUDRATE (115200)
+#define UART_CH       (momentum_settings.uart_esp_channel)
+#define BAUDRATE      (115200)
 #define FAST_BAUDRATE (921600)
 
 #define RX_BUF_SIZE (2048)

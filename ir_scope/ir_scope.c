@@ -7,6 +7,7 @@
 #include <gui/gui.h>
 
 #define TAG "IR Scope"
+
 #define COLS 128
 #define ROWS 8
 

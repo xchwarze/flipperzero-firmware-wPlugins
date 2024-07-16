@@ -14,7 +14,8 @@
 #include "stm32_sam.h"
 
 #define TAG "SAM"
-#define SAM_SAVE_PATH APP_DATA_PATH("message.txt")
+
+#define SAM_SAVE_PATH    APP_DATA_PATH("message.txt")
 #define TEXT_BUFFER_SIZE 256
 STM32SAM voice;
 

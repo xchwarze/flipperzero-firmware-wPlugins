@@ -17,6 +17,7 @@
 #include <assets_icons.h>
 
 #define TAG "Simon" // Used for logging
+
 #define DEBUG_MSG 1
 #define SCREEN_XRES 128
 #define SCREEN_YRES 64
