@@ -34,6 +34,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: PR: [Infrared: check for negative timings #3788 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3788)
 - Updated: [Air Labyrinth v0.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/vgm/apps/air_labyrinth) `Req: Video Game Module By Flipper Devices` [Sprite Build updates (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/cb0056492b97021bc4ee4707defcd8f2d98e765f)
 - Updated: [Flight Assault v0.3 (By evillero)](https://github.com/evillero/flight_assault) [BW Icon (By jamisonderek)](https://github.com/evillero/flight_assault/compare/main...jamisonderek:flight_assault:main)
+- Updated: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
 
 <a name="release">
 
