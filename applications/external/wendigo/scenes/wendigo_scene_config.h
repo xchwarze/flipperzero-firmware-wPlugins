@@ -1,0 +1,8 @@
+ADD_SCENE(wendigo, start, Start)
+ADD_SCENE(wendigo, setup, Setup)
+ADD_SCENE(wendigo, console_output, ConsoleOutput)
+ADD_SCENE(wendigo, text_input, TextInput)
+ADD_SCENE(wendigo, hex_input, HexInput)
+ADD_SCENE(wendigo, help, Help)
+ADD_SCENE(wendigo, setup_mac, SetupMAC)
+ADD_SCENE(wendigo, setup_channel, SetupChannel)
