@@ -5630,7 +5630,7 @@ void STM32SAM::setThroat(unsigned char _throat /* = 128 */) {
 #include <math.h>
 #include <stm32wbxx_ll_tim.h>
 
-#define FURI_HAL_SPEAKER_TIMER TIM16
+#define FURI_HAL_SPEAKER_TIMER   TIM16
 #define FURI_HAL_SPEAKER_CHANNEL LL_TIM_CHANNEL_CH1
 
 void STM32SAM::begin(void) {

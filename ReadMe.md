@@ -32,6 +32,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-15 23:35 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-15 23:35 EST`
 - OFW: PR: [Infrared: check for negative timings #3788 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3788)
+- Updated: [Air Labyrinth v0.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/vgm/apps/air_labyrinth) `Req: Video Game Module By Flipper Devices`
+- Updated: [Flight Assault v0.3 (By evillero)](https://github.com/evillero/flight_assault) [BW Icon (By jamisonderek)](https://github.com/evillero/flight_assault/compare/main...jamisonderek:flight_assault:main)
 
 <a name="release">
 
