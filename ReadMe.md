@@ -31,11 +31,15 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-16 02:57 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-16 02:57 EST`
-- OFW: PR: [Infrared: check for negative timings #3788 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3788)
 - Updated: [Air Labyrinth v0.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/vgm/apps/air_labyrinth) `Req: Video Game Module By Flipper Devices` [Sprite Build updates (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/cb0056492b97021bc4ee4707defcd8f2d98e765f)
 - Updated: [Flight Assault v0.3 (By evillero)](https://github.com/evillero/flight_assault) [BW Icon (By jamisonderek)](https://github.com/evillero/flight_assault/compare/main...jamisonderek:flight_assault:main)
-- Updated: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
-- Added: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
+- Updated: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl) [Asset Fix to match FW (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8103aa5fc0c53854fc62f6986fbbcb3322879602)
+- Added: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32` [Asset Fix to match FW + Code FMT (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/62ea310e74caa5d8ab533c37194c890703527ab3)
+- OFW: [Infrared: check for negative timings #3788 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3788) (Was already merged, approved by OFW)
+- OFW: [ufbt: synced .clang-format rules with firmware #3787 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3787)
+- OFW: [Update tv.ir #3789 (By GreenBean657)](https://github.com/flipperdevices/flipperzero-firmware/pull/3789) (Not added due to already present)
+- OFW: [VSCode fixes: .gitignore & clangd #3790 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3790)
+- OFW: [Disabled ISR runtime stats collection for updater builds #3791 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3791)
 
 <a name="release">
 
