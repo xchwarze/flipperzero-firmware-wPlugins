@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0715-1003-0.103.2-892ea6e](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0716-2055-0.103.2-d378622](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-16 02:57 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-16 02:57 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-16 20:55 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-16 20:55 EST`
 - Updated: [Air Labyrinth v0.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/vgm/apps/air_labyrinth) `Req: Video Game Module By Flipper Devices` [Sprite Build updates (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/cb0056492b97021bc4ee4707defcd8f2d98e765f)
 - Updated: [Flight Assault v0.3 (By evillero)](https://github.com/evillero/flight_assault) [BW Icon (By jamisonderek)](https://github.com/evillero/flight_assault/compare/main...jamisonderek:flight_assault:main)
 - Updated: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl) [Asset Fix to match FW (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8103aa5fc0c53854fc62f6986fbbcb3322879602)
