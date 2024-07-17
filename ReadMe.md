@@ -41,6 +41,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [VSCode fixes: .gitignore & clangd #3790 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3790)
 - OFW: [Disabled ISR runtime stats collection for updater builds #3791 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3791)
 - Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
+- Updated: [Quac! v0.6.2 (By rdefeo)](https://github.com/rdefeo/quac) Quac: Fix IR import busfault, explain to hold right when empty (By Willy-JL)
 
 <a name="release">
 
@@ -512,7 +513,7 @@ $ ./fbt dolphin_ext
 - [Programmer Calculator v0.9.2 (By armixz)](https://github.com/armixz/Flipper-Zero-Programmer-Calculator)
 - [Protocol Visualizer v1.2 (By antirez)](https://github.com/antirez/protoview)
 - [QR Code v2.1 (By bmatcuk)](https://github.com/bmatcuk/flipperzero-qrcode)
-- [Quac! v0.6.1 (By rdefeo)](https://github.com/rdefeo/quac)
+- [Quac! v0.6.2 (By rdefeo)](https://github.com/rdefeo/quac)
 - [Radar Scanner v2.0 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/flipper-radar) `Req: RCWL-0516`
 - [Radiation Sensor v1.0 (By sionyx)](https://github.com/sionyx/flipper_radsens) `Req: RadSens`
 - [RC2014 ColecoVision (By ezod)](https://github.com/ezod/flipperzero-rc2014-coleco)
