@@ -42,6 +42,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Disabled ISR runtime stats collection for updater builds #3791 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3791)
 - Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
 - Updated: [Quac! v0.6.2 (By rdefeo)](https://github.com/rdefeo/quac) Quac: Fix IR import busfault, explain to hold right when empty (By Willy-JL)
+- Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 
 <a name="release">
 
@@ -313,7 +314,7 @@ $ ./fbt dolphin_ext
 - [Snake v1.7 (By OlegSchwann)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/829)
 - [Snake 2.0 v2.2 (By Willzvul)](https://github.com/Willzvul/Snake_2.0/)
 - [Solitaire v1.1.4 (By teeebor)](https://github.com/teeebor/flipper_games)
-- [Sokoban v1.3 (By Racso)](https://github.com/Racso/fzero-apps)
+- [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - [Space Impact WIP v0.2 (By Ka3u6y6a)](https://github.com/Ka3u6y6a/flipper-zero-space-impact)
 - [Strategem Zero v0.1 (By nymda)](https://github.com/nymda/StratagemZero)
 - [Sudoku v1.2 (By profelis)](https://github.com/profelis/fz-sudoku)
