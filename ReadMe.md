@@ -40,6 +40,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Update tv.ir #3789 (By GreenBean657)](https://github.com/flipperdevices/flipperzero-firmware/pull/3789) (Not added due to already present)
 - OFW: [VSCode fixes: .gitignore & clangd #3790 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3790)
 - OFW: [Disabled ISR runtime stats collection for updater builds #3791 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3791)
+- Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
 
 <a name="release">
 
