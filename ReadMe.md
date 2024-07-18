@@ -47,7 +47,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [CCID: Add CCIDWorker #3785 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3785)
 - OFW: [HID/BLE Keyboard UI refactoring #3777 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3777)
 - [Sub-GHz: Hopping RSSI meaning is clearer in UI (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/fe911d59cebe5d400ae0012d7afdd2af7852bfae)
-- Added: [MTP v1.0 (By Alex4386)](https://github.com/Alex4386/f0-mtp)
+- Added: [MTP v1.0 (By Alex4386)](https://github.com/Alex4386/f0-mtp) Allows SD card access via USB on PC without qFlipper
 
 <a name="release">
 
