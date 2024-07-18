@@ -1,5 +1,5 @@
 App(
-    appid="f0_mtp",
+    appid="mtp",
     name="MTP",
     apptype=FlipperAppType.EXTERNAL,
     entry_point="entrypoint",

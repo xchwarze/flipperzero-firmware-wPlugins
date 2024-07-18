@@ -2,7 +2,7 @@
 #include <gui/modules/submenu.h>
 #include "../../main.h"
 #include "main.h"
-#include <f0_mtp_icons.h>
+#include <mtp_icons.h>
 #include "usb.h"
 #include "usb_desc.h"
 
