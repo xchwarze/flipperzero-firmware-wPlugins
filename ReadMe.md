@@ -47,6 +47,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [CCID: Add CCIDWorker #3785 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3785)
 - OFW: [HID/BLE Keyboard UI refactoring #3777 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3777)
 - [Sub-GHz: Hopping RSSI meaning is clearer in UI (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/fe911d59cebe5d400ae0012d7afdd2af7852bfae)
+- Added: [MTP v1.0 (By Alex4386)](https://github.com/Alex4386/f0-mtp)
 
 <a name="release">
 
@@ -296,6 +297,7 @@ $ ./fbt dolphin_ext
 - [Minesweeper v1.2 (By panki27)](https://github.com/panki27/minesweeper)
 - [Minesweeper Redux v1.5 (By squee72564)](https://github.com/squee72564/F0_Minesweeper_Fap)
 - [Monty Hall v1.2 (By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/203)
+- [MTP v1.0 (By Alex4386)](https://github.com/Alex4386/f0-mtp)
 - [Multi Counter v1.1 (By JadePossible)](https://github.com/JadePossible/Flipper-Multi-Counter)
 - [Nu Pogodi! (Ну, погоди!) v1.3 (By sionyx)](https://github.com/sionyx/flipper_nupogodi)
 - [PacMan WIP v0.1 (By DanieleMaffi)](https://github.com/DanieleMaffi/flipper-pacman)
