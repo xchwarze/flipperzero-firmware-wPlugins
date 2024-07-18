@@ -43,6 +43,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
 - Updated: [Quac! v0.6.2 (By rdefeo)](https://github.com/rdefeo/quac) Quac: Fix IR import busfault, explain to hold right when empty (By Willy-JL)
 - Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
+- Version Increment form OFW
+- OFW: [CCID: Add CCIDWorker #3785 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3785)
+- OFW: [HID/BLE Keyboard UI refactoring #3777 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3777)
 
 <a name="release">
 
