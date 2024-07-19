@@ -41,13 +41,14 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [VSCode fixes: .gitignore & clangd #3790 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3790)
 - OFW: [Disabled ISR runtime stats collection for updater builds #3791 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3791)
 - Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
-- Updated: [Quac! v0.6.2 (By rdefeo)](https://github.com/rdefeo/quac) Quac: Fix IR import busfault, explain to hold right when empty (By Willy-JL)
 - Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - Version Increment form OFW
 - OFW: [CCID: Add CCIDWorker #3785 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3785)
 - OFW: [HID/BLE Keyboard UI refactoring #3777 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3777)
 - [Sub-GHz: Hopping RSSI meaning is clearer in UI (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/fe911d59cebe5d400ae0012d7afdd2af7852bfae)
 - Added: [MTP v1.0 (By Alex4386)](https://github.com/Alex4386/f0-mtp) Allows SD card access via USB on PC without qFlipper
+- Updated: [Quac! v0.6.2 (By rdefeo)](https://github.com/rdefeo/quac) Quac: Fix IR import busfault, explain to hold right when empty (By Willy-JL)
+- Updated: [FAP Boilerplate v1.2 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
 
 <a name="release">
 
@@ -411,7 +412,7 @@ $ ./fbt dolphin_ext
 - [Evil Portal v0.6 (By bigbrodude6119)](https://github.com/bigbrodude6119/flipper-zero-evil-portal)
 - [Extend Range (By maede97)](https://github.com/maede97/flipperzero-extend-range) (Allows SubGHz Unlock!)
 - [EXTRA Demo v0.4 (By Milk-Cool)](https://github.com/Milk-Cool/EXTRA-demo) (This app has VERY useful functions!)
-- [FAP Boilerplate v1.1 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
+- [FAP Boilerplate v1.2 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
 - [Financial Calculator v1.0 (By schaene)](https://github.com/schaene/Flipper-Financial-Calculator)
 - [FindMy Flipper v3.5 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/FindMyFlipper)
 - [Flashlight v1.2 (By xMasterX)](https://github.com/xMasterX/flipper-flashlight)
