@@ -1,6 +1,6 @@
-## 0.6.1
+## 0.6.2
 
-- Fix IR Import bus fault on empty
+- Fix IR Import bus fault on empty, explain to hold right when empty (By Willy-JL)
 - Add hint text on Empty group
 
 ## 0.6.1

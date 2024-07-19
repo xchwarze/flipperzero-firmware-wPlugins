@@ -11,5 +11,4 @@ App(
     fap_weburl="https://github.com/rdefeo/quac",
     fap_version="0.6.2",
     fap_description="Quick Action remote control app",
-    #  v0.6.2: Quac: Fix IR import busfault, explain to hold right when empty (By Willy-JL)
 )
