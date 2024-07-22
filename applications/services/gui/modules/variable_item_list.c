@@ -591,7 +591,7 @@ void variable_item_set_values_count(VariableItem* item, uint8_t values_count) {
 void variable_item_set_item_label(VariableItem* item, const char* label) {
     furi_check(item);
     furi_check(label);
-    item->label = label;
+    furi_string_set(item->label, label);
 }
 
 void variable_item_set_current_value_text(VariableItem* item, const char* current_value_text) {

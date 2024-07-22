@@ -78,35 +78,6 @@ const char* const combobox_text[COMBO_BOX_COUNT] = {
     "ON",
 };
 
-
-#define RAW_THRESHOLD_RSSI_COUNT 11
-const char* const raw_threshold_rssi_text[RAW_THRESHOLD_RSSI_COUNT] = {
-    "-----",
-    "-85.0",
-    "-80.0",
-    "-75.0",
-    "-70.0",
-    "-65.0",
-    "-60.0",
-    "-55.0",
-    "-50.0",
-    "-45.0",
-    "-40.0",
-};
-const float raw_threshold_rssi_value[RAW_THRESHOLD_RSSI_COUNT] = {
-    -90.0f,
-    -85.0f,
-    -80.0f,
-    -75.0f,
-    -70.0f,
-    -65.0f,
-    -60.0f,
-    -55.0f,
-    -50.0f,
-    -45.0f,
-    -40.0f,
-};
-
 #define HOPPING_MODE_COUNT 12
 const char* const hopping_mode_text[HOPPING_MODE_COUNT] = {
     "OFF",
