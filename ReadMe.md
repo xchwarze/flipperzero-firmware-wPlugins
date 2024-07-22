@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0715-1017-0.103.2-2c8f998.tgz&channel=RM0715-1017-0.103.2-2c8f998&version=0.103.2)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0722-1805-0.104.1-8b7b914.tgz&channel=RM0722-1805-0.104.1-8b7b914&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,28 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-22 17:51 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-22 17:51 EST`
-- Updated: [Air Labyrinth v0.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/vgm/apps/air_labyrinth) `Req: Video Game Module By Flipper Devices` [Sprite Build updates (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/cb0056492b97021bc4ee4707defcd8f2d98e765f)
-- Updated: [Flight Assault v0.3 (By evillero)](https://github.com/evillero/flight_assault) [BW Icon (By jamisonderek)](https://github.com/evillero/flight_assault/compare/main...jamisonderek:flight_assault:main)
-- Updated: [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl) [Asset Fix to match FW (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8103aa5fc0c53854fc62f6986fbbcb3322879602)
-- Added: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32` [Asset Fix to match FW + Code FMT (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/62ea310e74caa5d8ab533c37194c890703527ab3)
-- OFW: [Infrared: check for negative timings #3788 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3788) (Was already merged, approved by OFW)
-- OFW: [ufbt: synced .clang-format rules with firmware #3787 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3787)
-- OFW: [Update tv.ir #3789 (By GreenBean657)](https://github.com/flipperdevices/flipperzero-firmware/pull/3789) (Not added due to already present)
-- OFW: [VSCode fixes: .gitignore & clangd #3790 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3790)
-- OFW: [Disabled ISR runtime stats collection for updater builds #3791 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3791)
-- Version Increment form OFW
-- OFW: [CCID: Add CCIDWorker #3785 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3785)
-- OFW: [HID/BLE Keyboard UI refactoring #3777 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3777)
-- [Sub-GHz: Hopping RSSI meaning is clearer in UI (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/fe911d59cebe5d400ae0012d7afdd2af7852bfae)
-- Added: [MTP v1.0 (By Alex4386)](https://github.com/Alex4386/f0-mtp) Allows SD card access via USB on PC without qFlipper
-- Updated: [Quac! v0.6.2 (By rdefeo)](https://github.com/rdefeo/quac) Quac: Fix IR import busfault, explain to hold right when empty (By Willy-JL)
-- Updated: [FAP Boilerplate v1.2 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
-- Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
-- OFW: PR: [Fix: Add missing va_end call #3798 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3798)
-- OFW: PR: [Fix: variable redeclaration in subghz_cli.c #3799 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3799)
-- SubGHz: [Update hopping config text (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/69c780fddb45c93620e5c83afbfbd40611fd854e)
-- UL: [BT API cleanup (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/69c780fddb45c93620e5c83afbfbd40611fd854e)
-- Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 
 <a name="release">
 
@@ -613,4 +591,4 @@ $ ./fbt dolphin_ext
 - [Desktop Favorite Binds To Allow Opening Custom Game Menu. Whomever can complete this gets 3 months of subscriber builds. Patrons can DM me to add their monthly towards this bounty.](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/756)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0715-1017-0.103.2-2c8f998.tgz&channel=RM0715-1017-0.103.2-2c8f998&version=0.103.2)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0722-1805-0.104.1-8b7b914.tgz&channel=RM0722-1805-0.104.1-8b7b914&version=0.104.1)
