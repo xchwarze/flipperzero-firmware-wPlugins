@@ -40,7 +40,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Update tv.ir #3789 (By GreenBean657)](https://github.com/flipperdevices/flipperzero-firmware/pull/3789) (Not added due to already present)
 - OFW: [VSCode fixes: .gitignore & clangd #3790 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3790)
 - OFW: [Disabled ISR runtime stats collection for updater builds #3791 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3791)
-- Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - Version Increment form OFW
 - OFW: [CCID: Add CCIDWorker #3785 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3785)
 - OFW: [HID/BLE Keyboard UI refactoring #3777 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3777)
@@ -53,6 +52,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: PR: [Fix: variable redeclaration in subghz_cli.c #3799 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3799)
 - SubGHz: [Update hopping config text (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/69c780fddb45c93620e5c83afbfbd40611fd854e)
 - UL: [BT API cleanup (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/69c780fddb45c93620e5c83afbfbd40611fd854e)
+- Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 
 <a name="release">
 
