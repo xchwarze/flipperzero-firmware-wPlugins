@@ -26,22 +26,23 @@ enum SubGhzSettingIndex {
     SubGhzSettingIndexLock,
 };
 
-#define RAW_THRESHOLD_RSSI_COUNT 11
+#define RAW_THRESHOLD_RSSI_COUNT 12
 const char* const raw_threshold_rssi_text[RAW_THRESHOLD_RSSI_COUNT] = {
-    "-----",
-    "-85.0",
-    "-80.0",
-    "-75.0",
-    "-70.0",
-    "-65.0",
-    "-60.0",
-    "-55.0",
-    "-50.0",
-    "-45.0",
-    "-40.0",
-
+    "OFF",
+    "-90dBm",
+    "-85dBm",
+    "-80dBm",
+    "-75dBm",
+    "-70dBm",
+    "-65dBm",
+    "-60dBm",
+    "-55dBm",
+    "-50dBm",
+    "-45dBm",
+    "-40dBm",
 };
 const float raw_threshold_rssi_value[RAW_THRESHOLD_RSSI_COUNT] = {
+    NAN,
     -90.0f,
     -85.0f,
     -80.0f,
@@ -279,7 +280,6 @@ static void subghz_scene_receiver_config_set_hopping(VariableItem* item) {
             preset.data_size);
         variable_item_set_current_value_index(
             frequency_item, subghz_setting_get_frequency_default_index(setting));
-
         variable_item_set_item_label(item, "Hopping");
     } else {
         variable_item_set_current_value_text(frequency_item, " -----");
