@@ -32,6 +32,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-22 17:51 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-22 17:51 EST`
 - SubGHz: [Disable LED in stealth mode (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1079)
+- Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 
 <a name="release">
 
