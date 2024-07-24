@@ -36,6 +36,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
 - Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - [Remove underscores from date/time in random file name (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1080)
+- [SubGHz: Manufacturer name in filename in autosave #1080 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1080)
 
 <a name="release">
 
