@@ -394,9 +394,6 @@ int calculate_msb_tables(
 
 void** allocate_blocks(const size_t* block_sizes, int num_blocks) {
     void** block_pointers = malloc(num_blocks * sizeof(void*));
-    if(block_pointers == NULL) {
-        return NULL;
-    }
 
     for(int i = 0; i < num_blocks; i++) {
         if(memmgr_heap_get_max_free_block() < block_sizes[i]) {
@@ -409,14 +406,6 @@ void** allocate_blocks(const size_t* block_sizes, int num_blocks) {
         }
 
         block_pointers[i] = malloc(block_sizes[i]);
-        if(block_pointers[i] == NULL) {
-            // Allocation failed, free previously allocated blocks
-            for(int j = 0; j < i; j++) {
-                free(block_pointers[j]);
-            }
-            free(block_pointers);
-            return NULL;
-        }
     }
 
     return block_pointers;
@@ -684,9 +673,10 @@ static void render_callback(Canvas* const canvas, void* ctx) {
     ProgramState* program_state = ctx;
     furi_mutex_acquire(program_state->mutex, FuriWaitForever);
     char draw_str[44] = {};
-    canvas_clear(canvas);
+
     canvas_draw_frame(canvas, 0, 0, 128, 64);
     canvas_draw_frame(canvas, 0, 15, 128, 64);
+
     canvas_set_font(canvas, FontPrimary);
     canvas_draw_str_aligned(canvas, 5, 4, AlignLeft, AlignTop, "MFKey");
     snprintf(draw_str, sizeof(draw_str), "RAM: %zub", memmgr_get_free_heap());
@@ -773,12 +763,9 @@ static void render_callback(Canvas* const canvas, void* ctx) {
     furi_mutex_release(program_state->mutex);
 }
 
-static void input_callback(InputEvent* input_event, void* ctx) {
-    furi_assert(ctx);
-    FuriMessageQueue* event_queue = ctx;
-
-    PluginEvent event = {.type = EventTypeKey, .input = *input_event};
-    furi_message_queue_put((FuriMessageQueue*)event_queue, &event, FuriWaitForever);
+static void input_callback(InputEvent* input_event, void* event_queue) {
+    furi_assert(event_queue);
+    furi_message_queue_put((FuriMessageQueue*)event_queue, input_event, FuriWaitForever);
 }
 
 static void mfkey_state_init(ProgramState* program_state) {
@@ -802,25 +789,14 @@ static int32_t mfkey_worker_thread(void* ctx) {
     return 0;
 }
 
-void start_mfkey_thread(ProgramState* program_state) {
-    if(!program_state->is_thread_running) {
-        furi_thread_start(program_state->mfkeythread);
-    }
-}
-
 int32_t mfkey_main() {
-    FuriMessageQueue* event_queue = furi_message_queue_alloc(8, sizeof(PluginEvent));
+    FuriMessageQueue* event_queue = furi_message_queue_alloc(8, sizeof(InputEvent));
 
     ProgramState* program_state = malloc(sizeof(ProgramState));
 
     mfkey_state_init(program_state);
 
     program_state->mutex = furi_mutex_alloc(FuriMutexTypeNormal);
-    if(!program_state->mutex) {
-        //FURI_LOG_E(TAG, "cannot create mutex\r\n");
-        free(program_state);
-        return 255;
-    }
 
     // Set system callbacks
     ViewPort* view_port = view_port_alloc();
@@ -832,72 +808,57 @@ int32_t mfkey_main() {
     gui_add_view_port(gui, view_port, GuiLayerFullscreen);
 
     program_state->mfkeythread = furi_thread_alloc();
-    furi_thread_set_name(program_state->mfkeythread, "MFKey Worker");
+    furi_thread_set_name(program_state->mfkeythread, "MFKeyWorker");
     furi_thread_set_stack_size(program_state->mfkeythread, 2048);
     furi_thread_set_context(program_state->mfkeythread, program_state);
     furi_thread_set_callback(program_state->mfkeythread, mfkey_worker_thread);
 
-    PluginEvent event;
+    InputEvent input_event;
     for(bool main_loop = true; main_loop;) {
-        FuriStatus event_status = furi_message_queue_get(event_queue, &event, 100);
+        FuriStatus event_status = furi_message_queue_get(event_queue, &input_event, 100);
 
         furi_mutex_acquire(program_state->mutex, FuriWaitForever);
 
         if(event_status == FuriStatusOk) {
-            // press events
-            if(event.type == EventTypeKey) {
-                if(event.input.type == InputTypePress) {
-                    switch(event.input.key) {
-                    case InputKeyUp:
-                        break;
-                    case InputKeyDown:
-                        break;
-                    case InputKeyRight:
-                        if(!program_state->is_thread_running &&
-                           program_state->mfkey_state == Ready) {
-                            program_state->mfkey_state = Help;
-                            view_port_update(view_port);
-                        }
-                        break;
-                    case InputKeyLeft:
-                        break;
-                    case InputKeyOk:
-                        if(!program_state->is_thread_running &&
-                           program_state->mfkey_state == Ready) {
-                            start_mfkey_thread(program_state);
-                            view_port_update(view_port);
-                        }
-                        break;
-                    case InputKeyBack:
-                        if(!program_state->is_thread_running &&
-                           program_state->mfkey_state == Help) {
-                            program_state->mfkey_state = Ready;
-                            view_port_update(view_port);
-                        } else {
-                            program_state->close_thread_please = true;
-                            if(program_state->is_thread_running && program_state->mfkeythread) {
-                                // Wait until thread is finished
-                                furi_thread_join(program_state->mfkeythread);
-                            }
-                            program_state->close_thread_please = false;
-                            main_loop = false;
-                        }
-                        break;
-                    default:
-                        break;
+            if(input_event.type == InputTypePress) {
+                switch(input_event.key) {
+                case InputKeyRight:
+                    if(!program_state->is_thread_running && program_state->mfkey_state == Ready) {
+                        program_state->mfkey_state = Help;
                     }
+                    break;
+                case InputKeyOk:
+                    if(!program_state->is_thread_running && program_state->mfkey_state == Ready) {
+                        furi_thread_start(program_state->mfkeythread);
+                    }
+                    break;
+                case InputKeyBack:
+                    if(!program_state->is_thread_running && program_state->mfkey_state == Help) {
+                        program_state->mfkey_state = Ready;
+                    } else {
+                        program_state->close_thread_please = true;
+                        if(program_state->is_thread_running) {
+                            // Wait until thread is finished
+                            furi_thread_join(program_state->mfkeythread);
+                        }
+                        program_state->close_thread_please = false;
+                        main_loop = false;
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
         }
 
-        view_port_update(view_port);
         furi_mutex_release(program_state->mutex);
+        view_port_update(view_port);
     }
 
     furi_thread_free(program_state->mfkeythread);
     view_port_enabled_set(view_port, false);
     gui_remove_view_port(gui, view_port);
-    furi_record_close("gui");
+    furi_record_close(RECORD_GUI);
     view_port_free(view_port);
     furi_message_queue_free(event_queue);
     furi_mutex_free(program_state->mutex);
