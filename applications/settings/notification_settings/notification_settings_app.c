@@ -205,20 +205,13 @@ static NotificationAppSettings* alloc_settings(void) {
         app->notification->settings.display_off_delay_ms, delay_value, DELAY_COUNT);
     variable_item_set_current_value_index(item, value_index);
     variable_item_set_current_value_text(item, delay_text[value_index]);
-    
-    if(furi_hal_rtc_is_flag_set(FuriHalRtcFlagStealthMode)) {
-        item = variable_item_list_add(app->variable_item_list, "LED Brightness", 1, NULL, app);
-        value_index = 0;
-        variable_item_set_current_value_index(item, value_index);
-        variable_item_set_current_value_text(item, "Stealth");
-    } else {
-        item = variable_item_list_add(
-            app->variable_item_list, "LED Brightness", BACKLIGHT_COUNT, led_changed, app);
-        value_index = value_index_float(
-            app->notification->settings.led_brightness, backlight_value, BACKLIGHT_COUNT);
-        variable_item_set_current_value_index(item, value_index);
-        variable_item_set_current_value_text(item, backlight_text[value_index]);
-    }
+
+    item = variable_item_list_add(
+        app->variable_item_list, "LED Brightness", BACKLIGHT_COUNT, led_changed, app);
+    value_index = value_index_float(
+        app->notification->settings.led_brightness, backlight_value, BACKLIGHT_COUNT);
+    variable_item_set_current_value_index(item, value_index);
+    variable_item_set_current_value_text(item, backlight_text[value_index]);
 
     if(furi_hal_rtc_is_flag_set(FuriHalRtcFlagStealthMode)) {
         item = variable_item_list_add(app->variable_item_list, "Volume", 1, NULL, app);
