@@ -1,5 +1,7 @@
 ## v1.4
-- Make vertical levels horizontal to better fit the screen.
+- Level drawing improved: partial overdraw allowed for borders, boards are now centered, boards are rotated if that fits better.
+- Menus now auto-select the first unplayed level by default.
+- A dolphin_deed is now triggered when completing a level.
 
 ## v1.3
 - Fixed error when updating to the latest API version.
