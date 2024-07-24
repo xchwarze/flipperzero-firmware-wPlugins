@@ -203,9 +203,11 @@ static void subghz_scene_add_to_history_callback(
             if(decoder_base->protocol->flag & SubGhzProtocolFlag_Save &&
                subghz->last_settings->autosave) {
                 // File name
+                FuriString* fileName = furi_string_alloc_set(item_name);
+                furi_string_replace_all(fileName," ","_");
                 char file[SUBGHZ_MAX_LEN_NAME] = {0};
                 const char* suf = subghz->last_settings->protocol_file_names ?
-                                      decoder_base->protocol->name :
+                                      furi_string_get_cstr(fileName) :
                                       SUBGHZ_APP_FILENAME_PREFIX;
                 DateTime time = subghz_history_get_datetime(history, idx);
                 name_generator_make_detailed_datetime(file, sizeof(file), suf, &time);
@@ -224,6 +226,7 @@ static void subghz_scene_add_to_history_callback(
                 subghz_save_protocol_to_file(
                     subghz, subghz_history_get_raw_data(history, idx), furi_string_get_cstr(path));
                 furi_string_free(path);
+                furi_string_free(fileName);
             }
 
             subghz_scene_receiver_update_statusbar(subghz);
