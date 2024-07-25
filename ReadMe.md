@@ -38,6 +38,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [SubGHz: Manufacturer name in filename in autosave #1080 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1080)
 - Added: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
 - Updated: [NFC Seader v2.9 (By bettse)](https://github.com/bettse/seader)
+- Updated: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
 
 <a name="release">
 
