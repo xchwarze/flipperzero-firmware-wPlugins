@@ -204,7 +204,7 @@ static void subghz_scene_add_to_history_callback(
                subghz->last_settings->autosave) {
                 // File name
                 FuriString* fileName = furi_string_alloc_set(item_name);
-                furi_string_replace_all(fileName," ","_");
+                furi_string_replace_all(fileName, " ", "_");
                 char file[SUBGHZ_MAX_LEN_NAME] = {0};
                 const char* suf = subghz->last_settings->protocol_file_names ?
                                       furi_string_get_cstr(fileName) :

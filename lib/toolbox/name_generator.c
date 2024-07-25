@@ -85,7 +85,7 @@ void name_generator_make_detailed_datetime(
     snprintf(
         name,
         max_name_size,
-        "%s-%.4d_%.2d_%.2d-%.2d_%.2d_%.2d",
+        "%s-%.4d%.2d%.2d-%.2d%.2d%.2d",
         prefix ? prefix : "S",
         dateTime.year,
         dateTime.month,
