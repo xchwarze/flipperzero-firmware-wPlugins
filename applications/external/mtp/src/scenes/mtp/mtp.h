@@ -2,7 +2,7 @@
 
 // MTP Device Serial
 #define MTP_DEVICE_SERIAL "HakureiReimu"
-#define MTP_DEVICE_VERSION "1.0"
+#define MTP_DEVICE_VERSION FAP_VERSION
 
 #define MTP_STANDARD_VERSION 100
 #define MTP_VENDOR_EXTENSION_ID 0x6
@@ -77,7 +77,7 @@
 #define EXTERNAL_STORAGE_ID 0x00020001
 
 // MTP Playback formats
-#define MTP_FORMAT_UNDEFINED 0x3000
+#define MTP_FORMAT_UNDEFINED   0x3000
 #define MTP_FORMAT_ASSOCIATION 0x3001
 
 typedef struct {
