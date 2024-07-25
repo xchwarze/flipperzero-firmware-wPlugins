@@ -2,8 +2,8 @@
 #include "types.h"
 #include "helpers.h"
 
-#define ACTION_MOVE 0x01
-#define ACTION_BOMB 0x02
+#define ACTION_MOVE  0x01
+#define ACTION_BOMB  0x02
 #define ACTION_DEATH 0x03
 
 #define PLAYER_TWO 0x10
@@ -130,8 +130,8 @@ void subghz_check_incoming(BomberAppState* state) {
 
         size_t rx_size =
             subghz_tx_rx_worker_read(state->subghz_worker, state->rx_buffer, RX_TX_BUFFER_SIZE);
-        
-        BomberEvent event = {.type = BomberEventType_SubGhz, .subGhzIncomingSize = rx_size };
+
+        BomberEvent event = {.type = BomberEventType_SubGhz, .subGhzIncomingSize = rx_size};
 
         if(furi_message_queue_put(state->queue, &event, FuriWaitForever) != FuriStatusOk) {
             FURI_LOG_W(TAG, "Failed to put timer event in message queue");

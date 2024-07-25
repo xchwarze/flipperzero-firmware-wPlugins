@@ -2,12 +2,12 @@
 #include "helpers.h"
 #include "subghz.h"
 
-#define BOMB_HOT_TIME furi_ms_to_ticks(2000)
+#define BOMB_HOT_TIME     furi_ms_to_ticks(2000)
 #define BOMB_PLANTED_TIME furi_ms_to_ticks(2100)
 #define BOMB_EXPLODE_TIME furi_ms_to_ticks(2500)
-#define BOMB_RESET_TIME furi_ms_to_ticks(2600)
-#define MAX_X 16
-#define MAX_Y 8
+#define BOMB_RESET_TIME   furi_ms_to_ticks(2600)
+#define MAX_X             16
+#define MAX_Y             8
 
 // End the game but don't quit the app
 // TODO: Figure out whether this actually needs to be here. What should happen when the player presses Back during gameplay?
