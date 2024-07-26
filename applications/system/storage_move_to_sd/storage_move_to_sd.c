@@ -59,9 +59,6 @@ static void storage_move_to_sd_remove_region() {
     if(!furi_hal_is_normal_boot()) return;
     Storage* storage = furi_record_open(RECORD_STORAGE);
 
-    if(storage_common_exists(storage, INT_PATH(".region_data"))) {
-        storage_common_remove(storage, INT_PATH(".region_data"));
-    }
     if(storage_common_exists(storage, EXT_PATH("apps/Misc/totp.conf"))) {
         storage_common_rename(
             storage,

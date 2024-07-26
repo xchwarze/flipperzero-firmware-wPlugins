@@ -18,16 +18,6 @@ struct Msb {
 };
 
 typedef enum {
-    EventTypeTick,
-    EventTypeKey,
-} EventType;
-
-typedef struct {
-    EventType type;
-    InputEvent input;
-} PluginEvent;
-
-typedef enum {
     MissingNonces,
     ZeroNonces,
     InsufficientRAM,
