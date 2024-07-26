@@ -232,7 +232,7 @@ void seader_send_response(
 
     seader_send_payload(seader, payload, to, from, replyTo);
 
-    free(payload);
+    ASN_STRUCT_FREE(asn_DEF_Payload, payload);
 }
 
 void seader_send_request_pacs(Seader* seader) {
@@ -260,9 +260,9 @@ void seader_send_request_pacs(Seader* seader) {
 
     seader_send_payload(seader, payload, 0x44, 0x0a, 0x44);
 
-    free(requestPacs);
-    free(samCommand);
-    free(payload);
+    ASN_STRUCT_FREE(asn_DEF_Payload, payload);
+    ASN_STRUCT_FREE(asn_DEF_SamCommand, samCommand);
+    ASN_STRUCT_FREE(asn_DEF_RequestPacs, requestPacs);
 }
 
 void seader_worker_send_serial_number(Seader* seader) {
@@ -282,8 +282,8 @@ void seader_worker_send_serial_number(Seader* seader) {
 
     seader_send_payload(seader, payload, 0x44, 0x0a, 0x44);
 
-    free(samCommand);
-    free(payload);
+    ASN_STRUCT_FREE(asn_DEF_Payload, payload);
+    ASN_STRUCT_FREE(asn_DEF_SamCommand, samCommand);
 }
 
 void seader_worker_send_version(Seader* seader) {
@@ -303,8 +303,8 @@ void seader_worker_send_version(Seader* seader) {
 
     seader_send_payload(seader, payload, 0x44, 0x0a, 0x44);
 
-    free(samCommand);
-    free(payload);
+    ASN_STRUCT_FREE(asn_DEF_Payload, payload);
+    ASN_STRUCT_FREE(asn_DEF_SamCommand, samCommand);
 }
 
 void seader_send_card_detected(Seader* seader, CardDetails_t* cardDetails) {
@@ -331,9 +331,9 @@ void seader_send_card_detected(Seader* seader, CardDetails_t* cardDetails) {
 
     seader_send_payload(seader, payload, 0x44, 0x0a, 0x44);
 
-    free(payload);
-    free(samCommand);
-    free(cardDetected);
+    ASN_STRUCT_FREE(asn_DEF_Payload, payload);
+    ASN_STRUCT_FREE(asn_DEF_SamCommand, samCommand);
+    ASN_STRUCT_FREE(asn_DEF_CardDetected, cardDetected);
 }
 
 bool seader_unpack_pacs(Seader* seader, uint8_t* buf, size_t size) {
@@ -391,16 +391,16 @@ bool seader_unpack_pacs(Seader* seader, uint8_t* buf, size_t size) {
 //    800201298106683d052026b6820101
 //300F800201298106683D052026B6820101
 bool seader_parse_version(SeaderWorker* seader_worker, uint8_t* buf, size_t size) {
-    SamVersion_t* version = 0;
-    version = calloc(1, sizeof *version);
-    assert(version);
-
     bool rtn = false;
     if(size > 30) {
         // Too large to handle now
         FURI_LOG_W(TAG, "Version of %d is to long to parse", size);
         return false;
     }
+    SamVersion_t* version = 0;
+    version = calloc(1, sizeof *version);
+    assert(version);
+
     // Add sequence prefix
     uint8_t seq[32] = {0x30};
     seq[1] = (uint8_t)size;
@@ -587,9 +587,9 @@ void seader_send_nfc_rx(Seader* seader, uint8_t* buffer, size_t len) {
 
     seader_send_response(seader, response, 0x14, 0x0a, 0x0);
 
-    free(nfcRx);
-    free(nfcResponse);
-    free(response);
+    ASN_STRUCT_FREE(asn_DEF_NFCRx, nfcRx);
+    ASN_STRUCT_FREE(asn_DEF_NFCResponse, nfcResponse);
+    ASN_STRUCT_FREE(asn_DEF_Response, response);
 }
 
 void seader_capture_sio(BitBuffer* tx_buffer, BitBuffer* rx_buffer, SeaderCredential* credential) {
