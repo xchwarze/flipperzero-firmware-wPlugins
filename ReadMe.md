@@ -46,6 +46,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - UL: [feat: Refactor SubGHz frequency analyzer code for better readability (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/782)
 - Infrared: [Remove duplicates from Projector & LED universal remotes & Add Amazon Basics Oscillate to universal fans.ir (By Wemmy0)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0cf068726ef064827e4da535f3a11b72195eeff2)
 - Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
+- Infrared: Projectors.ir keeps doubled power button due to projector power being double press by many brands (By Willy-JL/Wemmy0)
 
 <a name="release">
 
