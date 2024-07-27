@@ -2,7 +2,7 @@
 # https://developer.flipper.net/flipperzero/doxygen/app_manifests.html
 
 App(
-    appid="f0_mtp",  # Must be unique
+    appid=".f0_mtp",  # Must be unique
     name="MTP",  # Displayed in UI
     apptype=FlipperAppType.EXTERNAL,
     entry_point="entrypoint",
