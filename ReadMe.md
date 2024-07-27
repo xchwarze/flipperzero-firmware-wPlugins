@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0727-0025-0.104.1-89f8ddc](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-27 00:25 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-27 00:25 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-27 16:48 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-27 16:48 EST`
 - SubGHz: [Disable LED in stealth mode (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1079)
 - Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
@@ -45,10 +45,10 @@ This software is for experimental purposes only and is not meant for any illegal
 - UL: [fix: remove not printable symbols and update documentation (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/783)
 - UL: [feat: Refactor SubGHz frequency analyzer code for better readability (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/782)
 - Infrared: [Remove duplicates from Projector & LED universal remotes & Add Amazon Basics Oscillate to universal fans.ir (By Wemmy0)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0cf068726ef064827e4da535f3a11b72195eeff2)
-- Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 - Infrared: [Projectors.ir keeps doubled power button due to projector power being double press by many brands (By Willy-JL/Wemmy0)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/674647d0c0c1724c41902244e6b2bdea44854242)
 - OFW: PR: [Change all icons to be white background #3802 (By skyhawkillusions)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802) [Expanded greatly (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802/commits/1d9cc38bceebe14321305cf8bfa230da3852ed9b)
 - [Reprocessed RM Images to 1Bit (Like #3802) (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/12dc0e911750019756881ca736114ca778de8d67)
+- Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 
 <a name="release">
 
