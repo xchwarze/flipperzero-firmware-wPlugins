@@ -40,11 +40,12 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
 - Updated: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
 - SubGHz: [Keep .region_data + ESP Flasher Resources Fix #1081 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1081)
-- Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 - Added: [IR Blaster v1.0 (By mateusz-szafraniec)](https://github.com/mateusz-szafraniec/flipperzero-IR_Blaster)
-- UL: [Debug: update QueueTools.py #785 (By eltociear)](https://github.com/DarkFlippers/unleashed-firmware/pull/785)
-- UL: [fix: remove not printable symbols and update documentation #783 (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/783)
-- UL: [feat: Refactor frequency analyzer code for better readability #782 (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/782)
+- UL: [Debug: update QueueTools.py (By eltociear)](https://github.com/DarkFlippers/unleashed-firmware/pull/785)
+- UL: [fix: remove not printable symbols and update documentation (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/783)
+- UL: [feat: Refactor SubGHz frequency analyzer code for better readability (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/782)
+- Infrared: [Remove duplicates from Projector & LED universal remotes & Add Amazon Basics Oscillate to universal fans.ir (By Wemmy0)]()
+- Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 
 <a name="release">
 
