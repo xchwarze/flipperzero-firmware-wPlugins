@@ -44,7 +44,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - UL: [Debug: update QueueTools.py (By eltociear)](https://github.com/DarkFlippers/unleashed-firmware/pull/785)
 - UL: [fix: remove not printable symbols and update documentation (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/783)
 - UL: [feat: Refactor SubGHz frequency analyzer code for better readability (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/782)
-- Infrared: [Remove duplicates from Projector & LED universal remotes & Add Amazon Basics Oscillate to universal fans.ir (By Wemmy0)]()
+- Infrared: [Remove duplicates from Projector & LED universal remotes & Add Amazon Basics Oscillate to universal fans.ir (By Wemmy0)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0cf068726ef064827e4da535f3a11b72195eeff2)
 - Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 
 <a name="release">
