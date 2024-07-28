@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0727-2033-0.104.1-9212fcd](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-28 01:28 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-28 01:28 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-28 14:37 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-28 14:37 EST`
 - SubGHz: [Disable LED in stealth mode (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1079)
 - Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
@@ -54,6 +54,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [Reprocessed Goku Image to 1Bit (Like #3802) (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8212293d5dc0b61a6d7ae5f2021992c87cde5fcd)
 - Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 - Updated: [IR Blaster v1.1 (By mateusz-szafraniec)](https://github.com/mateusz-szafraniec/flipperzero-IR_Blaster)
+- SubGHz: [Fix rare crash when opening Read mode via Frequency analyzer (By xMasterX with fix By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8bd350e624520a452ec2185e5519745241887132)
 
 <a name="release">
 
