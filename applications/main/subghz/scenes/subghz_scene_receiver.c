@@ -237,7 +237,10 @@ static void subghz_scene_add_to_history_callback(
             } else {
                 subghz->state_notifications = SubGhzNotificationStateRxDone;
             }
+            subghz_rx_key_state_set(subghz, SubGhzRxKeyStateAddKey);
         }
+    } else {
+        FURI_LOG_D(TAG, "%s protocol ignored", decoder_base->protocol->name);
     }
     subghz_receiver_reset(receiver);
     furi_string_free(item_name);
