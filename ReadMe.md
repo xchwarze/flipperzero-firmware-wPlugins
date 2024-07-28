@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0727-2033-0.104.1-9212fcd](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-27 20:33 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-27 20:33 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-28 01:28 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-28 01:28 EST`
 - SubGHz: [Disable LED in stealth mode (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1079)
 - Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
@@ -50,9 +50,10 @@ This software is for experimental purposes only and is not meant for any illegal
 - [Reprocessed RM Images to 1Bit (Like #3802) (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/12dc0e911750019756881ca736114ca778de8d67)
 - OFW: [Fix .editorconfig #3811 (By leon0399)](https://github.com/flipperdevices/flipperzero-firmware/pull/3811)
 - OFW: [Reordered VS-Code Tasks to follow the Release - Debug schema #3810 (By janwiesemann)](https://github.com/flipperdevices/flipperzero-firmware/pull/3810)
-- Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 - OFW: PR: [Fix typo in 'charge me' screen. #3812 (By liamhays)](https://github.com/flipperdevices/flipperzero-firmware/pull/3812)
 - [Reprocessed Goku Image to 1Bit (Like #3802) (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8212293d5dc0b61a6d7ae5f2021992c87cde5fcd)
+- Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
+- Updated: [IR Blaster v1.1 (By mateusz-szafraniec)](https://github.com/mateusz-szafraniec/flipperzero-IR_Blaster)
 
 <a name="release">
 
@@ -452,7 +453,7 @@ $ ./fbt dolphin_ext
 - [ID Card v2.1 (By evillero)](https://github.com/evillero/ID_card_v2)
 - [IFTTT Button (By Ferrazzi)](https://github.com/Ferrazzi/FlipperZero_IFTTT_Virtual_Button) `Req: ESP8266 w/ IFTTT FW Flashed`
 - [Intervalometer v1.2 (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
-- [IR Blaster v1.0 (By mateusz-szafraniec)](https://github.com/mateusz-szafraniec/flipperzero-IR_Blaster)
+- [IR Blaster v1.1 (By mateusz-szafraniec)](https://github.com/mateusz-szafraniec/flipperzero-IR_Blaster)
 - [IR Decoder v1.0 (By prplecake)](https://github.com/prplecake/f0/tree/master/infrared/apps/ir_decoder)
 - [IR Intervalometer v2.2 (By Nitepone)](https://github.com/Nitepone/flipper-intervalometer)
 - [IR Remote v1.1 (By Hong5489)](https://github.com/Hong5489/ir_remote)
