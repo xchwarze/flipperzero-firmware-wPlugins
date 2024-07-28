@@ -52,6 +52,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Reordered VS-Code Tasks to follow the Release - Debug schema #3810 (By janwiesemann)](https://github.com/flipperdevices/flipperzero-firmware/pull/3810)
 - Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 - OFW: PR: [Fix typo in 'charge me' screen. #3812 (By liamhays)](https://github.com/flipperdevices/flipperzero-firmware/pull/3812)
+- [Reprocessed Goku Image to 1Bit (Like #3802) (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/12dc0e911750019756881ca736114ca778de8d67)
 
 <a name="release">
 
