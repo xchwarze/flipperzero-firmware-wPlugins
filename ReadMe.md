@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0727-0025-0.104.1-89f8ddc](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0727-2033-0.104.1-9212fcd](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-27 20:25 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-27 20:25 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-27 20:33 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-27 20:33 EST`
 - SubGHz: [Disable LED in stealth mode (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1079)
 - Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
@@ -51,7 +51,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Fix .editorconfig #3811 (By leon0399)](https://github.com/flipperdevices/flipperzero-firmware/pull/3811)
 - OFW: [Reordered VS-Code Tasks to follow the Release - Debug schema #3810 (By janwiesemann)](https://github.com/flipperdevices/flipperzero-firmware/pull/3810)
 - Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
-- OFW: PR: [Fix typo in "charge me" screen. #3812 (By liamhays)](https://github.com/flipperdevices/flipperzero-firmware/pull/3812)
+- OFW: PR: [Fix typo in 'charge me' screen. #3812 (By liamhays)](https://github.com/flipperdevices/flipperzero-firmware/pull/3812)
 
 <a name="release">
 
