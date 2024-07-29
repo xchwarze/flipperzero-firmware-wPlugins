@@ -6,7 +6,6 @@
 
 #define TAG "SAMAPI"
 
-#define APDU_HEADER_LEN                 5
 #define ASN1_PREFIX                     6
 #define ASN1_DEBUG                      true
 #define SEADER_ICLASS_SR_SIO_BASE_BLOCK 10
@@ -137,6 +136,7 @@ void seader_picopass_state_machine(Seader* seader, uint8_t* buffer, size_t len) 
     bit_buffer_free(rx_buffer);
 }
 
+uint8_t APDU_HEADER_LEN = 5;
 bool seader_send_apdu(
     Seader* seader,
     uint8_t CLA,
@@ -144,30 +144,54 @@ bool seader_send_apdu(
     uint8_t P1,
     uint8_t P2,
     uint8_t* payload,
-    uint8_t length) {
+    uint8_t payloadLen) {
     SeaderWorker* seader_worker = seader->worker;
     SeaderUartBridge* seader_uart = seader_worker->uart;
 
-    if(APDU_HEADER_LEN + length > SEADER_UART_RX_BUF_SIZE) {
-        FURI_LOG_E(TAG, "Cannot send message, too long: %d", APDU_HEADER_LEN + length);
+    if(seader_uart->T == 1) {
+        APDU_HEADER_LEN = 7;
+    }
+
+    if(APDU_HEADER_LEN + payloadLen > SEADER_UART_RX_BUF_SIZE) {
+        FURI_LOG_E(TAG, "Cannot send message, too long: %d", APDU_HEADER_LEN + payloadLen);
         return false;
     }
 
-    uint8_t apdu[SEADER_UART_RX_BUF_SIZE];
+    uint8_t length = APDU_HEADER_LEN + payloadLen;
+    uint8_t* apdu = malloc(length);
+    if(!apdu) {
+        FURI_LOG_E(TAG, "Failed to allocate memory for apdu in seader_send_apdu");
+        return false;
+    }
+
     apdu[0] = CLA;
     apdu[1] = INS;
     apdu[2] = P1;
     apdu[3] = P2;
-    apdu[4] = length;
-    memcpy(apdu + APDU_HEADER_LEN, payload, length);
+
+    if(seader_uart->T == 1) {
+        apdu[4] = 0x00;
+        apdu[5] = 0x00;
+        apdu[6] = payloadLen;
+    } else {
+        apdu[4] = payloadLen;
+    }
+
+    memcpy(apdu + APDU_HEADER_LEN, payload, payloadLen);
 
     memset(display, 0, sizeof(display));
-    for(uint8_t i = 0; i < APDU_HEADER_LEN + length; i++) {
+    for(uint8_t i = 0; i < length; i++) {
         snprintf(display + (i * 2), sizeof(display), "%02x", apdu[i]);
     }
     FURI_LOG_D(TAG, "seader_send_apdu %s", display);
 
-    seader_ccid_XfrBlock(seader_uart, apdu, APDU_HEADER_LEN + length);
+    if(seader_uart->T == 1) {
+        seader_send_t1(seader_uart, apdu, length);
+    } else {
+        seader_ccid_XfrBlock(seader_uart, apdu, length);
+    }
+    free(apdu);
+
     return true;
 }
 
@@ -629,6 +653,7 @@ void seader_iso15693_transmit(
     uint8_t* buffer,
     size_t len) {
     SeaderWorker* seader_worker = seader->worker;
+
     BitBuffer* tx_buffer = bit_buffer_alloc(len);
     BitBuffer* rx_buffer = bit_buffer_alloc(SEADER_POLLER_MAX_BUFFER_SIZE);
 
@@ -962,17 +987,19 @@ bool seader_worker_state_machine(
 
     switch(payload->present) {
     case Payload_PR_response:
+        FURI_LOG_D(TAG, "Payload_PR_response");
         seader_parse_response(seader, &payload->choice.response);
         processed = true;
         break;
     case Payload_PR_nfcCommand:
+        FURI_LOG_D(TAG, "Payload_PR_nfcCommand");
         if(online) {
             seader_parse_nfc_command(seader, &payload->choice.nfcCommand, spc);
             processed = true;
         }
         break;
     case Payload_PR_errorResponse:
-        FURI_LOG_W(TAG, "Error Response");
+        FURI_LOG_W(TAG, "Payload_PR_errorResponse");
         processed = true;
         view_dispatcher_send_custom_event(seader->view_dispatcher, SeaderCustomEventWorkerExit);
         break;
@@ -1012,8 +1039,12 @@ bool seader_process_success_response_i(
                 ->op->print_struct(
                     &asn_DEF_Payload, payload, 1, seader_print_struct_callback, payloadDebug);
             if(strlen(payloadDebug) > 0) {
-                FURI_LOG_D(TAG, "Payload: %s", payloadDebug);
+                FURI_LOG_D(TAG, "Received Payload: %s", payloadDebug);
+            } else {
+                FURI_LOG_D(TAG, "Received empty Payload");
             }
+        } else {
+            FURI_LOG_D(TAG, "Online mode");
         }
 #endif
 

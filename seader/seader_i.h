@@ -53,8 +53,10 @@
 #include "ccid.h"
 #include "uart.h"
 #include "lrc.h"
+#include "t_1.h"
 #include "seader_worker.h"
 #include "seader_credential.h"
+#include "apdu_log.h"
 
 #define WORKER_ALL_RX_EVENTS                                                      \
     (WorkerEvtStop | WorkerEvtRxDone | WorkerEvtCfgChange | WorkerEvtLineCfgSet | \
@@ -90,6 +92,11 @@ typedef enum {
     WorkerEvtCtrlLineSet = (1 << 7),
 } WorkerEvtFlags;
 
+typedef struct {
+    uint16_t total_lines;
+    uint16_t current_line;
+} SeaderAPDURunnerContext;
+
 struct Seader {
     bool revert_power;
     bool is_debug_enabled;
@@ -121,6 +128,9 @@ struct Seader {
 
     PluginManager* plugin_manager;
     PluginWiegand* plugin_wiegand;
+
+    APDULog* apdu_log;
+    SeaderAPDURunnerContext apdu_runner_ctx;
 };
 
 struct SeaderPollerContainer {
