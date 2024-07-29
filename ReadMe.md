@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0722-1805-0.104.1-8b7b914.tgz&channel=RM0722-1805-0.104.1-8b7b914&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0728-2254-0.104.1-bbc8b2a.tgz&channel=RM0728-2254-0.104.1-bbc8b2a&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,35 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-28 22:35 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-28 22:35 EST`
-- SubGHz: [Disable LED in stealth mode (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1079)
-- Updated: [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
-- Updated: [Mfkey v2.7 (By noproto)](https://github.com/noproto/FlipperMfkey)
-- [Remove underscores from date/time in random file name (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1080)
-- SubGHz: [Manufacturer name in filename in autosave #1080 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1080)
-- Added: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
-- Updated: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
-- Updated: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
-- SubGHz: [Keep .region_data + ESP Flasher Resources Fix #1081 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1081)
-- Added: [IR Blaster v1.0 (By mateusz-szafraniec)](https://github.com/mateusz-szafraniec/flipperzero-IR_Blaster)
-- UL: [Debug: update QueueTools.py (By eltociear)](https://github.com/DarkFlippers/unleashed-firmware/pull/785)
-- UL: [fix: remove not printable symbols and update documentation (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/783)
-- UL: [feat: Refactor SubGHz frequency analyzer code for better readability (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/782)
-- Infrared: [Remove duplicates from Projector & LED universal remotes & Add Amazon Basics Oscillate to universal fans.ir (By Wemmy0)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/0cf068726ef064827e4da535f3a11b72195eeff2)
-- Infrared: [Projectors.ir keeps doubled power button due to projector power being double press by many brands (By Willy-JL/Wemmy0)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/674647d0c0c1724c41902244e6b2bdea44854242)
-- OFW: PR: [Change all icons to be white background #3802 (By skyhawkillusions)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802) [Expanded greatly (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802/commits/1d9cc38bceebe14321305cf8bfa230da3852ed9b)
-- [Reprocessed RM Images to 1Bit (Like #3802) (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/12dc0e911750019756881ca736114ca778de8d67)
-- OFW: [Fix .editorconfig #3811 (By leon0399)](https://github.com/flipperdevices/flipperzero-firmware/pull/3811)
-- OFW: [Reordered VS-Code Tasks to follow the Release - Debug schema #3810 (By janwiesemann)](https://github.com/flipperdevices/flipperzero-firmware/pull/3810)
-- OFW: PR: [Fix typo in 'charge me' screen. #3812 (By liamhays)](https://github.com/flipperdevices/flipperzero-firmware/pull/3812)
-- [Reprocessed Goku Image to 1Bit (Like #3802) (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8212293d5dc0b61a6d7ae5f2021992c87cde5fcd)
-- Updated: [IR Blaster v1.1 (By mateusz-szafraniec)](https://github.com/mateusz-szafraniec/flipperzero-IR_Blaster)
-- SubGHz: [Fix rare crash when opening Read mode via Frequency analyzer (By xMasterX with fix By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/8bd350e624520a452ec2185e5519745241887132)
-- Added: [T5577 Raw Writer v0.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
-- Updated: [FlipBoard Blinky v3.6 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- Updated: [FlipBoard Keyboard v3.9 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- Updated: [FlipBoard Signal v3.11 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- Updated: [FlipBoard Simon v1.10 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- Updated: [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 
 <a name="release">
 
@@ -623,4 +594,4 @@ $ ./fbt dolphin_ext
 - [Desktop Favorite Binds To Allow Opening Custom Game Menu. Whomever can complete this gets 3 months of subscriber builds. Patrons can DM me to add their monthly towards this bounty.](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/756)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0722-1805-0.104.1-8b7b914.tgz&channel=RM0722-1805-0.104.1-8b7b914&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0728-2254-0.104.1-bbc8b2a.tgz&channel=RM0728-2254-0.104.1-bbc8b2a&version=0.104.1)
