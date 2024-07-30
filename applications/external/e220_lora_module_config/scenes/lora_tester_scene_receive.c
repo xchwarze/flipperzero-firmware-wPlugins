@@ -2,7 +2,7 @@
 #include <furi_hal_serial.h>
 #include <gui/elements.h>
 
-#define UART_CH (FuriHalSerialIdUsart)
+#define UART_CH         (FuriHalSerialIdUsart)
 #define MAX_BUFFER_SIZE 256
 
 static FuriHalSerialHandle* serial_handle = NULL;

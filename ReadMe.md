@@ -34,6 +34,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Furi: update string documentation #3803 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3803)
 - OFW: [toolchain: v39 #3793 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3793)
 - OFW: PR: [Fix plantain balance string #3813 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3813)
+- Added: [E220 LoRa Configurator v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_E220_Lora_Module_Configurator) `Req: E220-900T22S(JP)`
 
 <a name="release">
 
@@ -380,6 +381,7 @@ $ ./fbt dolphin_ext
 - [Dolphin Trainer v1.3 (By nymda)](https://github.com/nymda/FlipperAntidepressants)
 - [DSTIKE Deauther v1.1 (By SequoiaSan)](https://github.com/SequoiaSan/FlipperZero-Wifi-ESP8266-Deauther-Module/tree/FlipperZero-Module-v2/FlipperZeroModule/FlipperZero-ESP8266-Deauth-App) `Req: ESP8266`
 - [DTMF Dolphin v1.3 (By litui)](https://github.com/litui/dtmf_dolphin)
+- [E220 LoRa Configurator v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_E220_Lora_Module_Configurator) `Req: E220-900T22S(JP)`
 - [EM4100 Key Generator v1.1 (By Milk-Cool)](https://github.com/Milk-Cool/fz-em4100-generator)
 - [Enhanced Sub-Ghz Chat v1.3 (By twisted-pear)](https://github.com/twisted-pear/esubghz_chat)
 - [Enigma v1.1 (By xtruan)](https://github.com/xtruan/flipper-enigma)

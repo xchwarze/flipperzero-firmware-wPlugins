@@ -11,8 +11,8 @@
 
 #define CONFIG_FILE_DIRECTORY "/ext/LoRa_Setting"
 #define CONFIG_FILE_EXTENSION ".ini"
-#define LORA_TX_BUFFER_SIZE 11
-#define LORA_APPLY_TIMEOUT 3000
+#define LORA_TX_BUFFER_SIZE   11
+#define LORA_APPLY_TIMEOUT    3000
 
 static uint8_t tx_buffer[LORA_TX_BUFFER_SIZE];
 static LoRaMode original_mode;
@@ -110,7 +110,8 @@ static bool load_and_apply_config(LoraTesterApp* app, const char* filename) {
                     while(sscanf(hex_ptr, "%2x", &byte) == 1 && index < LORA_TX_BUFFER_SIZE) {
                         tx_buffer[index++] = (uint8_t)byte;
                         hex_ptr += 2;
-                        while(*hex_ptr == ' ') hex_ptr++;
+                        while(*hex_ptr == ' ')
+                            hex_ptr++;
                     }
 
                     FURI_LOG_D(

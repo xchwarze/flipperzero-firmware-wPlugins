@@ -7,8 +7,8 @@
 
 #define CONFIG_FILE_DIRECTORY "/ext/LoRa_Setting"
 #define CONFIG_FILE_EXTENSION ".ini"
-#define LORA_RX_BUFFER_SIZE 256
-#define LORA_SEARCH_TIMEOUT 3000
+#define LORA_RX_BUFFER_SIZE   256
+#define LORA_SEARCH_TIMEOUT   3000
 
 static uint8_t rx_buffer[LORA_RX_BUFFER_SIZE];
 static size_t rx_buffer_index = 0;

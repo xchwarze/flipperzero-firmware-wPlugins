@@ -16,7 +16,7 @@
 #include <gui/modules/popup.h>
 #include <gui/modules/byte_input.h>
 
-#define TEXT_INPUT_STORE_SIZE 128
+#define TEXT_INPUT_STORE_SIZE           128
 #define LORA_TESTER_TEXT_BOX_STORE_SIZE 4096
 
 #ifndef COUNT_OF

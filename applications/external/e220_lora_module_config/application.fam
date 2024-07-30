@@ -1,0 +1,14 @@
+App(
+    appid="e220_lora_config",
+    name="E220 LoRa Configurator",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="lora_tester_app",
+    stack_size=16 * 1024,
+    fap_icon="lora_tester.png",
+    fap_icon_assets="assets",
+    fap_category="GPIO",
+    fap_author="crackerjacques",
+    fap_weburl="https://github.com/crackerjacques/Flipper_E220_Lora_Module_Configurator",
+    fap_version="0.1",
+    fap_description="E220-900T22S(JP), a configurator for LoRa modules used only in Japan.",
+)
