@@ -52,7 +52,7 @@
 
 typedef uint8_t (*SCL_RandomFunction)(void);
 
-#ifdef SCL_COUNT_EVALUATED_POSITIONS
+#if defined(SCL_COUNT_EVALUATED_POSITIONS) && SCL_COUNT_EVALUATED_POSITIONS
 uint32_t SCL_positionsEvaluated = 0; /**< If enabled by 
                                             SCL_COUNT_EVALUATED_POSITIONS, this
                                             will increment with every
@@ -2565,7 +2565,7 @@ int16_t _SCL_boardEvaluateDynamic(
     int8_t depth,
     int16_t alphaBeta,
     int8_t takenSquare) {
-#ifdef SCL_COUNT_EVALUATED_POSITIONS
+#if defined(SCL_COUNT_EVALUATED_POSITIONS) && SCL_COUNT_EVALUATED_POSITIONS
     SCL_positionsEvaluated++;
 #endif
 

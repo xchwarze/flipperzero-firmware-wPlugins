@@ -41,6 +41,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Fix plantain balance string #3813 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3813)
 - OFW: [Refactor detected protocols list #3809 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3809)
 - OFW: [CCID App: Refactor #3808 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3808)
+- Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By Willy-JL)
 
 <a name="release">
 

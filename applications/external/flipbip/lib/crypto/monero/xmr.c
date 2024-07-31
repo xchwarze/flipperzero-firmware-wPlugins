@@ -2,7 +2,9 @@
 // Created by Dusan Klinec on 10/05/2018.
 //
 
-#ifdef USE_MONERO
+#include "options.h"
+
+#if USE_MONERO
 
 #include "xmr.h"
 #include "../byte_order.h"

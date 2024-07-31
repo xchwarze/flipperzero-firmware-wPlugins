@@ -2,7 +2,9 @@
 // Created by Dusan Klinec on 02/05/2018.
 //
 
-#ifdef USE_MONERO
+#include "options.h"
+
+#if USE_MONERO
 
 #include "serialize.h"
 
