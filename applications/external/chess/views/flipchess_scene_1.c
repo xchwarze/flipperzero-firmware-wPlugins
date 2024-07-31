@@ -10,14 +10,14 @@
 #include "../helpers/flipchess_voice.h"
 #include "../helpers/flipchess_haptic.h"
 
-// #define SCL_960_CASTLING        0 // setting to 1 compiles a 960 version of smolchess
+#define SCL_960_CASTLING        0 // setting to 1 compiles a 960 version of smolchess
 #define XBOARD_DEBUG            0 // will create files with xboard communication
 #define SCL_EVALUATION_FUNCTION SCL_boardEvaluateStatic
-// #define SCL_DEBUG_AI            0
+#define SCL_DEBUG_AI            0
 
 #include "../chess/smallchesslib.h"
 
-// #define ENABLE_960       0 // setting to 1 enables 960 chess
+#define ENABLE_960       0 // setting to 1 enables 960 chess
 #define MAX_TEXT_LEN     15 // 15 = max length of text
 #define MAX_TEXT_BUF     (MAX_TEXT_LEN + 1) // max length of text + null terminator
 #define THREAD_WAIT_TIME 20 // time to wait for draw thread to finish
@@ -44,7 +44,7 @@ typedef struct {
     SCL_Game game;
     SCL_Board startState;
 
-#ifdef ENABLE_960
+#if ENABLE_960
     int16_t random960PosNumber;
 #endif
 
@@ -409,7 +409,7 @@ static int flipchess_scene_1_model_init(
     SCL_Board emptyStartState = SCL_BOARD_START_STATE;
     memcpy(model->startState, &emptyStartState, sizeof(SCL_Board));
 
-#ifdef ENABLE_960
+#if ENABLE_960
     model->random960PosNumber = -1;
 #endif
 
@@ -432,8 +432,8 @@ static int flipchess_scene_1_model_init(
 
     SCL_randomBetterSeed(furi_hal_random_get());
 
-#ifdef ENABLE_960
-#ifdef SCL_960_CASTLING
+#if ENABLE_960
+#if SCL_960_CASTLING
     if(model->random960PosNumber < 0) model->random960PosNumber = SCL_randomBetter();
 #endif
     if(model->random960PosNumber >= 0) model->random960PosNumber %= 960;
@@ -448,8 +448,8 @@ static int flipchess_scene_1_model_init(
         SCL_recordApply(record, model->startState, model->paramStep);
     }
 
-#ifdef ENABLE_960
-#ifdef SCL_960_CASTLING
+#if ENABLE_960
+#if SCL_960_CASTLING
     else
         SCL_boardInit960(model->startState, model->random960PosNumber);
 #endif

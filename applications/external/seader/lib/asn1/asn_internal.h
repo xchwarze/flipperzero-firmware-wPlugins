@@ -33,8 +33,8 @@ int get_asn1c_environment_version(void);	/* Run-time version */
 #define ASN_DEBUG_INDENT_ADD(i) do{}while(0)
 
 #ifdef  EMIT_ASN_DEBUG
-// #warning "Use ASN_EMIT_DEBUG instead of EMIT_ASN_DEBUG"
-// #define ASN_EMIT_DEBUG  EMIT_ASN_DEBUG
+#warning "Use ASN_EMIT_DEBUG instead of EMIT_ASN_DEBUG"
+#define ASN_EMIT_DEBUG  EMIT_ASN_DEBUG
 #endif
 
 /*
