@@ -1,0 +1,14 @@
+App(
+    appid="t5577_writer",
+    name="T5577 Raw Writer",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="main_t5577_writer_app",
+    stack_size=4 * 1024,
+    fap_icon="icon.png",
+    fap_icon_assets="assets",
+    fap_category="RFID",
+    fap_author="Torron / zinongli",
+    fap_weburl="https://github.com/zinongli/T5577_Raw_Writer",
+    fap_version="0.1",
+    fap_description="An easy to use T5577 raw writer app for Flipper Zero. See README.md",
+)
