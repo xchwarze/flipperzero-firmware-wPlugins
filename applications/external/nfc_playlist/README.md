@@ -22,7 +22,5 @@ An example file can be found in the repository
 - Add NFC Item (Adds the selected nfc item to the currently selected playlist)
 - Remove NFC Item (Opens a menu allowing you to select a line to remove from the playlist)
 - View playlist content (Allows you to view the contents of the playlist)
-## Planned changes:
-- Add a second emulation type that allows you to control the playlist and go back and fourth through it as you like
 
 Any feedback is welcome and would be very much appreciated
