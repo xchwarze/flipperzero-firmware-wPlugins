@@ -39,6 +39,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [iButton ID writing #3734 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3734)
 - OFW: [Fix: Add missing va_end call #3798 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3798) Already in RM.
 - Fixes for iButton protocol DS1420 to write ID instead of blank like [#3734](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) and Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By RogueMaster)
+- OFW: [Fix plantain balance string #3813 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3813)
 
 <a name="release">
 

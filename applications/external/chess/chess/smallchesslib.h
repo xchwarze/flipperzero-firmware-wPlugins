@@ -61,8 +61,8 @@ uint32_t SCL_positionsEvaluated = 0; /**< If enabled by
 #endif
 
 #ifndef SCL_CALL_WDT_RESET
-// #define SCL_CALL_WDT_RESET        0 
-	/**< Option that should be enabled on some
+// #define SCL_CALL_WDT_RESET        0
+/**< Option that should be enabled on some
                                     Arduinos. If 1, call to watchdog timer
                                     reset will be performed during dynamic
                                     evaluation (without it if AI takes long the
