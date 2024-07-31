@@ -454,7 +454,7 @@ static void draw_active_root(Canvas* canvas, GameState* state) {
     }
 }
 
-#if DRAW_DEBUG
+#ifdef DRAW_DEBUG
 static void draw_generated_root(Canvas* canvas, GameState* state) {
     bool isHidden = (state->tick % BLINK_PERIOD) < BLINK_HIDE_FRAMES;
 
@@ -598,7 +598,7 @@ static void roots_draw_callback(Canvas* const canvas, void* ctx) {
 
     case StageRun:
         draw_active_root(canvas, state);
-#if DRAW_DEBUG
+#ifdef DRAW_DEBUG
         draw_generated_root(canvas, state);
 #endif
         break;

@@ -31,7 +31,7 @@
 // Parts of this file are originally copyright (c) 2012-2013 The Cryptonote
 // developers
 
-#if USE_MONERO
+#ifdef USE_MONERO
 
 #ifndef __XMR_BASE58_H__
 #define __XMR_BASE58_H__

@@ -25,16 +25,16 @@ inline static uint32_t load32(uint8_t* b) {
     return x;
 }
 
-#if BYTE_ORDER == BIG_ENDIAN
-#define htobe16(x) (x)
-#define htobe32(x) (x)
-#define htole16(x) __builtin_bswap16(x)
-#define htole32(x) __builtin_bswap32(x)
-#define be16toh(x) (x)
-#define be32toh(x) (x)
-#define le16toh(x) __builtin_bswap16(x)
-#define le32toh(x) __builtin_bswap32(x)
-#elif BYTE_ORDER == LITTLE_ENDIAN
+// #if BYTE_ORDER == BIG_ENDIAN
+// #define htobe16(x) (x)
+// #define htobe32(x) (x)
+// #define htole16(x) __builtin_bswap16(x)
+// #define htole32(x) __builtin_bswap32(x)
+// #define be16toh(x) (x)
+// #define be32toh(x) (x)
+// #define le16toh(x) __builtin_bswap16(x)
+// #define le32toh(x) __builtin_bswap32(x)
+// #elif BYTE_ORDER == LITTLE_ENDIAN
 #define htobe16(x) __builtin_bswap16(x)
 #define htobe32(x) __builtin_bswap32(x)
 #define htole16(x) (x)
@@ -43,9 +43,9 @@ inline static uint32_t load32(uint8_t* b) {
 #define be32toh(x) __builtin_bswap32(x)
 #define le16toh(x) (x)
 #define le32toh(x) (x)
-#else
-#error "What kind of system is this?"
-#endif
+// #else
+// #error "What kind of system is this?"
+// #endif
 
 #define load16_le(b)     (le16toh(load16(b)))
 #define load32_le(b)     (le32toh(load32(b)))

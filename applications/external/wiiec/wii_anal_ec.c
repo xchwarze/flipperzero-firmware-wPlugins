@@ -11,7 +11,8 @@
 bool evWiiEC(const eventMsg_t* const msg, state_t* const state) {
     bool redraw = false;
 
-#if LOG_LEVEL >= 4
+// #if LOG_LEVEL >= 4
+#ifdef LOG_LEVEL
     {
         const char* s = NULL;
         switch(msg->wiiEc.type) {

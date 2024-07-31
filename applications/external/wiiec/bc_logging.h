@@ -30,27 +30,28 @@
 #define LOG_LEVEL 6 // default = full logging
 #endif
 
-#if(LOG_LEVEL < 2)
-#undef FURI_LOG_E
-#define FURI_LOG_E(tag, fmt, ...)
-#endif
+// #if(LOG_LEVEL < 2)
+// #undef FURI_LOG_E
+// #define FURI_LOG_E(tag, fmt, ...)
+// #endif
 
-#if(LOG_LEVEL < 3)
-#undef FURI_LOG_W
-#define FURI_LOG_W(tag, fmt, ...)
-#endif
+// #if(LOG_LEVEL < 3)
+// #undef FURI_LOG_W
+// #define FURI_LOG_W(tag, fmt, ...)
+// #endif
 
-#if(LOG_LEVEL < 4)
-#undef FURI_LOG_I
-#define FURI_LOG_I(tag, fmt, ...)
-#endif
+// #if(LOG_LEVEL < 4)
+// #undef FURI_LOG_I
+// #define FURI_LOG_I(tag, fmt, ...)
+// #endif
 
-#if(LOG_LEVEL < 5)
+// #if(LOG_LEVEL < 5)
+#ifdef LOG_LEVEL
 #undef FURI_LOG_D
 #define FURI_LOG_D(tag, fmt, ...)
-#endif
+// #endif
 
-#if(LOG_LEVEL < 6)
+// #if(LOG_LEVEL < 6)
 #undef FURI_LOG_T
 #define FURI_LOG_T(tag, fmt, ...)
 #endif

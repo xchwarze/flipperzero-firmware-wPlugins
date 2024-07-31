@@ -52,7 +52,7 @@
 
 typedef uint8_t (*SCL_RandomFunction)(void);
 
-#if SCL_COUNT_EVALUATED_POSITIONS
+#ifdef SCL_COUNT_EVALUATED_POSITIONS
 uint32_t SCL_positionsEvaluated = 0; /**< If enabled by 
                                             SCL_COUNT_EVALUATED_POSITIONS, this
                                             will increment with every
@@ -61,8 +61,8 @@ uint32_t SCL_positionsEvaluated = 0; /**< If enabled by
 #endif
 
 #ifndef SCL_CALL_WDT_RESET
-#define SCL_CALL_WDT_RESET \
-    0 /**< Option that should be enabled on some
+// #define SCL_CALL_WDT_RESET        0 
+	/**< Option that should be enabled on some
                                     Arduinos. If 1, call to watchdog timer
                                     reset will be performed during dynamic
                                     evaluation (without it if AI takes long the
@@ -214,7 +214,7 @@ typedef char SCL_Board[SCL_BOARD_STATE_SIZE];
 #define SCL_BOARD_MOVE_COUNT_BYTE       66
 #define SCL_BOARD_EXTRA_BYTE            67
 
-#if SCL_960_CASTLING
+#ifdef SCL_960_CASTLING
 #define _SCL_EXTRA_BYTE_VALUE (0 | (7 << 3)) // rooks on classic positions
 #else
 #define _SCL_EXTRA_BYTE_VALUE 0
@@ -987,7 +987,7 @@ void SCL_boardInit960(SCL_Board board, uint16_t positionNumber) {
     for(uint8_t i = 0; i < 8; ++i)
         board[56 + i] = SCL_pieceToColor(board[i], 0);
 
-#if SCL_960_CASTLING
+#ifdef SCL_960_CASTLING
     _SCL_board960RememberRookPositions(board);
 #else
     SCL_boardDisableCastling(board);
@@ -1302,7 +1302,7 @@ void SCL_recordApply(const SCL_Record r, SCL_Board b, uint16_t moves) {
 }
 
 void SCL_boardUndoMove(SCL_Board board, SCL_MoveUndo moveUndo) {
-#if SCL_960_CASTLING
+#ifdef SCL_960_CASTLING
     char squareToNow = board[moveUndo.squareTo];
 #endif
 
@@ -1322,7 +1322,7 @@ void SCL_boardUndoMove(SCL_Board board, SCL_MoveUndo moveUndo) {
             board[(moveUndo.squareFrom / 8) * 8 + (moveUndo.enPassantCastle & 0x0f)] =
                 (board[moveUndo.squareFrom] == 'P') ? 'p' : 'P'; // was en passant
     }
-#if !SCL_960_CASTLING
+#ifndef SCL_960_CASTLING
     else if(
         board[moveUndo.squareFrom] == 'k' && // black castling
         moveUndo.squareFrom == 60) {
@@ -1370,7 +1370,7 @@ void SCL_boardUndoMove(SCL_Board board, SCL_MoveUndo moveUndo) {
   or to a square with a rook.
 */
 void _SCL_handleRookActivity(SCL_Board board, uint8_t rookSquare) {
-#if !SCL_960_CASTLING
+#ifndef SCL_960_CASTLING
     switch(rookSquare) {
     case 0:
         board[SCL_BOARD_ENPASSANT_CASTLE_BYTE] &= (uint8_t)~0x20;
@@ -1419,12 +1419,12 @@ SCL_MoveUndo
     else
         board[SCL_BOARD_MOVE_COUNT_BYTE]++;
 
-#if SCL_960_CASTLING
+#ifdef SCL_960_CASTLING
     uint8_t castled = 0;
 #endif
 
     if((s == 'k') || (s == 'K')) {
-#if !SCL_960_CASTLING
+#ifndef SCL_960_CASTLING
         if((squareFrom == 4) || (squareFrom == 60)) // check castling
         {
             int8_t difference = squareTo - squareFrom;
@@ -1500,7 +1500,7 @@ SCL_MoveUndo
 
     if(taken == 'R' || taken == 'r') _SCL_handleRookActivity(board, squareTo);
 
-#if SCL_960_CASTLING
+#ifdef SCL_960_CASTLING
     if(!castled)
 #endif
     {
@@ -1810,7 +1810,7 @@ void SCL_boardGetPseudoMoves(
             if((board[SCL_BOARD_ENPASSANT_CASTLE_BYTE] & (0x03 << bitShift)) &&
                !SCL_boardSquareAttacked(board, pieceSquare, !isWhite)) // no check?
             {
-#if !SCL_960_CASTLING
+#ifndef SCL_960_CASTLING
                 // short castle:
                 pieceSquare++;
 
@@ -2565,12 +2565,12 @@ int16_t _SCL_boardEvaluateDynamic(
     int8_t depth,
     int16_t alphaBeta,
     int8_t takenSquare) {
-#if SCL_COUNT_EVALUATED_POSITIONS
+#ifdef SCL_COUNT_EVALUATED_POSITIONS
     SCL_positionsEvaluated++;
 #endif
 
-#if SCL_CALL_WDT_RESET
-    wdt_reset();
+#ifdef SCL_CALL_WDT_RESET
+    // wdt_reset();
 #endif
 
     uint8_t whitesTurn = SCL_boardWhitesTurn(board);
@@ -2589,14 +2589,14 @@ int16_t _SCL_boardEvaluateDynamic(
         shouldCompute = extended;
     }
 
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
     char moveStr[8];
     uint8_t debugFirst = 1;
 #endif
 
     if(shouldCompute &&
        (positionType == SCL_POSITION_NORMAL || positionType == SCL_POSITION_CHECK)) {
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
         putchar('(');
 #endif
 
@@ -2636,7 +2636,7 @@ int16_t _SCL_boardEvaluateDynamic(
                     SCL_UNUSED(s1Dummy);
                     SCL_UNUSED(pDummy);
 
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
                     if(debugFirst)
                         debugFirst = 0;
                     else
@@ -2650,7 +2650,7 @@ int16_t _SCL_boardEvaluateDynamic(
                     int16_t value = _SCL_boardEvaluateDynamic(
                                         board,
                                         depth, // this is depth - 1, we decremented it
-#if SCL_ALPHA_BETA
+#ifdef SCL_ALPHA_BETA
                                         valueMultiply * bestMoveValue,
 #else
                                         0,
@@ -2663,7 +2663,7 @@ int16_t _SCL_boardEvaluateDynamic(
                     if(value > bestMoveValue) {
                         bestMoveValue = value;
 
-#if SCL_ALPHA_BETA
+#ifdef SCL_ALPHA_BETA
                         // alpha-beta pruning:
 
                         if(value > alphaBeta) // no, >= can't be here
@@ -2682,7 +2682,7 @@ int16_t _SCL_boardEvaluateDynamic(
 
         } // for each square
 
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
         putchar(')');
 #endif
     } else // don't dive recursively, evaluate statically
@@ -2708,7 +2708,7 @@ int16_t _SCL_boardEvaluateDynamic(
      moves as leading to mate). */
     bestMoveValue += bestMoveValue > _SCL_currentEval * valueMultiply ? -1 : 1;
 
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
     printf("%d", bestMoveValue * valueMultiply);
 #endif
 
@@ -2793,7 +2793,7 @@ int16_t SCL_getAIMove(
     uint8_t* resultFrom,
     uint8_t* resultTo,
     char* resultProm) {
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
     puts("===== AI debug =====");
     putchar('(');
     unsigned char debugFirst = 1;
@@ -2830,7 +2830,7 @@ int16_t SCL_getAIMove(
 
             int16_t score = 0;
 
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
             if(debugFirst)
                 debugFirst = 0;
             else
@@ -2887,7 +2887,7 @@ int16_t SCL_getAIMove(
             SCL_SQUARE_SET_ITERATE_END
         }
 
-#if SCL_DEBUG_AI
+#ifdef SCL_DEBUG_AI
     printf(")%d %s\n", bestScore, SCL_moveToString(board, *resultFrom, *resultTo, 'q', moveStr));
     puts("===== AI debug end ===== ");
 #endif
@@ -3087,7 +3087,7 @@ uint8_t SCL_boardFromFEN(SCL_Board board, const char* string) {
             board[SCL_BOARD_PLY_BYTE] += (ply - 1) * 2;
     }
 
-#if SCL_960_CASTLING
+#ifdef SCL_960_CASTLING
     _SCL_board960RememberRookPositions(board);
 #endif
 
@@ -3296,7 +3296,7 @@ void SCL_printPGN(SCL_Record r, SCL_PutCharFunction putCharFunc, SCL_Board initi
             putCharFunc(' ');
         }
 
-#if !SCL_960_CASTLING
+#ifndef SCL_960_CASTLING
         if((board[s0] == 'K' && s0 == 4 && (s1 == 2 || s1 == 6)) ||
            (board[s0] == 'k' && s0 == 60 && (s1 == 62 || s1 == 58)))
 #else
@@ -3307,7 +3307,7 @@ void SCL_printPGN(SCL_Record r, SCL_PutCharFunction putCharFunc, SCL_Board initi
             putCharFunc('-');
             putCharFunc('O');
 
-#if !SCL_960_CASTLING
+#ifndef SCL_960_CASTLING
             if(s1 == 58 || s1 == 2)
 #else
             if((s1 == (board[SCL_BOARD_EXTRA_BYTE] & 0x07)) ||

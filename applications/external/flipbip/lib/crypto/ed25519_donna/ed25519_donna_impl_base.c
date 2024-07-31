@@ -400,7 +400,7 @@ void ge25519_double_scalarmult_vartime(
 }
 
 /* computes [s1]p1 + [s2]p2 */
-#if USE_MONERO
+#ifdef USE_MONERO
 void ge25519_double_scalarmult_vartime2(
     ge25519* r,
     const ge25519* p1,

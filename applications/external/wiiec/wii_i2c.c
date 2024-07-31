@@ -62,7 +62,8 @@ static const uint8_t regPid = 0xFA; // PID_LEN
 //+============================================================================ ========================================
 // Hexdump a buffer to the logfile
 //
-#if LOG_LEVEL >= 4 // INFO
+// #if LOG_LEVEL >= 4 // INFO
+#ifdef LOG_LEVEL
 
 static void dump(const uint8_t* buf, const unsigned int len, const char* id) {
     // snprintf() would be useful!

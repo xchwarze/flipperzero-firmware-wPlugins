@@ -33,8 +33,8 @@ int get_asn1c_environment_version(void);	/* Run-time version */
 #define ASN_DEBUG_INDENT_ADD(i) do{}while(0)
 
 #ifdef  EMIT_ASN_DEBUG
-#warning "Use ASN_EMIT_DEBUG instead of EMIT_ASN_DEBUG"
-#define ASN_EMIT_DEBUG  EMIT_ASN_DEBUG
+// #warning "Use ASN_EMIT_DEBUG instead of EMIT_ASN_DEBUG"
+// #define ASN_EMIT_DEBUG  EMIT_ASN_DEBUG
 #endif
 
 /*
@@ -42,7 +42,7 @@ int get_asn1c_environment_version(void);	/* Run-time version */
  * You may enable or override it.
  */
 #ifndef	ASN_DEBUG	/* If debugging code is not defined elsewhere... */
-#if	ASN_EMIT_DEBUG == 1	/* And it was asked to emit this code... */
+#ifdef ASN_EMIT_DEBUG /* And it was asked to emit this code... */
 #if __STDC_VERSION__ >= 199901L
 #ifdef	ASN_THREAD_SAFE
 /* Thread safety requires sacrifice in output indentation:
