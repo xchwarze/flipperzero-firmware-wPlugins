@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM0731-1723-0.104.1-16a90bb](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-31 17:23 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-31 17:23 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-31 17:45 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-31 17:45 EST`
 - OFW: [Furi: update string documentation #3803 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3803)
 - OFW: [toolchain: v39 #3793 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3793)
 - Added: [E220 LoRa Configurator v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_E220_Lora_Module_Configurator) `Req: E220-900T22S(JP)`
@@ -40,6 +40,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Fixes for iButton protocol DS1420 to write ID instead of blank like [#3734](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) and Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By RogueMaster)
 - OFW: [Fix plantain balance string #3813 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3813)
 - OFW: [Refactor detected protocols list #3809 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3809)
+- OFW: [CCID App: Refactor #3808 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3808)
 
 <a name="release">
 
