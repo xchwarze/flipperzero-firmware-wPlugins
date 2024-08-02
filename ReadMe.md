@@ -47,6 +47,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Change the plantain last number display from ? to X #3819 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3819)
 - UNDO: OFW: PR: [Fix: variable redeclaration in subghz_cli.c #3799 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3799)
 - Updated: [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
+- Updated main app folders to look to SD card for data (and not internal)
 
 <a name="release">
 
