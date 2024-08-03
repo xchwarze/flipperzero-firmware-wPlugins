@@ -478,7 +478,7 @@ void subghz_cli_command_rx_raw(Cli* cli, FuriString* args, void* context) {
 void subghz_cli_command_decode_raw(Cli* cli, FuriString* args, void* context) {
     UNUSED(context);
     FuriString* file_name = furi_string_alloc();
-    furi_string_set(file_name, ANY_PATH("subghz/test.sub"));
+    furi_string_set(file_name, EXT_PATH("subghz/test.sub"));
 
     Storage* storage = furi_record_open(RECORD_STORAGE);
     FlipperFormat* fff_data_file = flipper_format_file_alloc(storage);
@@ -1063,7 +1063,7 @@ static void subghz_cli_command_chat(Cli* cli, FuriString* args) {
                         furi_string_push_back(output, message[i]);
                         if(message[i] == '\n') {
                             printf("\r");
-                            for(uint8_t j = 0; j < 80; i++) {
+                            for(uint8_t i = 0; i < 80; i++) {
                                 printf(" ");
                             }
                             printf("                    - %s", furi_string_get_cstr(output));

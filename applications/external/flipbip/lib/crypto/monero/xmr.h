@@ -2,7 +2,7 @@
 // Created by Dusan Klinec on 10/05/2018.
 //
 
-#if USE_MONERO
+#ifdef USE_MONERO
 
 #ifndef TREZOR_CRYPTO_XMR_H
 #define TREZOR_CRYPTO_XMR_H

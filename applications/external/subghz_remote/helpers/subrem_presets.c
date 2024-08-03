@@ -181,7 +181,7 @@ SubRemLoadSubState subrem_sub_preset_load(
 
         ret = SubRemLoadSubStateOK;
 
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
         FURI_LOG_I(TAG, "%-16s - protocol Loaded", furi_string_get_cstr(sub_preset->label));
 #endif
     } while(false);

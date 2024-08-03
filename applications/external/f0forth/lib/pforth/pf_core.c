@@ -524,9 +524,9 @@ ThrowCode pfDoForth( const char *DicFileName, const char *SourceName, cell_t IfI
 
             if( IsHostLittleEndian() ) MSG("LE");
             else MSG("BE");
-#if PF_BIG_ENDIAN_DIC
+#if defined(PF_BIG_ENDIAN_DIC) && PF_BIG_ENDIAN_DIC
             MSG("/BE");
-#elif PF_LITTLE_ENDIAN_DIC
+#elif defined(PF_LITTLE_ENDIAN_DIC) && PF_LITTLE_ENDIAN_DIC
             MSG("/LE");
 #endif
             if (sizeof(cell_t) == 8)

@@ -27,14 +27,27 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0728-2235-0.104.1-85c3904](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0731-1831-0.104.1-354bfad](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-07-30 18:50 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-07-30 18:50 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-02 02:05 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-02 02:05 EST`
 - OFW: [Furi: update string documentation #3803 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3803)
 - OFW: [toolchain: v39 #3793 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3793)
-- OFW: PR: [Fix plantain balance string #3813 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3813)
 - Added: [E220 LoRa Configurator v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_E220_Lora_Module_Configurator) `Req: E220-900T22S(JP)`
+- OFW: [Added -Wundef to compiler options #3815 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3815)
+- OFW: [iButton ID writing #3734 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3734)
+- OFW: [Fix: Add missing va_end call #3798 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3798) Already in RM.
+- Fixes for iButton protocol DS1420 to write ID instead of blank like [#3734](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) and Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By RogueMaster)
+- OFW: [Fix plantain balance string #3813 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3813)
+- OFW: [Refactor detected protocols list #3809 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3809)
+- OFW: [CCID App: Refactor #3808 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3808)
+- Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By Willy-JL)
+- More Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By RogueMaster)
+- OFW: [Add lfrfid GProxII support #3796 (By BarTenderNZ)](https://github.com/flipperdevices/flipperzero-firmware/pull/3796)
+- OFW: [Change the plantain last number display from ? to X #3819 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3819)
+- UNDO: OFW: PR: [Fix: variable redeclaration in subghz_cli.c #3799 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3799)
+- Updated: [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
+- Updated main app folders to look to SD card for data (and not internal)
 
 <a name="release">
 
@@ -481,7 +494,7 @@ $ ./fbt dolphin_ext
 - [Name Changer (By ESurge)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/488)
 - [NFC Magic v1.11 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966)
 - [NFC Maker v1.2 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
-- [NFC Playlist v2.3 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
+- [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - [NFC Relay v0.2 (By leommxj)](https://github.com/leommxj/nfc_relay)
 - [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
 - [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
@@ -544,7 +557,7 @@ $ ./fbt dolphin_ext
 - [Sub-GHz Rolling Flaws v1.5 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials)
 - [SWD Probe v1.2 (By g3gg0)](https://github.com/g3gg0/flipper-swd_probe)
 - [T5577 Multiwriter v0.2 (By Leptopt1los)](https://github.com/Leptopt1los/t5577_multiwriter)
-- [T5577 Raw Writer v0.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
+- [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
 - [Tasks v1.0 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
 - [Temp Sensors Reader 1.6 (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: BMP180/BMP280/BME280/BME680/DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD/HTU21x/HDC1080/MAX31855/MAX6675/SCD30`
 - [Text To SAM v1.4 (By RoundPi)](https://github.com/Round-Pi/flipperzero-text2sam)

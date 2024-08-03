@@ -78,7 +78,7 @@ static bool subrem_map_preset_load(SubRemMapPreset* map_preset, FlipperFormat* f
         sub_preset = map_preset->subs_preset[i];
         if(!flipper_format_read_string(
                fff_data_file, map_file_labels[i][0], sub_preset->file_path)) {
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
             FURI_LOG_W(TAG, "No file patch for %s", map_file_labels[i][0]);
 #endif
             sub_preset->type = SubGhzProtocolTypeUnknown;
@@ -89,7 +89,7 @@ static bool subrem_map_preset_load(SubRemMapPreset* map_preset, FlipperFormat* f
             // Rewind error
         } else if(!flipper_format_read_string(
                       fff_data_file, map_file_labels[i][1], sub_preset->label)) {
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
             FURI_LOG_W(TAG, "No Label for %s", map_file_labels[i][0]);
 #endif
             ret = true;
@@ -115,13 +115,13 @@ static bool subrem_map_preset_load(SubRemMapPreset* map_preset, FlipperFormat* f
 SubRemLoadMapState subrem_map_file_load(SubGhzRemoteApp* app, const char* file_path) {
     furi_assert(app);
     furi_assert(file_path);
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
     FURI_LOG_I(TAG, "Load Map File Start");
 #endif
     Storage* storage = furi_record_open(RECORD_STORAGE);
     FlipperFormat* fff_data_file = flipper_format_file_alloc(storage);
     SubRemLoadMapState ret = SubRemLoadMapStateErrorOpenError;
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
     FURI_LOG_I(TAG, "Open Map File..");
 #endif
     subrem_map_preset_reset(app->map_preset);

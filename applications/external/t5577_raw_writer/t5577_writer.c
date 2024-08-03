@@ -317,6 +317,7 @@ static void t5577_writer_file_saver(void* context) {
         furi_string_printf(buffer, "Number of User Blocks: %u\n", model->user_block_num);
         storage_file_write(data_file, furi_string_get_cstr(buffer), furi_string_size(buffer));
         furi_string_printf(buffer, "\nRaw Data:\n");
+
         for(int i = 0; i < LFRFID_T5577_BLOCK_COUNT; i++) {
             furi_string_cat_printf(buffer, "Block %u: %08lX\n", i, model->content[i]);
         }
