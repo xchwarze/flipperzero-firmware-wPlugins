@@ -71,7 +71,7 @@ void desktop_settings_scene_favorite_on_enter(void* context) {
     FavoriteApp* curr_favorite_app = NULL;
     bool is_dummy_app = false;
     bool default_passport = false;
-    bool lock_if_none = false;
+    bool lock_if_none = true;
 
     if((favorite_id & SCENE_STATE_SET_DUMMY_APP) == 0) {
         furi_assert(favorite_id < FavoriteAppNumber);

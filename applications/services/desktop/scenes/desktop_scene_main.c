@@ -207,8 +207,14 @@ bool desktop_scene_main_on_event(void* context, SceneManagerEvent event) {
             break;
         case DesktopMainEventOpenFavoriteUpLong:
             DESKTOP_SETTINGS_LOAD(&desktop->settings);
-            desktop_scene_main_start_favorite(
-                desktop, &desktop->settings.favorite_apps[FavoriteAppUpLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.favorite_apps[FavoriteAppUpLong].name_or_path)) {
+                desktop_scene_main_start_favorite(
+                desktop, &desktop->settings.favorite_apps[FavoriteAppUpLong]);    
+            } else {
+                scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                desktop_lock(desktop);
+            }
             consumed = true;
             break;
 
