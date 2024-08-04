@@ -16,10 +16,14 @@
 #define NONE_APPLICATION_NAME  "None (disable)"
 #define LOCK_APPLICATION_NAME  "Lock Flipper"
 
-#define EXTERNAL_APPLICATION_INDEX (2)
+#define LOCK_FLIPPER_INDEX (2)
+#define GAMES_MENU_INDEX   (3)
+#define GAMES_MENU_NAME    "Game menu"
+
+#define EXTERNAL_APPLICATION_INDEX (4)
 #define EXTERNAL_APPLICATION_NAME  ("[Select App]")
 
-#define MAIN_LIST_APPLICATION_OFFSET (3)
+#define MAIN_LIST_APPLICATION_OFFSET (5)
 
 #define PRESELECTED_SPECIAL 0xffffffff
 
@@ -71,7 +75,7 @@ void desktop_settings_scene_favorite_on_enter(void* context) {
     FavoriteApp* curr_favorite_app = NULL;
     bool is_dummy_app = false;
     bool default_passport = false;
-    bool lock_if_none = true;
+    bool lock_if_none = false;
 
     if((favorite_id & SCENE_STATE_SET_DUMMY_APP) == 0) {
         furi_assert(favorite_id < FavoriteAppNumber);
@@ -104,6 +108,20 @@ void desktop_settings_scene_favorite_on_enter(void* context) {
         submenu,
         lock_if_none ? (LOCK_APPLICATION_NAME) : (NONE_APPLICATION_NAME),
         NONE_APPLICATION_INDEX,
+        desktop_settings_scene_favorite_submenu_callback,
+        app);
+
+    submenu_add_item(
+        submenu,
+        LOCK_APPLICATION_NAME,
+        LOCK_FLIPPER_INDEX,
+        desktop_settings_scene_favorite_submenu_callback,
+        app);
+
+    submenu_add_item(
+        submenu,
+        GAMES_MENU_NAME,
+        GAMES_MENU_INDEX,
         desktop_settings_scene_favorite_submenu_callback,
         app);
 
@@ -140,6 +158,14 @@ void desktop_settings_scene_favorite_on_enter(void* context) {
             (curr_favorite_app->name_or_path[1] == '\0') &&
             (curr_favorite_app->name_or_path[0] == '?')) {
             pre_select_item = NONE_APPLICATION_INDEX;
+        } else if(
+            (curr_favorite_app->name_or_path[1] == 'L') &&
+            (curr_favorite_app->name_or_path[0] == '!')) {
+            pre_select_item = LOCK_FLIPPER_INDEX;
+        } else if(
+            (curr_favorite_app->name_or_path[1] == 'G') &&
+            (curr_favorite_app->name_or_path[0] == '!')) {
+            pre_select_item = GAMES_MENU_INDEX;
         } else {
             pre_select_item = EXTERNAL_APPLICATION_INDEX;
         }
@@ -175,6 +201,16 @@ bool desktop_settings_scene_favorite_on_event(void* context, SceneManagerEvent e
         } else if(event.event == NONE_APPLICATION_INDEX) {
             curr_favorite_app->name_or_path[0] = '?';
             curr_favorite_app->name_or_path[1] = '\0';
+            consumed = true;
+        } else if(event.event == LOCK_FLIPPER_INDEX) {
+            curr_favorite_app->name_or_path[0] = '!';
+            curr_favorite_app->name_or_path[1] = 'L';
+            curr_favorite_app->name_or_path[2] = '\0';
+            consumed = true;
+        } else if(event.event == GAMES_MENU_INDEX) {
+            curr_favorite_app->name_or_path[0] = '!';
+            curr_favorite_app->name_or_path[1] = 'G';
+            curr_favorite_app->name_or_path[2] = '\0';
             consumed = true;
         } else if(event.event == EXTERNAL_APPLICATION_INDEX) {
             const DialogsFileBrowserOptions browser_options = {

@@ -43,6 +43,12 @@ static void desktop_scene_main_interact_animation_callback(void* context) {
         desktop->view_dispatcher, DesktopAnimationEventInteractAnimation);
 }
 
+static void launch_games_menu() {
+    Loader* loader = furi_record_open(RECORD_LOADER);
+    loader_show_gamesmenu(loader);
+    furi_record_close(RECORD_LOADER);
+}
+
 #ifdef APP_ARCHIVE
 static void
     desktop_switch_to_app(Desktop* desktop, const FlipperInternalApplication* flipper_app) {
@@ -177,43 +183,144 @@ bool desktop_scene_main_on_event(void* context, SceneManagerEvent event) {
 
         case DesktopMainEventOpenFavoriteDownLong:
             DESKTOP_SETTINGS_LOAD(&desktop->settings);
-            desktop_scene_main_start_favorite(
-                desktop, &desktop->settings.favorite_apps[FavoriteAppDownLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.favorite_apps[FavoriteAppDownLong].name_or_path)) {
+                if(!strcmp(
+                       desktop->settings.favorite_apps[FavoriteAppDownLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.favorite_apps[FavoriteAppDownLong].name_or_path,
+                              "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_start_favorite(
+                        desktop, &desktop->settings.favorite_apps[FavoriteAppDownLong]);
+                }
+            }
             consumed = true;
             break;
         case DesktopMainEventOpenFavoriteLeftShort:
             DESKTOP_SETTINGS_LOAD(&desktop->settings);
-            desktop_scene_main_start_favorite(
-                desktop, &desktop->settings.favorite_apps[FavoriteAppLeftShort]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.favorite_apps[FavoriteAppLeftShort].name_or_path)) {
+                if(!strcmp(
+                       desktop->settings.favorite_apps[FavoriteAppLeftShort].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.favorite_apps[FavoriteAppLeftShort].name_or_path,
+                              "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_start_favorite(
+                        desktop, &desktop->settings.favorite_apps[FavoriteAppLeftShort]);
+                }
+            }
             consumed = true;
             break;
         case DesktopMainEventOpenFavoriteLeftLong:
             DESKTOP_SETTINGS_LOAD(&desktop->settings);
-            desktop_scene_main_start_favorite(
-                desktop, &desktop->settings.favorite_apps[FavoriteAppLeftLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.favorite_apps[FavoriteAppLeftLong].name_or_path)) {
+                if(!strcmp(
+                       desktop->settings.favorite_apps[FavoriteAppLeftLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.favorite_apps[FavoriteAppLeftLong].name_or_path,
+                              "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_start_favorite(
+                        desktop, &desktop->settings.favorite_apps[FavoriteAppLeftShort]);
+                }
+            }
             consumed = true;
             break;
         case DesktopMainEventOpenFavoriteRightShort:
             DESKTOP_SETTINGS_LOAD(&desktop->settings);
-            desktop_scene_main_start_favorite(
-                desktop, &desktop->settings.favorite_apps[FavoriteAppRightShort]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.favorite_apps[FavoriteAppRightShort].name_or_path)) {
+                if(!strcmp(
+                       desktop->settings.favorite_apps[FavoriteAppRightShort].name_or_path,
+                       "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.favorite_apps[FavoriteAppRightShort].name_or_path,
+                              "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_start_favorite(
+                        desktop, &desktop->settings.favorite_apps[FavoriteAppRightShort]);
+                }
+            }
             consumed = true;
             break;
         case DesktopMainEventOpenFavoriteRightLong:
             DESKTOP_SETTINGS_LOAD(&desktop->settings);
-            desktop_scene_main_start_favorite(
-                desktop, &desktop->settings.favorite_apps[FavoriteAppRightLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.favorite_apps[FavoriteAppRightLong].name_or_path)) {
+                if(!strcmp(
+                       desktop->settings.favorite_apps[FavoriteAppRightLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.favorite_apps[FavoriteAppRightLong].name_or_path,
+                              "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_start_favorite(
+                        desktop, &desktop->settings.favorite_apps[FavoriteAppRightLong]);
+                }
+            }
             consumed = true;
             break;
         case DesktopMainEventOpenFavoriteUpLong:
             DESKTOP_SETTINGS_LOAD(&desktop->settings);
             if(!desktop_scene_main_check_none(
                    desktop->settings.favorite_apps[FavoriteAppUpLong].name_or_path)) {
-                desktop_scene_main_start_favorite(
-                desktop, &desktop->settings.favorite_apps[FavoriteAppUpLong]);    
+                if(!strcmp(desktop->settings.favorite_apps[FavoriteAppUpLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.favorite_apps[FavoriteAppUpLong].name_or_path,
+                              "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_start_favorite(
+                        desktop, &desktop->settings.favorite_apps[FavoriteAppUpLong]);
+                }
             } else {
                 scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
                 desktop_lock(desktop);
+                consumed = true;
+                break;
             }
             consumed = true;
             break;
@@ -280,42 +387,158 @@ bool desktop_scene_main_on_event(void* context, SceneManagerEvent event) {
             break;
         }
         case DesktopDummyEventOpenLeft:
-            desktop_scene_main_open_fav_or_profile(
-                desktop, &desktop->settings.dummy_apps[DummyAppLeft]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.dummy_apps[DummyAppLeft].name_or_path)) {
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppLeft].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(desktop->settings.dummy_apps[DummyAppLeft].name_or_path, "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppLeft]);
+                }
+            }
             break;
         case DesktopDummyEventOpenDown:
-            desktop_scene_main_open_fav_or_profile(
-                desktop, &desktop->settings.dummy_apps[DummyAppDown]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.dummy_apps[DummyAppDown].name_or_path)) {
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppDown].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(desktop->settings.dummy_apps[DummyAppDown].name_or_path, "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppDown]);
+                }
+            }
             break;
         case DesktopDummyEventOpenOk:
-            desktop_scene_main_open_fav_or_profile(
-                desktop, &desktop->settings.dummy_apps[DummyAppOk]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.dummy_apps[DummyAppOk].name_or_path)) {
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppOk].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(desktop->settings.dummy_apps[DummyAppOk].name_or_path, "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppOk]);
+                }
+            }
             break;
         case DesktopDummyEventOpenUpLong:
             if(!desktop_scene_main_check_none(
                    desktop->settings.dummy_apps[DummyAppUpLong].name_or_path)) {
-                desktop_scene_main_open_fav_or_profile(
-                    desktop, &desktop->settings.dummy_apps[DummyAppUpLong]);
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppUpLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.dummy_apps[DummyAppUpLong].name_or_path, "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppUpLong]);
+                }
             } else {
                 scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
                 desktop_lock(desktop);
             }
             break;
         case DesktopDummyEventOpenDownLong:
-            desktop_scene_main_open_fav_or_profile(
-                desktop, &desktop->settings.dummy_apps[DummyAppDownLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.dummy_apps[DummyAppDownLong].name_or_path)) {
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppDownLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.dummy_apps[DummyAppDownLong].name_or_path, "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppDownLong]);
+                }
+            }
             break;
         case DesktopDummyEventOpenLeftLong:
-            desktop_scene_main_open_fav_or_profile(
-                desktop, &desktop->settings.dummy_apps[DummyAppLeftLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.dummy_apps[DummyAppLeftLong].name_or_path)) {
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppLeftLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.dummy_apps[DummyAppLeftLong].name_or_path, "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppLeftLong]);
+                }
+            }
             break;
         case DesktopDummyEventOpenRightLong:
-            desktop_scene_main_open_fav_or_profile(
-                desktop, &desktop->settings.dummy_apps[DummyAppRightLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.dummy_apps[DummyAppRightLong].name_or_path)) {
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppRightLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.dummy_apps[DummyAppRightLong].name_or_path,
+                              "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppRightLong]);
+                }
+            }
+
             break;
         case DesktopDummyEventOpenOkLong:
-            desktop_scene_main_open_fav_or_profile(
-                desktop, &desktop->settings.dummy_apps[DummyAppOkLong]);
+            if(!desktop_scene_main_check_none(
+                   desktop->settings.dummy_apps[DummyAppOkLong].name_or_path)) {
+                if(!strcmp(desktop->settings.dummy_apps[DummyAppOkLong].name_or_path, "!L")) {
+                    scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+                    desktop_lock(desktop);
+                    consumed = true;
+                    break;
+                } else if(!strcmp(
+                              desktop->settings.dummy_apps[DummyAppOkLong].name_or_path, "!G")) {
+                    launch_games_menu();
+                    consumed = true;
+                    break;
+                } else {
+                    desktop_scene_main_open_fav_or_profile(
+                        desktop, &desktop->settings.dummy_apps[DummyAppOkLong]);
+                }
+            }
             break;
 
         case DesktopLockedEventUpdate:
