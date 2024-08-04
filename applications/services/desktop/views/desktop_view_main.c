@@ -102,7 +102,7 @@ bool desktop_main_input_callback(InputEvent* event, void* context) {
             if(event->key == InputKeyOk) {
                 main_view->callback(DesktopAnimationEventNewIdleAnimation, main_view->context);
             } else if(event->key == InputKeyUp) {
-                main_view->callback(DesktopMainEventLock, main_view->context); // Lock Flipper
+                main_view->callback(DesktopMainEventOpenDOOM, main_view->context); // OPENS DOOM
             } else if(event->key == InputKeyDown) {
                 main_view->callback(
                     DesktopMainEventOpenZombiez, main_view->context); // OPENS Zombiez
