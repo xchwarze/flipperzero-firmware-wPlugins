@@ -51,6 +51,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [ESP Flasher v1.6 (By 0xchocolate)](https://github.com/0xchocolate/flipperzero-esp-flasher)
 - [Hold up long to lock Flipper. #1083 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1083)
 - GUI: [Fix Dark Mode after XOR canvas color, like in NFC dict attack (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/997bb9f8ae9d67b3d1c6c50ba64a57e90cb667d1)
+- [Added options to lock Flipper or launch game menu to favourites #1084 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1084)
 
 <a name="release">
 
@@ -612,7 +613,6 @@ $ ./fbt dolphin_ext
 
 - Have a new app? Submit GitHub link to me on Discord for a special reward (if I add it to RM Firmware).
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
-- [Desktop Favorite Binds To Allow Opening Custom Game Menu. Whomever can complete this gets 3 months of subscriber builds. Patrons can DM me to add their monthly towards this bounty.](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/756)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
 # Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0728-2254-0.104.1-bbc8b2a.tgz&channel=RM0728-2254-0.104.1-bbc8b2a&version=0.104.1)

@@ -43,6 +43,12 @@ static void desktop_scene_main_interact_animation_callback(void* context) {
         desktop->view_dispatcher, DesktopAnimationEventInteractAnimation);
 }
 
+static void launch_games_menu() {
+    Loader* loader = furi_record_open(RECORD_LOADER);
+    loader_show_gamesmenu(loader);
+    furi_record_close(RECORD_LOADER);
+}
+
 #ifdef APP_ARCHIVE
 static void
     desktop_switch_to_app(Desktop* desktop, const FlipperInternalApplication* flipper_app) {
@@ -99,12 +105,21 @@ static void desktop_scene_main_open_fav_or_profile(Desktop* desktop, FavoriteApp
 }
 
 static void desktop_scene_main_start_favorite(Desktop* desktop, FavoriteApp* application) {
-    if(strlen(application->name_or_path) > 0) {
-        if(!desktop_scene_main_check_none(application->name_or_path)) {
-            loader_start_detached_with_gui_error(desktop->loader, application->name_or_path, NULL);
+    if(!desktop_scene_main_check_none(application->name_or_path)) {
+        if(!strcmp(application->name_or_path, "!L")) {
+            scene_manager_set_scene_state(desktop->scene_manager, DesktopSceneLockMenu, 0);
+            desktop_lock(desktop);
+        } else if(!strcmp(application->name_or_path, "!G")) {
+            launch_games_menu();
+        } else {
+            if(strlen(application->name_or_path) > 0) {
+                loader_start_detached_with_gui_error(
+                    desktop->loader, application->name_or_path, NULL);
+            } else {
+                loader_start_detached_with_gui_error(
+                    desktop->loader, LOADER_APPLICATIONS_NAME, NULL);
+            }
         }
-    } else {
-        loader_start_detached_with_gui_error(desktop->loader, LOADER_APPLICATIONS_NAME, NULL);
     }
 }
 
