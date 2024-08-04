@@ -71,8 +71,7 @@ inline void mp_flipper_canvas_draw_disc(uint8_t x, uint8_t y, uint8_t r) {
 inline void mp_flipper_canvas_set_font(uint8_t font) {
     mp_flipper_context_t* ctx = mp_flipper_context;
 
-    canvas_set_font(
-        ctx->canvas, font == MP_FLIPPER_CANVAS_FONT_PRIMARY ? FontPrimary : FontSecondary);
+    canvas_set_font(ctx->canvas, font == MP_FLIPPER_FONT_PRIMARY ? FontPrimary : FontSecondary);
 }
 
 inline void mp_flipper_canvas_set_color(uint8_t color) {
@@ -88,11 +87,11 @@ inline void mp_flipper_canvas_set_text(uint8_t x, uint8_t y, const char* text) {
 }
 
 inline void mp_flipper_canvas_set_text_align(uint8_t x, uint8_t y) {
-    Align align_x = x == MP_FLIPPER_CANVAS_ALIGN_BEGIN ? AlignLeft : AlignRight;
-    Align align_y = y == MP_FLIPPER_CANVAS_ALIGN_BEGIN ? AlignTop : AlignBottom;
+    Align align_x = x == MP_FLIPPER_ALIGN_BEGIN ? AlignLeft : AlignRight;
+    Align align_y = y == MP_FLIPPER_ALIGN_BEGIN ? AlignTop : AlignBottom;
 
-    text_align_x = x == MP_FLIPPER_CANVAS_ALIGN_CENTER ? AlignCenter : align_x;
-    text_align_y = y == MP_FLIPPER_CANVAS_ALIGN_CENTER ? AlignCenter : align_y;
+    text_align_x = x == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_x;
+    text_align_y = y == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_y;
 }
 
 inline void mp_flipper_canvas_update() {

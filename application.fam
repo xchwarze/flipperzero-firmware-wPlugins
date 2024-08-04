@@ -5,7 +5,7 @@ App(
     entry_point="mp_flipper_app",
     stack_size=4 * 1024,
     fap_category="Tools",
-    fap_version="0.4",
+    fap_version="0.5",
     fap_description="compile and execute MicroPython scripts",
     fap_icon="icon.png",
     fap_author="Oliver Fabel",

@@ -79,6 +79,11 @@ void* mp_flipper_context_alloc() {
 
     ctx->canvas = gui_direct_draw_acquire(ctx->gui);
 
+    ctx->dialog_message = dialog_message_alloc();
+    ctx->dialog_message_button_left = NULL;
+    ctx->dialog_message_button_center = NULL;
+    ctx->dialog_message_button_right = NULL;
+
     return ctx;
 }
 
@@ -92,6 +97,8 @@ void mp_flipper_context_free(void* context) {
     gui_remove_view_port(ctx->gui, ctx->view_port);
 
     view_port_free(ctx->view_port);
+
+    dialog_message_free(ctx->dialog_message);
 
     furi_record_close(RECORD_GUI);
     furi_record_close(RECORD_INPUT_EVENTS);
