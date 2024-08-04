@@ -2,7 +2,9 @@
 
 #define BLUETOOTH_MAC_IS_MUTABLE (false)
 #define WIFI_MAC_IS_MUTABLE      (true)
-#define IF_MAX_LEN               (10) /* Maximum length of an interface string ("WiFi", "Bluetooth", etc.) */
+#define IF_MAX_LEN \
+    (10) /* Maximum length of an
+                  interface string ("WiFi", "Bluetooth", etc.) */
 
 /* Local buffer for use of the view */
 uint8_t view_bytes[NUM_MAC_BYTES];

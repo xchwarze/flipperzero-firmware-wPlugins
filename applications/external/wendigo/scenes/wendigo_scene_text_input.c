@@ -40,6 +40,12 @@ void wendigo_scene_text_input_on_enter(void* context) {
         WENDIGO_TEXT_INPUT_STORE_SIZE,
         false);
 
+    // TODO: Commenting out for now, review upstream code
+    //       from UART_Terminal to determine whether the
+    //       function should be ported from the module to
+    //       Wendigo.
+    //text_input_add_illegal_symbols(text_input);
+
     view_dispatcher_switch_to_view(app->view_dispatcher, WendigoAppViewTextInput);
 }
 
