@@ -245,7 +245,7 @@ bool desktop_scene_main_on_event(void* context, SceneManagerEvent event) {
                     break;
                 } else {
                     desktop_scene_main_start_favorite(
-                        desktop, &desktop->settings.favorite_apps[FavoriteAppLeftShort]);
+                        desktop, &desktop->settings.favorite_apps[FavoriteAppLeftLong]);
                 }
             }
             consumed = true;
