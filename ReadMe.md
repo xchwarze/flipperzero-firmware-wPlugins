@@ -53,6 +53,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - GUI: [Fix Dark Mode after XOR canvas color, like in NFC dict attack (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/997bb9f8ae9d67b3d1c6c50ba64a57e90cb667d1)
 - [Added options to lock Flipper or launch game menu to favourites #1084 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1084)
 - Updated: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
+- Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 
 <a name="release">
 
