@@ -541,7 +541,7 @@ static void t5577_writer_view_write_callback(Canvas* canvas, void* model) {
         canvas_draw_str_aligned(canvas, 93, 39, AlignCenter, AlignTop, "to Flipper's back");
     } else {
         canvas_set_bitmap_mode(canvas, true);
-        canvas_draw_icon(canvas, 0, 9, &I_DolphinSuccess_91x55);
+        canvas_draw_icon(canvas, 0, 7, &I_RFIDDolphinSuccess_108x57);
         canvas_set_font(canvas, FontPrimary);
         canvas_draw_str(canvas, 75, 16, "Finished!");
     }
