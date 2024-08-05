@@ -538,7 +538,7 @@ bool subghz_view_receiver_input(InputEvent* event, void* context) {
         subghz_receiver->callback(SubGhzCustomEventViewReceiverConfig, subghz_receiver->context);
         consumed = true;
     } else if(event->key == InputKeyUp && event->type == InputTypeLong) {
-        subghz_view_receiver_set_lock(subghz_receiver,true);
+        subghz_view_receiver_set_lock(subghz_receiver, true);
         consumed = true;
     } else if(event->key == InputKeyRight && event->type == InputTypeLong) {
         with_view_model(

@@ -9,6 +9,6 @@ App(
     fap_category="RFID",
     fap_author="Torron / zinongli",
     fap_weburl="https://github.com/zinongli/T5577_Raw_Writer",
-    fap_version="1.1",
+    fap_version="1.2",
     fap_description="An easy to use T5577 raw writer app for Flipper Zero. See README.md",
 )
