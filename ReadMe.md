@@ -55,6 +55,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
 - Added: [Music to Sub-GHz Radio v1.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/fmf_to_sub)
 - Updated: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
+- SubGHz: [hold up long to lock keyboard in read mode. #1085 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1085)
 
 <a name="release">
 
