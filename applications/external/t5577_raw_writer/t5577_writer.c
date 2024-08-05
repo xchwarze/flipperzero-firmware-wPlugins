@@ -543,7 +543,7 @@ static void t5577_writer_view_write_callback(Canvas* canvas, void* model) {
         canvas_set_bitmap_mode(canvas, true);
         canvas_draw_icon(canvas, 0, 7, &I_RFIDDolphinSuccess_108x57);
         canvas_set_font(canvas, FontPrimary);
-        canvas_draw_str(canvas, 75, 16, "Finished!");
+        canvas_draw_str(canvas, 72, 20, "Finished!");
     }
 }
 
