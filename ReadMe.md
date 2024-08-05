@@ -57,7 +57,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - SubGHz: [hold up long to lock keyboard in read mode. #1085 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1085)
 - Updated: [T5577 Raw Writer v1.2 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
 - Updated: [BLE Spam v6.5 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
-- Added: [Key Copier v0.3 (By zinongli)](https://github.com/zinongli/KeyCopier)
+- Added: [Key Copier WIP v0.3 (By zinongli)](https://github.com/zinongli/KeyCopier)
 
 <a name="release">
 
@@ -466,7 +466,7 @@ $ ./fbt dolphin_ext
 - [IR Xbox Controller v1.2 (By gebeto)](https://github.com/gebeto/flipper-xbox-controller)
 - [J305 Geiger Counter v1.4 (By nmrr)](https://github.com/nmrr/flipperzero-geigercounter)
 - [JS Runner v1.0 (By nminaylov & DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/3286)
-- [Key Copier v0.3 (By zinongli)](https://github.com/zinongli/KeyCopier)
+- [Key Copier WIP v0.3 (By zinongli)](https://github.com/zinongli/KeyCopier)
 - [LaserCat v1.1 (By DroWez)](https://github.com/DroWez/LaserCat)
 - [LED Pulsator (By leedave)](https://github.com/leedave/Leeds-Flipper-Zero-Applications)
 - [Lightmeter v1.2 (By oleksiikutuzov)](https://github.com/oleksiikutuzov/flipperzero-lightmeter) `Req: BH1750/MAX44009`
