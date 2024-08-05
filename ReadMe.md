@@ -46,13 +46,13 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Add lfrfid GProxII support #3796 (By BarTenderNZ)](https://github.com/flipperdevices/flipperzero-firmware/pull/3796)
 - OFW: [Change the plantain last number display from ? to X #3819 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3819)
 - UNDO: OFW: PR: [Fix: variable redeclaration in subghz_cli.c #3799 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3799)
-- Updated: [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
 - Updated main app folders to look to SD card for data (and not internal)
 - Updated: [ESP Flasher v1.6 (By 0xchocolate)](https://github.com/0xchocolate/flipperzero-esp-flasher)
 - [Hold up long to lock Flipper. #1083 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1083)
 - GUI: [Fix Dark Mode after XOR canvas color, like in NFC dict attack (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/997bb9f8ae9d67b3d1c6c50ba64a57e90cb667d1)
 - [Added options to lock Flipper or launch game menu to favourites #1084 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1084)
 - Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
+- Updated: [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
 - Added: [Music to Sub-GHz Radio v1.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/fmf_to_sub)
 - Updated: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
 
