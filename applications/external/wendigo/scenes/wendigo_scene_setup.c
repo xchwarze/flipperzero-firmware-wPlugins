@@ -30,16 +30,8 @@ static void wendigo_scene_setup_var_list_enter_callback(void* context, uint32_t 
     case OPEN_SETUP:
         // TODO: If value is "Selected" display channels view
         //       Otherwise select all channels
-        if(selected_option_index == CH_ALL) {
-            /* Select all channels */
-            // YAGNI: Consider retaining selected channel status instead of overwriting the selection here
-            //        to allow quickly switching between all and a common subset. Not that useful, but a little...
-            for(int i = 1; i <= SETUP_CHANNEL_MENU_ITEMS; ++i) {
-                /* Bitwise OR to ensure each channel is included in the mask */
-                app->channel_mask |= app->CH_MASK[i];
-            }
-        } else {
-            /* Display channel selected view */
+        if(selected_option_index == CH_SELECTED) {
+            /* Display channel selection view */
             view_dispatcher_send_custom_event(app->view_dispatcher, Wendigo_EventSetup);
         }
         break;
@@ -51,18 +43,13 @@ static void wendigo_scene_setup_var_list_enter_callback(void* context, uint32_t 
         // TODO: enabled/disable BT, BLE, WiFi
 
         if(selected_option_index == RADIO_MAC) {
-            // Configure byte_input's value and mutability based on item->item_string
-            uint8_t mac[NUM_MAC_BYTES] = {0xa6, 0xe0, 0x57, 0x4f, 0x57, 0xac};
-            if(!(strncmp(item->item_string, "BLE", 3) && strncmp(item->item_string, "BT", 2))) {
-                // Display (immutable?) bluetooth MAC
-                // TODO: Fetch MAC
-                memcpy(app->mac_bytes, mac, NUM_MAC_BYTES);
-                app->mac_interface = IF_BLUETOOTH;
+            // Configure byte_input's value based on item->item_string
+            if(!strncmp(item->item_string, "BLE", 3)) {
+                app->active_interface = IF_BLE;
+            } else if(!strncmp(item->item_string, "BT", 2)) {
+                app->active_interface = IF_BT_CLASSIC;
             } else if(!strncmp(item->item_string, "WiFi", 4)) {
-                // Display mutable WiFi MAC
-                // TODO: Fetch MAC
-                memcpy(app->mac_bytes, mac, NUM_MAC_BYTES);
-                app->mac_interface = IF_WIFI;
+                app->active_interface = IF_WIFI;
             } else {
                 // TODO: Panic
             }
@@ -83,6 +70,20 @@ static void wendigo_scene_setup_var_list_change_callback(VariableItem* item) {
     furi_assert(item_index < menu_item->num_options_menu);
     variable_item_set_current_value_text(item, menu_item->options_menu[item_index]);
     app->setup_selected_option_index[app->setup_selected_menu_index] = item_index;
+
+    /* Handle moving between "all" and "selected" channels */
+    if(menu_item->action == OPEN_SETUP) {
+        if(item_index == CH_ALL) {
+            app->channel_mask |= CH_MASK_ALL;
+        } else if(item_index == CH_SELECTED) {
+            /* Turn off the "all" bitmask if it is set */
+            if((app->channel_mask & CH_MASK_ALL) == CH_MASK_ALL) {
+                app->channel_mask -= CH_MASK_ALL;
+            }
+        } else {
+            // TODO: Panic
+        }
+    }
 }
 
 void wendigo_scene_setup_on_enter(void* context) {
