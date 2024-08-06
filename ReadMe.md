@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0728-2254-0.104.1-bbc8b2a.tgz&channel=RM0728-2254-0.104.1-bbc8b2a&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0806-0313-0.104.1-9abc45a.tgz&channel=RM0806-0313-0.104.1-9abc45a&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,36 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-06 02:46 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-06 02:46 EST`
-- OFW: [Furi: update string documentation #3803 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3803)
-- OFW: [toolchain: v39 #3793 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3793)
-- Added: [E220 LoRa Configurator v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_E220_Lora_Module_Configurator) `Req: E220-900T22S(JP)`
-- OFW: [Added -Wundef to compiler options #3815 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3815)
-- OFW: [iButton ID writing #3734 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3734)
-- OFW: [Fix: Add missing va_end call #3798 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3798) Already in RM.
-- Fixes for iButton protocol DS1420 to write ID instead of blank like [#3734](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) and Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By RogueMaster)
-- OFW: [Fix plantain balance string #3813 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3813)
-- OFW: [Refactor detected protocols list #3809 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3809)
-- OFW: [CCID App: Refactor #3808 (By kidbomb)](https://github.com/flipperdevices/flipperzero-firmware/pull/3808)
-- Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By Willy-JL)
-- More Fixes for some DEFINE checks to be compatible to changes in [#3815](https://github.com/flipperdevices/flipperzero-firmware/pull/3734) (By RogueMaster)
-- OFW: [Add lfrfid GProxII support #3796 (By BarTenderNZ)](https://github.com/flipperdevices/flipperzero-firmware/pull/3796)
-- OFW: [Change the plantain last number display from ? to X #3819 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3819)
-- UNDO: OFW: PR: [Fix: variable redeclaration in subghz_cli.c #3799 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3799)
-- Updated main app folders to look to SD card for data (and not internal)
-- Updated: [ESP Flasher v1.6 (By 0xchocolate)](https://github.com/0xchocolate/flipperzero-esp-flasher)
-- [Hold up long to lock Flipper. #1083 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1083)
-- GUI: [Fix Dark Mode after XOR canvas color, like in NFC dict attack (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/997bb9f8ae9d67b3d1c6c50ba64a57e90cb667d1)
-- [Added options to lock Flipper or launch game menu to favourites #1084 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1084)
-- Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Added: [Music to Sub-GHz Radio v1.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/fmf_to_sub)
-- Updated: [Wendigo Bluetooth Tracker v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
-- SubGHz: [hold up long to lock keyboard in read mode. #1085 (By mateusz-szafraniec)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1085)
-- Updated: [T5577 Raw Writer v1.2 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
-- Updated: [BLE Spam v6.5 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
-- Added: [Key Copier WIP v0.3 (By zinongli)](https://github.com/zinongli/KeyCopier)
-- [BadKB: Lower BLE conn interval like base HID profile (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fb75d71237c3fd9eedebca38160cc4b13774daff)
-- Added: [Analog Output v0.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio/dac)
-- Updated: [FlipBoard Signal v3.12 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
 
 <a name="release">
 
@@ -627,4 +597,4 @@ $ ./fbt dolphin_ext
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0728-2254-0.104.1-bbc8b2a.tgz&channel=RM0728-2254-0.104.1-bbc8b2a&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0806-0313-0.104.1-9abc45a.tgz&channel=RM0806-0313-0.104.1-9abc45a&version=0.104.1)
