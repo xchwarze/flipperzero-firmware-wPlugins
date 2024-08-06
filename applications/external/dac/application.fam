@@ -1,0 +1,13 @@
+App(
+    appid="analog_output",
+    name="Analog Output",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="analog_output_app",
+    stack_size=4 * 1024,
+    fap_icon="dac.png",
+    fap_category="GPIO",
+    fap_author="jamisonderek",
+    fap_weburl="https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio/dac",
+    fap_version="0.1",
+    fap_description="Analog output demo. Uses MCP4725 on I2C. Uses pin A7 PWM with 10uf cap+10K resistor. Input on pin C3",
+)
