@@ -15,6 +15,7 @@ The video below trades a Bulbasaur from the Flipper to a Game Boy Color with Pok
     - [Customizing Pokemon](#customizing-pokemon)
   - [Trade](#trade-pkmn)
     - [Modifying Traded Pokemon](#modifying-traded-pokemon)
+    - [Reset Trade Connection State](#reset-trade-connection-state)
 - [How it Works / Build your own Interface](#how-does-it-work)
 
 
@@ -84,7 +85,7 @@ Details on the hardware interface, as well as how to create your own adapter boa
 
 ## Installation Directions
 
-This application can be installed through the [Flipper Application Catalog](https://lab.flipper.net/apps/pokemon), the [Flipper Mobile Application](https://docs.flipper.net/mobile-app), or a pre-compiled application binary can be found on the [Releases](https://github.com/EstebanFuentealba/Flipper-Zero-Game-Boy-Pokemon-Trading/releases) page of this repo.
+This application can be installed through the [Flipper Application Catalog](https://lab.flipper.net/apps/pokemon), the [Flipper Mobile Application](https://docs.flipper.net/mobile-app), or a pre-compiled application binary can be found on the [Releases](https://github.com/KBEmbedded/Flipper-Zero-Game-Boy-Pokemon-Trading/releases) page of this repo.
 
 The application can also be built from source using [ufbt](https://github.com/flipperdevices/flipperzero-ufbt) or compiling the application against a firmware of choice using [fbt](https://github.com/flipperdevices/flipperzero-firmware/blob/dev/documentation/AppsOnSDCard.md). This will install the application to the `apps/GPIO/` folder on the Flipper's SD card.
 
@@ -376,6 +377,15 @@ The Game Boy should remain on and in the trade room. When the Flipper re-enters 
 
 ---
 
+#### Reset Trade Connection State
+It is possible to reset the Flipper's connection state to having never been connected to a Game Boy. This allows the Flipper to restart communication with a Game Boy if it was accidentally turned off, for example, and the Game Boy needs to re-enter the Trade Center. Doing this keeps the current Pokemon the Flipper has in memory intact.
+
+This can also be used to leverage the Flipper to trade a pokemon between two Pokemon games with only a single Game Boy. For example, trade from Pokemon Blue to the Flipper (and then modifying the Pokemon on the Flipper if desired), resetting the trade state on the Flipper, swap the Game Boy game to Pokemon Silver, and on both the Game Boy and Flipper, start the trade process (using Time Capsule trade mode on the Pokemon Silver game).
+
+Once a connection has been established between the Flipper and a Pokemon game, the option `Reset Connection` will appear in the configuration screen under `Trade PKMN`. The Flipper will then ask for confirmation of the operation.
+
+---
+
 #### Special Note on MALVEKE PCB Rev. <= 2.5
 Version 2.0 of the Pokemon Trade tool fixes a bug on MALVEKE boards that are Rev. 2.5 or lower where after a trade is completed the `OK` button no longer functions. However, while on the trade screen the `OK` button will continue to not function. For example, if you try to press the `OK` button to turn the backlight on, the Flipper will not respond. The `OK` button functionality will be restored once the Flipper leaves the Trade screen.
 
@@ -477,7 +487,7 @@ The sprites for each Pokemon were hand-made for the monochrome screen of the Fli
 - Analogue Pocket
 
 ## Contributors
-[![Contributors](https://contrib.rocks/image?repo=EstebanFuentealba/Flipper-Zero-Game-Boy-Pokemon-Trading)](https://github.com/EstebanFuentealba/Flipper-Zero-Game-Boy-Pokemon-Trading/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=KBEmbedded/Flipper-Zero-Game-Boy-Pokemon-Trading)](https://github.com/KBEmbedded/Flipper-Zero-Game-Boy-Pokemon-Trading/graphs/contributors)
 
 
 ## Links
