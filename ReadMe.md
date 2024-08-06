@@ -60,6 +60,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [Key Copier WIP v0.3 (By zinongli)](https://github.com/zinongli/KeyCopier)
 - [BadKB: Lower BLE conn interval like base HID profile (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fb75d71237c3fd9eedebca38160cc4b13774daff)
 - Added: [Analog Output v0.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio/dac)
+- Updated: [FlipBoard Signal v3.12 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
 
 <a name="release">
 
@@ -433,7 +434,7 @@ $ ./fbt dolphin_ext
 - [Flipagotchi v2.1.1 (By Matt-London)](https://github.com/Matt-London/pwnagotchi-flipper)
 - [FlipBoard Blinky v3.6 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
 - [FlipBoard Keyboard v3.9 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
-- [FlipBoard Signal v3.11 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
+- [FlipBoard Signal v3.12 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
 - [FlipBoard Simon v1.10 (By jamisonderek)](https://github.com/jamisonderek/flipboard)
 - [FlipBIP Crypto Wallet v1.16 (By xtruan)](https://github.com/xtruan/FlipBIP)
 - [Flipper Aid v1.0 (By spaghety)](https://github.com/spaghety/flipper-aid)
