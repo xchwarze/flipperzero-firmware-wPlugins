@@ -235,9 +235,7 @@ static void key_copier_file_saver(void* context) {
                 furi_string_cat_printf(buffer, "%d", model->depth[i]);
             }
         }
-        if(!flipper_format_write_string(
-               flipper_format, "Bitting Pattern", buffer))
-            break;
+        if(!flipper_format_write_string(flipper_format, "Bitting Pattern", buffer)) break;
         furi_string_free(buffer);
         // signal that the file was written successfully
     } while(0);

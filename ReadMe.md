@@ -58,7 +58,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [T5577 Raw Writer v1.2 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
 - Updated: [BLE Spam v6.5 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
 - Added: [Key Copier WIP v0.3 (By zinongli)](https://github.com/zinongli/KeyCopier)
-- [BadKB: Lower BLE conn interval like base HID profile (By Willy-JL)]()
+- [BadKB: Lower BLE conn interval like base HID profile (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fb75d71237c3fd9eedebca38160cc4b13774daff)
 
 <a name="release">
 

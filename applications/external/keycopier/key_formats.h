@@ -4,7 +4,7 @@
 #define FORMAT_NUM 2
 
 typedef struct {
-    char* format_name; 
+    char* format_name;
     char* format_short_name;
     char* format_link;
 
