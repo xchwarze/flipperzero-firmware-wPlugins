@@ -1,4 +1,10 @@
-#define KEY_COPIER_FILE_NAME_SIZE   25
-#define KEY_COPIER_APPS_DATA_FOLDER EXT_PATH("apps_data")
-#define KEY_COPIER_SAVE_FOLDER      EXT_PATH("apps_data/key_copier")
-#define KEY_COPIER_SAVE_EXTENSION   ".keycopy"
+#define KEY_COPIER_FILE_EXTENSION ".keycopy"
+#define INCHES_PER_PX             0.00978
+
+static inline int min(int a, int b) {
+    return (a < b) ? a : b;
+}
+
+static inline int max(int a, int b) {
+    return (a > b) ? a : b;
+}

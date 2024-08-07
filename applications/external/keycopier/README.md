@@ -1,17 +1,14 @@
 # Key Copier App
+A Flipper Zero app for measuring key bitting patterns.
 
-## Overview
+## Instruction
+To measure your key: 
+1. Place it on top of the screen.
+2. Use the contour to align your key.
+3. Adjust each pin's depth until they match. It's easier if you look with one eye closed.
 
-This application has three submenu items:
-* Measure
-- Use the left and right button to move around pins. 
-- Use the up and down button to adjust the depth of the bitting. 
-* Config
-- There are currently two key formats to choose from: Kwikset (KW1) and Schlage (SC4). 
-- The key name is reserved for future development of the file saving feature.
-* About
-- Key Maker App 0.1
-- Based on Derek Jamison's Skeleton App
+## Special Thanks
+- Thank [@jamisonderek](https://github.com/jamisonderek) for his [Flipper Zero Tutorial repository](https://github.com/jamisonderek/flipper-zero-tutorials) and [YouTube channel](https://github.com/jamisonderek/flipper-zero-tutorials#:~:text=YouTube%3A%20%40MrDerekJamison)! This app is built with his Skeleton App and GPIO Wiegand app as references. 
 - [Project channel](https://discord.com/channels/1112390971250974782/1264067969634402356)
 
 

@@ -9,6 +9,6 @@ App(
     fap_category="Tools",
     fap_author="zinongli",  #  Torron
     fap_weburl="https://github.com/zinongli/KeyCopier",
-    fap_version="0.3",
+    fap_version="1.0",
     fap_description="Measure and save Kwikset/Schlage physical keys.",
 )
