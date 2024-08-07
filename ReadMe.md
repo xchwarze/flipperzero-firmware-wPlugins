@@ -36,6 +36,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Key Copier v1.0 (By zinongli)](https://github.com/zinongli/KeyCopier)
 - Updated: [DTMF Dolphin v1.4 (By litui)](https://github.com/litui/dtmf_dolphin) [Add EAS tone #1086 (By JendrBendr)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1086)
 - Updated: [MODBUS v0.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
+- Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 
 <a name="release">
 
