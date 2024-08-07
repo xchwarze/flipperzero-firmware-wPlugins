@@ -2,19 +2,18 @@
 #include <furi.h>
 #include <furi_hal.h>
 #include <gui/gui.h>
-#include <gui/view_dispatcher.h>
-#include <gui/scene_manager.h>
-#include <gui/modules/submenu.h>
-#include <gui/modules/variable_item_list.h>
-#include <gui/modules/text_box.h>
 #include <gui/modules/byte_input.h>
-#include <assets_icons.h>
+#include <gui/modules/submenu.h>
+#include <gui/modules/text_box.h>
+#include <gui/modules/variable_item_list.h>
+#include <gui/scene_manager.h>
+#include <gui/view_dispatcher.h>
 
 #include <stm32wbxx_ll_lpuart.h>
 #include <stm32wbxx_ll_usart.h>
 
-#include <storage/storage.h>
 #include <dialogs/dialogs.h>
+#include <storage/storage.h>
 
 #define PATHAPP    "apps_data/modbus"
 #define PATHAPPEXT EXT_PATH(PATHAPP)
@@ -147,7 +146,8 @@ typedef enum {
 
 void BuildSender(App* app, uint8_t* buf);
 
-///////////////////////////////   Storage   ///////////////////////////////////////
+///////////////////////////////   Storage
+//////////////////////////////////////////
 
 char* sequential_file_resolve_path(
     Storage* storage,
@@ -290,7 +290,8 @@ void uart_set_config(void* context) {
     furi_assert(context);
     App* app = context;
     UNUSED(app);
-    //furi_thread_flags_set(furi_thread_get_id(app->uart->rxThread), WorkerEvtCfgChange);
+    // furi_thread_flags_set(furi_thread_get_id(app->uart->rxThread),
+    // WorkerEvtCfgChange);
 }
 static void Serial_Begin(FuriHalSerialHandle* handle, LL_USART_InitTypeDef USART_InitStruct) {
     furi_hal_bus_enable(FuriHalBusUSART1);
@@ -523,8 +524,8 @@ void handle_rx_data_cb(uint8_t* buf, size_t len, void* context) {
         furi_string_cat_str(data, "\nPlease check UART Settings!!!");
     }
     //*/
-    //for(size_t i = 0; i < len; i++) furi_string_cat_printf(data, "%02X", buf[i]);
-    //furi_string_cat_str(data, "\n");
+    // for(size_t i = 0; i < len; i++) furi_string_cat_printf(data, "%02X",
+    // buf[i]); furi_string_cat_str(data, "\n");
     app->textLen += furi_string_size(data);
     if(app->textLen >= 3500 - 1) {
         furi_string_right(app->text, app->textLen / 2);
@@ -806,7 +807,8 @@ void Sniffer_Scene_OnEnter(void* context) {
         furi_string_cat_printf(app->text, "ELECTRONIC CATS\n");
         furi_string_cat_printf(
             app->text,
-            "https://github.com/ElectronicCats/flipper-rs485modbus/tree/main/ModbusApp/Test1");
+            "https://github.com/ElectronicCats/"
+            "flipper-rs485modbus/tree/main/ModbusApp/Test1");
     }
     view_dispatcher_switch_to_view(app->viewDispatcher, TextBox_View);
     text_box_set_text(app->textBox, furi_string_get_cstr(app->text));
@@ -1177,7 +1179,7 @@ static const SceneManagerHandlers SceneHandlers = {
     .on_exit_handlers = OnExitHandlers,
     .scene_num = Scene_Num};
 
-//////////////////////////   ViewDispatcher Callbacks  //////////////////////////
+//////////////////////////   ViewDispatcher Callbacks //////////////////////////
 static bool CustomEventCB(void* context, uint32_t event) {
     furi_assert(context);
     App* app = context;
@@ -1192,7 +1194,7 @@ static void ThickEventCB(void* context) {
     furi_assert(context);
     App* app = context;
     UNUSED(app);
-    //scene_manager_handle_tick_event(app->sceneManager);
+    // scene_manager_handle_tick_event(app->sceneManager);
 }
 //////////////////////////   Allocating  //////////////////////////
 Config* Config_Alloc() {
@@ -1214,7 +1216,7 @@ Uart* Uart_Alloc(void* context) {
     uart->rxStream = furi_stream_buffer_alloc(RX_BUF_SIZE, 1);
     uart->rxThread = furi_thread_alloc_ex("RxThread", 1024, uart_worker, app);
 
-    //serial_init(uart, UART_CH);
+    // serial_init(uart, UART_CH);
     furi_thread_start(uart->rxThread);
 
     return uart;
