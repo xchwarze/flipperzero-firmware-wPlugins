@@ -9,6 +9,6 @@ App(
     fap_category="Sub-GHz",
     fap_author="jamisonderek",
     fap_weburl="https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/fmf_to_sub",
-    fap_version="1.1",
+    fap_version="1.2",
     fap_description="Converts Flipper music files (.FMF and .TXT) into Sub-GHz files (.SUB).",
 )
