@@ -19,7 +19,7 @@ void subrem_scene_start_on_enter(void* context) {
         SubmenuIndexSubRemOpenMapFile,
         subrem_scene_start_submenu_callback,
         app);
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
     submenu_add_item(
         submenu,
         "Remote_Debug",
@@ -66,7 +66,7 @@ bool subrem_scene_start_on_event(void* context, SceneManagerEvent event) {
             scene_manager_next_scene(app->scene_manager, SubRemSceneOpenMapFile);
             consumed = true;
         }
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
         else if(event.event == SubmenuIndexSubRemRemoteView) {
             scene_manager_next_scene(app->scene_manager, SubRemSceneRemote);
             consumed = true;

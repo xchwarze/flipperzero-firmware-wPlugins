@@ -13,7 +13,7 @@ typedef enum {
     SubmenuIndexSubRemOpenMapFile = 0,
     SubmenuIndexSubRemEditMapFile,
     SubmenuIndexSubRemNewMapFile,
-#if FURI_DEBUG
+#ifdef FURI_DEBUG
     SubmenuIndexSubRemRemoteView,
 #endif
     // SubmenuIndexSubRemAbout,
