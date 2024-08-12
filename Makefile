@@ -9,3 +9,7 @@ build: update
 .PHONY: launch
 launch: build
 	ufbt launch
+
+.PHONY: clean
+clean:
+	ufbt -c
