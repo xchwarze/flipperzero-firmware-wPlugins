@@ -1,5 +1,5 @@
 entry,status,name,type,params
-Version,+,70.0,,
+Version,+,72.1,,
 Header,+,applications/drivers/subghz/cc1101_ext/cc1101_ext_interconnect.h,,
 Header,+,applications/main/archive/helpers/archive_helpers_ext.h,,
 Header,+,applications/main/subghz/subghz_fap.h,,
@@ -28,6 +28,7 @@ Header,+,applications/services/gui/modules/file_browser.h,,
 Header,+,applications/services/gui/modules/file_browser_worker.h,,
 Header,+,applications/services/gui/modules/loading.h,,
 Header,+,applications/services/gui/modules/menu.h,,
+Header,+,applications/services/gui/modules/number_input.h,,
 Header,+,applications/services/gui/modules/popup.h,,
 Header,+,applications/services/gui/modules/submenu.h,,
 Header,+,applications/services/gui/modules/text_box.h,,
@@ -550,6 +551,11 @@ Function,-,_mktemp_r,char*,"_reent*, char*"
 Function,-,_mrand48_r,long,_reent*
 Function,-,_mstats_r,void,"_reent*, char*"
 Function,-,_nrand48_r,long,"_reent*, unsigned short[3]"
+Function,+,number_input_alloc,NumberInput*,
+Function,+,number_input_free,void,NumberInput*
+Function,+,number_input_get_view,View*,NumberInput*
+Function,+,number_input_set_header_text,void,"NumberInput*, const char*"
+Function,+,number_input_set_result_callback,void,"NumberInput*, NumberInputCallback, void*, int32_t, int32_t, int32_t"
 Function,-,_open_memstream_r,FILE*,"_reent*, char**, size_t*"
 Function,-,_perror_r,void,"_reent*, const char*"
 Function,-,_printf_r,int,"_reent*, const char*, ..."
