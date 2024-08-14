@@ -41,7 +41,17 @@ This software is for experimental purposes only and is not meant for any illegal
 - Temp Revert: [BLE Spam v6.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
 - Updated: [Sub-GHz Bruteforcer v3.12 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
 - Updated: [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
-- Not Yet Merged: OFW: [Storage: remove LFS #3577 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3577)
+- OFW: [Images linting: ensure that all images conform specification #3802 (By skyhawkillusions)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802)
+- OFW: [Fix cumulative error in infrared signals #3823 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3823)
+- OFW: [Added a text input that only accepts full numbers (int) #3350 (By leedave)](https://github.com/flipperdevices/flipperzero-firmware/pull/3350)
+- OFW: [Now fifo size in ST25 chip is calculated properly #3829 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3829)
+- OFW: [Make file extensions case-insensitive #3828 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3828)
+- OFW: [Added protocol for Dickert MAHS garage door remote control #3826 (By OevreFlataeker)](https://github.com/flipperdevices/flipperzero-firmware/pull/3826)
+- OFW: [Desktop: seaprate callbacks for dolphin and storage subscriptions #3836 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3836)
+- OFW: [scripts: improved size validator for updater image #3834 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
+- Coming Soon: OFW: [Storage: remove LFS #3577 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3577)
+- Coming Soon: OFW: [FuriEventLoop Pt.2 #3703 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3703)
+- Coming Soon: OFW: [Remove internal storage folder if corresponding flag set #3824 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3824)
 
 <a name="release">
 
