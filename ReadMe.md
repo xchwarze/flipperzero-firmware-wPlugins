@@ -47,6 +47,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Now fifo size in ST25 chip is calculated properly #3829 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3829)
 - OFW: [Make file extensions case-insensitive #3828 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3828)
 - OFW: [Added protocol for Dickert MAHS garage door remote control #3826 (By OevreFlataeker)](https://github.com/flipperdevices/flipperzero-firmware/pull/3826)
+- Updated: [Genie Recorder v3.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
 - Coming Soon: OFW: [Storage: remove LFS #3577 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3577)
 - Coming Soon: OFW: [FuriEventLoop Pt.2 #3703 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3703)
 - Coming Soon: OFW: [Remove internal storage folder if corresponding flag set #3824 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3824)
@@ -436,7 +437,7 @@ $ ./fbt dolphin_ext
 - [FM Radio v1.1 (By coolshrimp)](https://github.com/coolshrimp/flipperzero-firmware-wPlugins/tree/420/applications/external/fm_radio)
 - [FMF2USBMIDI v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_Zero_FMF2USBMIDI)
 - [Gas Sensor v0.1 (By iancohee)](https://github.com/iancohee/gas_sensor_fap) `Req: BME680 / SGP30`
-- [Genie Recorder v3.0 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
+- [Genie Recorder v3.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
 - [GPIO 7-Segment Output v1.3 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
 - [GPIO Badge v1.0 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio/gpio_badge)
 - [GPIO Controller (By Lokno)](https://github.com/Lokno/gpio_controller)
