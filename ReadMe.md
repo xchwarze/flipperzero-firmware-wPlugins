@@ -49,6 +49,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Added protocol for Dickert MAHS garage door remote control #3826 (By OevreFlataeker)](https://github.com/flipperdevices/flipperzero-firmware/pull/3826)
 - Updated: [Genie Recorder v3.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
 - Updated: [NFC Seader v3.0 (By bettse)](https://github.com/bettse/seader)
+- Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Coming Soon: OFW: [Storage: remove LFS #3577 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3577)
 - Coming Soon: OFW: [FuriEventLoop Pt.2 #3703 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3703)
 - Coming Soon: OFW: [Remove internal storage folder if corresponding flag set #3824 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3824)
