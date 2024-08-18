@@ -1,16 +1,13 @@
-# For details & more options, see documentation/AppManifests.md in firmware repo
-
 App(
-    appid="eightball",  # Must be unique
-    name="Magic 8-ball",  # Displayed in menus
+    appid="eightball",
+    name="Magic 8-ball",
     apptype=FlipperAppType.EXTERNAL,
     entry_point="eight_ball_app",
     stack_size=2 * 1024,
     fap_category="Games",
-    # Optional values
-    fap_version="0.1",
-    fap_icon="icon.png",  # 10x10 1-bit PNG
-    fap_description="A simple Magic 8-ball",
+    fap_icon="icon.png",
     fap_author="Steven Quinn",
     fap_weburl="https://github.com/stevenquinn/flipper-8-ball",
+    fap_version="0.1",
+    fap_description="A simple Magic 8-ball",
 )
