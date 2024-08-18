@@ -96,7 +96,8 @@ void usb_mouse_enter_callback(void* context) {
     tracking_begin();
 
     view_dispatcher_set_event_callback_context(usb_mouse->view_dispatcher, usb_mouse);
-    view_dispatcher_set_tick_event_callback(usb_mouse->view_dispatcher, usb_mouse_tick_event_callback, furi_ms_to_ticks(10));
+    view_dispatcher_set_tick_event_callback(
+        usb_mouse->view_dispatcher, usb_mouse_tick_event_callback, furi_ms_to_ticks(10));
 }
 
 void usb_mouse_exit_callback(void* context) {

@@ -65,7 +65,8 @@ Player bomber_app_get_block(uint8_t level[], BlockType blockType) {
                     .bombs =
                         {[0 ... 9] =
                              {0, 0, 0, BombState_None}}, // All elements initialized the same way
-                    .bomb_power = 1};
+                    .bomb_power = 1,
+                    .bomb_count = 1};
                 return player;
             }
         }
@@ -79,7 +80,8 @@ Player bomber_app_get_block(uint8_t level[], BlockType blockType) {
         .x = 0,
         .y = 0,
         .bombs = {[0 ... 9] = {0, 0, 0, BombState_None}}, // All elements initialized the same way
-        .bomb_power = 1};
+        .bomb_power = 1,
+        .bomb_count = 1};
     return def;
 }
 

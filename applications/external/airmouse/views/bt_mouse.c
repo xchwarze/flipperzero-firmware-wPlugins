@@ -278,7 +278,8 @@ void bt_mouse_enter_callback(void* context) {
     bt_mouse_thread_start(bt_mouse);
 
     view_dispatcher_set_event_callback_context(bt_mouse->view_dispatcher, bt_mouse);
-    view_dispatcher_set_tick_event_callback(bt_mouse->view_dispatcher, bt_mouse_tick_event_callback, furi_ms_to_ticks(10));
+    view_dispatcher_set_tick_event_callback(
+        bt_mouse->view_dispatcher, bt_mouse_tick_event_callback, furi_ms_to_ticks(10));
 }
 
 void bt_mouse_remove_pairing(void) {
