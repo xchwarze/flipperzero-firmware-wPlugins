@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0806-0313-0.104.1-9abc45a.tgz&channel=RM0806-0313-0.104.1-9abc45a&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0818-1650-0.104.1-43005e8.tgz&channel=RM0818-1650-0.104.1-43005e8&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,27 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-18 16:20 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-18 16:20 EST`
-- Updated: [Pokemon Trading v2.1 (By EstebanFuentealba & kbembedded)](https://github.com/EstebanFuentealba/Flipper-Zero-Game-Boy-Trading-Pokemons)
-- Updated: [Sub-GHz Bruteforcer v3.12 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
-- Updated: [Key Copier v1.0 (By zinongli)](https://github.com/zinongli/KeyCopier)
-- Updated: [DTMF Dolphin v1.4 (By litui)](https://github.com/litui/dtmf_dolphin) [Add EAS tone #1086 (By JendrBendr)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/1086)
-- Updated: [MODBUS v0.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
-- Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Updated: [Music to Sub-GHz Radio v1.2 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/fmf_to_sub)
-- Temp Revert: [BLE Spam v6.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
-- Updated: [Sub-GHz Bruteforcer v3.12 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
-- Updated: [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
-- OFW: [Images linting: ensure that all images conform specification #3802 (By skyhawkillusions)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802)
-- OFW: [Fix cumulative error in infrared signals #3823 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3823)
-- OFW: [Added a text input that only accepts full numbers (int) #3350 (By leedave)](https://github.com/flipperdevices/flipperzero-firmware/pull/3350)
-- OFW: [Now fifo size in ST25 chip is calculated properly #3829 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3829)
-- OFW: [Make file extensions case-insensitive #3828 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3828)
-- OFW: [Added protocol for Dickert MAHS garage door remote control #3826 (By OevreFlataeker)](https://github.com/flipperdevices/flipperzero-firmware/pull/3826)
-- Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Updated: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
-- Added: [Magic 8-ball v0.1 (By stevenquinn)](https://github.com/stevenquinn/flipper-8-ball) This has been part of RM Dice app for a while, now with a customized UI
-- Updated some images to follow OFW: [Images linting: ensure that all images conform specification #3802 (By skyhawkillusions)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802)
-- Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
 
@@ -619,4 +598,4 @@ $ ./fbt dolphin_ext
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0806-0313-0.104.1-9abc45a.tgz&channel=RM0806-0313-0.104.1-9abc45a&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0818-1650-0.104.1-43005e8.tgz&channel=RM0818-1650-0.104.1-43005e8&version=0.104.1)
