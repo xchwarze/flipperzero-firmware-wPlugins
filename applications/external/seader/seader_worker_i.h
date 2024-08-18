@@ -1,5 +1,4 @@
 #pragma once
-#define ASN_EMIT_DEBUG 0
 
 #include "seader_i.h"
 #include "seader_worker.h"

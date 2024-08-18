@@ -1,5 +1,4 @@
 #pragma once
-#define ASN_EMIT_DEBUG 0
 
 #include <stdlib.h> // malloc
 #include <stdint.h> // uint32_t
