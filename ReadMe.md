@@ -52,6 +52,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Updated: [ShapShup v1.2 (By derskythe)](https://github.com/derskythe/flipperzero-shapshup)
 - Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100`
+- Updated: [BMI Air Mouse v1.3 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - Coming Soon: OFW: [Storage: remove LFS #3577 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3577)
 - Coming Soon: OFW: [FuriEventLoop Pt.2 #3703 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3703)
 - Coming Soon: OFW: [Remove internal storage folder if corresponding flag set #3824 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3824)
@@ -369,7 +370,7 @@ $ ./fbt dolphin_ext
 - [BLE Killer v1.0 (By H4lo)](https://github.com/H4lo/flipper_zero_ble_killer) `Req: ESP32`
 - [BLE Spam v6.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
 - [Bluetooth/USB Remote v1.8 (By Cutch)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1330)
-- [BMI Air Mouse v1.2 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
+- [BMI Air Mouse v1.3 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - [BPM Tapper v1.2 (By panki27)](https://github.com/panki27/bpm-tapper)
 - [Brainfuck v1.3 (By nymda)](https://github.com/nymda/FlipperZeroBrainfuck)
 - [BT Remote for Kodi v1.1 (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/bt_hid_kodi)
