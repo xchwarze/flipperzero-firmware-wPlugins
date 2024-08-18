@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0814-1350-0.104.1-c2bbb14](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0818-1620-0.104.1-e9cd1a4](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-14 13:50 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-14 13:50 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-18 16:20 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-18 16:20 EST`
 - Updated: [Pokemon Trading v2.1 (By EstebanFuentealba & kbembedded)](https://github.com/EstebanFuentealba/Flipper-Zero-Game-Boy-Trading-Pokemons)
 - Updated: [Sub-GHz Bruteforcer v3.12 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
 - Updated: [Key Copier v1.0 (By zinongli)](https://github.com/zinongli/KeyCopier)
@@ -51,11 +51,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
 - Added: [Magic 8-ball v0.1 (By stevenquinn)](https://github.com/stevenquinn/flipper-8-ball) This has been part of RM Dice app for a while, now with a customized UI
 - Updated some images to follow OFW: [Images linting: ensure that all images conform specification #3802 (By skyhawkillusions)](https://github.com/flipperdevices/flipperzero-firmware/pull/3802)
-- Coming Soon: OFW: [Storage: remove LFS #3577 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3577)
-- Coming Soon: OFW: [FuriEventLoop Pt.2 #3703 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3703)
-- Coming Soon: OFW: [Remove internal storage folder if corresponding flag set #3824 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3824)
-- Coming Soon: OFW: [Desktop: seaprate callbacks for dolphin and storage subscriptions #3836 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3836)
-- Coming Soon: OFW: [scripts: improved size validator for updater image #3834 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
+- Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
 
