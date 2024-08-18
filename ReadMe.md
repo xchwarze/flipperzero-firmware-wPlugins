@@ -47,7 +47,12 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Now fifo size in ST25 chip is calculated properly #3829 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3829)
 - OFW: [Make file extensions case-insensitive #3828 (By gsurkov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3828)
 - OFW: [Added protocol for Dickert MAHS garage door remote control #3826 (By OevreFlataeker)](https://github.com/flipperdevices/flipperzero-firmware/pull/3826)
+- Updated: [Genie Recorder v3.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
+- Updated: [NFC Seader v3.0 (By bettse)](https://github.com/bettse/seader)
 - Updated: [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
+- Updated: [ShapShup v1.2 (By derskythe)](https://github.com/derskythe/flipperzero-shapshup)
+- Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100`
+- Updated: [BMI Air Mouse v1.3 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - Updated: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
 - Added: [Magic 8-ball v0.1 (By stevenquinn)](https://github.com/stevenquinn/flipper-8-ball) This has been part of RM Dice app for a while, now with a customized UI
 - Coming Soon: OFW: [Storage: remove LFS #3577 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3577)
@@ -368,7 +373,7 @@ $ ./fbt dolphin_ext
 - [BLE Killer v1.0 (By H4lo)](https://github.com/H4lo/flipper_zero_ble_killer) `Req: ESP32`
 - [BLE Spam v6.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
 - [Bluetooth/USB Remote v1.8 (By Cutch)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1330)
-- [BMI Air Mouse v1.2 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
+- [BMI Air Mouse v1.3 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - [BPM Tapper v1.2 (By panki27)](https://github.com/panki27/bpm-tapper)
 - [Brainfuck v1.3 (By nymda)](https://github.com/nymda/FlipperZeroBrainfuck)
 - [BT Remote for Kodi v1.1 (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/bt_hid_kodi)
@@ -440,7 +445,7 @@ $ ./fbt dolphin_ext
 - [FM Radio v1.1 (By coolshrimp)](https://github.com/coolshrimp/flipperzero-firmware-wPlugins/tree/420/applications/external/fm_radio)
 - [FMF2USBMIDI v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_Zero_FMF2USBMIDI)
 - [Gas Sensor v0.1 (By iancohee)](https://github.com/iancohee/gas_sensor_fap) `Req: BME680 / SGP30`
-- [Genie Recorder v3.0 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
+- [Genie Recorder v3.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
 - [GPIO 7-Segment Output v1.3 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
 - [GPIO Badge v1.0 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio/gpio_badge)
 - [GPIO Controller (By Lokno)](https://github.com/Lokno/gpio_controller)
@@ -507,7 +512,7 @@ $ ./fbt dolphin_ext
 - [NFC Maker v1.2 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
 - [NFC Playlist v2.4 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - [NFC Relay v0.2 (By leommxj)](https://github.com/leommxj/nfc_relay)
-- [NFC Seader v2.10 (By bettse)](https://github.com/bettse/seader)
+- [NFC Seader v3.0 (By bettse)](https://github.com/bettse/seader)
 - [NFC URL v1.0 (By y-dejong)](https://github.com/y-dejong/nfcurl)
 - [Nightstand Clock v1.1 (By nymda)](https://github.com/nymda/FlipperNightStand)
 - [Noptel LRF Sampler v1.9 (By Giraut)](https://github.com/Giraut/flipper_zero_noptel_lrf_sampler)
