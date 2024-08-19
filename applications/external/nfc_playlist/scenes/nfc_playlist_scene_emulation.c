@@ -222,7 +222,7 @@ int32_t nfc_playlist_emulation_task(void* context) {
                     furi_delay_ms(50);
                     time_counter_ms -= 50;
                 };
-            } else if(!storage_file_exists(storage, file_path)) {
+            } else if(!storage_file_exists(storage, furi_string_get_cstr(line))) {
                 if(nfc_playlist->settings.skip_error) {
                     skip_delay = true;
                     continue;
@@ -263,7 +263,8 @@ int32_t nfc_playlist_emulation_task(void* context) {
                     AlignCenter,
                     AlignTop);
                 nfc_playlist_emulation_worker_set_nfc_data(
-                    nfc_playlist->nfc_playlist_emulation_worker, file_path);
+                    nfc_playlist->nfc_playlist_emulation_worker,
+                    (char*)furi_string_get_cstr(line));
                 nfc_playlist_emulation_worker_start(nfc_playlist->nfc_playlist_emulation_worker);
                 start_blink(nfc_playlist, NfcPlaylistLedState_Normal);
                 while(nfc_playlist_emulation_worker_is_emulating(
