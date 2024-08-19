@@ -88,8 +88,13 @@ static ViewPort* bt_pin_code_view_port_alloc(Bt* bt) {
 
 static void bt_pin_code_show(Bt* bt, uint32_t pin_code) {
     bt->pin_code = pin_code;
-    if(bt->suppress_pin_screen) return;
+    if(!bt->pin_code_view_port) {
+        // Pin code view port
+        bt->pin_code_view_port = bt_pin_code_view_port_alloc(bt);
+        gui_add_view_port(bt->gui, bt->pin_code_view_port, GuiLayerFullscreen);
+    }
     notification_message(bt->notification, &sequence_display_backlight_on);
+    if(bt->suppress_pin_screen) return;
 
     gui_view_port_send_to_front(bt->gui, bt->pin_code_view_port);
     view_port_enabled_set(bt->pin_code_view_port, true);
@@ -105,8 +110,8 @@ static void bt_pin_code_hide(Bt* bt) {
 static bool bt_pin_code_verify_event_handler(Bt* bt, uint32_t pin) {
     furi_assert(bt);
     bt->pin_code = pin;
-    if(bt->suppress_pin_screen) return true;
     notification_message(bt->notification, &sequence_display_backlight_on);
+    if(bt->suppress_pin_screen) return true;
 
     FuriString* pin_str;
     if(!bt->dialog_message) {

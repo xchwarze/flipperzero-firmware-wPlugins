@@ -20,21 +20,7 @@ typedef enum {
     BtStatusConnected,
 } BtStatus;
 
-typedef struct {
-    uint8_t rssi;
-    uint32_t since;
-} BtRssi;
-
 typedef void (*BtStatusChangedCallback)(BtStatus status, void* context);
-
-/** Get BT Status
-* @note Call this to get current status of BT
-*
-* @param bt Bt instance
-*
-* @return BtStatus
-**/
-BtStatus bt_get_status(Bt* bt);
 
 /** Change BLE Profile
  * @note Call of this function leads to 2nd core restart
@@ -93,19 +79,24 @@ void bt_keys_storage_set_storage_path(Bt* bt, const char* keys_storage_path);
  */
 void bt_keys_storage_set_default_path(Bt* bt);
 
+/** Get BLE remote RSSI value
+ *
+ * @param bt    Bt instance
+ *
+ * @return      true on success
+ */
 bool bt_remote_rssi(Bt* bt, uint8_t* rssi);
 
-/**
- * 
- * (Probably bad) way of opening the RPC connection, everywhereTM
-*/
-
+/** Open a new RPC connection
+ *
+ * @param bt                    Bt instance
+ */
 void bt_open_rpc_connection(Bt* bt);
 
-/**
- * 
- * Closing the RPC connection, everywhereTM
-*/
+/** Close the active RPC connection
+ *
+ * @param bt                    Bt instance
+ */
 void bt_close_rpc_connection(Bt* bt);
 
 #ifdef __cplusplus
