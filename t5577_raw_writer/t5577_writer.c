@@ -3,7 +3,6 @@
 #include <gui/gui.h>
 #include <gui/view.h>
 #include <gui/view_dispatcher.h>
-#include <gui/modules/popup.h>
 #include <gui/modules/submenu.h>
 #include <gui/modules/text_input.h>
 #include <gui/modules/byte_input.h>
@@ -11,16 +10,18 @@
 #include <gui/modules/variable_item_list.h>
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
-#include "t5577_writer_icons.h"
+
 #include <applications/services/storage/storage.h>
 #include <applications/services/dialogs/dialogs.h>
+#include <dolphin/dolphin.h>
+#include <flipper_format.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <t5577_config.h>
 #include <t5577_writer.h>
-#include <dolphin/dolphin.h>
 
+#include "t5577_writer_icons.h"
 #define TAG                        "T5577 Writer"
 #define MAX_REPEAT_WRITING_FRAMES  10
 #define ENDING_WRITING_ICON_FRAMES 5
@@ -40,7 +41,6 @@ typedef enum {
     T5577WriterViewByteInput,
     T5577WriterViewLoad,
     T5577WriterViewSave,
-    T5577WriterViewPopup,
     T5577WriterViewConfigure_i, // The configuration screen
     T5577WriterViewConfigure_e, // The configuration screen
     T5577WriterViewWrite, // The main screen
@@ -58,7 +58,6 @@ typedef struct {
     Submenu* submenu; // The application menu
 
     TextInput* text_input; // The text input screen
-    Popup* popup;
     VariableItemList* variable_item_list_config; // The configuration screen
     View* view_config_e; // The configuration screen
     View* view_save;
@@ -81,7 +80,6 @@ typedef struct {
     DialogsApp* dialogs;
     FuriString* file_path;
     FuriTimer* timer; // Timer for redrawing the screen
-    ViewNavigationCallback config_enter_callback;
 } T5577WriterApp;
 
 typedef struct {
@@ -106,7 +104,7 @@ void initialize_config(T5577WriterModel* model) {
 
 void initialize_model(T5577WriterModel* model) {
     initialize_config(model);
-    model->user_block_num = 1;
+    model->user_block_num = 0;
     model->edit_block_slc = 1;
     model->writing_repeat_times = 0;
     for(uint32_t i = 0; i < LFRFID_T5577_BLOCK_COUNT; i++) {
@@ -222,21 +220,21 @@ static void t5577_writer_rf_clock_change(VariableItem* item) {
     furi_string_free(buffer);
 }
 
-static const char* user_block_num_config_label = "Num of Blocks";
+static const char* user_block_num_config_label = "Max User Block";
 static void t5577_writer_user_block_num_change(VariableItem* item) {
     T5577WriterApp* app = variable_item_get_context(item);
     T5577WriterModel* model = view_get_model(app->view_write);
     if(model->data_loaded[2]) {
-        variable_item_set_current_value_index(item, model->user_block_num - 1);
+        variable_item_set_current_value_index(item, model->user_block_num);
     } else {
         uint8_t user_block_num_index = variable_item_get_current_value_index(item);
-        model->user_block_num = user_block_num_index + 1;
+        model->user_block_num = user_block_num_index;
     }
     model->data_loaded[2] = false;
     FuriString* buffer = furi_string_alloc();
     furi_string_printf(buffer, "%u", model->user_block_num);
     variable_item_set_current_value_text(item, furi_string_get_cstr(buffer));
-    for(uint8_t i = model->user_block_num; i < LFRFID_T5577_BLOCK_COUNT; i++) {
+    for(uint8_t i = model->user_block_num + 1; i < LFRFID_T5577_BLOCK_COUNT; i++) {
         model->content[i] = 0; // pad the unneeded blocks with zeros
     }
     furi_string_free(buffer);
@@ -259,24 +257,6 @@ static void t5577_writer_edit_block_slc_change(VariableItem* item) {
     furi_string_free(buffer);
 }
 
-void ensure_dir_exists(Storage* storage) {
-    // If apps_data directory doesn't exist, create it.
-    if(!storage_dir_exists(storage, T5577_WRITER_APPS_DATA_FOLDER)) {
-        FURI_LOG_I(TAG, "Creating directory: %s", T5577_WRITER_APPS_DATA_FOLDER);
-        storage_simply_mkdir(storage, T5577_WRITER_APPS_DATA_FOLDER);
-    } else {
-        FURI_LOG_I(TAG, "Directory exists: %s", T5577_WRITER_APPS_DATA_FOLDER);
-    }
-
-    // If t5577_writer directory doesn't exist, create it.
-    if(!storage_dir_exists(storage, T5577_WRITER_FILE_FOLDER)) {
-        FURI_LOG_I(TAG, "Creating directory: %s", T5577_WRITER_FILE_FOLDER);
-        storage_simply_mkdir(storage, T5577_WRITER_FILE_FOLDER);
-    } else {
-        FURI_LOG_I(TAG, "Directory exists: %s", T5577_WRITER_FILE_FOLDER);
-    }
-}
-
 static const char* tag_name_entry_text = "Enter name";
 static const char* tag_name_default_value = "Tag_1";
 static void t5577_writer_file_saver(void* context) {
@@ -292,40 +272,44 @@ static void t5577_writer_file_saver(void* context) {
         T5577WriterModel * model,
         { furi_string_set(model->tag_name_str, app->temp_buffer); },
         redraw);
-    FuriString* buffer = furi_string_alloc();
     FuriString* file_path = furi_string_alloc();
     furi_string_printf(
         file_path,
         "%s/%s%s",
-        T5577_WRITER_FILE_FOLDER,
+        STORAGE_APP_DATA_PATH_PREFIX,
         furi_string_get_cstr(model->tag_name_str),
         T5577_WRITER_FILE_EXTENSION);
 
     Storage* storage = furi_record_open(RECORD_STORAGE);
-    ensure_dir_exists(storage);
-    File* data_file = storage_file_alloc(storage);
-    if(storage_file_open(
-           data_file, furi_string_get_cstr(file_path), FSAM_WRITE, FSOM_OPEN_ALWAYS)) {
-        furi_string_printf(buffer, "Filetype: Flipper T5577 Raw File\n");
-        storage_file_write(data_file, furi_string_get_cstr(buffer), furi_string_size(buffer));
-        furi_string_printf(buffer, "Version: 1.0\n");
-        storage_file_write(data_file, furi_string_get_cstr(buffer), furi_string_size(buffer));
-        furi_string_printf(buffer, "Modulation: %s\n", model->modulation.modulation_name);
-        storage_file_write(data_file, furi_string_get_cstr(buffer), furi_string_size(buffer));
-        furi_string_printf(buffer, "RF Clock: %u\n", model->rf_clock.rf_clock_num);
-        storage_file_write(data_file, furi_string_get_cstr(buffer), furi_string_size(buffer));
-        furi_string_printf(buffer, "Number of User Blocks: %u\n", model->user_block_num);
-        storage_file_write(data_file, furi_string_get_cstr(buffer), furi_string_size(buffer));
-        furi_string_printf(buffer, "\nRaw Data:\n");
+    storage_simply_mkdir(storage, STORAGE_APP_DATA_PATH_PREFIX);
+    FuriString* buffer = furi_string_alloc();
+    FlipperFormat* format = flipper_format_file_alloc(storage);
+    do {
+        const uint32_t version = 2;
+        const uint32_t clock_buffer = (uint32_t)model->rf_clock.rf_clock_num;
+        const uint32_t block_num_buffer = (uint32_t)model->user_block_num;
+        if(!flipper_format_file_open_always(format, furi_string_get_cstr(file_path))) break;
+        if(!flipper_format_write_header_cstr(format, "Flipper T5577 Raw File", version)) break;
+        if(!flipper_format_write_string_cstr(
+               format, "Modulation", model->modulation.modulation_name))
+            break;
+        if(!flipper_format_write_uint32(format, "RF Clock", &clock_buffer, 1)) break;
+        if(!flipper_format_write_uint32(format, "Max User Block", &block_num_buffer, 1)) break;
+        if(!flipper_format_write_string_cstr(format, "Raw Data", "")) break; // raw data begins
         for(int i = 0; i < LFRFID_T5577_BLOCK_COUNT; i++) {
-            furi_string_cat_printf(buffer, "Block %u: %08lX\n", i, model->content[i]);
+            furi_string_printf(buffer, "Block %u", i);
+            uint8_t byte_array_buffer[app->bytes_count];
+            uint32_to_byte_buffer(model->content[i], byte_array_buffer);
+            if(!flipper_format_write_hex(
+                   format, furi_string_get_cstr(buffer), byte_array_buffer, app->bytes_count))
+                break;
         }
-        furi_string_push_back(buffer, '\n');
-        storage_file_write(data_file, furi_string_get_cstr(buffer), furi_string_size(buffer));
-        storage_file_close(data_file);
-        view_dispatcher_switch_to_view(
-            app->view_dispatcher, T5577WriterViewSubmenu); // maybe add a pop up later
-    }
+        // signal that the file was written successfully
+    } while(0);
+    flipper_format_free(format);
+
+    view_dispatcher_switch_to_view(
+        app->view_dispatcher, T5577WriterViewSubmenu); // maybe add a pop up later
 }
 
 void t5577_writer_update_config_from_load(void* context) {
@@ -345,26 +329,13 @@ void t5577_writer_update_config_from_load(void* context) {
             my_model->rf_clock = all_rf_clocks[my_model->rf_clock_index];
         }
     }
-    my_model->user_block_num = (my_model->content[0] >> LFRFID_T5577_MAXBLOCK_SHIFT) & 0xF;
+    my_model->user_block_num = ((my_model->content[0] >> LFRFID_T5577_MAXBLOCK_SHIFT) & 0x7);
+    FURI_LOG_D(TAG, "BLOCK 0 %08lX", my_model->content[0]);
+    FURI_LOG_D(TAG, "bit 25-27 %ld", (my_model->content[0] >> LFRFID_T5577_MAXBLOCK_SHIFT) & 0x7);
     memset(my_model->data_loaded, true, sizeof(my_model->data_loaded)); // Everything is loaded
 }
 
 static const char* edit_block_data_config_label = "Block Data";
-void uint32_to_byte_buffer(uint32_t block_data, uint8_t byte_buffer[4]) {
-    byte_buffer[0] = (block_data >> 24) & 0xFF;
-    byte_buffer[1] = (block_data >> 16) & 0xFF;
-    byte_buffer[2] = (block_data >> 8) & 0xFF;
-    byte_buffer[3] = block_data & 0xFF;
-}
-
-uint32_t byte_buffer_to_uint32(uint8_t byte_buffer[4]) {
-    uint32_t block_data = 0;
-    block_data |= ((uint32_t)byte_buffer[0] << 24);
-    block_data |= ((uint32_t)byte_buffer[1] << 16);
-    block_data |= ((uint32_t)byte_buffer[2] << 8);
-    block_data |= ((uint32_t)byte_buffer[3]);
-    return block_data;
-}
 
 static void t5577_writer_content_byte_input_confirmed(void* context) {
     T5577WriterApp* app = (T5577WriterApp*)context;
@@ -376,6 +347,7 @@ static void t5577_writer_content_byte_input_confirmed(void* context) {
 static void t5577_writer_content_byte_changed(void* context) {
     UNUSED(context);
 }
+
 static void t5577_writer_config_item_clicked(void* context, uint32_t index) {
     T5577WriterApp* app = (T5577WriterApp*)context;
     T5577WriterModel* my_model = view_get_model(app->view_write);
@@ -449,7 +421,7 @@ static void t5577_writer_config_enter_callback(void* context) {
 
     variable_item_set_current_value_index(app->mod_item, my_model->modulation_index);
     variable_item_set_current_value_index(app->clock_item, my_model->rf_clock_index);
-    variable_item_set_current_value_index(app->block_num_item, my_model->user_block_num - 1);
+    variable_item_set_current_value_index(app->block_num_item, my_model->user_block_num);
     variable_item_set_current_value_index(app->block_slc_item, my_model->edit_block_slc - 1);
 
     t5577_writer_modulation_change(app->mod_item);
@@ -469,55 +441,29 @@ void t5577_writer_view_load_callback(void* context) {
     T5577WriterModel* model = view_get_model(app->view_write);
     DialogsFileBrowserOptions browser_options;
     Storage* storage = furi_record_open(RECORD_STORAGE);
-    ensure_dir_exists(storage);
-    File* data_file = storage_file_alloc(storage);
+    storage_simply_mkdir(storage, STORAGE_APP_DATA_PATH_PREFIX);
     dialog_file_browser_set_basic_options(&browser_options, T5577_WRITER_FILE_EXTENSION, &I_icon);
-    browser_options.base_path = T5577_WRITER_FILE_FOLDER;
+    browser_options.base_path = STORAGE_APP_DATA_PATH_PREFIX;
     furi_string_set(app->file_path, browser_options.base_path);
     FuriString* buffer = furi_string_alloc();
     if(dialog_file_browser_show(app->dialogs, app->file_path, app->file_path, &browser_options)) {
-        if(storage_file_open(
-               data_file, furi_string_get_cstr(app->file_path), FSAM_READ, FSOM_OPEN_EXISTING)) {
-            while(!storage_file_eof(data_file)) { // fill buffer with every line because ch == '\n'
-                char ch;
-                furi_string_reset(buffer);
-                while(storage_file_read(data_file, &ch, 1) && !storage_file_eof(data_file)) {
-                    furi_string_push_back(buffer, ch);
-                    if(ch == '\n') {
-                        break;
-                    }
-                }
-                if(furi_string_start_with(buffer, "Block ")) {
-                    uint32_t row_data_buffer = 0;
-                    char row_data_char_buffer[] = "00000000";
-                    uint32_t row_num_buffer = 0;
-                    char row_num_char_buffer[] = "0";
-                    int length = furi_string_size(buffer);
-                    char ch;
-                    int i = 0;
-                    while(i < length) {
-                        if(furi_string_get_char(buffer, i) == ':') {
-                            row_num_char_buffer[0] = furi_string_get_char(buffer, i - 1);
-                            //the number before ":" is block num
-                            i += 2; // skip a space
-                            for(size_t j = 0; j < sizeof(row_data_char_buffer); j++) {
-                                ch = furi_string_get_char(buffer, i);
-                                row_data_char_buffer[j] = ch;
-                                i++;
-                            }
-                            break;
-                        }
-                        i++;
-                    }
-                    sscanf(row_num_char_buffer, "%lx", &row_num_buffer);
-                    sscanf(row_data_char_buffer, "%lx", &row_data_buffer);
-                    model->content[row_num_buffer] = row_data_buffer;
-                }
+        FlipperFormat* format = flipper_format_file_alloc(storage);
+        do {
+            if(!flipper_format_file_open_existing(format, furi_string_get_cstr(app->file_path)))
+                break;
+            uint8_t byte_array_buffer[app->bytes_count];
+            for(int i = 0; i < LFRFID_T5577_BLOCK_COUNT; i++) {
+                furi_string_printf(buffer, "Block %u", i);
+                if(!flipper_format_read_hex(
+                       format, furi_string_get_cstr(buffer), byte_array_buffer, app->bytes_count))
+                    break;
+                model->content[i] = byte_buffer_to_uint32(
+                    byte_array_buffer); // we only extract the raw data. configs are then updated from block 0
             }
-            storage_file_close(data_file);
-            t5577_writer_update_config_from_load(app);
-        }
-        storage_file_free(data_file);
+            // signal that the file was read successfully
+        } while(0);
+        flipper_format_free(format);
+        t5577_writer_update_config_from_load(app);
         furi_record_close(RECORD_STORAGE);
     }
     view_dispatcher_switch_to_view(app->view_dispatcher, T5577WriterViewSubmenu);
@@ -569,7 +515,7 @@ static void t5577_writer_actual_writing(void* model) {
     my_model->content[0] |= my_model->rf_clock.clock_page_zero;
     my_model->content[0] |= (my_model->user_block_num << LFRFID_T5577_MAXBLOCK_SHIFT);
     LFRFIDT5577* data = (LFRFIDT5577*)malloc(sizeof(LFRFIDT5577));
-    data->blocks_to_write = my_model->user_block_num;
+    data->blocks_to_write = my_model->user_block_num + 1;
     for(size_t i = 0; i < data->blocks_to_write; i++) {
         data->block[i] = my_model->content[i];
     }
@@ -611,6 +557,10 @@ static void t5577_writer_view_write_timer_callback(void* context) {
     if(model->writing_repeat_times < MAX_REPEAT_WRITING_FRAMES + ENDING_WRITING_ICON_FRAMES) {
         model->writing_repeat_times += 1;
         view_dispatcher_send_custom_event(app->view_dispatcher, T5577WriterEventIdRepeatWriting);
+        if(model->writing_repeat_times == MAX_REPEAT_WRITING_FRAMES) {
+            notification_message(app->notifications, &sequence_blink_stop);
+            notification_message(app->notifications, &sequence_success);
+        }
     } else {
         view_dispatcher_send_custom_event(app->view_dispatcher, T5577WriterEventIdMaxWriteRep);
     }
@@ -630,6 +580,7 @@ static void t5577_writer_view_write_enter_callback(void* context) {
         furi_timer_alloc(t5577_writer_view_write_timer_callback, FuriTimerTypePeriodic, context);
     furi_timer_start(app->timer, repeat_writing_period);
     dolphin_deed(DolphinDeedRfidEmulate);
+    notification_message(app->notifications, &sequence_blink_start_magenta);
 }
 
 /**
@@ -644,6 +595,7 @@ static void t5577_writer_view_write_exit_callback(void* context) {
     furi_timer_free(app->timer);
     app->timer = NULL;
     model->writing_repeat_times = 0;
+    notification_message(app->notifications, &sequence_blink_stop);
 }
 
 /**
@@ -685,7 +637,7 @@ static T5577WriterApp* t5577_writer_app_alloc() {
     app->view_dispatcher = view_dispatcher_alloc();
     app->dialogs = furi_record_open(RECORD_DIALOGS);
     app->file_path = furi_string_alloc();
-    view_dispatcher_enable_queue(app->view_dispatcher);
+
     view_dispatcher_attach_to_gui(app->view_dispatcher, gui, ViewDispatcherTypeFullscreen);
     view_dispatcher_set_event_callback_context(app->view_dispatcher, app);
     app->submenu = submenu_alloc();
@@ -754,8 +706,8 @@ static T5577WriterApp* t5577_writer_app_alloc() {
     app->byte_input = byte_input_alloc();
     view_dispatcher_add_view(
         app->view_dispatcher, T5577WriterViewByteInput, byte_input_get_view(app->byte_input));
-    app->variable_item_list_config = variable_item_list_alloc();
 
+    app->variable_item_list_config = variable_item_list_alloc();
     app->view_config_e = view_alloc();
     view_set_previous_callback(app->view_config_e, t5577_writer_navigation_submenu_callback);
     view_set_enter_callback(app->view_config_e, t5577_writer_config_enter_callback);
@@ -772,17 +724,13 @@ static T5577WriterApp* t5577_writer_app_alloc() {
         0,
         128,
         64,
-        "T5577 Raw Writer v0.1\n\nAuthor: @Torron\n\nGithub: https://github.com/zinongli/T5577_Raw_Writer");
+        "T5577 Raw Writer v1.2\n\nAuthor: @Torron\n\nGithub: https://github.com/zinongli/T5577_Raw_Writer");
     view_set_previous_callback(
         widget_get_view(app->widget_about), t5577_writer_navigation_submenu_callback);
     view_dispatcher_add_view(
         app->view_dispatcher, T5577WriterViewAbout, widget_get_view(app->widget_about));
 
     app->notifications = furi_record_open(RECORD_NOTIFICATION);
-
-#ifdef BACKLIGHT_ON
-    notification_message(app->notifications, &sequence_display_backlight_enforce_on);
-#endif
 
     return app;
 }
@@ -793,9 +741,6 @@ static T5577WriterApp* t5577_writer_app_alloc() {
  * @param      app  The t5577_writer application object.
 */
 static void t5577_writer_app_free(T5577WriterApp* app) {
-#ifdef BACKLIGHT_ON
-    notification_message(app->notifications, &sequence_display_backlight_enforce_auto);
-#endif
     furi_record_close(RECORD_NOTIFICATION);
 
     view_dispatcher_remove_view(app->view_dispatcher, T5577WriterViewTextInput);

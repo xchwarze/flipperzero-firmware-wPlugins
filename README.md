@@ -28,16 +28,14 @@ That's why the commit history for this repo is so huge, it contains all the comm
 
 To make updating more manageable, we have added some scripts on top of subtrees:
 - add a new app with `.utils/add-subtree.sh <path> <repo url> <branch> [subdir]`, this will pull the history and create `path/.gitsubtree` to remember the url, branch and subdir
-- run `.utils/update-subtree.sh <path>` to pull updates for a subtree
-- or run `.utils/bulk-update-subtrees.sh` to do it for all subtrees
+- run `.utils/update-subtrees.sh <path> [path2] [pathN...]` to pull updates for some subtrees
+- or run `.utils/update-subtrees.sh` with no arguments to update all subtrees
 
 Most apps have a remote subtree URL for both the original repository, and for any forks / other sources such as [@xMasterX's pack](https://github.com/xMasterX/all-the-plugins).
-Unfortunately, this process is currently manual as our helper scripts don't cover it. We instead:
-- add from one remote
-- delete the directory in a commit
-- add from another remote
-- replace the new directory with the previous one
-- compare the changes between forks and keep the best of both
-- add any eventual edits we have on our end
-If you're an app developer wanting to add your app, or a third party who wants to include something they find useful, you don't need to bother with this cumbersome process.
+This process is assisted by `.utils/add-subtree.sh`, if the specified subtree path already exists, it will:
+- remove the previous subtree with a commit
+- add the subtree from the new remote
+- restore the previous subtree and merge the remotes
+After this, you will just need to resolve the conflicts (content differences between remotes) manually to keep the best of both, and commit.
+If you're an app developer wanting to add your app, or a third party who wants to include something they find useful, you don't need to bother with this process.
 We will do it for you, just add from a single remote URL, or simply make an issue requesting an app to be added!

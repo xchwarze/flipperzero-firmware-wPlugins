@@ -1,10 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ "$(git rev-parse --show-prefix)" != "" ]; then
-    echo "Must be in root of git repo!"
-    exit
-fi
+bash .utils/.check-workdir.sh
 
 if [ "$1" = "" ] || [ "$2" = "" ]; then
     echo "Usage 1: <path> <repo url> <branch> [subdir]"
@@ -19,6 +16,17 @@ else
     branch="${3}"
     subdir="${4%/}"
 fi
+gitsubtree="${path}/.gitsubtree"
+
+prevremotedir=""
+if [ -e "${gitsubtree}" ]; then
+    echo "Subtree already exists, adding new remote to it."
+    prevremotedir="$(mktemp -d /tmp/gitsubtree-XXXXXXXX)"
+    # To use 2 remotes for subtree we need to remove current one, add new one, then merge
+    mv -T "${path}" "${prevremotedir}"
+    git add "${path}"
+    git commit -m "Add new remote for ${path}"
+fi
 
 if [ "${subdir}" = "" ]; then
     subdir="/"
@@ -27,7 +35,22 @@ else
     bash .utils/.subtree-subdir-helper.sh "${path}" "${repo}" "${branch}" "${subdir}" add
 fi
 
-gitsubtree="${path}/.gitsubtree"
-echo "${repo} ${branch} ${subdir}" > "${gitsubtree}"
+if [ "${prevremotedir}" != "" ]; then
+    if [ -e "${path}/.subtree-cache" ]; then
+        # Backup subtree cache
+        cp -rT "${path}/.subtree-cache" "${prevremotedir}/.subtree-cache"
+    fi
+    rm -r "${path}"
+    mv -T "${prevremotedir}" "${path}"
+fi
+
+# Add new remote at the top
+echo "${repo} ${branch} ${subdir}" | cat - "${gitsubtree}" 2> /dev/null > "${gitsubtree}.new"
+mv "${gitsubtree}.new" "${gitsubtree}"
 git add "${gitsubtree}"
 git commit --amend --no-edit
+
+if [ "${prevremotedir}" != "" ]; then
+    prevremotedir=""
+    echo "Added new remote for existing subtree, you must solve conflicts manually..."
+fi

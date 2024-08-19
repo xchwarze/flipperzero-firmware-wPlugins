@@ -1,10 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ "$(git rev-parse --show-prefix)" != "" ]; then
-    echo "Must be in root of git repo!"
-    exit
-fi
+bash .utils/.check-workdir.sh
 
 if [ "${1}" = "" ] || [ "${2}" = "" ]; then
     echo "Usage: <path> <repo url> <merge output>"
@@ -16,7 +13,7 @@ result="${3}"
 
 if grep "Automatic merge failed; fix conflicts and then commit the result." <<< "$result" > /dev/null; then
     echo "MERGE_MSG: Merge ${path} from ${repo}"
-    notify-send -a Git -i git "Subtree merge failed" "Resolve current index to continue" &> /dev/null | true
+    notify-send -t 0 -a Git -i git "Subtree merge failed" "Resolve current index to continue" &> /dev/null | true
     while true; do
         echo "Resolve current index then press Enter..."
         read
