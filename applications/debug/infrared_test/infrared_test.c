@@ -59,4 +59,3 @@ int32_t infrared_test_app(void* arg) {
 
     return 0;
 }
-A
