@@ -38,6 +38,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [BMI Air Mouse v1.3 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - Updated: [iButton Fuzzer v1.5 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - Updated: [RFID Fuzzer v1.5 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
+- Updated: [Sub-GHz Bruteforcer v3.12 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
