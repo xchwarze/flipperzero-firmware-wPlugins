@@ -42,7 +42,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Sub-GHz Remote v1.5 (By gid9798)](https://github.com/DarkFlippers/SubGHz_Remote)
 - Updated: [BLE Spam v6.5 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
 - Updated: [UART Terminal v1.6 (By cool4uma)](https://github.com/cool4uma/UART_Terminal)
-- [Many apps updated for #3703 (By XMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/faa952f4830eb99fc75b93553a6a90a358fbc6f4)
+- [Many apps updated for #3703 (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/faa952f4830eb99fc75b93553a6a90a358fbc6f4)
+- [Many apps updated for #3703 (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/523b4e43d0dd0a0051666d875008067ecbdf0523)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
