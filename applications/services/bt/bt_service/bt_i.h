@@ -31,6 +31,9 @@ typedef enum {
     BtMessageTypeSetProfile,
     BtMessageTypeDisconnect,
     BtMessageTypeForgetBondedDevices,
+    BtMessageTypeGetSettings,
+    BtMessageTypeSetSettings,
+    BtMessageTypeReloadKeysSettings,
 } BtMessageType;
 
 typedef struct {
@@ -48,6 +51,8 @@ typedef union {
     } profile;
     FuriHalBleProfileParams profile_params;
     BtKeyStorageUpdateData key_storage_data;
+    BtSettings* settings;
+    const BtSettings* csettings;
 } BtMessageData;
 
 typedef struct {
