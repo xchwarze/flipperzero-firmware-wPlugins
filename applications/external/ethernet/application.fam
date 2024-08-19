@@ -2,7 +2,7 @@ App(
     appid="eth_troubleshooter",
     name="Ethernet W5500",
     apptype=FlipperAppType.EXTERNAL,
-    entry_point="finik_eth_app",
+    entry_point="eth_troubleshooter_app",
     stack_size=5 * 1024,
     fap_icon="images/ethernet_icon_10x10px.png",
     fap_category="GPIO/Debug",
