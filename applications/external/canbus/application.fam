@@ -1,0 +1,13 @@
+App(
+    appid="canbus",
+    name="CANBUS",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="app_main",
+    stack_size=30 * 1024,
+    fap_icon="icon.png",
+    fap_category="GPIO",
+    fap_author="ElectronicCats",
+    fap_weburl="https://github.com/ElectronicCats/flipper-MCP2515-CANBUS",
+    fap_version="1.1.2",
+    fap_description="This app allows you to interact with CAN Bus networks. Now you can interact with CAN Bus transmissions using the Flipper Zero. Basic tasks such as sniffing and injection are available, making it easy to perform activities such as analysis, error detection and peripherals control in a CAN Bus network.",
+)
