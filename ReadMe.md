@@ -40,6 +40,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [RFID Fuzzer v1.5 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - Updated: [Sub-GHz Bruteforcer v3.12 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
 - Updated: [Sub-GHz Remote v1.5 (By gid9798)](https://github.com/DarkFlippers/SubGHz_Remote)
+- Updated: [BLE Spam v6.5 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
+- Updated: [UART Terminal v1.6 (By cool4uma)](https://github.com/cool4uma/UART_Terminal)
+- [Many apps updated for #3703 (By XMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -352,7 +355,7 @@ $ ./fbt dolphin_ext
 - [BG Loader (By twisted-pear)](https://github.com/twisted-pear/bgloader)
 - [BlackJack Counter v1.0 (By grugnoymeme)](https://github.com/grugnoymeme/flipperzero-blackjack_counter-fap)
 - [BLE Killer v1.0 (By H4lo)](https://github.com/H4lo/flipper_zero_ble_killer) `Req: ESP32`
-- [BLE Spam v6.4 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
+- [BLE Spam v6.5 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam)
 - [Bluetooth/USB Remote v1.8 (By Cutch)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1330)
 - [BMI Air Mouse v1.3 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
 - [BPM Tapper v1.2 (By panki27)](https://github.com/panki27/bpm-tapper)
@@ -566,7 +569,7 @@ $ ./fbt dolphin_ext
 - [Tuning Fork v1.2 (By besya)](https://github.com/besya/flipperzero-tuning-fork)
 - [u-blox GPS v0.4 (By liamhays)](https://github.com/liamhays/ublox)
 - [UART Echo (By DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/831)
-- [UART Terminal v1.5 (By cool4uma)](https://github.com/cool4uma/UART_Terminal)
+- [UART Terminal v1.6 (By cool4uma)](https://github.com/cool4uma/UART_Terminal)
 - [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100`
 - [USB Consumer Control (By WithSecureLabs)](https://github.com/WithSecureLabs/usb-consumer-control)
 - [USB HID Autofire (By pbek)](https://github.com/pbek/usb_hid_autofire)
