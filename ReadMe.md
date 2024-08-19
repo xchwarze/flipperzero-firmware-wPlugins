@@ -36,6 +36,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [ShapShup v1.2 (By derskythe)](https://github.com/derskythe/flipperzero-shapshup)
 - Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100`
 - Updated: [BMI Air Mouse v1.3 (By ginkage)](https://github.com/ginkage/FlippAirMouse/) `Req: BMI160`
+- Updated: [iButton Fuzzer v1.5 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
+- Updated: [RFID Fuzzer v1.5 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -435,7 +437,7 @@ $ ./fbt dolphin_ext
 - [HEX Viewer v2.0 (By QtRoS)](https://github.com/QtRoS/flipperzero-firmware)
 - [HID File Transfer v1.0 (By Kavakuo)](https://github.com/Kavakuo/HID-File-Transfer)
 - [i2c Tools v1.2 (By NaejEL)](https://github.com/NaejEL/flipperzero-i2ctools)
-- [iButton Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
+- [iButton Fuzzer v1.5 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - [ID Card v2.1 (By evillero)](https://github.com/evillero/ID_card_v2)
 - [IFTTT Button (By Ferrazzi)](https://github.com/Ferrazzi/FlipperZero_IFTTT_Virtual_Button) `Req: ESP8266 w/ IFTTT FW Flashed`
 - [Intervalometer v1.2 (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
@@ -526,7 +528,7 @@ $ ./fbt dolphin_ext
 - [Restaurant Pager Trigger v1.7 (By leedave)](https://github.com/leedave/flipper-zero-meal-pager)
 - [RFID Beacon (By nmrr)](https://github.com/nmrr/flipperzero-rfidbeacon)
 - [RFID Detector v1.3 (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/2795)
-- [RFID Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
+- [RFID Fuzzer v1.5 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - [RGB LED (By flyandi)](https://github.com/flyandi/flipper_zero_rgb_led)
 - [R.O.B. Control (By riney)](https://github.com/riney/flip_rob)
 - [SAM (By Unknown)][Original?](https://github.com/ctoth/SAM)
