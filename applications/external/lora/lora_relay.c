@@ -1,5 +1,6 @@
 #include <furi.h>
 #include <furi_hal.h>
+#include <datetime/datetime.h>
 #include <gui/gui.h>
 #include <gui/modules/byte_input.h>
 #include <gui/modules/submenu.h>
@@ -1452,7 +1453,7 @@ static void lora_view_sniffer_draw_callback(Canvas* canvas, void* model) {
         bytesToAsciiHex(receiveBuff, bytesRead);
 
         if(flag_file) {
-            FuriHalRtcDateTime curr_dt;
+            DateTime curr_dt;
             furi_hal_rtc_get_datetime(&curr_dt);
 
             char time_string[TIME_LEN];

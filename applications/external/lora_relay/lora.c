@@ -777,7 +777,7 @@ Returns payload size (1-255) when a packet with a non-zero payload is received.
 If packet received is larger than the buffer provided, this will return
 buffMaxLen
 */
-int lora_receive_async(u_int8_t* buff, int buffMaxLen) {
+int lora_receive_async(uint8_t* buff, int buffMaxLen) {
     setModeReceive(); // Sets the mode to receive (if not already in receive
         // mode)
 

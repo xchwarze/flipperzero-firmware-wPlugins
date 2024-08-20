@@ -15,7 +15,7 @@
 
 const GpioPin* const test_led = &gpio_swclk;
 
-int lora_receive_async(u_int8_t* buff, int buffMaxLen);
+int lora_receive_async(uint8_t* buff, int buffMaxLen);
 
 uint8_t receiveBuff[255];
 char asciiBuff[255];

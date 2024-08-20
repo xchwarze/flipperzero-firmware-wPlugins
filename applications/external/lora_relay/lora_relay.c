@@ -34,7 +34,7 @@ bool begin();
 bool sanityCheck();
 void checkBusy();
 void setModeReceive();
-int lora_receive_async(u_int8_t* buff, int buffMaxLen);
+int lora_receive_async(uint8_t* buff, int buffMaxLen);
 bool configSetFrequency(long frequencyInHz);
 bool configSetBandwidth(int bw);
 bool configSetSpreadingFactor(int sf);
