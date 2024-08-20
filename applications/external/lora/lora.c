@@ -1,6 +1,5 @@
 /*
-Code porting from LoRa library
-https://github.dev/thekakester/Arduino-LoRa-Sx1262
+Code porting from LoRa library https://github.dev/thekakester/Arduino-LoRa-Sx1262
 */
 
 #include <furi.h>
@@ -8,7 +7,7 @@ https://github.dev/thekakester/Arduino-LoRa-Sx1262
 
 #define TAG "LORA"
 
-// Presets. These help make radio config easier
+//Presets. These help make radio config easier
 #define PRESET_DEFAULT   0
 #define PRESET_LONGRANGE 1
 #define PRESET_FAST      2
@@ -24,7 +23,7 @@ https://github.dev/thekakester/Arduino-LoRa-Sx1262
 #define FREQ_STEP 0.95367431640625
 
 static uint32_t timeout = 1000;
-// static uint32_t timeout = 100;
+//static uint32_t timeout = 100;
 static FuriHalSpiBusHandle* spi = &furi_hal_spi_bus_handle_external;
 
 const GpioPin* const pin_beacon = &gpio_swclk;
@@ -35,15 +34,15 @@ const GpioPin* const pin_busy = &gpio_usart_rx;
 const GpioPin* const pin_dio1 = &gpio_ext_pc3;
 
 bool inReceiveMode = false;
-uint8_t spiBuff[32]; // Buffer for sending SPI commands to radio
+uint8_t spiBuff[32]; //Buffer for sending SPI commands to radio
 
-// Config variables (set to PRESET_DEFAULT on init)
+//Config variables (set to PRESET_DEFAULT on init)
 uint32_t pllFrequency;
 uint8_t bandwidth;
 uint8_t codingRate;
 uint8_t spreadingFactor;
 uint8_t lowDataRateOptimize;
-uint32_t transmitTimeout; // Worst-case transmit time depends on some factors
+uint32_t transmitTimeout; //Worst-case transmit time depends on some factors
 
 int rssi = 0;
 int snr = 0;
@@ -68,7 +67,7 @@ void checkBusy() {
         furi_delay_ms(1);
         busy_timeout_cnt++;
 
-        if(busy_timeout_cnt > 10) // wait 10mS for busy to complete
+        if(busy_timeout_cnt > 10) //wait 10mS for busy to complete
         {
             busy_timeout_cnt = 0;
             FURI_LOG_E(TAG, "ERROR - Busy Timeout!");
@@ -126,7 +125,7 @@ uint16_t getSyncWord() {
 }
 
 uint32_t getFreqInt() {
-    // get the current set device frequency from registers, return as long integer
+    //get the current set device frequency from registers, return as long integer
 
     uint8_t MsbH, MsbL, Mid, Lsb;
     uint32_t uinttemp;
@@ -142,66 +141,63 @@ uint32_t getFreqInt() {
 }
 
 /*Convert a frequency in hz (such as 915000000) to the respective PLL setting.
- * The radio requires that we set the PLL, which controls the multipler on the
- * internal clock to achieve the desired frequency. Valid frequencies are 150MHz
- * to 960MHz (150000000 to 960000000)
- *
- * NOTE: This assumes the radio is using a 32mhz clock, which is standard.  This
- * is independent of the microcontroller clock See datasheet section 13.4.1 for
- * this calculation. Example: 915mhz (915000000) has a PLL of 959447040
- */
+* The radio requires that we set the PLL, which controls the multipler on the internal clock to achieve the desired frequency.
+* Valid frequencies are 150MHz to 960MHz (150000000 to 960000000)
+*
+* NOTE: This assumes the radio is using a 32mhz clock, which is standard.  This is independent of the microcontroller clock
+* See datasheet section 13.4.1 for this calculation.
+* Example: 915mhz (915000000) has a PLL of 959447040
+*/
 uint32_t frequencyToPLL(long rfFreq) {
     /* Datasheet Says:
-   *		rfFreq = (pllFreq * xtalFreq) / 2^25
-   * Rewrite to solve for pllFreq
-   *		pllFreq = (2^25 * rfFreq)/xtalFreq
-   *
-   *	In our case, xtalFreq is 32mhz
-   *	pllFreq = (2^25 * rfFreq) / 32000000
-   */
-    // Basically, we need to do "return ((1 << 25) * rfFreq) / 32000000L"
-    // It's very important to perform this without losing precision or integer
-    // overflow. If arduino supported 64-bit varibales (which it doesn't), we
-    // could just do this:
-    //     uint64_t firstPart = (1 << 25) * (uint64_t)rfFreq;
-    //     return (uint32_t)(firstPart / 32000000L);
+    *		rfFreq = (pllFreq * xtalFreq) / 2^25
+    * Rewrite to solve for pllFreq
+    *		pllFreq = (2^25 * rfFreq)/xtalFreq
+    *
+    *	In our case, xtalFreq is 32mhz
+    *	pllFreq = (2^25 * rfFreq) / 32000000
+  */
+    //Basically, we need to do "return ((1 << 25) * rfFreq) / 32000000L"
+    //It's very important to perform this without losing precision or integer overflow.
+    //If arduino supported 64-bit varibales (which it doesn't), we could just do this:
+    //    uint64_t firstPart = (1 << 25) * (uint64_t)rfFreq;
+    //    return (uint32_t)(firstPart / 32000000L);
     //
-    // Instead, we need to break this up mathimatically to avoid integer overflow
-    // First, we'll simplify the equation by dividing both parts by 2048 (2^11)
-    //     ((1 << 25) * rfFreq) / 32000000L      -->      (16384 * rfFreq) /
-    //     15625;
+    //Instead, we need to break this up mathimatically to avoid integer overflow
+    //First, we'll simplify the equation by dividing both parts by 2048 (2^11)
+    //    ((1 << 25) * rfFreq) / 32000000L      -->      (16384 * rfFreq) / 15625;
     //
-    //  Now, we'll divide first, then multiply (multiplying first would cause
-    //  integer overflow) Because we're dividing, we need to keep track of the
-    //  remainder to avoid losing precision
-    uint32_t q = rfFreq / 15625UL; // Gives us the result (quotient), rounded
-        // down to the nearest integer
-    uint32_t r = rfFreq % 15625UL; // Everything that isn't divisible, aka "the
-        // part that hasn't been divided yet"
+    // Now, we'll divide first, then multiply (multiplying first would cause integer overflow)
+    // Because we're dividing, we need to keep track of the remainder to avoid losing precision
+    uint32_t q =
+        rfFreq / 15625UL; //Gives us the result (quotient), rounded down to the nearest integer
+    uint32_t r =
+        rfFreq %
+        15625UL; //Everything that isn't divisible, aka "the part that hasn't been divided yet"
 
-    // Multiply by 16384 to satisfy the equation above
+    //Multiply by 16384 to satisfy the equation above
     q *= 16384UL;
-    r *= 16384UL; // Don't forget, this part still needs to be divided because it
-        // was too small to divide before
+    r *=
+        16384UL; //Don't forget, this part still needs to be divided because it was too small to divide before
 
-    return q + (r / 15625UL); // Finally divide the the remainder part before
-        // adding it back in with the quotient
+    return q +
+           (r /
+            15625UL); //Finally divide the the remainder part before adding it back in with the quotient
 }
 
-// Set the radio frequency.  Just a single SPI call,
-// but this is broken out to make it more convenient to change frequency
-// on-the-fly You must set this->pllFrequency before calling this
+//Set the radio frequency.  Just a single SPI call,
+//but this is broken out to make it more convenient to change frequency on-the-fly
+//You must set this->pllFrequency before calling this
 void updateRadioFrequency() {
-    // Set PLL frequency (this is a complicated math equation. See datasheet entry
-    // for SetRfFrequency)
+    // Set PLL frequency (this is a complicated math equation. See datasheet entry for SetRfFrequency)
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
     furi_hal_spi_acquire(spi);
 
-    spiBuff[0] = 0x86; // Opcode for set RF Frequencty
-    spiBuff[1] = (pllFrequency >> 24) & 0xFF; // MSB of pll frequency
+    spiBuff[0] = 0x86; //Opcode for set RF Frequencty
+    spiBuff[1] = (pllFrequency >> 24) & 0xFF; //MSB of pll frequency
     spiBuff[2] = (pllFrequency >> 16) & 0xFF; //
     spiBuff[3] = (pllFrequency >> 8) & 0xFF; //
-    spiBuff[4] = (pllFrequency >> 0) & 0xFF; // LSB of requency
+    spiBuff[4] = (pllFrequency >> 0) & 0xFF; //LSB of requency
     furi_hal_spi_bus_tx(spi, spiBuff, 5, timeout);
 
     furi_hal_spi_release(spi);
@@ -211,22 +207,21 @@ void updateRadioFrequency() {
 }
 
 /** (Optional) Set the operating frequency of the radio.
- * The 1262 radio supports 150-960Mhz.  This library uses a default of 915Mhz.
- * MAKE SURE THAT YOU ARE OPERATING IN A FREQUENCY THAT IS ALLOWED IN YOUR
- * COUNTRY! For example, 915mhz (915000000 hz) is safe in the US.
- *
- * Specify the desired frequency in Hz (eg 915MHZ is 915000000).
- * Returns TRUE on success, FALSE on invalid frequency
- */
+* The 1262 radio supports 150-960Mhz.  This library uses a default of 915Mhz.
+* MAKE SURE THAT YOU ARE OPERATING IN A FREQUENCY THAT IS ALLOWED IN YOUR COUNTRY!
+* For example, 915mhz (915000000 hz) is safe in the US.
+*
+* Specify the desired frequency in Hz (eg 915MHZ is 915000000).
+* Returns TRUE on success, FALSE on invalid frequency
+*/
 bool configSetFrequency(long frequencyInHz) {
-    // Make sure the specified frequency is in the valid range.
+    //Make sure the specified frequency is in the valid range.
     if(frequencyInHz < 150000000 || frequencyInHz > 960000000) {
         return false;
     }
 
-    // Calculate the PLL frequency (See datasheet section 13.4.1 for calculation)
-    // PLL frequency controls the radio's clock multipler to achieve the desired
-    // frequency
+    //Calculate the PLL frequency (See datasheet section 13.4.1 for calculation)
+    //PLL frequency controls the radio's clock multipler to achieve the desired frequency
     pllFrequency = frequencyToPLL(frequencyInHz);
     updateRadioFrequency();
     return true;
@@ -234,8 +229,7 @@ bool configSetFrequency(long frequencyInHz) {
 
 // Set the radio modulation parameters.
 // This is things like bandwidth, spreading factor, coding rate, etc.
-// This is broken into its own function because this command might get called
-// frequently
+// This is broken into its own function because this command might get called frequently
 void updateModulationParameters() {
     // Set modulation parameters
     // Modulation parameters are:
@@ -243,37 +237,33 @@ void updateModulationParameters() {
     //   - Bandwidth
     //   - CodingRate
     //   - LowDataRateOptimize
-    // None of these actually matter that much.  You can set them to anything, and
-    // data will still show up on a radio frequency monitor. You just MUST call
-    // "setModulationParameters", otherwise the radio won't work at all
+    // None of these actually matter that much.  You can set them to anything, and data will still show up
+    // on a radio frequency monitor.
+    // You just MUST call "setModulationParameters", otherwise the radio won't work at all
 
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
 
     spiBuff[0] = 0x8B; // Opcode for "SetModulationParameters"
-    spiBuff[1] = spreadingFactor; // ModParam1 = Spreading Factor.  Can be
-        // SF5-SF12, written in hex (0x05-0x0C)
-    spiBuff[2] = bandwidth; // ModParam2 = Bandwidth.  See Datasheet 13.4.5.2 for
-        // details. 0x00=7.81khz (slowest)
-    spiBuff[3] = codingRate; // ModParam3 = CodingRate.  Semtech recommends
-        // CR_4_5 (which is 0x01).  Options are 0x01-0x04,
-        // which correspond to coding rate 5-8 respectively
-    spiBuff[4] = lowDataRateOptimize; // LowDataRateOptimize.  0x00 = 0ff, 0x01 =
-        // On.  Required to be on for SF11 + SF12
+    spiBuff[1] =
+        spreadingFactor; // ModParam1 = Spreading Factor.  Can be SF5-SF12, written in hex (0x05-0x0C)
+    spiBuff[2] =
+        bandwidth; // ModParam2 = Bandwidth.  See Datasheet 13.4.5.2 for details. 0x00=7.81khz (slowest)
+    spiBuff[3] =
+        codingRate; // ModParam3 = CodingRate.  Semtech recommends CR_4_5 (which is 0x01).  Options are 0x01-0x04, which correspond to coding rate 5-8 respectively
+    spiBuff[4] =
+        lowDataRateOptimize; // LowDataRateOptimize.  0x00 = 0ff, 0x01 = On.  Required to be on for SF11 + SF12
 
     furi_hal_spi_acquire(spi);
 
     if(furi_hal_spi_bus_tx(
-           spi,
-           spiBuff,
-           5,
-           timeout)) { // Assuming 'timeout' is defined somewhere in the code
+           spi, spiBuff, 5, timeout)) { // Assuming 'timeout' is defined somewhere in the code
         furi_hal_spi_release(spi);
     } else {
         FURI_LOG_E(TAG, "FAILED - furi_hal_spi_bus_tx or furi_hal_spi_bus_rx failed.");
         furi_hal_spi_release(spi);
     }
 
-    // furi_hal_spi_release(spi);
+    //furi_hal_spi_release(spi);
     furi_hal_gpio_write(pin_nss1, true); // Disable radio chip-select
     furi_delay_ms(100); // Give time for the radio to process command
 
@@ -303,68 +293,67 @@ void updateModulationParameters() {
         transmitTimeout = 1000; // 7000; // Actual tx time 3.7s seconds
         break;
     default: // SF5
-        transmitTimeout = 1000; // 5000; // Actual tx time 2.2 seconds
+        transmitTimeout = 1000; //5000; // Actual tx time 2.2 seconds
         break;
     }
 }
 
 /**(Optional) Use one of the pre-made radio configurations
- * This is ideal for making simple changes to the radio config
- * without needing to understand how the underlying settings work
- *
- * Argument: pass in one of the following
- *     - PRESET_DEFAULT:   Default radio config.
- *                         Medium range, medium speed
- *     - PRESET_FAST:      Faster speeds, but less reliable at long ranges.
- *                         Use when you need fast data transfer and have radios
- * close together
- *     - PRESET_LONGRANGE: Most reliable option, but slow. Suitable when you
- * prioritize reliability over speed, or when transmitting over long distances
- */
+* This is ideal for making simple changes to the radio config
+* without needing to understand how the underlying settings work
+* 
+* Argument: pass in one of the following
+*     - PRESET_DEFAULT:   Default radio config.
+*                         Medium range, medium speed
+*     - PRESET_FAST:      Faster speeds, but less reliable at long ranges.
+*                         Use when you need fast data transfer and have radios close together
+*     - PRESET_LONGRANGE: Most reliable option, but slow. Suitable when you prioritize
+*                         reliability over speed, or when transmitting over long distances
+*/
 bool configSetPreset(int preset) {
     if(preset == PRESET_DEFAULT) {
-        bandwidth = 0x04; // 125khz
-        codingRate = 0x01; // CR_4_5
-        spreadingFactor = 0x08; // SF8
-        lowDataRateOptimize = 0; // Don't optimize (used for SF12 only)
+        bandwidth = 0x04; //125khz
+        codingRate = 0x01; //CR_4_5
+        spreadingFactor = 0x08; //SF8
+        lowDataRateOptimize = 0; //Don't optimize (used for SF12 only)
         updateModulationParameters();
         return true;
     }
 
     if(preset == PRESET_LONGRANGE) {
-        bandwidth = 4; // 125khz
-        codingRate = 1; // CR_4_5
-        spreadingFactor = 12; // SF12
-        lowDataRateOptimize = 1; // Optimize for low data rate (SF12 only)
+        bandwidth = 4; //125khz
+        codingRate = 1; //CR_4_5
+        spreadingFactor = 12; //SF12
+        lowDataRateOptimize = 1; //Optimize for low data rate (SF12 only)
         updateModulationParameters();
         return true;
     }
 
     if(preset == PRESET_FAST) {
-        bandwidth = 6; // 500khz
-        codingRate = 1; // CR_4_5
-        spreadingFactor = 5; // SF5
-        lowDataRateOptimize = 0; // Don't optimize (used for SF12 only)
+        bandwidth = 6; //500khz
+        codingRate = 1; //CR_4_5
+        spreadingFactor = 5; //SF5
+        lowDataRateOptimize = 0; //Don't optimize (used for SF12 only)
         updateModulationParameters();
         return true;
     }
 
-    // Invalid preset specified
+    //Invalid preset specified
     return false;
 }
 
 /*Send the bare-bones required commands needed for radio to run.
- * Do not set custom or optional commands here, please keep this section as
- * simplified as possible. Essential commands are found by reading the datasheet
- */
+* Do not set custom or optional commands here, please keep this section as simplified as possible.
+* Essential commands are found by reading the datasheet
+*/
 void configureRadioEssentials() {
     // Tell DIO2 to control the RF switch so we don't have to do it manually
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
 
     furi_hal_spi_acquire(spi);
 
-    spiBuff[0] = 0x9D; // Opcode for "SetDIO2AsRfSwitchCtrl"
-    spiBuff[1] = 0x01; // Enable
+    spiBuff[0] = 0x9D; //Opcode for "SetDIO2AsRfSwitchCtrl"
+    spiBuff[1] = 0x01; //Enable
 
     if(furi_hal_spi_bus_tx(spi, spiBuff, 2, timeout)) {
         furi_hal_spi_release(spi);
@@ -402,8 +391,7 @@ void configureRadioEssentials() {
     furi_hal_spi_acquire(spi);
 
     spiBuff[0] = 0x9F; // Opcode for "StopTimerOnPreamble"
-    spiBuff[1] = 0x00; // Stop timer on: 0x00=SyncWord or header detection,
-        // 0x01=preamble detection
+    spiBuff[1] = 0x00; // Stop timer on: 0x00=SyncWord or header detection, 0x01=preamble detection
 
     if(furi_hal_spi_bus_tx(spi, spiBuff, 2, timeout)) {
         furi_hal_spi_release(spi);
@@ -416,8 +404,7 @@ void configureRadioEssentials() {
     furi_delay_ms(100); // Give time for radio to process the command
 
     // Set modulation parameters is just one more SPI command, but since it
-    // is often called frequently when changing the radio config, it's broken up
-    // into its own function
+    // is often called frequently when changing the radio config, it's broken up into its own function
     configSetPreset(PRESET_DEFAULT); // Sets default modulation parameters
 
     // Set PA Config
@@ -447,8 +434,8 @@ void configureRadioEssentials() {
     furi_hal_spi_acquire(spi);
 
     spiBuff[0] = 0x8E; // Opcode for SetTxParams
-    spiBuff[1] = 22; // Power. Can be -17(0xEF) to +14x0E in Low Pow mode.
-        // -9(0xF7) to 22(0x16) in high power mode
+    spiBuff[1] =
+        22; // Power. Can be -17(0xEF) to +14x0E in Low Pow mode. -9(0xF7) to 22(0x16) in high power mode
     spiBuff[2] = 0x02; // Ramp time. Lookup table. See table 13-41. 0x02="40uS"
 
     if(furi_hal_spi_bus_tx(spi, spiBuff, 3, timeout)) {
@@ -487,8 +474,8 @@ void configureRadioEssentials() {
     spiBuff[0] = 0x08; // 0x08 is the opcode for "SetDioIrqParams"
     spiBuff[1] = 0x00; // IRQMask MSB. IRQMask is "what interrupts are enabled"
     spiBuff[2] = 0x02; // IRQMask LSB See datasheet table 13-29 for details
-    spiBuff[3] = 0xFF; // DIO1 mask MSB. Of the interrupts detected, which should
-        // be triggered on DIO1 pin
+    spiBuff[3] =
+        0xFF; // DIO1 mask MSB. Of the interrupts detected, which should be triggered on DIO1 pin
     spiBuff[4] = 0xFF; // DIO1 Mask LSB
     spiBuff[5] = 0x00; // DIO2 Mask MSB
     spiBuff[6] = 0x00; // DIO2 Mask LSB
@@ -532,9 +519,8 @@ bool waitForRadioCommandCompletion(uint32_t timeout) {
         uint8_t commandStatus = (spiBuff[1] >> 1) & 0x07; // Command status is bits [3:1] (3-bits)
 
         // Check if the operation has finished
-        // Status 0, 1, 2 mean we're still busy.  Anything else means we're done.
-        // Commands 3-6 = command timeout, command processing error, failure to
-        // execute command, and Tx Done (respoectively)
+        //Status 0, 1, 2 mean we're still busy.  Anything else means we're done.
+        //Commands 3-6 = command timeout, command processing error, failure to execute command, and Tx Done (respoectively)
         if(commandStatus != 0 && commandStatus != 1 && commandStatus != 2) {
             dataTransmitted = true;
             FURI_LOG_E(TAG, "DATA TRANSMITTED");
@@ -556,11 +542,9 @@ bool waitForRadioCommandCompletion(uint32_t timeout) {
     return true;
 }
 
-/* Set the bandwidth (basically, this is how big the frequency span is that we
-occupy) Bigger bandwidth allows us to transmit large amounts of data faster, but
-it occupies a larger span of frequencies. Smaller bandwidth takes longer to
-transmit large amounts of data, but its less likely to collide with other
-frequencies.
+/* Set the bandwidth (basically, this is how big the frequency span is that we occupy)
+Bigger bandwidth allows us to transmit large amounts of data faster, but it occupies a larger span of frequencies.
+Smaller bandwidth takes longer to transmit large amounts of data, but its less likely to collide with other frequencies.
 
 Available bandwidth settings, pulled from datasheet 13.4.5.2
 SETTING.   | Bandwidth
@@ -596,9 +580,8 @@ bool configSetCodingRate(int cr) {
     return true;
 }
 
-/* Change the spreading factor of a packet
-The higher the spreading factor, the slower and more reliable the transmission
-will be. */
+/* Change the spreading factor of a packet 
+The higher the spreading factor, the slower and more reliable the transmission will be. */
 bool configSetSpreadingFactor(int sf) {
     if(sf < 5 || sf > 12) {
         return false;
@@ -620,19 +603,19 @@ void setPacketParams(
     uint8_t preambleMSB = packetParam1 >> 8;
     uint8_t preambleLSB = packetParam1 & 0xFF;
 
-    // savedPacketParam1 = packetParam1;
-    // savedPacketParam2 = packetParam2;
-    // savedPacketParam3 = packetParam3;
-    // savedPacketParam4 = packetParam4;
-    // savedPacketParam5 = packetParam5;
+    //savedPacketParam1 = packetParam1;
+    //savedPacketParam2 = packetParam2;
+    //savedPacketParam3 = packetParam3;
+    //savedPacketParam4 = packetParam4;
+    //savedPacketParam5 = packetParam5;
 
-    spiBuff[0] = 0x8C; // Opcode for "SetPacketParameters"
-    spiBuff[1] = preambleMSB; // Preamble Len MSB
-    spiBuff[2] = preambleLSB; // Preamble Len LSB
-    spiBuff[3] = packetParam2; // Header Type. 0x00 = Variable Len, 0x01 = Fixed Length
-    spiBuff[4] = packetParam3; // Payload Length (Max is 255 bytes)
-    spiBuff[5] = packetParam4; // 0x00 = Off, 0x01 = on
-    spiBuff[6] = packetParam5; // 0x00 = Standard, 0x01 = Inverted
+    spiBuff[0] = 0x8C; //Opcode for "SetPacketParameters"
+    spiBuff[1] = preambleMSB; //Preamble Len MSB
+    spiBuff[2] = preambleLSB; //Preamble Len LSB
+    spiBuff[3] = packetParam2; //Header Type. 0x00 = Variable Len, 0x01 = Fixed Length
+    spiBuff[4] = packetParam3; //Payload Length (Max is 255 bytes)
+    spiBuff[5] = packetParam4; //0x00 = Off, 0x01 = on
+    spiBuff[6] = packetParam5; //0x00 = Standard, 0x01 = Inverted
 
     // Acquire SPI and write command
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
@@ -649,10 +632,9 @@ void setPacketParams(
     waitForRadioCommandCompletion(100);
 }
 
-// Sets the radio into receive mode, allowing it to listen for incoming packets.
-// If radio is already in receive mode, this does nothing.
-// There's no such thing as "setModeTransmit" because it is set automatically
-// when transmit() is called
+//Sets the radio into receive mode, allowing it to listen for incoming packets.
+//If radio is already in receive mode, this does nothing.
+//There's no such thing as "setModeTransmit" because it is set automatically when transmit() is called
 void setModeReceive() {
     if(inReceiveMode) {
         return;
@@ -662,14 +644,13 @@ void setModeReceive() {
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
     furi_hal_spi_acquire(spi);
 
-    spiBuff[0] = 0x8C; // Opcode for "SetPacketParameters"
-    spiBuff[1] = 0x00; // PacketParam1 = Preamble Len MSB
-    spiBuff[2] = 0x0C; // PacketParam2 = Preamble Len LSB
-    spiBuff[3] = 0x00; // PacketParam3 = Header Type. 0x00 = Variable Len, 0x01 =
-        // Fixed Length
-    spiBuff[4] = 0xFF; // PacketParam4 = Payload Length (Max is 255 bytes)
-    spiBuff[5] = 0x00; // PacketParam5 = CRC Type. 0x00 = Off, 0x01 = on
-    spiBuff[6] = 0x00; // PacketParam6 = Invert IQ.  0x00 = Standard, 0x01 = Inverted
+    spiBuff[0] = 0x8C; //Opcode for "SetPacketParameters"
+    spiBuff[1] = 0x00; //PacketParam1 = Preamble Len MSB
+    spiBuff[2] = 0x0C; //PacketParam2 = Preamble Len LSB
+    spiBuff[3] = 0x00; //PacketParam3 = Header Type. 0x00 = Variable Len, 0x01 = Fixed Length
+    spiBuff[4] = 0xFF; //PacketParam4 = Payload Length (Max is 255 bytes)
+    spiBuff[5] = 0x00; //PacketParam5 = CRC Type. 0x00 = Off, 0x01 = on
+    spiBuff[6] = 0x00; //PacketParam6 = Invert IQ.  0x00 = Standard, 0x01 = Inverted
 
     if(furi_hal_spi_bus_tx(spi, spiBuff, 7, timeout)) {
         furi_hal_spi_release(spi);
@@ -678,19 +659,18 @@ void setModeReceive() {
         furi_hal_spi_release(spi);
     }
 
-    // furi_hal_spi_release(spi);
+    //furi_hal_spi_release(spi);
     furi_hal_gpio_write(pin_nss1, true); // Disable radio chip-select
 
     waitForRadioCommandCompletion(100);
 
     // Tell the chip to wait for it to receive a packet.
-    // Based on our previous config, this should throw an interrupt when we get a
-    // packet
+    // Based on our previous config, this should throw an interrupt when we get a packet
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
     furi_hal_spi_acquire(spi);
 
-    spiBuff[0] = 0x82; // 0x82 is the opcode for "SetRX"
-    spiBuff[1] = 0xFF; // 24-bit timeout, 0xFFFFFF means no timeout
+    spiBuff[0] = 0x82; //0x82 is the opcode for "SetRX"
+    spiBuff[1] = 0xFF; //24-bit timeout, 0xFFFFFF means no timeout
     spiBuff[2] = 0xFF; // ^^
     spiBuff[3] = 0xFF; // ^^
 
@@ -705,22 +685,19 @@ void setModeReceive() {
 
     waitForRadioCommandCompletion(100);
 
-    // Remember that we're in receive mode so we don't need to run this code again
-    // unnecessarily
+    // Remember that we're in receive mode so we don't need to run this code again unnecessarily
     inReceiveMode = true;
 }
 
 /* Set radio into standby mode.
-Switching directly from Rx to Tx mode can be slow, so we first want to go into
-standby */
+Switching directly from Rx to Tx mode can be slow, so we first want to go into standby */
 void setModeStandby() {
     // Tell the chip to wait for it to receive a packet.
-    // Based on our previous config, this should throw an interrupt when we get a
-    // packet
+    // Based on our previous config, this should throw an interrupt when we get a packet
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
 
-    spiBuff[0] = 0x80; // 0x80 is the opcode for "SetStandby"
-    spiBuff[1] = 0x01; // 0x00 = STDBY_RC, 0x01=STDBY_XOSC
+    spiBuff[0] = 0x80; //0x80 is the opcode for "SetStandby"
+    spiBuff[1] = 0x01; //0x00 = STDBY_RC, 0x01=STDBY_XOSC
 
     furi_hal_spi_acquire(spi);
     furi_hal_spi_bus_tx(spi, spiBuff, 2, timeout);
@@ -747,8 +724,7 @@ void transmit(uint8_t* data, int dataLen) {
     spiBuff[0] = 0x8C; // Opcode for "SetPacketParameters"
     spiBuff[1] = 0x00; // PacketParam1 = Preamble Len MSB
     spiBuff[2] = 0x0C; // PacketParam2 = Preamble Len LSB
-    spiBuff[3] = 0x00; // PacketParam3 = Header Type. 0x00 = Variable Len, 0x01 =
-        // Fixed Length
+    spiBuff[3] = 0x00; // PacketParam3 = Header Type. 0x00 = Variable Len, 0x01 = Fixed Length
     spiBuff[4] = dataLen; // PacketParam4 = Payload Length (Max is 255 bytes)
     spiBuff[5] = 0x00; // PacketParam5 = CRC Type. 0x00 = Off, 0x01 = on
     spiBuff[6] = 0x00; // PacketParam6 = Invert IQ.  0x00 = Standard, 0x01 = Inverted
@@ -764,8 +740,8 @@ void transmit(uint8_t* data, int dataLen) {
     // Reminder: PayloadLength is defined in setPacketParams
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
 
-    spiBuff[0] = 0x0E, // Opcode for WriteBuffer command
-        spiBuff[1] = 0x00; // Dummy byte before writing payload
+    spiBuff[0] = 0x0E, //Opcode for WriteBuffer command
+        spiBuff[1] = 0x00; //Dummy byte before writing payload
 
     furi_hal_spi_acquire(spi);
     furi_hal_spi_bus_tx(spi, spiBuff, 2, timeout);
@@ -777,8 +753,7 @@ void transmit(uint8_t* data, int dataLen) {
             size = dataLen - i;
         }
         memcpy(spiBuff, &(data[i]), size);
-        furi_hal_spi_bus_tx(spi, data + i, size,
-                            timeout); // Write the payload itself
+        furi_hal_spi_bus_tx(spi, data + i, size, timeout); // Write the payload itself
     }
 
     furi_hal_spi_release(spi);
@@ -800,30 +775,23 @@ void transmit(uint8_t* data, int dataLen) {
     furi_hal_gpio_write(pin_nss1, true); // Disable radio chip-select
 
     waitForRadioCommandCompletion(
-        transmitTimeout); // Wait for tx to complete, with a timeout so we don't
-    // wait forever
+        transmitTimeout); // Wait for tx to complete, with a timeout so we don't wait forever
 
-    // Remember that we are in Tx mode.  If we want to receive a packet, we need
-    // to switch into receiving mode
+    // Remember that we are in Tx mode.  If we want to receive a packet, we need to switch into receiving mode
     inReceiveMode = false;
 }
 
 /*Receive a packet if available
-If available, this will return the size of the packet and store the packet
-contents into the user-provided buffer. A max length of the buffer can be
-provided to avoid buffer overflow.  If buffer is not large enough for entire
-payload, overflow is thrown out. Recommended to pass in a buffer that is 255
-bytes long to make sure you can received any lora packet that comes in.
+If available, this will return the size of the packet and store the packet contents into the user-provided buffer.
+A max length of the buffer can be provided to avoid buffer overflow.  If buffer is not large enough for entire payload, overflow is thrown out.
+Recommended to pass in a buffer that is 255 bytes long to make sure you can received any lora packet that comes in.
 
 Returns -1 when no packet is available.
 Returns 0 when an empty packet is received (packet with no payload)
-Returns payload size (1-255) when a packet with a non-zero payload is received.
-If packet received is larger than the buffer provided, this will return
-buffMaxLen
+Returns payload size (1-255) when a packet with a non-zero payload is received. If packet received is larger than the buffer provided, this will return buffMaxLen
 */
 int lora_receive_async(uint8_t* buff, int buffMaxLen) {
-    setModeReceive(); // Sets the mode to receive (if not already in receive
-        // mode)
+    setModeReceive(); // Sets the mode to receive (if not already in receive mode)
 
     if(furi_hal_gpio_read(pin_dio1)) {
         furi_hal_gpio_write(pin_beacon, true);
@@ -831,8 +799,7 @@ int lora_receive_async(uint8_t* buff, int buffMaxLen) {
         furi_hal_gpio_write(pin_beacon, false);
     }
 
-    // Radio pin DIO1 (interrupt) goes high when we have a packet ready. If it's
-    // low, there's no packet yet
+    // Radio pin DIO1 (interrupt) goes high when we have a packet ready. If it's low, there's no packet yet
     if(!furi_hal_gpio_read(pin_dio1)) {
         return -1;
     } // Return -1, meaning no packet ready
@@ -841,14 +808,13 @@ int lora_receive_async(uint8_t* buff, int buffMaxLen) {
 
     // Tell the radio to clear the interrupt, and set the pin back inactive.
     while(furi_hal_gpio_read(pin_dio1)) {
-        // Clear all interrupt flags. This should result in the interrupt pin going
-        // low
+        // Clear all interrupt flags. This should result in the interrupt pin going low
         furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
         furi_hal_spi_acquire(spi);
 
-        spiBuff[0] = 0x02; // Opcode for ClearIRQStatus command
-        spiBuff[1] = 0xFF; // IRQ bits to clear (MSB) (0xFFFF means clear all interrupts)
-        spiBuff[2] = 0xFF; // IRQ bits to clear (LSB)
+        spiBuff[0] = 0x02; //Opcode for ClearIRQStatus command
+        spiBuff[1] = 0xFF; //IRQ bits to clear (MSB) (0xFFFF means clear all interrupts)
+        spiBuff[2] = 0xFF; //IRQ bits to clear (LSB)
 
         furi_hal_spi_bus_tx(spi, spiBuff, 3, timeout);
 
@@ -861,11 +827,11 @@ int lora_receive_async(uint8_t* buff, int buffMaxLen) {
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
     furi_hal_spi_acquire(spi);
 
-    spiBuff[0] = 0x14; // Opcode for get packet status
-    spiBuff[1] = 0xFF; // Dummy byte. Returns status
-    spiBuff[2] = 0xFF; // Dummy byte. Returns rssi
-    spiBuff[3] = 0xFF; // Dummy byte. Returns snd
-    spiBuff[4] = 0xFF; // Dummy byte. Returns signal RSSI
+    spiBuff[0] = 0x14; //Opcode for get packet status
+    spiBuff[1] = 0xFF; //Dummy byte. Returns status
+    spiBuff[2] = 0xFF; //Dummy byte. Returns rssi
+    spiBuff[3] = 0xFF; //Dummy byte. Returns snd
+    spiBuff[4] = 0xFF; //Dummy byte. Returns signal RSSI
 
     furi_hal_spi_bus_rx(spi, spiBuff, 5, timeout);
 
@@ -874,22 +840,22 @@ int lora_receive_async(uint8_t* buff, int buffMaxLen) {
 
     // Store these values as class variables so they can be accessed if needed
     // Documentation for what these variables mean can be found in the .h file
-    rssi = -((int)spiBuff[2]) / 2; // "Average over last packet received of RSSI.
-        // Actual signal power is –RssiPkt/2 (dBm)"
-    snr = ((int8_t)spiBuff[3]) / 4; // SNR is returned as a SIGNED byte, so we
-        // need to do some conversion first
+    rssi =
+        -((int)spiBuff[2]) /
+        2; // "Average over last packet received of RSSI. Actual signal power is –RssiPkt/2 (dBm)"
+    snr = ((int8_t)spiBuff[3]) /
+          4; // SNR is returned as a SIGNED byte, so we need to do some conversion first
     signalRssi = -((int)spiBuff[4]) / 2;
 
     // We're almost ready to read the packet from the radio
-    // But first we have to know how big the packet is, and where in the radio
-    // memory it is stored
+    // But first we have to know how big the packet is, and where in the radio memory it is stored
     furi_hal_gpio_write(pin_nss1, false); // Enable radio chip-select
     furi_hal_spi_acquire(spi);
 
-    spiBuff[0] = 0x13; // Opcode for GetRxBufferStatus command
-    spiBuff[1] = 0xFF; // Dummy.  Returns radio status
-    spiBuff[2] = 0xFF; // Dummy.  Returns loraPacketLength
-    spiBuff[3] = 0xFF; // Dummy.  Returns memory offset (address)
+    spiBuff[0] = 0x13; //Opcode for GetRxBufferStatus command
+    spiBuff[1] = 0xFF; //Dummy.  Returns radio status
+    spiBuff[2] = 0xFF; //Dummy.  Returns loraPacketLength
+    spiBuff[3] = 0xFF; //Dummy.  Returns memory offset (address)
 
     furi_hal_spi_bus_rx(spi, spiBuff, 4, timeout);
 
@@ -902,8 +868,7 @@ int lora_receive_async(uint8_t* buff, int buffMaxLen) {
 
     uint8_t startAddress = spiBuff[3]; // Where in 1262 memory is the packet stored
 
-    // Make sure we don't overflow the buffer if the packet is larger than our
-    // buffer
+    // Make sure we don't overflow the buffer if the packet is larger than our buffer
     if(buffMaxLen < payloadLen) {
         payloadLen = buffMaxLen;
     }
@@ -915,14 +880,12 @@ int lora_receive_async(uint8_t* buff, int buffMaxLen) {
     spiBuff[0] = 0x1E; // Opcode for ReadBuffer command
     spiBuff[1] = startAddress; // SX1262 memory location to start reading from
     spiBuff[2] = 0x00; // Dummy byte
-    furi_hal_spi_bus_tx(spi, spiBuff, 3,
-                        timeout); // Send commands to get read started
+    furi_hal_spi_bus_tx(spi, spiBuff, 3, timeout); // Send commands to get read started
     furi_hal_spi_bus_rx(
         spi,
         buff,
         payloadLen,
-        timeout); // Get the contents from the radio and store it
-    // into the user provided buffer
+        timeout); // Get the contents from the radio and store it into the user provided buffer
 
     furi_hal_spi_release(spi);
     furi_hal_gpio_write(pin_nss1, true); // Disable radio chip-select
@@ -952,11 +915,11 @@ void regTest() {
 }
 
 /* Tests that SPI is communicating correctly with the radio.
- * If this fails, check your SPI wiring.  This does not require any setup to
- * run. We test the radio by reading a register that should have a known value.
- *
- * Returns: True if radio is communicating over SPI. False if no connection.
- */
+* If this fails, check your SPI wiring.  This does not require any setup to run.
+* We test the radio by reading a register that should have a known value.
+*
+* Returns: True if radio is communicating over SPI. False if no connection.
+*/
 bool sanityCheck() {
     uint8_t command_read_register[1] = {0x1D}; // OpCode for "read register"
     uint8_t read_register_address[2] = {0x07, 0x40};
@@ -999,20 +962,20 @@ bool sanityCheck() {
 }
 
 void printRegisters(uint16_t Start, uint16_t End) {
-    // prints the contents of SX126x registers to serial monitor
+    //prints the contents of SX126x registers to serial monitor
 
     uint16_t Loopv1, Loopv2, RegData;
 
     FURI_LOG_E(TAG, "Reg    0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F");
 
-    for(Loopv1 = Start; Loopv1 <= End;) // 32 lines
+    for(Loopv1 = Start; Loopv1 <= End;) //32 lines
     {
         FURI_LOG_E(TAG, "0x%02x ", Loopv1);
 
         for(Loopv2 = 0; Loopv2 <= 15; Loopv2++) {
             RegData = readRegister(Loopv1);
             if(RegData < 0x10) {
-                // FURI_LOG_E(TAG,"0");
+                //FURI_LOG_E(TAG,"0");
             }
 
             FURI_LOG_E(TAG, "0x%02x ", RegData);
@@ -1024,9 +987,8 @@ void printRegisters(uint16_t Start, uint16_t End) {
 }
 
 bool begin() {
-    // furi_hal_gpio_init(pin_reset, GpioModeOutputPushPull, GpioPullUp,
-    // GpioSpeedVeryHigh); furi_hal_gpio_init(pin_nss1, GpioModeOutputPushPull,
-    // GpioPullUp, GpioSpeedVeryHigh);
+    //furi_hal_gpio_init(pin_reset, GpioModeOutputPushPull, GpioPullUp, GpioSpeedVeryHigh);
+    //furi_hal_gpio_init(pin_nss1, GpioModeOutputPushPull, GpioPullUp, GpioSpeedVeryHigh);
 
     furi_hal_gpio_init_simple(pin_reset, GpioModeOutputPushPull);
     furi_hal_gpio_init_simple(pin_nss1, GpioModeOutputPushPull);
@@ -1047,19 +1009,19 @@ bool begin() {
 
     checkBusy();
 
-    // Ensure SPI communication is working with the radio
+    //Ensure SPI communication is working with the radio
     FURI_LOG_E(TAG, "SANITYCHECK...");
     bool success = sanityCheck();
     if(!success) {
         return false;
     }
 
-    // Run the bare-minimum required SPI commands to set up the radio to use
+    //Run the bare-minimum required SPI commands to set up the radio to use
     configureRadioEssentials();
 
     uint32_t lora_freq = getFreqInt();
 
     FURI_LOG_E(TAG, " FREQUENCY: %ld", lora_freq);
 
-    return true; // Return success that we set up the radio
+    return true; //Return success that we set up the radio
 }
