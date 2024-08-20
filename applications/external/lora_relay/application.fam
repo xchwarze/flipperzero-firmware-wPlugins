@@ -1,0 +1,15 @@
+App(
+    appid="lora_relay",
+    name="LoRa Relay",
+    apptype=FlipperAppType.DEBUG,
+    entry_point="lora_relay_app",
+    fap_libs=["u8g2"],
+    stack_size=1 * 1024,
+    fap_icon="cat.png",
+    fap_icon_assets="assets",
+    fap_category="GPIO",
+    fap_author="ElectronicCats",
+    fap_weburl="https://github.com/ElectronicCats/flipper-SX1262-LoRa",
+    fap_version="1.1.2",
+    fap_description="LoRa Relay App.  This is a LoRa sniffer using Electronic Cats flipper add-on",
+)
