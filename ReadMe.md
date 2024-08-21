@@ -33,9 +33,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-20 17:29 EST`
 - Added: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
 - Updated: [MODBUS v1.1.0.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats` (Version Only)
-- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Added: [LoRa Relay v1.1.3 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: SX1262 By ElectronicCats`
 - Added: [LoRa Sample v1.1.3 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: SX1262 By ElectronicCats`
+- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
