@@ -62,7 +62,6 @@ UHFUart* uhf_uart_alloc() {
     uart->bus = FuriHalBusUSART1;
     uart->handle = furi_hal_serial_control_acquire(FuriHalSerialIdUsart);
     furi_check(uart->handle, "UHF UART HANDLE IS NULL");
-    uart->init_by_app = !furi_hal_bus_is_enabled(uart->bus);
     uart->tick = UHF_UART_WAIT_TICK;
     uart->baudrate = UHF_UART_DEFAULT_BAUDRATE;
     // expansion_disable();
