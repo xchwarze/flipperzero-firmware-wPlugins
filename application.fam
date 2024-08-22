@@ -1,8 +1,8 @@
 App(
-    appid="mp_flipper_app",
+    appid="upython",
     name="uPython",
     apptype=FlipperAppType.EXTERNAL,
-    entry_point="mp_flipper_app",
+    entry_point="upython",
     stack_size=4 * 1024,
     fap_category="Tools",
     fap_version="0.5",

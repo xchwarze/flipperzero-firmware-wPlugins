@@ -68,7 +68,7 @@ static bool select_python_file(FuriString* file_path) {
     return result;
 }
 
-int32_t mp_flipper_app(void* p) {
+int32_t upython(void* p) {
     UNUSED(p);
 
     FuriString* file_path = furi_string_alloc();

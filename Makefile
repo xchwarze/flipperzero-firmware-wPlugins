@@ -13,3 +13,7 @@ launch: build
 .PHONY: clean
 clean:
 	ufbt -c
+
+.PHONY: publish
+publish: build
+	./publish.sh fap-release
