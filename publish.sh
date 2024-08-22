@@ -12,8 +12,8 @@ git clone --branch ${BRANCH} --single-branch ${REMOTE} ${TARGET} || (git init -b
 
 rm -rf ${TARGET}/*
 
-cp upython.c application.fam icon.png *.md ${TARGET}
-cp -r ./assets ./examples ./lib ${TARGET}
+cp upython.c application.fam icon.png LICENSE.txt ${TARGET}
+cp -r ./docs ./examples ./lib ${TARGET}
 
 cd ${TARGET}
 
