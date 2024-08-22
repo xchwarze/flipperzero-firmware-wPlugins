@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-08-22
+
+### Added
+
+* Publish script for the [application catalog](https://github.com/flipperdevices/flipper-application-catalog)
+
+### Changed
+
+* Application ID is now `upython`
+
 ## [0.5.0-beta.1] - 2024-08-04
 
 ### Added
@@ -62,7 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Basic build setup
 * Minimal working example
 
-[Unreleased]: https://github.com/ofabel/mp-flipper/compare/v0.5.0-beta.1...HEAD
+[Unreleased]: https://github.com/ofabel/mp-flipper/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/ofabel/mp-flipper/compare/v0.5.0-beta.1...v1.0.0
 [0.5.0-beta.1]: https://github.com/ofabel/mp-flipper/compare/v0.4.0-beta.1...v0.5.0-beta.1
 [0.4.0-beta.1]: https://github.com/ofabel/mp-flipper/compare/v0.3.0-alpha.1...v0.4.0-beta.1
 [0.3.0-alpha.1]: https://github.com/ofabel/mp-flipper/compare/v0.2.0-alpha.1...v0.3.0-alpha.1
