@@ -4,6 +4,10 @@
 Instead of supporting the full standard library, only a subset is implemented, carefully selected with the requirements of a microcontroller environment in mind.
 But this should not limit your creativity and ability to create great applications at all.
 
+## API
+
+Coming soon - checkout the [examples](https://github.com/ofabel/mp-flipper/tree/master/examples) for now.
+
 ## Disclaimer
 
 Running MicroPython is a heavy task for the Flipper.
