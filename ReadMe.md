@@ -35,9 +35,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [MODBUS v1.1.0.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats` (Version Only)
 - Added: [LoRa Relay v1.1.3 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: SX1262 By ElectronicCats`
 - Added: [LoRa Sample v1.1.3 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: SX1262 By ElectronicCats`
-- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Updated: [Authenticator/TOTP v5.15.1 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
 - Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac) (Version Only)
+- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
