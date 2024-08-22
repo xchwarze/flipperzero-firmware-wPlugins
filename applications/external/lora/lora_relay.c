@@ -1322,7 +1322,7 @@ static void lora_config_region_change(VariableItem* item) {
 }
 
 /**
- * When the user clicks OK on the configuration frequencysetting we use a text input screen to allow 
+ * When the user clicks OK on the configuration frequencysetting we use a text input screen to allow
  * the user to enter a frequency.  This function is called when the user clicks OK on the text input screen.
 */
 static const char* config_freq_config_label = "Frequency";

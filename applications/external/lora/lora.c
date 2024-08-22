@@ -301,7 +301,7 @@ void updateModulationParameters() {
 /**(Optional) Use one of the pre-made radio configurations
 * This is ideal for making simple changes to the radio config
 * without needing to understand how the underlying settings work
-* 
+*
 * Argument: pass in one of the following
 *     - PRESET_DEFAULT:   Default radio config.
 *                         Medium range, medium speed
@@ -580,7 +580,7 @@ bool configSetCodingRate(int cr) {
     return true;
 }
 
-/* Change the spreading factor of a packet 
+/* Change the spreading factor of a packet
 The higher the spreading factor, the slower and more reliable the transmission will be. */
 bool configSetSpreadingFactor(int sf) {
     if(sf < 5 || sf > 12) {

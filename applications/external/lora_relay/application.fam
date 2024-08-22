@@ -10,6 +10,6 @@ App(
     fap_category="GPIO",
     fap_author="ElectronicCats",
     fap_weburl="https://github.com/ElectronicCats/flipper-SX1262-LoRa",
-    fap_version="1.1.2",
+    fap_version="1.1.3",
     fap_description="LoRa Relay App.  This is a LoRa sniffer using Electronic Cats flipper add-on",
 )
