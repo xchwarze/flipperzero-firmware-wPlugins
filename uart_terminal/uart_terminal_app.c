@@ -77,6 +77,10 @@ UART_TerminalApp* uart_terminal_app_alloc() {
 
     app->setup_selected_option_index[BAUDRATE_ITEM_IDX] = DEFAULT_BAUDRATE_OPT_IDX;
 
+    app->old_term_mode = 0;
+    app->TERMINAL_MODE = 0;
+    app->atmode_was_set = false;
+
     scene_manager_next_scene(app->scene_manager, UART_TerminalSceneStart);
 
     return app;

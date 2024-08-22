@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-bash .utils/.check-workdir.sh
-
 if [ "${1}" = "" ] || [ "${2}" = "" ]; then
     echo "Usage: <path> <repo url> <merge output>"
     exit
