@@ -416,7 +416,7 @@ $ ./fbt dolphin_ext
 - [Evil Portal v0.6 (By bigbrodude6119)](https://github.com/bigbrodude6119/flipper-zero-evil-portal)
 - [Extend Range (By maede97)](https://github.com/maede97/flipperzero-extend-range) (Allows SubGHz Unlock!)
 - [EXTRA Demo v0.4 (By Milk-Cool)](https://github.com/Milk-Cool/EXTRA-demo) (This app has VERY useful functions!)
-- [FAP Boilerplate v1.2 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
+- [FAP Boilerplate v1.3 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
 - [Financial Calculator v1.0 (By schaene)](https://github.com/schaene/Flipper-Financial-Calculator)
 - [FindMy Flipper v3.5 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/FindMyFlipper)
 - [Flashlight v1.2 (By xMasterX)](https://github.com/xMasterX/flipper-flashlight)
