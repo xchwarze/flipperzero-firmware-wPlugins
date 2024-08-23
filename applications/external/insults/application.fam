@@ -1,0 +1,14 @@
+App(
+    appid="insults",
+    name="Insults",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="insults_app",
+    stack_size=2 * 1024,
+    fap_icon="insults_icon.png",
+    fap_file_assets="files",
+    fap_category="Games",
+    fap_author="ERSUCC",
+    fap_weburl="https://github.com/ERSUCC/Flipper-Insults",
+    fap_version="0.1",
+    fap_description="Insult generator",
+)
