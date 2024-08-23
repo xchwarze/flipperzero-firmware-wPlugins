@@ -1,0 +1,24 @@
+App(
+    appid="flippy_temp",
+    name="Flippy Temp",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="flippy_temp_main",
+    stack_size=2 * 1024,
+    fap_icon="flippy_temp.png",
+    fap_icon_assets="images",
+    fap_private_libs=[
+        Lib(
+            name="sht30",
+            sources=["sht30.c"],
+        ),
+        Lib(
+            name="circular_buffer",
+            sources=["circular_buffer.c"],
+        ),
+    ],
+    fap_category="GPIO",
+    fap_author="n0ciple",
+    fap_weburl="https://github.com/n0ciple/flippy_sensors",
+    fap_version="0.1",
+    fap_description="A temperature logging app that works with Flipy Sensor Board",
+)
