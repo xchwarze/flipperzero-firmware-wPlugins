@@ -1,0 +1,13 @@
+App(
+    appid="sleep_counter",
+    name="[RCWL0516] Sleep Counter",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="app_sleep_counter",
+    stack_size=1 * 1024,
+    fap_icon="icon.png",
+    fap_category="GPIO/Sensors",
+    fap_author="Argentum / silverwolf2r",
+    fap_weburl="https://github.com/silverwolf2r/flipper-sleep-counter",
+    fap_version="2.0",
+    fap_description="Counts how much you move in your sleep",
+)
