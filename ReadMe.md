@@ -36,12 +36,12 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [LoRa Sample v1.1.3 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: SX1262 By ElectronicCats`
 - Updated: [Authenticator/TOTP v5.15.1 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
 - Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac) (Version Only)
-- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Updated: [FAP Boilerplate v1.3 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
 - Updated: [Cross Remote v2.7 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
 - Updated: [MODBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
 - [Cleanup and update MFC dict (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/faf3cbab4f7225d59d1be1f1f53e221cc43865a0)
 - Updated: [Mifare Fuzzer v1.5 (By spheeere98)](https://github.com/spheeere98/mifare_fuzzer) [Fix crash on unsupported card type loaded (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/d56c97d96aa3a0629e41ede6620e67b87924bced)
+- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
