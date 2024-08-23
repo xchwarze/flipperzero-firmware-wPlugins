@@ -48,7 +48,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [Insults v0.1 (By ERSUCC)](https://github.com/ERSUCC/Flipper-Insults)
 - Added: [Flippy Temp WIP v0.1 (By n0ciple)](https://github.com/n0ciple/flippy_sensors) `Req: Flippy Sensor Board`
 - SubGHz: [Make sure previous frequency is in list, fix UI desync (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2072dbe27ba56bb9ba91199bf4f5431294dee8be)
-- SubGHz: OFW: PR: [Fix RPC status for ButtonRelease event (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/3838)
+- OFW: PR: SubGHz: [Fix RPC status for ButtonRelease event (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/3838)
+- OFW: PR: [GUI: NumberInput small improvements #3840 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3840)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
