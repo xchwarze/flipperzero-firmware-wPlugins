@@ -80,4 +80,6 @@ struct MifareFuzzerApp {
     FuriString* uid_file_path;
     FuriString* uid_str;
     Stream* uids_stream;
+
+    bool nfc_device_parsed;
 };

@@ -223,6 +223,9 @@ void mifare_fuzzer_emulator_set_card(
                 case MifareCardUltralight:
                     model->mifare_card_dsc = "Ultralight";
                     break;
+                case MifareCardUnsupported:
+                    model->mifare_card_dsc = "Unsupported Card!";
+                    break;
                 }
             } else {
                 FuriString* card_name = furi_string_alloc_set(name);
