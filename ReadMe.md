@@ -53,6 +53,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [GB Printer v0.2 (By kbembedded)](https://github.com/kbembedded/flipper-gb-printer) `Req: GB Link Cable / Malveke` [Add BMP File #1 (By EstebanFuentealba)](https://github.com/kbembedded/flipper-gb-printer/pull/1)
 - Updated: [RFID Fuzzer v1.6 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [Add LFRFID Protocols Electra, Idteck, Gallagher, Nexwatch #13 (By SkeletonMan03)](https://github.com/DarkFlippers/Multi_Fuzzer/pull/13)
 - Updated: [NFC Seader v3.1 (By bettse)](https://github.com/bettse/seader)
+- Updated: [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -529,7 +530,7 @@ $ ./fbt dolphin_ext
 - [Pet a Dolphin v1.2 (By ugeneSmile)](https://github.com/EugeneSmile/PetADolphin)
 - [pForth (By twisted-pear)](https://github.com/twisted-pear/f0forth)
 - [Pi Terminal v1.0 (By dagnazty & InfoSecREDD)](https://github.com/InfoSecREDD/Flip-pi)
-- [PicoPass (iClass) v1.16 (By Bettse)](https://gitlab.com/bettse/picopass)
+- [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
 - [Plantower PMSx003 sensor reader v1.3 (By 3cky)](https://github.com/3cky/flipperzero-airmon) `Req: Plantower PMS5003/PMS7003/PMS9003`
 - [Plugin Demo v1.0 (By csBlueChip)](https://github.com/csBlueChip/FlipperZero_plugin_howto)
 - [POCSAG Pager v1.3 (By XMasterx & Shmuma)](https://github.com/xMasterX/flipper-pager)

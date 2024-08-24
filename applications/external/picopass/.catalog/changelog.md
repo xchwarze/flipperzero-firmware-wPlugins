@@ -1,3 +1,5 @@
+## 1.17
+ - CVE-2024-41566: When keys are unknown emulate with a dummy MAC and ignore reader MACs
 ## 1.16
  - Acknowledgements page
  - Elite VB6 RNG keygen attack
