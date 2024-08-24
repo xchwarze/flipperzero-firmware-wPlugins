@@ -782,6 +782,7 @@ Function,-,bsearch,void*,"const void*, const void*, size_t, size_t, __compar_fn_
 Function,+,bt_close_rpc_connection,void,Bt*
 Function,+,bt_disconnect,void,Bt*
 Function,+,bt_forget_bonded_devices,void,Bt*
+Function,+,bt_get_status,BtStatus,Bt*
 Function,+,bt_keys_storage_alloc,BtKeysStorage*,const char*
 Function,+,bt_keys_storage_delete,_Bool,BtKeysStorage*
 Function,+,bt_keys_storage_free,void,BtKeysStorage*

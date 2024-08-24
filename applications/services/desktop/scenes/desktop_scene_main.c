@@ -217,7 +217,7 @@ bool desktop_scene_main_on_event(void* context, SceneManagerEvent event) {
             consumed = true;
             break;
         case DesktopMainEventOpenFavoriteUpLong:
-            DESKTOP_SETTINGS_LOAD(&desktop->settings);
+            desktop_settings_load(&desktop->settings);
             if(!desktop_scene_main_check_none(
                    desktop->settings.favorite_apps[FavoriteAppUpLong].name_or_path)) {
                 desktop_scene_main_start_favorite(
@@ -243,7 +243,7 @@ bool desktop_scene_main_on_event(void* context, SceneManagerEvent event) {
                     desktop_scene_main_open_fav_or_profile(
                         desktop, &desktop->settings.favorite_apps[FavoriteAppRightShort]);
                 } else {
-                    desktop_scene_main_open_app_or_profile(
+                    desktop_scene_main_open_fav_or_profile(
                         desktop, &desktop->settings.dummy_apps[DummyAppRightShort]);
                 }
             }

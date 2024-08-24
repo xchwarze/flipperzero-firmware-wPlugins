@@ -9,6 +9,7 @@
 #include <locale/locale.h>
 #include <storage/storage.h>
 
+#include "animations/animation_manager.h"
 #include <assets_icons.h>
 
 #include "scenes/desktop_scene.h"
@@ -139,16 +140,6 @@ static void desktop_bt_connection_status_update_icon(BtStatus status, void* cont
     }
 }
 
-static void desktop_storage_callback(const void* message, void* context) {
-    furi_assert(context);
-    Desktop* desktop = context;
-    const StorageEvent* event = message;
-
-    if(event->type == StorageEventTypeCardMount) {
-        view_dispatcher_send_custom_event(desktop->view_dispatcher, DesktopGlobalReloadSettings);
-    }
-}
-
 static void desktop_lock_icon_draw_callback(Canvas* canvas, void* context) {
     UNUSED(context);
     furi_assert(canvas);
@@ -246,38 +237,38 @@ static bool desktop_custom_event_callback(void* context, uint32_t event) {
     furi_assert(context);
     Desktop* desktop = (Desktop*)context;
 
-    if(event == DesktopGlobalBeforeAppStarted) {
+    switch(event) {
+    case DesktopGlobalBeforeAppStarted:
         if(animation_manager_is_animation_loaded(desktop->animation_manager)) {
             animation_manager_unload_and_stall_animation(desktop->animation_manager);
         }
         desktop_auto_lock_inhibit(desktop);
-        desktop->app_running = true;
-
         furi_semaphore_release(desktop->animation_semaphore);
         return true;
     case DesktopGlobalAfterAppFinished:
         animation_manager_load_and_continue_animation(desktop->animation_manager);
-        desktop_auto_lock_arm(desktop);
-        desktop->app_running = false;
+        desktop_settings_load(&desktop->settings);
+        desktop_clock_toggle_view(desktop, desktop->settings.display_clock);
+        if(!furi_hal_rtc_is_flag_set(FuriHalRtcFlagLock)) {
+            desktop_auto_lock_arm(desktop);
+        }
         return true;
     case DesktopGlobalAutoLock:
-        if(!desktop->app_running && !desktop->locked) {
+        if(!loader_is_locked(desktop->loader) && !desktop->locked) {
             desktop_lock(desktop);
         }
-
-    } else if(event == DesktopGlobalSaveSettings) {
+        return true;
+    case DesktopGlobalSaveSettings:
         desktop_settings_save(&desktop->settings);
         desktop_apply_settings(desktop);
-
-    } else if(event == DesktopGlobalReloadSettings) {
+        return true;
+    case DesktopGlobalReloadSettings:
         desktop_settings_load(&desktop->settings);
         desktop_apply_settings(desktop);
-
-    } else {
-        return scene_manager_handle_custom_event(desktop->scene_manager, event);
+        return true;
     }
 
-    return true;
+    return scene_manager_handle_custom_event(desktop->scene_manager, event);
 }
 
 static bool desktop_back_event_callback(void* context) {
@@ -447,42 +438,77 @@ void desktop_lock(Desktop* desktop) {
 
     furi_hal_rtc_set_flag(FuriHalRtcFlagLock);
 
-    if(desktop->settings.pin_code.length) {
+    if(desktop_pin_code_is_set()) {
         Cli* cli = furi_record_open(RECORD_CLI);
         cli_session_close(cli);
         furi_record_close(RECORD_CLI);
     }
 
-    view_port_enabled_set(desktop->clock_viewport, clock_enabled);
+    desktop_auto_lock_inhibit(desktop);
+    scene_manager_set_scene_state(
+        desktop->scene_manager, DesktopSceneLocked, DesktopSceneLockedStateFirstEnter);
+    scene_manager_next_scene(desktop->scene_manager, DesktopSceneLocked);
+
+    DesktopStatus status = {.locked = true};
+    furi_pubsub_publish(desktop->status_pubsub, &status);
+
+    desktop->locked = true;
 }
 
-static void desktop_apply_settings(Desktop* desktop) {
+void desktop_unlock(Desktop* desktop) {
+    furi_assert(desktop->locked);
+
+    view_port_enabled_set(desktop->lock_icon_viewport, false);
+    Gui* gui = furi_record_open(RECORD_GUI);
+    gui_set_lockdown(gui, false);
+    furi_record_close(RECORD_GUI);
+    desktop_view_locked_unlock(desktop->locked_view);
+    scene_manager_search_and_switch_to_previous_scene(desktop->scene_manager, DesktopSceneMain);
+    desktop_auto_lock_arm(desktop);
+    furi_hal_rtc_reset_flag(FuriHalRtcFlagLock);
+    furi_hal_rtc_set_pin_fails(0);
+
+    if(desktop_pin_code_is_set()) {
+        Cli* cli = furi_record_open(RECORD_CLI);
+        cli_session_open(cli, &cli_vcp);
+        furi_record_close(RECORD_CLI);
+    }
+
+    DesktopStatus status = {.locked = false};
+    furi_pubsub_publish(desktop->status_pubsub, &status);
+
+    desktop->locked = false;
+}
+
+void desktop_set_dummy_mode_state(Desktop* desktop, bool enabled) {
     desktop->in_transition = true;
-
-    desktop_clock_reconfigure(desktop);
-
-    view_port_enabled_set(desktop->dummy_mode_icon_viewport, desktop->settings.dummy_mode);
-    desktop_main_set_dummy_mode_state(desktop->main_view, desktop->settings.dummy_mode);
-    animation_manager_set_dummy_mode_state(
-        desktop->animation_manager, desktop->settings.dummy_mode);
-
-    if(!desktop->app_running && !desktop->locked) {
-        desktop_auto_lock_arm(desktop);
+    if(desktop->settings.dumbmode_icon) {
+        switch(desktop->settings.icon_style) {
+        case ICON_STYLE_SLIM:
+            view_port_enabled_set(desktop->dummy_mode_icon_viewport, false);
+            view_port_enabled_set(desktop->dummy_mode_icon_slim_viewport, enabled);
+            break;
+        case ICON_STYLE_STOCK:
+            view_port_enabled_set(desktop->dummy_mode_icon_viewport, enabled);
+            view_port_enabled_set(desktop->dummy_mode_icon_slim_viewport, false);
+            break;
+        }
     }
-
+    desktop_main_set_dummy_mode_state(desktop->main_view, enabled);
+    animation_manager_set_dummy_mode_state(desktop->animation_manager, enabled);
+    desktop_settings_load(&desktop->settings);
+    desktop->settings.dummy_mode = enabled;
     desktop->in_transition = false;
+    desktop_apply_settings(desktop);
 }
 
-static void desktop_init_settings(Desktop* desktop) {
-    furi_pubsub_subscribe(storage_get_pubsub(desktop->storage), desktop_storage_callback, desktop);
-
-    if(storage_sd_status(desktop->storage) != FSE_OK) {
-        FURI_LOG_D(TAG, "SD Card not ready, skipping settings");
-        return;
+void desktop_set_stealth_mode_state(Desktop* desktop, bool enabled) {
+    desktop->in_transition = true;
+    if(enabled) {
+        furi_hal_rtc_set_flag(FuriHalRtcFlagStealthMode);
+    } else {
+        furi_hal_rtc_reset_flag(FuriHalRtcFlagStealthMode);
     }
-    desktop_settings_load(&desktop->settings);
-    desktop_apply_settings(desktop);
-
     if(desktop->settings.stealth_icon) {
         switch(desktop->settings.icon_style) {
         case ICON_STYLE_SLIM:
@@ -675,12 +701,13 @@ static Desktop* desktop_alloc(void) {
     view_port_enabled_set(desktop->topbar_icon_viewport, false);
     gui_add_view_port(desktop->gui, desktop->topbar_icon_viewport, GuiLayerStatusBarTop);
 
-    // Unload animations before starting an application
+    // Special case: autostart application is already running
     desktop->loader = furi_record_open(RECORD_LOADER);
     furi_pubsub_subscribe(loader_get_pubsub(desktop->loader), desktop_loader_callback, desktop);
 
     desktop->storage = furi_record_open(RECORD_STORAGE);
     desktop->notification = furi_record_open(RECORD_NOTIFICATION);
+
     desktop->input_events_pubsub = furi_record_open(RECORD_INPUT_EVENTS);
 
     desktop->auto_lock_timer =
@@ -691,94 +718,31 @@ static Desktop* desktop_alloc(void) {
     desktop->update_clock_timer =
         furi_timer_alloc(desktop_clock_timer_callback, FuriTimerTypePeriodic, desktop);
 
-    desktop->app_running = loader_is_locked(desktop->loader);
+    DateTime curr_dt;
+    furi_hal_rtc_get_datetime(&curr_dt);
+
+    desktop_clock_upd_time(desktop, true);
+
+    desktop->sdcard_status = false;
+    Storage* storage = furi_record_open(RECORD_STORAGE);
+    desktop->storage_sub = furi_pubsub_subscribe(
+        storage_get_pubsub(storage), storage_Desktop_status_callback, desktop);
+    furi_record_close(RECORD_STORAGE);
+
+    desktop->bt = furi_record_open(RECORD_BT);
 
     furi_record_create(RECORD_DESKTOP, desktop);
 
     return desktop;
 }
 
-/*
- * Private API
- */
+static bool desktop_check_file_flag(const char* flag_path) {
+    Storage* storage = furi_record_open(RECORD_STORAGE);
+    bool exists = storage_common_stat(storage, flag_path, NULL) == FSE_OK;
+    furi_record_close(RECORD_STORAGE);
 
-void desktop_lock(Desktop* desktop) {
-    furi_assert(!desktop->locked);
-
-    furi_hal_rtc_set_flag(FuriHalRtcFlagLock);
-
-    if(desktop_pin_code_is_set()) {
-        Cli* cli = furi_record_open(RECORD_CLI);
-        cli_session_close(cli);
-        furi_record_close(RECORD_CLI);
-    }
-
-    desktop_auto_lock_inhibit(desktop);
-    scene_manager_set_scene_state(
-        desktop->scene_manager, DesktopSceneLocked, DesktopSceneLockedStateFirstEnter);
-    scene_manager_next_scene(desktop->scene_manager, DesktopSceneLocked);
-
-    DesktopStatus status = {.locked = true};
-    furi_pubsub_publish(desktop->status_pubsub, &status);
-
-    desktop->locked = true;
+    return exists;
 }
-
-void desktop_unlock(Desktop* desktop) {
-    furi_assert(desktop->locked);
-
-    view_port_enabled_set(desktop->lock_icon_viewport, false);
-    Gui* gui = furi_record_open(RECORD_GUI);
-    gui_set_lockdown(gui, false);
-    furi_record_close(RECORD_GUI);
-    desktop_view_locked_unlock(desktop->locked_view);
-    scene_manager_search_and_switch_to_previous_scene(desktop->scene_manager, DesktopSceneMain);
-    desktop_auto_lock_arm(desktop);
-    furi_hal_rtc_reset_flag(FuriHalRtcFlagLock);
-    furi_hal_rtc_set_pin_fails(0);
-
-    if(desktop_pin_code_is_set()) {
-        Cli* cli = furi_record_open(RECORD_CLI);
-        cli_session_open(cli, &cli_vcp);
-        furi_record_close(RECORD_CLI);
-    }
-
-    DesktopStatus status = {.locked = false};
-    furi_pubsub_publish(desktop->status_pubsub, &status);
-
-    desktop->locked = false;
-}
-
-void desktop_set_dummy_mode_state(Desktop* desktop, bool enabled) {
-    desktop->in_transition = true;
-
-    view_port_enabled_set(desktop->dummy_mode_icon_viewport, enabled);
-    desktop_main_set_dummy_mode_state(desktop->main_view, enabled);
-    animation_manager_set_dummy_mode_state(desktop->animation_manager, enabled);
-    desktop->settings.dummy_mode = enabled;
-
-    desktop->in_transition = false;
-
-    desktop_settings_save(&desktop->settings);
-}
-
-void desktop_set_stealth_mode_state(Desktop* desktop, bool enabled) {
-    desktop->in_transition = true;
-
-    if(enabled) {
-        furi_hal_rtc_set_flag(FuriHalRtcFlagStealthMode);
-    } else {
-        furi_hal_rtc_reset_flag(FuriHalRtcFlagStealthMode);
-    }
-
-    view_port_enabled_set(desktop->stealth_mode_icon_viewport, enabled);
-
-    desktop->in_transition = false;
-}
-
-/*
- *  Public API
- */
 
 bool desktop_api_is_locked(Desktop* instance) {
     furi_assert(instance);
@@ -904,9 +868,13 @@ int32_t desktop_srv(void* p) {
 
     if(furi_hal_rtc_is_flag_set(FuriHalRtcFlagLock)) {
         desktop_lock(desktop);
+    } else {
+        if(!loader_is_locked(desktop->loader)) {
+            desktop_auto_lock_arm(desktop);
+        }
     }
 
-    if(storage_file_exists(desktop->storage, SLIDESHOW_FS_PATH)) {
+    if(desktop_check_file_flag(SLIDESHOW_FS_PATH)) {
         scene_manager_next_scene(desktop->scene_manager, DesktopSceneSlideshow);
     }
 
@@ -930,12 +898,14 @@ int32_t desktop_srv(void* p) {
     }
 
     // Special case: autostart application is already running
-    if(desktop->app_running && animation_manager_is_animation_loaded(desktop->animation_manager)) {
+    if(loader_is_locked(desktop->loader) &&
+       animation_manager_is_animation_loaded(desktop->animation_manager)) {
         animation_manager_unload_and_stall_animation(desktop->animation_manager);
     }
 
     view_dispatcher_run(desktop->view_dispatcher);
 
-    // Should never get here (a service thread will crash automatically if it returns)
+    furi_crash("That was unexpected");
+
     return 0;
 }

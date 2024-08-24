@@ -31,6 +31,12 @@ bool bt_profile_restore_default(Bt* bt) {
     return bt->current_profile != NULL;
 }
 
+BtStatus bt_get_status(Bt* bt) {
+    furi_assert(bt);
+
+    return bt->status;
+}
+
 void bt_disconnect(Bt* bt) {
     furi_check(bt);
 

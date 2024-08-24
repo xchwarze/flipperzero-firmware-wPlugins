@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define DISPLAY_BATTERY_BAR              0
 #define DISPLAY_BATTERY_PERCENT          1
@@ -25,7 +26,7 @@ typedef enum {
 } FavoriteAppShortcut;
 
 typedef enum {
-    DummyAppLeftShort,
+    DummyAppLeftShort = 0,
     DummyAppLeftLong,
     DummyAppRightShort,
     DummyAppRightLong,
