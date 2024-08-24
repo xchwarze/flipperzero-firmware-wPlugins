@@ -71,19 +71,13 @@ const uint8_t uid_list_cyfral[][Cyfral_DATA_SIZE] = {
 // ###########################
 // ## Rfid_125khz Protocols ##
 // ###########################
-#define EM4100_DATA_SIZE (5)
-#define HIDProx_DATA_SIZE (6)
-#define PAC_DATA_SIZE (4)
-#define H10301_DATA_SIZE (3)
-#define IOPROXXSF_DATA_SIZE (4)
-#define PARADOX_DATA_SIZE (6)
-#define INDALA26_DATA_SIZE (4)
-#define VIKING_DATA_SIZE (4)
-#define PYRAMID_DATA_SIZE (4)
-#define KERI_DATA_SIZE (4)
-#define JABLOTRON_DATA_SIZE (5)
+#define THREEBYTE_DATA_SIZE (3) // H10301
+#define FOURBYTE_DATA_SIZE (4) // PAC/Stanley, IoProxXSF, Indala26, Viking, Pyramid, Keri
+#define FIVEBYTE_DATA_SIZE (5) // EM4100, Joblotron
+#define SIXBYTE_DATA_SIZE (6) // HIDProx, Paradox
+#define EIGHTBYTE_DATA_SIZE (8) // Electra, Idteck, Gallagher, Nexwatch
 
-const uint8_t uid_list_em4100[][EM4100_DATA_SIZE] = {
+const uint8_t uid_list_5byte[][FIVEBYTE_DATA_SIZE] = {
     {0x00, 0x00, 0x00, 0x00, 0x00}, // Null bytes
     {0xFF, 0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
     {0x11, 0x11, 0x11, 0x11, 0x11}, // Only 11
@@ -103,7 +97,7 @@ const uint8_t uid_list_em4100[][EM4100_DATA_SIZE] = {
     {0xCA, 0xCA, 0xCA, 0xCA, 0xCA}, // From arha
 };
 
-const uint8_t uid_list_hid[][HIDProx_DATA_SIZE] = {
+const uint8_t uid_list_6byte[][SIXBYTE_DATA_SIZE] = {
     {0x00, 0x00, 0x00, 0x00, 0x00, 0x00}, // Null bytes
     {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
     {0x11, 0x11, 0x11, 0x11, 0x11, 0x11}, // Only 11
@@ -120,7 +114,7 @@ const uint8_t uid_list_hid[][HIDProx_DATA_SIZE] = {
     {0xCA, 0xCA, 0xCA, 0xCA, 0xCA, 0xCA}, // From arha
 };
 
-const uint8_t uid_list_pac[][PAC_DATA_SIZE] = {
+const uint8_t uid_list_4byte[][FOURBYTE_DATA_SIZE] = {
     {0x00, 0x00, 0x00, 0x00}, // Null bytes
     {0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
     {0x11, 0x11, 0x11, 0x11}, // Only 11
@@ -140,7 +134,7 @@ const uint8_t uid_list_pac[][PAC_DATA_SIZE] = {
     {0xCA, 0xCA, 0xCA, 0xCA}, // From arha
 };
 
-const uint8_t uid_list_h10301[][H10301_DATA_SIZE] = {
+const uint8_t uid_list_3byte[][THREEBYTE_DATA_SIZE] = {
     {0x00, 0x00, 0x00}, // Null bytes
     {0xFF, 0xFF, 0xFF}, // Only FF
     {0x11, 0x11, 0x11}, // Only 11
@@ -157,126 +151,21 @@ const uint8_t uid_list_h10301[][H10301_DATA_SIZE] = {
     {0xCA, 0xCA, 0xCA}, // From arha
 };
 
-const uint8_t uid_list_ioproxxsf[][IOPROXXSF_DATA_SIZE] = {
-    {0x00, 0x00, 0x00, 0x00}, // Null bytes
-    {0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
-    {0x11, 0x11, 0x11, 0x11}, // Only 11
-    {0x22, 0x22, 0x22, 0x22}, // Only 22
-    {0x33, 0x33, 0x33, 0x33}, // Only 33
-    {0x44, 0x44, 0x44, 0x44}, // Only 44
-    {0x55, 0x55, 0x55, 0x55}, // Only 55
-    {0x66, 0x66, 0x66, 0x66}, // Only 66
-    {0x77, 0x77, 0x77, 0x77}, // Only 77
-    {0x88, 0x88, 0x88, 0x88}, // Only 88
-    {0x99, 0x99, 0x99, 0x99}, // Only 99
-    {0x12, 0x34, 0x56, 0x78}, // Incremental UID
-    {0x9A, 0x78, 0x56, 0x34}, // Decremental UID
-    {0x04, 0xd0, 0x9b, 0x0d}, // From arha
-    {0x34, 0x00, 0x29, 0x3d}, // From arha
-    {0x04, 0xdf, 0x00, 0x00}, // From arha
-    {0xCA, 0xCA, 0xCA, 0xCA}, // From arha
-};
-
-const uint8_t uid_list_paradox[][PARADOX_DATA_SIZE] = {
-    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00}, // Null bytes
-    {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
-    {0x11, 0x11, 0x11, 0x11, 0x11, 0x11}, // Only 11
-    {0x22, 0x22, 0x22, 0x22, 0x22, 0x22}, // Only 22
-    {0x33, 0x33, 0x33, 0x33, 0x33, 0x33}, // Only 33
-    {0x44, 0x44, 0x44, 0x44, 0x44, 0x44}, // Only 44
-    {0x55, 0x55, 0x55, 0x55, 0x55, 0x55}, // Only 55
-    {0x66, 0x66, 0x66, 0x66, 0x66, 0x66}, // Only 66
-    {0x77, 0x77, 0x77, 0x77, 0x77, 0x77}, // Only 77
-    {0x88, 0x88, 0x88, 0x88, 0x88, 0x88}, // Only 88
-    {0x99, 0x99, 0x99, 0x99, 0x99, 0x99}, // Only 99
-    {0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC}, // Incremental UID
-    {0xFF, 0xDE, 0xBC, 0x9A, 0x78, 0x56}, // Decremental UID
-    {0xCA, 0xCA, 0xCA, 0xCA, 0xCA, 0xCA}, // From arha
-};
-
-const uint8_t uid_list_indala26[][INDALA26_DATA_SIZE] = {
-    {0x00, 0x00, 0x00, 0x00}, // Null bytes
-    {0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
-    {0x11, 0x11, 0x11, 0x11}, // Only 11
-    {0x22, 0x22, 0x22, 0x22}, // Only 22
-    {0x33, 0x33, 0x33, 0x33}, // Only 33
-    {0x44, 0x44, 0x44, 0x44}, // Only 44
-    {0x55, 0x55, 0x55, 0x55}, // Only 55
-    {0x66, 0x66, 0x66, 0x66}, // Only 66
-    {0x77, 0x77, 0x77, 0x77}, // Only 77
-    {0x88, 0x88, 0x88, 0x88}, // Only 88
-    {0x99, 0x99, 0x99, 0x99}, // Only 99
-    {0x12, 0x34, 0x56, 0x78}, // Incremental UID
-    {0xFF, 0xDE, 0xBC, 0x9A}, // Decremental UID
-    {0xCA, 0xCA, 0xCA, 0xCA}, // From arha
-};
-
-const uint8_t uid_list_viking[][VIKING_DATA_SIZE] = {
-    {0x00, 0x00, 0x00, 0x00}, // Null bytes
-    {0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
-    {0x11, 0x11, 0x11, 0x11}, // Only 11
-    {0x22, 0x22, 0x22, 0x22}, // Only 22
-    {0x33, 0x33, 0x33, 0x33}, // Only 33
-    {0x44, 0x44, 0x44, 0x44}, // Only 44
-    {0x55, 0x55, 0x55, 0x55}, // Only 55
-    {0x66, 0x66, 0x66, 0x66}, // Only 66
-    {0x77, 0x77, 0x77, 0x77}, // Only 77
-    {0x88, 0x88, 0x88, 0x88}, // Only 88
-    {0x99, 0x99, 0x99, 0x99}, // Only 99
-    {0x12, 0x34, 0x56, 0x78}, // Incremental UID
-    {0xFF, 0xDE, 0xBC, 0x9A}, // Decremental UID
-    {0xCA, 0xCA, 0xCA, 0xCA}, // From arha
-};
-
-const uint8_t uid_list_pyramid[][PYRAMID_DATA_SIZE] = {
-    {0x00, 0x00, 0x00, 0x00}, // Null bytes
-    {0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
-    {0x11, 0x11, 0x11, 0x11}, // Only 11
-    {0x22, 0x22, 0x22, 0x22}, // Only 22
-    {0x33, 0x33, 0x33, 0x33}, // Only 33
-    {0x44, 0x44, 0x44, 0x44}, // Only 44
-    {0x55, 0x55, 0x55, 0x55}, // Only 55
-    {0x66, 0x66, 0x66, 0x66}, // Only 66
-    {0x77, 0x77, 0x77, 0x77}, // Only 77
-    {0x88, 0x88, 0x88, 0x88}, // Only 88
-    {0x99, 0x99, 0x99, 0x99}, // Only 99
-    {0x12, 0x34, 0x56, 0x78}, // Incremental UID
-    {0xFF, 0xDE, 0xBC, 0x9A}, // Decremental UID
-    {0xCA, 0xCA, 0xCA, 0xCA}, // From arha
-};
-
-const uint8_t uid_list_keri[][KERI_DATA_SIZE] = {
-    {0x00, 0x00, 0x00, 0x00}, // Null bytes
-    {0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
-    {0x11, 0x11, 0x11, 0x11}, // Only 11
-    {0x22, 0x22, 0x22, 0x22}, // Only 22
-    {0x33, 0x33, 0x33, 0x33}, // Only 33
-    {0x44, 0x44, 0x44, 0x44}, // Only 44
-    {0x55, 0x55, 0x55, 0x55}, // Only 55
-    {0x66, 0x66, 0x66, 0x66}, // Only 66
-    {0x77, 0x77, 0x77, 0x77}, // Only 77
-    {0x88, 0x88, 0x88, 0x88}, // Only 88
-    {0x99, 0x99, 0x99, 0x99}, // Only 99
-    {0x12, 0x34, 0x56, 0x78}, // Incremental UID
-    {0xFF, 0xDE, 0xBC, 0x9A}, // Decremental UID
-    {0xCA, 0xCA, 0xCA, 0xCA}, // From arha
-};
-
-const uint8_t uid_list_jablotron[][JABLOTRON_DATA_SIZE] = {
-    {0x00, 0x00, 0x00, 0x00, 0x00}, // Null bytes
-    {0xFF, 0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
-    {0x11, 0x11, 0x11, 0x11, 0x11}, // Only 11
-    {0x22, 0x22, 0x22, 0x22, 0x22}, // Only 22
-    {0x33, 0x33, 0x33, 0x33, 0x33}, // Only 33
-    {0x44, 0x44, 0x44, 0x44, 0x44}, // Only 44
-    {0x55, 0x55, 0x55, 0x55, 0x55}, // Only 55
-    {0x66, 0x66, 0x66, 0x66, 0x66}, // Only 66
-    {0x77, 0x77, 0x77, 0x77, 0x77}, // Only 77
-    {0x88, 0x88, 0x88, 0x88, 0x88}, // Only 88
-    {0x99, 0x99, 0x99, 0x99, 0x99}, // Only 99
-    {0x12, 0x34, 0x56, 0x78, 0x9A}, // Incremental UID
-    {0xFF, 0xDE, 0xBC, 0x9A, 0x78}, // Decremental UID
-    {0xCA, 0xCA, 0xCA, 0xCA, 0xCA}, // From arha
+const uint8_t uid_list_8byte[][EIGHTBYTE_DATA_SIZE] = {
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}, // Null bytes
+    {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}, // Only FF
+    {0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11}, // Only 11
+    {0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x22}, // Only 22
+    {0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33}, // Only 33
+    {0x44, 0x44, 0x44, 0x44, 0x44, 0x44, 0x44, 0x44}, // Only 44
+    {0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55}, // Only 55
+    {0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66}, // Only 66
+    {0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77}, // Only 77
+    {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88}, // Only 88
+    {0x99, 0x99, 0x99, 0x99, 0x99, 0x99, 0x99, 0x99}, // Only 99
+    {0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xFF}, // Incremental UID
+    {0xFF, 0xDE, 0xBC, 0x9A, 0x78, 0x56, 0x34, 0x12}, // Decremental UID
+    {0xCA, 0xCA, 0xCA, 0xCA, 0xCA, 0xCA, 0xCA, 0xCA}, // From arha
 };
 
 #if defined(RFID_125_PROTOCOL)
@@ -284,111 +173,151 @@ const FuzzerProtocol fuzzer_proto_items[] = {
     // EM4100
     {
         .name = "EM4100",
-        .data_size = EM4100_DATA_SIZE,
+        .data_size = FIVEBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_em4100,
-                .len = COUNT_OF(uid_list_em4100),
+                .val = (const uint8_t*)&uid_list_5byte,
+                .len = COUNT_OF(uid_list_5byte),
             },
     },
     // HIDProx
     {
         .name = "HIDProx",
-        .data_size = HIDProx_DATA_SIZE,
+        .data_size = SIXBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_hid,
-                .len = COUNT_OF(uid_list_hid),
+                .val = (const uint8_t*)&uid_list_6byte,
+                .len = COUNT_OF(uid_list_6byte),
             },
     },
     // PAC
     {
         .name = "PAC/Stanley",
-        .data_size = PAC_DATA_SIZE,
+        .data_size = FOURBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_pac,
-                .len = COUNT_OF(uid_list_pac),
+                .val = (const uint8_t*)&uid_list_4byte,
+                .len = COUNT_OF(uid_list_4byte),
             },
     },
     // H10301
     {
         .name = "H10301",
-        .data_size = H10301_DATA_SIZE,
+        .data_size = THREEBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_h10301,
-                .len = COUNT_OF(uid_list_h10301),
+                .val = (const uint8_t*)&uid_list_3byte,
+                .len = COUNT_OF(uid_list_3byte),
             },
     },
     // IoProxXSF
     {
         .name = "IoProxXSF",
-        .data_size = IOPROXXSF_DATA_SIZE,
+        .data_size = FOURBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_ioproxxsf,
-                .len = COUNT_OF(uid_list_ioproxxsf),
+                .val = (const uint8_t*)&uid_list_4byte,
+                .len = COUNT_OF(uid_list_4byte),
             },
     },
     // Paradox
     {
         .name = "Paradox",
-        .data_size = PARADOX_DATA_SIZE,
+        .data_size = SIXBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_paradox,
-                .len = COUNT_OF(uid_list_paradox),
+                .val = (const uint8_t*)&uid_list_6byte,
+                .len = COUNT_OF(uid_list_6byte),
             },
     },
     // Indala26
     {
         .name = "Indala26",
-        .data_size = INDALA26_DATA_SIZE,
+        .data_size = FOURBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_indala26,
-                .len = COUNT_OF(uid_list_indala26),
+                .val = (const uint8_t*)&uid_list_4byte,
+                .len = COUNT_OF(uid_list_4byte),
             },
     },
     // Viking
     {
         .name = "Viking",
-        .data_size = VIKING_DATA_SIZE,
+        .data_size = FOURBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_viking,
-                .len = COUNT_OF(uid_list_viking),
+                .val = (const uint8_t*)&uid_list_4byte,
+                .len = COUNT_OF(uid_list_4byte),
             },
     },
    // Pyramid
     {
         .name = "Pyramid",
-        .data_size = PYRAMID_DATA_SIZE,
+        .data_size = FOURBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_pyramid,
-                .len = COUNT_OF(uid_list_pyramid),
+                .val = (const uint8_t*)&uid_list_4byte,
+                .len = COUNT_OF(uid_list_4byte),
             },
     },
    // Keri
     {
         .name = "Keri",
-        .data_size = KERI_DATA_SIZE,
+        .data_size = FOURBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_keri,
-                .len = COUNT_OF(uid_list_keri),
+                .val = (const uint8_t*)&uid_list_4byte,
+                .len = COUNT_OF(uid_list_4byte),
             },
     },
    // Jablotron
     {
         .name = "Jablotron",
-        .data_size = JABLOTRON_DATA_SIZE,
+        .data_size = FIVEBYTE_DATA_SIZE,
         .dict =
             {
-                .val = (const uint8_t*)&uid_list_jablotron,
-                .len = COUNT_OF(uid_list_jablotron),
+                .val = (const uint8_t*)&uid_list_5byte,
+                .len = COUNT_OF(uid_list_5byte),
+            },
+    },
+   // Electra
+    {
+        .name = "Electra",
+        .data_size = EIGHTBYTE_DATA_SIZE,
+        .dict =
+            {
+                .val = (const uint8_t*)&uid_list_8byte,
+                .len = COUNT_OF(uid_list_8byte),
+            },
+    },
+   // Idteck
+    {
+        .name = "Idteck",
+        .data_size = EIGHTBYTE_DATA_SIZE,
+        .dict =
+            {
+                .val = (const uint8_t*)&uid_list_8byte,
+                .len = COUNT_OF(uid_list_8byte),
+            },
+    },
+   // Gallagher
+    {
+        .name = "Gallagher",
+        .data_size = EIGHTBYTE_DATA_SIZE,
+        .dict =
+            {
+                .val = (const uint8_t*)&uid_list_8byte,
+                .len = COUNT_OF(uid_list_8byte),
+            },
+    },
+   // Nexwatch
+    {
+        .name = "Nexwatch",
+        .data_size = EIGHTBYTE_DATA_SIZE,
+        .dict =
+            {
+                .val = (const uint8_t*)&uid_list_8byte,
+                .len = COUNT_OF(uid_list_8byte),
             },
     },
 };

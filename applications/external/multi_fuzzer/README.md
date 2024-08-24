@@ -28,6 +28,10 @@ This is a completely remade app, visual style inspired by [iButton fuzzer](https
 - Pyramid
 - Keri
 - Jablotron
+- Electra
+- Idteck
+- Gallagher
+- Nexwatch
 
 ## Application Features
 ### Main screen
