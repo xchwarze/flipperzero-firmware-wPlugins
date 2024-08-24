@@ -51,6 +51,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: PR: SubGHz: [Fix RPC status for ButtonRelease event (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/3838)
 - OFW: PR: [GUI: NumberInput small improvements #3840 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3840)
 - Updated: [GB Printer v0.2 (By kbembedded)](https://github.com/kbembedded/flipper-gb-printer) `Req: GB Link Cable / Malveke` [Add BMP File #1 (By EstebanFuentealba)](https://github.com/kbembedded/flipper-gb-printer/pull/1)
+- Updated: [RFID Fuzzer v1.6 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [Add LFRFID Protocols Electra, Idteck, Gallagher, Nexwatch #13 (By SkeletonMan03)](https://github.com/DarkFlippers/Multi_Fuzzer/pull/13)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -454,7 +455,7 @@ $ ./fbt dolphin_ext
 - [HEX Viewer v2.0 (By QtRoS)](https://github.com/QtRoS/flipperzero-firmware)
 - [HID File Transfer v1.0 (By Kavakuo)](https://github.com/Kavakuo/HID-File-Transfer)
 - [i2c Tools v1.2 (By NaejEL)](https://github.com/NaejEL/flipperzero-i2ctools)
-- [iButton Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
+- [iButton Fuzzer v1.6 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - [ID Card v2.1 (By evillero)](https://github.com/evillero/ID_card_v2)
 - [IFTTT Button (By Ferrazzi)](https://github.com/Ferrazzi/FlipperZero_IFTTT_Virtual_Button) `Req: ESP8266 w/ IFTTT FW Flashed`
 - [Intervalometer v1.2 (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
@@ -547,7 +548,7 @@ $ ./fbt dolphin_ext
 - [Restaurant Pager Trigger v1.7 (By leedave)](https://github.com/leedave/flipper-zero-meal-pager)
 - [RFID Beacon (By nmrr)](https://github.com/nmrr/flipperzero-rfidbeacon)
 - [RFID Detector v1.3 (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/2795)
-- [RFID Fuzzer v1.4 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
+- [RFID Fuzzer v1.6 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - [RGB LED (By flyandi)](https://github.com/flyandi/flipper_zero_rgb_led)
 - [R.O.B. Control (By riney)](https://github.com/riney/flip_rob)
 - [SAM (By Unknown)][Original?](https://github.com/ctoth/SAM)

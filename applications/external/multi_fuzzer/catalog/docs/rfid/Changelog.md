@@ -20,6 +20,10 @@
 - Pyramid
 - Keri
 - Jablotron
+- Electra
+- Idteck
+- Gallagher
+- Nexwatch
 
 **Suported attack**
 - Default Values

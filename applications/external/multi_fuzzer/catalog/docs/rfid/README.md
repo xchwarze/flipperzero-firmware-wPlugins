@@ -19,6 +19,10 @@ The application will also help to identify the "denial of service" vulnerability
 - Pyramid
 - Keri
 - Jablotron
+- Electra
+- Idteck
+- Gallagher
+- Nexwatch
 
 # Application Features
 ## Main screen
