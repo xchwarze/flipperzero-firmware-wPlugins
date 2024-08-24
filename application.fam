@@ -8,6 +8,7 @@ App(
     fap_version="1.0",
     fap_description="Compile and execute MicroPython scripts",
     fap_icon="icon.png",
+    fap_icon_assets="images",
     fap_author="Oliver Fabel",
     fap_file_assets="examples",
     fap_weburl="https://github.com/ofabel/mp-flipper",

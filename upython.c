@@ -1,11 +1,14 @@
 #include <malloc.h>
 
 #include <furi.h>
+#include <gui/gui.h>
 #include <dialogs/dialogs.h>
 #include <storage/storage.h>
 
 #include <mp_flipper_runtime.h>
 #include <mp_flipper_compiler.h>
+
+#include "upython_icons.h"
 
 #define TAG "uPython"
 
@@ -68,8 +71,31 @@ static bool select_python_file(FuriString* file_path) {
     return result;
 }
 
+static void show_splash_screen() {
+    Gui* gui = furi_record_open(RECORD_GUI);
+    ViewPort* view_port = view_port_alloc();
+
+    gui_add_view_port(gui, view_port, GuiLayerFullscreen);
+
+    Canvas* canvas = gui_direct_draw_acquire(gui);
+
+    canvas_draw_icon(canvas, 0, 0, &I_splash);
+    canvas_commit(canvas);
+
+    furi_delay_ms(5000);
+
+    gui_direct_draw_release(gui);
+    gui_remove_view_port(gui, view_port);
+
+    view_port_free(view_port);
+
+    furi_record_close(RECORD_GUI);
+}
+
 int32_t upython(void* p) {
     UNUSED(p);
+
+    show_splash_screen();
 
     FuriString* file_path = furi_string_alloc();
 
