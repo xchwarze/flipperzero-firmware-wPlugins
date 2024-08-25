@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0818-1650-0.104.1-43005e8.tgz&channel=RM0818-1650-0.104.1-43005e8&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0825-0001-0.104.1-ff3298a.tgz&channel=RM0825-0001-0.104.1-ff3298a&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,30 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-24 22:16 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-24 22:16 EST`
-- Added: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
-- Added: [LoRa Relay v1.1.3 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: SX1262 By ElectronicCats`
-- Added: [LoRa Sample v1.1.3 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: SX1262 By ElectronicCats`
-- Updated: [Authenticator/TOTP v5.15.1 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
-- Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac) (Version Only)
-- Updated: [FAP Boilerplate v1.3 (By leedave)](https://github.com/leedave/flipper-zero-fap-boilerplate)
-- Updated: [Cross Remote v2.7 (By leedave)](https://github.com/leedave/flipper-zero-cross-remote)
-- Updated: [MODBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
-- [Cleanup and update MFC dict (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/faf3cbab4f7225d59d1be1f1f53e221cc43865a0)
-- Updated: [Mifare Fuzzer v1.5 (By spheeere98)](https://github.com/spheeere98/mifare_fuzzer) [Fix crash on unsupported card type loaded (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/d56c97d96aa3a0629e41ede6620e67b87924bced)
-- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100`
-- Added: [Sleep Counter v2.0 (By silverwolf2r)](https://github.com/silverwolf2r/flipper-sleep-counter) `Req: RCWL-0516`
-- Added: [GB Printer v0.1 (By kbembedded)](https://github.com/kbembedded/flipper-gb-printer) `Req: GB Link Cable / Malveke`
-- Added: [Insults v0.1 (By ERSUCC)](https://github.com/ERSUCC/Flipper-Insults)
-- Added: [Flippy Temp WIP v0.1 (By n0ciple)](https://github.com/n0ciple/flippy_sensors) `Req: Flippy Sensor Board`
-- SubGHz: [Make sure previous frequency is in list, fix UI desync (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/2072dbe27ba56bb9ba91199bf4f5431294dee8be)
-- OFW: PR: SubGHz: [Fix RPC status for ButtonRelease event (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/3838)
-- OFW: PR: [GUI: NumberInput small improvements #3840 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3840)
-- Updated: [GB Printer v0.2 (By kbembedded)](https://github.com/kbembedded/flipper-gb-printer) `Req: GB Link Cable / Malveke` [Add BMP File #1 (By EstebanFuentealba)](https://github.com/kbembedded/flipper-gb-printer/pull/1)
-- Updated: [RFID Fuzzer v1.6 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507) [Add LFRFID Protocols Electra, Idteck, Gallagher, Nexwatch #13 (By SkeletonMan03)](https://github.com/DarkFlippers/Multi_Fuzzer/pull/13)
-- Updated: [NFC Seader v3.1 (By bettse)](https://github.com/bettse/seader)
-- Updated: [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
-- Added: [Laser Tag v0.1 (By RocketGod)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag) with [Always RX except when shooting #5 (By jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag/pull/5)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -631,4 +607,4 @@ $ ./fbt dolphin_ext
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0818-1650-0.104.1-43005e8.tgz&channel=RM0818-1650-0.104.1-43005e8&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0825-0001-0.104.1-ff3298a.tgz&channel=RM0825-0001-0.104.1-ff3298a&version=0.104.1)
