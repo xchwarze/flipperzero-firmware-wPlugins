@@ -1,0 +1,14 @@
+App(
+    appid="laser_tag",
+    name="Laser Tag",
+    apptype=FlipperAppType.EXTERNAL,
+    targets=["f7"],
+    entry_point="laser_tag_app",
+    fap_icon="icons/laser_tag_10px.png",
+    stack_size=2 * 1024,
+    fap_category="Games",
+    fap_author="RocketGod-git",
+    fap_weburl="https://github.com/RocketGod-Git/Flipper-Zero-Laser-Tag",
+    fap_version="0.1",
+    fap_description="Laser Tag game for Flipper Zero",
+)
