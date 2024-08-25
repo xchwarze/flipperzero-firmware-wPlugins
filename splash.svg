@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="128"
+   width="63"
    height="64"
-   viewBox="0 0 33.866666 16.933333"
+   viewBox="0 0 16.66875 16.933333"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
@@ -29,7 +29,7 @@
      showguides="true"
      inkscape:zoom="6.7496002"
      inkscape:cx="64.003791"
-     inkscape:cy="32.001896"
+     inkscape:cy="32.001895"
      inkscape:window-width="2000"
      inkscape:window-height="1252"
      inkscape:window-x="0"
@@ -162,22 +162,5 @@
        height="1.0583333"
        x="14.419791"
        y="14.287499" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:-0.0529167px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round"
-       x="18.140495"
-       y="7.1850882"
-       id="text16"><tspan
-         sodipodi:role="line"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333px;line-height:1;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Bold';letter-spacing:-0.0529167px;fill:#000000;fill-opacity:1;stroke-width:2"
-         x="18.140495"
-         y="7.1850882"
-         id="tspan17"
-         dy="0">Micro</tspan><tspan
-         sodipodi:role="line"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333px;line-height:1;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Bold';letter-spacing:-0.0529167px;fill:#000000;fill-opacity:1;stroke-width:2"
-         x="18.140495"
-         y="11.519282"
-         id="tspan18">Python</tspan></text>
   </g>
 </svg>

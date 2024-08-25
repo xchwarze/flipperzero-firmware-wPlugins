@@ -12,6 +12,14 @@
 
 #define TAG "uPython"
 
+typedef enum {
+    ActionNone,
+    ActionOpen,
+    ActionExit
+} Action;
+
+static Action action = ActionNone;
+
 static void execute_file(FuriString* file) {
     size_t stack;
 
@@ -71,8 +79,34 @@ static bool select_python_file(FuriString* file_path) {
     return result;
 }
 
+static void on_input(const void* event, void* ctx) {
+    UNUSED(ctx);
+
+    InputKey key = ((InputEvent*)event)->key;
+    InputType type = ((InputEvent*)event)->type;
+
+    if(type != InputTypeRelease) {
+        return;
+    }
+
+    switch(key) {
+    case InputKeyOk:
+        action = ActionOpen;
+        break;
+    case InputKeyBack:
+        action = ActionExit;
+        break;
+    default:
+        action = ActionNone;
+        break;
+    }
+}
+
 static void show_splash_screen() {
     Gui* gui = furi_record_open(RECORD_GUI);
+    FuriPubSub* input_event_queue = furi_record_open(RECORD_INPUT_EVENTS);
+    FuriPubSubSubscription* input_event = furi_pubsub_subscribe(input_event_queue, on_input, NULL);
+
     ViewPort* view_port = view_port_alloc();
 
     gui_add_view_port(gui, view_port, GuiLayerFullscreen);
@@ -80,30 +114,57 @@ static void show_splash_screen() {
     Canvas* canvas = gui_direct_draw_acquire(gui);
 
     canvas_draw_icon(canvas, 0, 0, &I_splash);
+    canvas_set_color(canvas, ColorBlack);
+    canvas_set_font(canvas, FontSecondary);
+    canvas_draw_str_aligned(canvas, 66, 0, AlignLeft, AlignTop, "Micro");
+    canvas_set_font(canvas, FontPrimary);
+    canvas_draw_str_aligned(canvas, 66, 10, AlignLeft, AlignTop, "Python");
+
+    canvas_set_font(canvas, FontSecondary);
+
+    canvas_draw_icon(canvas, 75, 36, &I_ButtonCenter_7x7);
+    canvas_draw_str_aligned(canvas, 87, 36, AlignLeft, AlignTop, "Open");
+
+    canvas_draw_icon(canvas, 73, 50, &I_Pin_back_arrow_10x8);
+    canvas_draw_str_aligned(canvas, 87, 51, AlignLeft, AlignTop, "Exit");
+
     canvas_commit(canvas);
 
-    furi_delay_ms(5000);
+    while(action == ActionNone) {
+        furi_delay_ms(1);
+    }
+
+    furi_pubsub_unsubscribe(input_event_queue, input_event);
 
     gui_direct_draw_release(gui);
     gui_remove_view_port(gui, view_port);
 
     view_port_free(view_port);
 
+    furi_record_close(RECORD_INPUT_EVENTS);
     furi_record_close(RECORD_GUI);
 }
 
 int32_t upython(void* p) {
     UNUSED(p);
 
-    show_splash_screen();
+    do {
+        show_splash_screen();
 
-    FuriString* file_path = furi_string_alloc();
+        if(action == ActionExit) {
+            break;
+        }
 
-    if(select_python_file(file_path)) {
-        execute_file(file_path);
-    }
+        FuriString* file_path = furi_string_alloc();
 
-    furi_string_free(file_path);
+        if(select_python_file(file_path)) {
+            execute_file(file_path);
+        }
+
+        furi_string_free(file_path);
+
+        action = ActionNone;
+    } while(true);
 
     return 0;
 }
