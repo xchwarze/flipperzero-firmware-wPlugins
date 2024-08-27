@@ -8,16 +8,16 @@ set -e
 
 rm -rf ${TARGET}
 
-git clone --branch ${BRANCH} --single-branch ${REMOTE} ${TARGET} || (git init -b ${BRANCH} ${TARGET} && cd ${TARGET} && git remote add origin ${REMOTE} && cd ..)
+git init -b ${BRANCH} ${TARGET} && cd ${TARGET} && git remote add origin ${REMOTE} && cd ..
 
 rm -rf ${TARGET}/*
 
-cp upython.c application.fam icon.png LICENSE.txt ${TARGET}
-cp -r ./docs ./examples ./lib ${TARGET}
+cp -r dist/pages/* ${TARGET}
+touch ${TARGET}/.nojekyll
 
 cd ${TARGET}
 
-git add . && git commit -m "new release" && git push origin ${BRANCH} || cd .
+git add . && git commit -m "update docs" && git push origin ${BRANCH} --force || cd .
 
 cd ..
 
