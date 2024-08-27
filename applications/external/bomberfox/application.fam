@@ -10,5 +10,5 @@ App(
     fap_author="Electric Fox",
     fap_weburl="https://github.com/ashleyhuxley/bomber",
     fap_version="0.1",
-    fap_description="Simple bomber game",
+    fap_description="Two Player Bomber game over Sub-Ghz Radio",
 )
