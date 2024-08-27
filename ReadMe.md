@@ -34,7 +34,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [NFC Seader v3.1 (By bettse)](https://github.com/bettse/seader)
 - Updated: [Laser Tag v1.1 (By RocketGod & jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag)
 - Updated: [MODBUS v1.1.3.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
-- Updated: [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
+- Updated: [Bomberfox v1.0 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -256,7 +256,7 @@ $ ./fbt dolphin_ext
 - [Asteroids v1.2 (By antirez)](https://github.com/antirez/flipper-asteroids)
 - [BlackJack v1.1 (By teeebor)](https://github.com/teeebor/flipper_games)
 - [Bomberduck v1.2 (By leo-need-more-coffee)](https://github.com/leo-need-more-coffee/flipperzero-bomberduck)
-- [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
+- [Bomberfox v1.0 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
 - [Chess v1.11 (By xtruan)](https://github.com/xtruan/flipper-chess)
 - [Chess Clock (By ihatecsv)](https://github.com/ihatecsv/flipper_chess_clock)
 - [City Bloxx (By Milk-Cool)](https://github.com/Milk-Cool/fz-citybloxx)
