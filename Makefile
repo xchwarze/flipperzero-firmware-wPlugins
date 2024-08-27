@@ -14,6 +14,6 @@ launch: build
 clean:
 	ufbt -c
 
-.PHONY: publish
-publish: build
-	./publish.sh fap-release
+.PHONY: pages
+pages:
+	source venv/bin/activate && sphinx-build docs/pages dist/pages

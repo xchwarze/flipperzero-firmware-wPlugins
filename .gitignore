@@ -1,4 +1,5 @@
-dist/*
+/dist/
+/venv/
 .vscode
 .clang-format
 .clangd
