@@ -38,6 +38,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: PR: [Infrared: Add Airwell AW-HKD012-N91 #3856 (By valeraOlexienko)](https://github.com/flipperdevices/flipperzero-firmware/pull/3856)
 - OFW: PR: [NFC: Fix crash on Ultralight unlock #3855 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3855)
 - OFW: PR: [NFC: MIFARE Classic Key Recovery Improvements WIP #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
+- Added: [uPython v1.1 (By ofabel)](https://github.com/ofabel/mp-flipper)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -578,6 +579,7 @@ $ ./fbt dolphin_ext
 - [USB HID Autofire (By pbek)](https://github.com/pbek/usb_hid_autofire)
 - [USB Mass Storage v1.3 (By nminaylov)](https://github.com/flipperdevices/flipperzero-good-faps/tree/nm/usb_mass_storage_app/mass_storage)
 - [USB Midi (By DrZlo13)](https://github.com/DrZlo13/flipper-zero-usb-midi) [Instructions by ESurge](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/applications/plugins/usb_midi/ReadMe.md)
+- [uPython v1.1 (By ofabel)](https://github.com/ofabel/mp-flipper)
 - [VB Migration Assistant v1.3 (By GMMan)](https://github.com/GMMan/flipperzero-vb-migrate)
 - [VGM Air Mouse v1.3 (By nminaylov)](https://github.com/flipperdevices/flipperzero-good-faps/tree/nm/motion_mouse_app) `Req: ICM42688, or Video Game Module By Flipper Devices`
 - [Video Player v0.3 (By LTVA1)](https://github.com/LTVA1/flipper-zero-video-player)

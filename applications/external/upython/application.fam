@@ -5,13 +5,9 @@ App(
     entry_point="upython",
     stack_size=4 * 1024,
     fap_category="Tools",
-    fap_version="1.0",
-    fap_description="Compile and execute MicroPython scripts",
     fap_icon="icon.png",
     fap_icon_assets="images",
-    fap_author="Oliver Fabel",
     fap_file_assets="examples",
-    fap_weburl="https://github.com/ofabel/mp-flipper",
     sources=[
         "*.c*",
         "!./lib/micropython",
@@ -55,5 +51,9 @@ App(
             ],
             cincludes=["."]
         ),
-    ]
+    ],
+    fap_author="Oliver Fabel",
+    fap_weburl="https://github.com/ofabel/mp-flipper",
+    fap_version="1.1",
+    fap_description="Compile and execute MicroPython scripts",
 )
