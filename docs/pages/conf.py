@@ -56,3 +56,5 @@ html_favicon = 'assets/favicon.png'
 autodoc_default_options = {
     'member-order': 'bysource',
 }
+
+add_module_names = False
