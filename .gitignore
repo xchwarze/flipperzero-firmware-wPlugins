@@ -6,3 +6,4 @@
 .editorconfig
 .env
 .ufbt
+__pycache__
