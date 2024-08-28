@@ -16,6 +16,9 @@ App(
         "*.c*",
         "!./lib/micropython",
         "!./lib/micropython-port",
+        "!./flipperzero",
+        "!./venv",
+        "!./dist",
     ],
     fap_private_libs=[
         Lib(

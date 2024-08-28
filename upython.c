@@ -114,19 +114,20 @@ static void show_splash_screen() {
     Canvas* canvas = gui_direct_draw_acquire(gui);
 
     canvas_draw_icon(canvas, 0, 0, &I_splash);
+    canvas_draw_icon(canvas, 82, 17, &I_qrcode);
     canvas_set_color(canvas, ColorBlack);
     canvas_set_font(canvas, FontSecondary);
-    canvas_draw_str_aligned(canvas, 66, 0, AlignLeft, AlignTop, "Micro");
+    canvas_draw_str_aligned(canvas, 66, 3, AlignLeft, AlignTop, "Micro");
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str_aligned(canvas, 66, 10, AlignLeft, AlignTop, "Python");
+    canvas_draw_str_aligned(canvas, 90, 2, AlignLeft, AlignTop, "Python");
 
     canvas_set_font(canvas, FontSecondary);
 
-    canvas_draw_icon(canvas, 75, 36, &I_ButtonCenter_7x7);
-    canvas_draw_str_aligned(canvas, 87, 36, AlignLeft, AlignTop, "Open");
+    canvas_draw_icon(canvas, 65, 53, &I_Pin_back_arrow_10x8);
+    canvas_draw_str_aligned(canvas, 78, 54, AlignLeft, AlignTop, "Exit");
 
-    canvas_draw_icon(canvas, 73, 50, &I_Pin_back_arrow_10x8);
-    canvas_draw_str_aligned(canvas, 87, 51, AlignLeft, AlignTop, "Exit");
+    canvas_draw_icon(canvas, 98, 54, &I_ButtonCenter_7x7);
+    canvas_draw_str_aligned(canvas, 107, 54, AlignLeft, AlignTop, "Open");
 
     canvas_commit(canvas);
 
@@ -155,7 +156,7 @@ int32_t upython(void* p) {
             break;
         }
 
-        FuriString* file_path = furi_string_alloc();
+        FuriString* file_path = furi_string_alloc_set_str(APP_ASSETS_PATH("upython"));
 
         if(select_python_file(file_path)) {
             execute_file(file_path);
