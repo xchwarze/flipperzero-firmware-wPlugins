@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0824-2216-0.104.1-f33d30c](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0827-2205-0.104.1-fc54643](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-24 22:16 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-24 22:16 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-08-27 22:05 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-08-27 22:05 EST`
 - Updated: [Genie Recorder v3.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
 - Updated: [ShapShup v1.2 (By derskythe)](https://github.com/derskythe/flipperzero-shapshup)
 - Updated: [UHF RFID WIP v1.1 (By frux-c)](https://github.com/frux-c/uhf_rfid) `Req: M100 or QM100`
@@ -48,6 +48,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Flizzer Tracker v0.10 (By LTVA1)](https://github.com/LTVA1/flizzer_tracker)
 - Updated: [NFC Seader v3.1 (By bettse)](https://github.com/bettse/seader)
 - Updated: [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
+- Added: [uPython v1.1 (By ofabel)](https://github.com/ofabel/mp-flipper)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -269,7 +270,7 @@ $ ./fbt dolphin_ext
 - [Asteroids v1.2 (By antirez)](https://github.com/antirez/flipper-asteroids)
 - [BlackJack v1.1 (By teeebor)](https://github.com/teeebor/flipper_games)
 - [Bomberduck v1.2 (By leo-need-more-coffee)](https://github.com/leo-need-more-coffee/flipperzero-bomberduck)
-- [Bomberfox v0.1 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
+- [Bomberfox v1.0 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
 - [Chess v1.11 (By xtruan)](https://github.com/xtruan/flipper-chess)
 - [Chess Clock (By ihatecsv)](https://github.com/ihatecsv/flipper_chess_clock)
 - [City Bloxx (By Milk-Cool)](https://github.com/Milk-Cool/fz-citybloxx)
@@ -295,7 +296,7 @@ $ ./fbt dolphin_ext
 - [Insults v0.1 (By ERSUCC)](https://github.com/ERSUCC/Flipper-Insults)
 - [JetPack v1.1 (by timstrasser)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/1164e4d214efa38847e08c6387bf53578bc0d366)
 - [KC Line v1.2 (By HappyAmos)](https://github.com/HappyAmos/Flipper_FAPS/tree/master/kcline)
-- [Laser Tag v1.0 (By RocketGod & jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag)
+- [Laser Tag v1.1 (By RocketGod & jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag)
 - [Magic 8-ball v0.1 (By stevenquinn)](https://github.com/stevenquinn/flipper-8-ball)
 - [Mandelbrot Set v1.2 (By Possibly-Matt)](https://github.com/Possibly-Matt/flipperzero-firmware-wPlugins)
 - [Matagotchi v1.1 (By MrModd)](https://github.com/MrModd/Matagotchi)
@@ -491,7 +492,7 @@ $ ./fbt dolphin_ext
 - [Mifare Fuzzer v1.5 (By spheeere98)](https://github.com/spheeere98/mifare_fuzzer)
 - [Mifare Nested v1.6.6 (By AloneLiberty)](https://github.com/AloneLiberty/FlipperNested)
 - [Mitsubishi AC Remote v1.0 (By achistyakov)](https://github.com/achistyakov/flipperzero-mitsubishi-ac-remote)
-- [MODBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
+- [MODBUS v1.1.3.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
 - [Morse Code v1.2 (By wh00hw)](https://github.com/DarkFlippers/unleashed-firmware/pull/144)
 - [Mouse Jacker v1.2 (By mothball187)](https://github.com/mothball187/flipperzero-nrf24/tree/main/mousejacker) [Pin Out from nocomp/Frog/UberGuidoZ](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/tree/420/applications/mousejacker) `Req: NRF24`
 - [Mouse Jacker for MS Mouse v1.2 (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/mousejacker_ms) `Req: NRF24`
@@ -588,6 +589,7 @@ $ ./fbt dolphin_ext
 - [USB HID Autofire (By pbek)](https://github.com/pbek/usb_hid_autofire)
 - [USB Mass Storage v1.3 (By nminaylov)](https://github.com/flipperdevices/flipperzero-good-faps/tree/nm/usb_mass_storage_app/mass_storage)
 - [USB Midi (By DrZlo13)](https://github.com/DrZlo13/flipper-zero-usb-midi) [Instructions by ESurge](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/applications/plugins/usb_midi/ReadMe.md)
+- [uPython v1.1 (By ofabel)](https://github.com/ofabel/mp-flipper)
 - [VB Migration Assistant v1.3 (By GMMan)](https://github.com/GMMan/flipperzero-vb-migrate)
 - [VGM Air Mouse v1.3 (By nminaylov)](https://github.com/flipperdevices/flipperzero-good-faps/tree/nm/motion_mouse_app) `Req: ICM42688, or Video Game Module By Flipper Devices`
 - [Video Player v0.3 (By LTVA1)](https://github.com/LTVA1/flipper-zero-video-player)
