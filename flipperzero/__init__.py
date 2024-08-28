@@ -1,3 +1,5 @@
+from typing import Callable
+
 LIGHT_RED: int
 '''
 Constant value for the red LED light.
@@ -49,8 +51,6 @@ def light_blink_start(light: int, brightness: int, on_time: int, period: int) ->
     :param brightness: The brightness to use.
     :param on_time: The LED's active duration in milliseconds.
     :param period: Total duration of a blink period in milliseconds.
-
-    :Example:
 
     :Example:
 
@@ -145,5 +145,82 @@ def speaker_stop() -> bool:
     Stop the speaker output.
 
     :returns: :const:`True` if the speaker was successfully released.
+    '''
+    pass
+
+INPUT_BUTTON_UP: int
+'''
+Constant value for the `up` button.
+'''
+
+INPUT_BUTTON_DOWN: int
+'''
+Constant value for the `down` button.
+'''
+
+INPUT_BUTTON_RIGHT: int
+'''
+Constant value for the `right` button.
+'''
+
+INPUT_BUTTON_LEFT: int
+'''
+Constant value for the `left` button.
+'''
+
+INPUT_BUTTON_OK: int
+'''
+Constant value for the `ok` button.
+'''
+
+INPUT_BUTTON_BACK: int
+'''
+Constant value for the `back` button.
+'''
+
+INPUT_TYPE_PRESS: int
+'''
+Constant value for the `press` event of a button.
+'''
+
+INPUT_TYPE_RELEASE: int
+'''
+Constant value for the `release` event of a button.
+'''
+
+INPUT_TYPE_SHORT: int
+'''
+Constant value for the `short` press event of a button.
+'''
+
+INPUT_TYPE_LONG: int
+'''
+Constant value for the `long` press event of a button.
+'''
+
+INPUT_TYPE_REPEAT: int
+'''
+Constant value for the `repeat` press event of a button.
+'''
+
+def on_input() -> Callable[[int, int], None]:
+    '''
+    Decorate a function to be used as input handler. The decorated function will be invoked upon interaction with one of the buttons on the Flipper.
+
+    :Example:
+
+    .. code-block::
+
+        import flipperzero as f0
+
+        @f0.on_input
+        def input_handler(button, type):
+            if button == f0.INPUT_BUTTON_BACK:
+                if type == f0.INPUT_TYPE_LONG:
+                    ...
+    
+    .. warning::
+
+        You can only decorate one function per application.
     '''
     pass
