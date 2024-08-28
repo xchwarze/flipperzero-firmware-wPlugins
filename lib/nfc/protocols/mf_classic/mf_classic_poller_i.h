@@ -3,13 +3,30 @@
 #include "mf_classic_poller.h"
 #include <lib/nfc/protocols/iso14443_3a/iso14443_3a_poller_i.h>
 #include <bit_lib/bit_lib.h>
+#include "nfc/helpers/iso14443_crc.h"
 #include <nfc/helpers/crypto1.h>
+#include <stream/stream.h>
+#include <stream/buffered_file_stream.h>
+#include "keys_dict.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define MF_CLASSIC_FWT_FC (60000)
+#define MF_CLASSIC_FWT_FC                       (60000)
+#define NFC_FOLDER                              EXT_PATH("nfc")
+#define NFC_ASSETS_FOLDER                       EXT_PATH("nfc/assets")
+#define MF_CLASSIC_NESTED_ANALYZE_NT_COUNT      (5)
+#define MF_CLASSIC_NESTED_HARD_MINIMUM          (3)
+#define MF_CLASSIC_NESTED_RETRY_MAXIMUM         (20)
+#define MF_CLASSIC_NESTED_LOGS_FILE_NAME        ".nested.log"
+#define MF_CLASSIC_NESTED_SYSTEM_DICT_FILE_NAME "mf_classic_dict_nested.nfc"
+#define MF_CLASSIC_NESTED_USER_DICT_FILE_NAME   "mf_classic_dict_user_nested.nfc"
+#define MF_CLASSIC_NESTED_LOGS_FILE_PATH        (NFC_FOLDER "/" MF_CLASSIC_NESTED_LOGS_FILE_NAME)
+#define MF_CLASSIC_NESTED_SYSTEM_DICT_PATH \
+    (NFC_ASSETS_FOLDER "/" MF_CLASSIC_NESTED_SYSTEM_DICT_FILE_NAME)
+#define MF_CLASSIC_NESTED_USER_DICT_PATH \
+    (NFC_ASSETS_FOLDER "/" MF_CLASSIC_NESTED_USER_DICT_FILE_NAME)
 
 typedef enum {
     MfClassicAuthStateIdle,
@@ -20,6 +37,45 @@ typedef enum {
     MfClassicCardStateDetected,
     MfClassicCardStateLost,
 } MfClassicCardState;
+
+typedef enum {
+    MfClassicNestedPhaseNone,
+    MfClassicNestedPhaseAnalyzePRNG,
+    MfClassicNestedPhaseDictAttack,
+    MfClassicNestedPhaseDictAttackResume,
+    MfClassicNestedPhaseAnalyzeBackdoor,
+    MfClassicNestedPhaseCalibrate,
+    MfClassicNestedPhaseCollectNtEnc,
+    MfClassicNestedPhaseFinished,
+} MfClassicNestedPhase;
+
+typedef enum {
+    MfClassicPrngTypeUnknown, // Tag not yet tested
+    MfClassicPrngTypeNoTag, // No tag detected during test
+    MfClassicPrngTypeWeak, // Weak PRNG, standard Nested
+    MfClassicPrngTypeHard, // Hard PRNG, Hardnested
+} MfClassicPrngType;
+
+typedef enum {
+    MfClassicBackdoorUnknown, // Tag not yet tested
+    MfClassicBackdoorNone, // No observed backdoor
+    MfClassicBackdoorAuth1, // Tag responds to v1 auth backdoor
+    MfClassicBackdoorAuth2, // Tag responds to v2 auth backdoor (static encrypted nonce)
+} MfClassicBackdoor;
+
+typedef struct {
+    uint32_t cuid; // Card UID
+    uint8_t key_idx; // Key index
+    uint32_t nt; // Nonce
+    uint32_t nt_enc; // Encrypted nonce
+    uint8_t par; // Parity
+    uint16_t dist; // Distance
+} MfClassicNestedNonce;
+
+typedef struct {
+    MfClassicNestedNonce* nonces;
+    size_t count;
+} MfClassicNestedNonceArray;
 
 typedef enum {
     MfClassicPollerStateDetectType,
@@ -43,11 +99,22 @@ typedef enum {
     MfClassicPollerStateAuthKeyA,
     MfClassicPollerStateAuthKeyB,
     MfClassicPollerStateKeyReuseStart,
+    MfClassicPollerStateKeyReuseStartNoOffset,
     MfClassicPollerStateKeyReuseAuthKeyA,
     MfClassicPollerStateKeyReuseAuthKeyB,
     MfClassicPollerStateKeyReuseReadSector,
     MfClassicPollerStateSuccess,
     MfClassicPollerStateFail,
+
+    // Enhanced dictionary attack states
+    MfClassicPollerStateNestedAnalyzePRNG,
+    MfClassicPollerStateNestedAnalyzeBackdoor,
+    MfClassicPollerStateNestedCalibrate,
+    MfClassicPollerStateNestedCollectNt,
+    MfClassicPollerStateNestedController,
+    MfClassicPollerStateNestedCollectNtEnc,
+    MfClassicPollerStateNestedDictAttack,
+    MfClassicPollerStateNestedLog,
 
     MfClassicPollerStateNum,
 } MfClassicPollerState;
@@ -70,6 +137,22 @@ typedef struct {
     bool auth_passed;
     uint16_t current_block;
     uint8_t reuse_key_sector;
+    // Enhanced dictionary attack and nested nonce collection
+    MfClassicNestedPhase nested_phase;
+    MfClassicKey nested_known_key;
+    MfClassicKeyType nested_known_key_type;
+    uint8_t nested_known_key_sector;
+    uint16_t nested_target_key;
+    MfClassicNestedNonceArray nested_nonce;
+    MfClassicPrngType prng_type;
+    MfClassicBackdoor backdoor;
+    bool static_encrypted;
+    bool calibrated;
+    uint16_t d_min;
+    uint16_t d_max;
+    uint8_t attempt_count;
+    KeysDict* mf_classic_system_dict;
+    KeysDict* mf_classic_user_dict;
 } MfClassicPollerDictAttackContext;
 
 typedef struct {
