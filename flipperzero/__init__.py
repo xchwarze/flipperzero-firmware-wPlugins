@@ -27,9 +27,12 @@ def light_set(light: int, brightness: int) -> None:
     :param brightness: The brightness to use.
 
     :Example:
-
-    >>> import flipperzero as f0
-    >>> f0.light_set(f0.LIGHT_RED | f0.LIGHT_GREEN, 250)
+    
+    .. code-block::
+    
+        import flipperzero as f0
+        
+        f0.light_set(f0.LIGHT_RED | f0.LIGHT_GREEN, 250)
 
     .. tip::
 
@@ -49,8 +52,13 @@ def light_blink_start(light: int, brightness: int, on_time: int, period: int) ->
 
     :Example:
 
-    >>> import flipperzero as f0
-    >>> f0.light_blink_start(f0.LIGHT_RED, 150, 100, 200)
+    :Example:
+
+    .. code-block::
+    
+        import flipperzero as f0
+        
+        f0.light_blink_start(f0.LIGHT_RED, 150, 100, 200)
     '''
     pass
 
@@ -74,7 +82,68 @@ def vibro_set(state: bool) -> bool:
     '''
     Turn vibration on or off. This is a non-blocking operation. The vibration motor will continue to run until you stop it.
 
-    :param state: ``True`` to turn on vibration.
-    :returns: ``True`` if vibration is on.
+    :param state: :const:`True` to turn on vibration.
+    :returns: :const:`True` if vibration is on.
+    '''
+    pass
+
+def speaker_start(frequency: float, volume: float) -> bool:
+    '''
+    Output a steady tone of a defined frequency and volume on the Flipper's speaker.
+    This is a non-blocking operation. The tone will continue until you call :func:`speaker_stop`.
+    The ``volume`` parameter accepts values from 0.0 (silent) up to 1.0 (very loud).
+
+    :param frequency: The frequency to play in `hertz <https://en.wikipedia.org/wiki/Hertz>`_.
+    :param volume: The volume to use.
+    :returns: :const:`True` if the speaker was acquired.
+
+    :Example:
+
+    .. code-block::
+        
+        import flipperzero as f0
+        
+        f0.speaker_start(50.0, 0.8)
+    '''
+    pass
+
+def speaker_set_volume(volume: float) -> bool:
+    '''
+    Set the speaker's volume while playing a tone. This is a non-blocking operation.
+    The tone will continue until you call :func:`speaker_stop`.
+    The ``volume`` parameter accepts values from 0.0 (silent) up to 1.0 (very loud).
+    
+    :param volume: The volume to use.
+    :returns: :const:`True` if the speaker was acquired.
+
+    :Example:
+
+    This function can be used to play `nice` sounds:
+
+    .. code-block::
+
+        import time
+        import flipperzero as f0
+        
+        volume = 0.8
+
+        f0.speaker_start(100.0, volume)
+
+        for _ in range(0, 150):
+            volume *= 0.9945679
+
+            f0.speaker_set_volume(volume)
+
+            time.sleep_ms(1)
+        
+        f0.speaker_stop()
+    '''
+    pass
+
+def speaker_stop() -> bool:
+    '''
+    Stop the speaker output.
+
+    :returns: :const:`True` if the speaker was successfully released.
     '''
     pass
