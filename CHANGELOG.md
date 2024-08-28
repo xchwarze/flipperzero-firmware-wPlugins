@@ -10,12 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 * Display splash screen upon application start.
+* API documentation on [GitHub pages](https://ofabel.github.io/mp-flipper/).
 
 ## [1.0.0] - 2024-08-22
 
 ### Added
 
-* Publish script for the [application catalog](https://github.com/flipperdevices/flipper-application-catalog)
+* First stable release on the [application catalog](https://github.com/flipperdevices/flipper-application-catalog).
 
 ### Changed
 
