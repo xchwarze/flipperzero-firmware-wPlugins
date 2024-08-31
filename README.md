@@ -2,6 +2,8 @@
 
 ## Simple rot13 application
 
+![screenshot_06.png](./screenshots/screenshot_06.png)
+
 ![screenshot_00.png](./screenshots/screenshot_00.png)
 
 ![screenshot_01.png](./screenshots/screenshot_01.png)
