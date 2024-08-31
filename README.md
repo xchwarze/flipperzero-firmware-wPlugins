@@ -1,20 +1,8 @@
-# flipperzero_rot13
+# ROT13
 
-## Simple rot13 application
+## ROT13 application
 
-![screenshot_06.png](./screenshots/screenshot_06.png)
-
-![screenshot_00.png](./screenshots/screenshot_00.png)
-
-![screenshot_01.png](./screenshots/screenshot_01.png)
-
-![screenshot_02.png](./screenshots/screenshot_02.png)
-
-![screenshot_03.png](./screenshots/screenshot_03.png)
-
-![screenshot_04.png](./screenshots/screenshot_04.png)
-
-![screenshot_05.png](./screenshots/screenshot_05.png)
+This simple app will take a text an convert that text using rot13.
 
 ## Thanks <3
 
