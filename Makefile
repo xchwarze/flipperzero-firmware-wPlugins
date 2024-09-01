@@ -16,6 +16,7 @@ clean:
 
 .PHONY: pages
 pages:
+	rm -rf ./dist/pages
 	source venv/bin/activate && sphinx-build docs/pages dist/pages
 
 .PHONY: publish
