@@ -10,7 +10,7 @@ For more information on how to programm your Flipper with Python, check out the 
 This branch contains the [FAP](https://developer.flipper.net/flipperzero/doxygen/apps_on_sd_card.html) version of the [MicroPython](https://micropython.org/) support for the famous [Flipper Zero](https://flipperzero.one/) gadget.
 The results of the preceding research phase is still available in the [poc](https://github.com/ofabel/mp-flipper/tree/poc) branch.
 The [lib](https://github.com/ofabel/mp-flipper/tree/lib) branch of this repository contains just the MicroPython library.
-The progress of further research on what can be achieved when moving functionality to the firmware can be found in the [fork of the original firmware](https://github.com/ofabel/flipperzero-firmware).
+The progress of further research on what can be achieved when moving functionality to the firmware can be found in the [fork of the original firmware](https://github.com/ofabel/flipperzero-firmware/tree/ofa/micropython).
 
 ## Usage
 
@@ -27,10 +27,10 @@ Here you can select any Python file to compile and execute from the SD card:
 ## Disclaimer
 
 This FAP version requires about 80 kB from SRAM to start (needed for the Python runtime and compiler).
-Due to memory fragmentation it's possible, that the application crashes when you start it (tested with the original 0.105.0 firmware).
+Due to memory fragmentation it's possible, that the application crashes when you start it.
 If this happens, just try again (the crash doesn't harm your device).
 
-Sadly, REPL support is only available in fhe [firmware fork](https://github.com/ofabel/flipperzero-firmware) version.
+Sadly, REPL support is only available in fhe [firmware fork](https://github.com/ofabel/flipperzero-firmware/tree/ofa/micropython) version.
 
 ## Setup and Build
 
@@ -41,7 +41,7 @@ This section is only relevant, if you want to build the FAP on your own.
 * [Git](https://git-scm.com/)
 * [Make](https://www.gnu.org/software/make/)
 * [uFBT](https://pypi.org/project/ufbt/) available in your `PATH` (or you have to adjust the [Makefile](./Makefile))
-* [Flipper Zero](https://flipperzero.one/) (tested with firmware versions 0.99.1 and 0.100.3)
+* [Flipper Zero](https://flipperzero.one/)
 
 ### Setup
 
