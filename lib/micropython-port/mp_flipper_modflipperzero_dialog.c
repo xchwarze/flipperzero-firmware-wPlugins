@@ -13,11 +13,11 @@ void mp_flipper_dialog_message_set_text(
     uint8_t v) {
     mp_flipper_context_t* ctx = mp_flipper_context;
 
-    Align align_x = x == MP_FLIPPER_ALIGN_BEGIN ? AlignLeft : AlignRight;
-    Align align_y = y == MP_FLIPPER_ALIGN_BEGIN ? AlignTop : AlignBottom;
+    Align align_x = h == MP_FLIPPER_ALIGN_BEGIN ? AlignLeft : AlignRight;
+    Align align_y = v == MP_FLIPPER_ALIGN_BEGIN ? AlignTop : AlignBottom;
 
-    align_x = x == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_x;
-    align_y = y == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_y;
+    align_x = h == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_x;
+    align_y = v == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_y;
 
     dialog_message_set_text(ctx->dialog_message, text, x, y, align_x, align_y);
 }
@@ -30,11 +30,11 @@ void mp_flipper_dialog_message_set_header(
     uint8_t v) {
     mp_flipper_context_t* ctx = mp_flipper_context;
 
-    Align align_x = x == MP_FLIPPER_ALIGN_BEGIN ? AlignLeft : AlignRight;
-    Align align_y = y == MP_FLIPPER_ALIGN_BEGIN ? AlignTop : AlignBottom;
+    Align align_x = h == MP_FLIPPER_ALIGN_BEGIN ? AlignLeft : AlignRight;
+    Align align_y = v == MP_FLIPPER_ALIGN_BEGIN ? AlignTop : AlignBottom;
 
-    align_x = x == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_x;
-    align_y = y == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_y;
+    align_x = h == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_x;
+    align_y = v == MP_FLIPPER_ALIGN_CENTER ? AlignCenter : align_y;
 
     dialog_message_set_header(ctx->dialog_message, text, x, y, align_x, align_y);
 }
