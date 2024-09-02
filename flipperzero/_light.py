@@ -3,21 +3,29 @@ from typing import Callable
 LIGHT_RED: int
 '''
 Constant value for the red LED light.
+
+.. versionadded:: 1.0.0
 '''
 
 LIGHT_GREEN: int
 '''
 Constant value for the green LED light.
+
+.. versionadded:: 1.0.0
 '''
 
 LIGHT_BLUE: int
 '''
 Constant value for the blue LED light.
+
+.. versionadded:: 1.0.0
 '''
 
 LIGHT_BACKLIGHT: int
 '''
 Constant value for the display backlight.
+
+.. versionadded:: 1.0.0
 '''
 
 def light_set(light: int, brightness: int) -> None:
@@ -27,6 +35,8 @@ def light_set(light: int, brightness: int) -> None:
 
     :param light: The RGB channels to set.
     :param brightness: The brightness to use.
+
+    .. versionadded:: 1.0.0
 
     .. code-block::
     
@@ -50,6 +60,8 @@ def light_blink_start(light: int, brightness: int, on_time: int, period: int) ->
     :param on_time: The LED's active duration in milliseconds.
     :param period: Total duration of a blink period in milliseconds.
 
+    .. versionadded:: 1.0.0
+
     .. code-block::
     
         import flipperzero as f0
@@ -65,11 +77,15 @@ def light_blink_set_color(light: int) -> None:
     Call the :func:`light_blink_stop` function to stop the blinking LED.
 
     :param light: The RGB channels to set.
+
+    .. versionadded:: 1.0.0
     '''
     pass
 
 def light_blink_stop() -> None:
     '''
     Stop the blinking LED.
+
+    .. versionadded:: 1.0.0
     '''
     pass

@@ -86,6 +86,7 @@ Display message dialogs on the display for user infos and confirm actions.
 .. autofunction:: flipperzero.dialog_message_set_header
 .. autofunction:: flipperzero.dialog_message_set_text
 .. autofunction:: flipperzero.dialog_message_set_button
+.. autofunction:: flipperzero.dialog_message_show
 
 Built-In
 --------
@@ -100,6 +101,8 @@ They're members of the global namespace instead.
    :param objects: The objects to print (mostly a single string).
    :param sep: The separator to use between the objects.
    :param end: The line terminator character to use.
+
+   .. versionadded:: 1.0.0
 
    .. attention::
       

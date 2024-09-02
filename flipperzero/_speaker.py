@@ -8,6 +8,8 @@ def speaker_start(frequency: float, volume: float) -> bool:
     :param volume: The volume to use.
     :returns: :const:`True` if the speaker was acquired.
 
+    .. versionadded:: 1.0.0
+
     .. code-block::
         
         import flipperzero as f0
@@ -24,6 +26,8 @@ def speaker_set_volume(volume: float) -> bool:
     
     :param volume: The volume to use.
     :returns: :const:`True` if the speaker was acquired.
+
+    .. versionadded:: 1.0.0
 
     This function can be used to play `nice` sounds:
 
@@ -52,5 +56,7 @@ def speaker_stop() -> bool:
     Stop the speaker output.
 
     :returns: :const:`True` if the speaker was successfully released.
+
+    .. versionadded:: 1.0.0
     '''
     pass

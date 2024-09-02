@@ -58,3 +58,5 @@ autodoc_default_options = {
 }
 
 add_module_names = True
+
+maximum_signature_line_length = 50
