@@ -42,3 +42,20 @@ Write text and draw dots and shapes on the the display.
 
 .. automodule:: flipperzero._canvas
    :members:
+
+Dialog
+------
+
+Display message dialogs on the display for user infos and confirm actions.
+
+.. automodule:: flipperzero._modal
+   :members:
+
+Built-In
+--------
+
+The functions in this section are `not` part of the ``flipperzero`` module.
+They're members of the global namespace instead.
+
+.. automodule:: flipperzero._builtins
+   :members:

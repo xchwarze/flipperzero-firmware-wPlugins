@@ -5,6 +5,7 @@
    quickstart
    reference
    features
+   examples
    Changelog </changelog>
    License </license>
 
