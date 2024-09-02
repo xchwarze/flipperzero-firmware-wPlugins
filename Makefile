@@ -16,7 +16,8 @@ clean:
 
 .PHONY: pages
 pages:
-	rm -rf ./dist/pages
+	rm -rf ./dist/pages ./flipperzero/__init__.py
+	cat ./flipperzero/_*.py > ./flipperzero/__init__.py
 	source venv/bin/activate && sphinx-build docs/pages dist/pages
 
 .PHONY: publish

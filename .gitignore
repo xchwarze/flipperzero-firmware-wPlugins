@@ -1,5 +1,6 @@
 /dist/
 /venv/
+/flipperzero/__init__.py
 .vscode
 .clang-format
 .clangd
