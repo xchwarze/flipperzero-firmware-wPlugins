@@ -8,6 +8,7 @@ const SubGhzProtocol* weather_station_protocol_registry_items[] = {
     &ws_protocol_lacrosse_tx,    &ws_protocol_lacrosse_tx141thbv2,
     &ws_protocol_oregon2,        &ws_protocol_oregon3,
     &ws_protocol_acurite_592txr, &ws_protocol_ambient_weather,
+    &ws_protocol_solight_te44, // Should be before auriol
     &ws_protocol_auriol_th,      &ws_protocol_oregon_v1,
     &ws_protocol_tx_8300,        &ws_protocol_wendox_w6726,
     &ws_protocol_auriol_ahfl,    &ws_protocol_kedsum_th,
