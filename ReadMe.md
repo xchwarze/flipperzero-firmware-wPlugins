@@ -39,6 +39,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: PR: [NFC: Fix crash on Ultralight unlock #3855 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3855)
 - OFW: PR: [NFC: MIFARE Classic Key Recovery Improvements WIP #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
 - Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
+- OFW: PR: [Fix detection of GProx II cards and false detection of other cards #3869 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3869)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
