@@ -56,8 +56,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - NFC: [Parser for Saflok Updates for Date Rollover (By Arkwin)](https://github.com/Next-Flip/Momentum-Firmware/pull/201)
 - OFW: PR: [NFC: MIFARE Classic Key Recovery Improvements WIP #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
 - OFW: PR: [Infrared: Button operation fails now shows more informative messages #3859 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3859)
-- Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
 - Updated: [Weather Station v1.8 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Solight TE44 recognition (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/183)
+- Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
