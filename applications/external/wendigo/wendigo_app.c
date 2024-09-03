@@ -27,6 +27,7 @@ static void wendigo_app_tick_event_callback(void* context) {
 void wendigo_interface_init(WendigoApp* app) {
     for(int i = 0; i < IF_COUNT; ++i) {
         app->interfaces[i].active = true;
+        app->interfaces[i].mutable = true;
     }
     // TODO: Retrieve actual MAC
     const uint8_t mac_wifi[NUM_MAC_BYTES] = {0xa6, 0xe0, 0x57, 0x4f, 0x57, 0xac};
@@ -85,6 +86,7 @@ WendigoApp* wendigo_app_alloc() {
 
     /* Initialise and enable all interfaces */
     wendigo_interface_init(app);
+    app->is_scanning = false;
 
     app->widget = widget_alloc();
     view_dispatcher_add_view(
