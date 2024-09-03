@@ -5,7 +5,7 @@
 #include <stm32wbxx_ll_dma.h>
 #include <dialogs/dialogs.h>
 #include <notification/notification_messages.h>
-#include <gui/view_dispatcher.h>
+#include <gui/view_holder.h>
 #include <toolbox/stream/file_stream.h>
 #include "wav_player_hal.h"
 #include "wav_parser.h"
@@ -96,14 +96,13 @@ static WavPlayerApp* app_alloc() {
     app->play = true;
 
     app->gui = furi_record_open(RECORD_GUI);
-    app->view_dispatcher = view_dispatcher_alloc();
+    app->view_holder = view_holder_alloc();
     app->view = wav_player_view_alloc();
 
     app->path = furi_string_alloc();
 
-    view_dispatcher_add_view(app->view_dispatcher, 0, wav_player_view_get_view(app->view));
-    view_dispatcher_attach_to_gui(app->view_dispatcher, app->gui, ViewDispatcherTypeFullscreen);
-    view_dispatcher_switch_to_view(app->view_dispatcher, 0);
+    view_holder_attach_to_gui(app->view_holder, app->gui);
+    view_holder_set_view(app->view_holder, wav_player_view_get_view(app->view));
 
     app->notification = furi_record_open(RECORD_NOTIFICATION);
     notification_message(app->notification, &sequence_display_backlight_enforce_on);
@@ -112,8 +111,8 @@ static WavPlayerApp* app_alloc() {
 }
 
 static void app_free(WavPlayerApp* app) {
-    view_dispatcher_remove_view(app->view_dispatcher, 0);
-    view_dispatcher_free(app->view_dispatcher);
+    view_holder_set_view(app->view_holder, NULL);
+    view_holder_free(app->view_holder);
     wav_player_view_free(app->view);
     furi_record_close(RECORD_GUI);
 

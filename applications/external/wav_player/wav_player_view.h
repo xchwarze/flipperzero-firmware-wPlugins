@@ -8,7 +8,7 @@
 #include <stm32wbxx_ll_dma.h>
 #include <dialogs/dialogs.h>
 #include <notification/notification_messages.h>
-#include <gui/view_dispatcher.h>
+#include <gui/view_holder.h>
 #include <toolbox/stream/file_stream.h>
 
 #ifdef __cplusplus
