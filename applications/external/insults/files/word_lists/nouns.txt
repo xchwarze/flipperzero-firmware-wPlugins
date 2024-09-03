@@ -1,13 +1,19 @@
 abomination
+ape
 beast
 boil
 blight
+boor
 braggart
+codpiece
 cow
+coward
 dung beetle
 dwarf
+egg
 egotist
 farce
+fool
 gallbladder
 garbage
 goblin
@@ -24,7 +30,9 @@ leper
 liar
 lunatic
 monster
+miscreant
 nincompoop
+nitwit
 oaf
 ogre
 peasant
@@ -38,12 +46,14 @@ scallywag
 scum
 sot
 swine
+thief
 toilet
 twit
 unibrow
 vassal
 wart
 witch
+xenophobe
 yahoo
 yeast infection
 zamboni

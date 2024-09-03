@@ -30,7 +30,7 @@ static MineSweeperApp* app_alloc() {
     // Alloc Scene Manager and set handlers for on_enter, on_event, on_exit
     app->scene_manager = scene_manager_alloc(&minesweeper_scene_handlers, app);
 
-    // Alloc View Dispatcher and enable queue
+    // Alloc View Dispatcher
     app->view_dispatcher = view_dispatcher_alloc();
 
     // Set View Dispatcher event callback context and callbacks

@@ -26,6 +26,7 @@ InsultsFiles* insults_files_alloc(void) {
     insults_files->imperatives = file_lines_alloc();
     insults_files->adjectives = file_lines_alloc();
     insults_files->nouns = file_lines_alloc();
+    insults_files->overlaps = file_lines_alloc();
 
     insults_files_get_lines(
         insults_files, APP_ASSETS_PATH("word_lists/imperatives.txt"), insults_files->imperatives);
@@ -33,6 +34,8 @@ InsultsFiles* insults_files_alloc(void) {
         insults_files, APP_ASSETS_PATH("word_lists/adjectives.txt"), insults_files->adjectives);
     insults_files_get_lines(
         insults_files, APP_ASSETS_PATH("word_lists/nouns.txt"), insults_files->nouns);
+    insults_files_get_lines(
+        insults_files, APP_ASSETS_PATH("word_lists/overlaps.txt"), insults_files->overlaps);
 
     return insults_files;
 }
@@ -41,6 +44,7 @@ void insults_files_free(InsultsFiles* insults_files) {
     file_lines_free(insults_files->imperatives);
     file_lines_free(insults_files->adjectives);
     file_lines_free(insults_files->nouns);
+    file_lines_free(insults_files->overlaps);
 
     furi_record_close(RECORD_STORAGE);
 
@@ -84,18 +88,55 @@ void insults_files_get_lines(InsultsFiles* insults_files, const char* path, File
     file_lines->num_lines = num_lines;
 }
 
-char* insults_files_get_insult(InsultsFiles* insults_files) {
-    FuriString* insult_string = furi_string_alloc_set_str(
-        insults_files->imperatives->lines[rand() % insults_files->imperatives->num_lines]);
+bool insults_files_check_overlap(
+    InsultsFiles* insults_files,
+    const char* adjective,
+    const char* noun) {
+    for(unsigned int i = 0; i < insults_files->overlaps->num_lines; i++) {
+        const char* line = insults_files->overlaps->lines[i];
 
-    furi_string_cat_str(insult_string, ", ");
-    furi_string_cat_str(
-        insult_string,
-        insults_files->adjectives->lines[rand() % insults_files->adjectives->num_lines]);
-    furi_string_cat_str(insult_string, " ");
-    furi_string_cat_str(
-        insult_string, insults_files->nouns->lines[rand() % insults_files->nouns->num_lines]);
-    furi_string_cat_str(insult_string, "!");
+        const char* adjective_temp = adjective;
+        const char* noun_temp = noun;
+
+        while(*adjective_temp != '\0' && *line != '\0' && *adjective_temp == *line) {
+            adjective_temp++;
+            line++;
+        }
+
+        if(*adjective_temp != '\0' || *line != ':') {
+            continue;
+        }
+
+        line++;
+
+        while(*noun_temp != '\0' && *line != '\0' && *noun_temp == *line) {
+            noun_temp++;
+            line++;
+        }
+
+        if(*noun_temp == '\0' && *line == '\0') {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+char* insults_files_get_insult(InsultsFiles* insults_files) {
+    const char* adjective;
+    const char* noun;
+
+    do {
+        adjective =
+            insults_files->adjectives->lines[rand() % insults_files->adjectives->num_lines];
+        noun = insults_files->nouns->lines[rand() % insults_files->nouns->num_lines];
+    } while(insults_files_check_overlap(insults_files, adjective, noun));
+
+    FuriString* insult_string = furi_string_alloc_printf(
+        "%s, %s %s!",
+        insults_files->imperatives->lines[rand() % insults_files->imperatives->num_lines],
+        adjective,
+        noun);
 
     char* insult_cstr = strdup(furi_string_get_cstr(insult_string));
 

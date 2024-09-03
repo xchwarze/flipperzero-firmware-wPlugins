@@ -1,0 +1,7 @@
+egg-headed:egg
+xenophobic:xenophobe
+cowardly:coward
+boorish:boor
+ape-brained:ape
+foolish:fool
+thieving:thief

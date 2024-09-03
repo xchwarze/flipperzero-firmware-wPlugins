@@ -15,6 +15,7 @@
 #include <gui/modules/popup.h>
 #include <gui/modules/submenu.h>
 #include <gui/modules/text_box.h>
+#include <gui/modules/number_input.h>
 #include <gui/modules/text_input.h>
 #include <gui/modules/variable_item_list.h>
 #include <gui/modules/widget.h>
@@ -65,7 +66,7 @@ class View {
 public:
     View() = default;
     explicit View(::View* v) noexcept;
-    operator ::View*() noexcept;
+    operator ::View*() const noexcept;
 
     View& allocate() noexcept;
 
@@ -106,9 +107,9 @@ class UWidget {
 public:
     UWidget() = default;
     UWidget(
-        AppSceneOnEnterCallback onEnter,
-        AppSceneOnEventCallback onEvent,
-        AppSceneOnExitCallback onExit,
+        const AppSceneOnEnterCallback onEnter,
+        const AppSceneOnEventCallback onEvent,
+        const AppSceneOnExitCallback onExit,
         const std::vector<View*>& additionalViews = {}) noexcept
         : enter(onEnter)
         , event(onEvent)
@@ -126,6 +127,8 @@ public:
 
     Application* application = nullptr;
 
+    virtual ~UWidget() noexcept = default;
+
 private:
     friend class Application;
     friend class ViewDispatcher;
@@ -139,17 +142,17 @@ private:
 
     void allocateViewStack(const View& widgetView) noexcept;
 
-    void addView(const UFZ::View& view) noexcept;
-    void removeView(const UFZ::View& view) noexcept;
+    void addView(const UFZ::View& view) const noexcept;
+    void removeView(const UFZ::View& view) const noexcept;
 
-    View getView() noexcept;
+    [[nodiscard]] View getView() const noexcept;
     virtual View getWidgetView() noexcept = 0;
 
     virtual void alloc() noexcept = 0;
     virtual void free() noexcept = 0;
 };
 
-class Menu : public UWidget {
+class Menu final : public UWidget {
     UFZ_COMPONENT(Menu, menu);
 
 public:
@@ -162,7 +165,7 @@ public:
     void setSelectedItem(uint32_t index) const noexcept;
 };
 
-class ButtonMenu : public UWidget {
+class ButtonMenu final : public UWidget {
     UFZ_COMPONENT(ButtonMenu, button_menu);
 
 public:
@@ -176,7 +179,7 @@ public:
     void setSelectedItem(uint32_t index) const noexcept;
 };
 
-class ButtonPanel : public UWidget {
+class ButtonPanel final : public UWidget {
     UFZ_COMPONENT(ButtonPanel, button_panel);
 
 public:
@@ -206,8 +209,8 @@ public:
         ByteChangedCallback changedCallback,
         void* context,
         uint8_t* bytes,
-        uint8_t bytesCount) noexcept;
-    void setHeaderText(const char* text) noexcept;
+        uint8_t bytesCount) const noexcept;
+    void setHeaderText(const char* text) const noexcept;
 
 private:
     ::ByteInput* byte_input = nullptr;
@@ -217,7 +220,27 @@ private:
     virtual View getWidgetView() noexcept override;
 };
 
-class DialogEx : public UWidget {
+class NumberInput : public UWidget {
+public:
+    NumberInput() = default;
+
+    void setResultCallback(
+        NumberInputCallback inputCallback,
+        void* context,
+        int32_t currentNumber,
+        int32_t min,
+        int32_t max) const noexcept;
+    void setHeaderText(const char* text) noexcept;
+
+private:
+    ::NumberInput* number_input = nullptr;
+
+    virtual void alloc() noexcept override;
+    virtual void free() noexcept override;
+    virtual View getWidgetView() noexcept override;
+};
+
+class DialogEx final : public UWidget {
     UFZ_COMPONENT(DialogEx, dialog_ex);
 
 public:
@@ -261,7 +284,7 @@ private:
     virtual View getWidgetView() noexcept override;
 };
 
-class Popup : public UWidget {
+class Popup final : public UWidget {
     UFZ_COMPONENT(Popup, popup);
 
 public:
@@ -279,7 +302,7 @@ public:
     void disableTimout() const noexcept;
 };
 
-class Submenu : public UWidget {
+class Submenu final : public UWidget {
     UFZ_COMPONENT(Submenu, submenu);
 
 public:
@@ -290,7 +313,7 @@ public:
     [[nodiscard]] const Submenu& setHeader(const char* header) const noexcept;
 };
 
-class TextBox : public UWidget {
+class TextBox final : public UWidget {
     UFZ_COMPONENT(TextBox, text_box);
 
 public:
@@ -299,7 +322,7 @@ public:
     [[nodiscard]] const TextBox& setFocus(TextBoxFocus focus) const noexcept;
 };
 
-class TextInput : public UWidget {
+class TextInput final : public UWidget {
     UFZ_COMPONENT(TextInput, text_input);
 
 public:
@@ -314,7 +337,7 @@ public:
     void setHeaderText(const char* text) const noexcept;
 };
 
-class VariableItemList : public UWidget {
+class VariableItemList final : public UWidget {
     UFZ_COMPONENT(VariableItemList, variable_item_list);
 
 public:
@@ -328,7 +351,7 @@ public:
     [[nodiscard]] uint8_t getSelectedItemIndex() const noexcept;
 };
 
-class Widget : public UWidget {
+class Widget final : public UWidget {
     UFZ_COMPONENT(Widget, widget);
 
 public:

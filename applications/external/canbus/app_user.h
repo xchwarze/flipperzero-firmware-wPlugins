@@ -16,6 +16,7 @@
 #include "scenes_config/app_scene_functions.h"
 
 #include "libraries/mcp_can_2515.h"
+#include "libraries/pid_library.h"
 
 #define PATHAPP    "apps_data/canbus"
 #define PATHAPPEXT EXT_PATH(PATHAPP)
@@ -35,6 +36,8 @@ typedef struct {
     CANFRAME can_frame;
     CANFRAME* frameArray;
     CANFRAME* frame_to_send;
+
+    OBDII obdii;
 
     uint32_t time;
     uint32_t times[100];
@@ -66,6 +69,8 @@ typedef struct {
     uint8_t sender_selected_item;
     uint8_t sender_id_compose[4];
 
+    uint32_t obdii_aux_index;
+
     uint64_t size_of_storage;
 } App;
 
@@ -73,16 +78,21 @@ typedef struct {
 typedef enum {
     SniffingTestOption,
     SenderOption,
+    ObdiiOption,
     ReadLOGOption,
+    PlayLOGOption,
     SettingsOption,
     AboutUsOption,
 } MainMenuOptions;
 
+// These are the events on the main menu
 typedef enum {
     SniffingOptionEvent,
     SenderOptionEvent,
     SettingsOptionEvent,
+    ObdiiOptionEvent,
     ReadLOGOptionEvent,
+    PlayLOGOptionEvent,
     AboutUsEvent,
 } MainMenuEvents;
 
@@ -92,10 +102,14 @@ typedef enum {
     CristyalClkOption,
     SaveLogsOption
 } OptionSettings;
+
+// These are the events on the settings menu
 typedef enum {
     BitrateOptionEvent,
     CristyalClkOptionEvent
 } SettingsMenuEvent;
+
+// These are the sender events
 typedef enum {
     ChooseIdEvent,
     SetIdEvent,

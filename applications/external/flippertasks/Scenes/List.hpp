@@ -3,7 +3,7 @@
 
 namespace FTasks::List {
 void callback(void* context, uint32_t index) noexcept;
-void viewInputEvent(UFZ::Application& application, UFZ::View& view) noexcept;
+void viewInputEvent(UFZ::Application& application, const UFZ::View& view) noexcept;
 bool viewInputEventCallback(InputEvent* event, void* context) noexcept;
 
 template <Scenes::Scenes T>
@@ -41,8 +41,8 @@ void enter(void* context) noexcept {
 }
 
 template <Scenes::Scenes T>
-bool event(void* context, SceneManagerEvent event) noexcept {
-    auto* app = (UFZ::Application*)context;
+bool event(void* context, const SceneManagerEvent event) noexcept {
+    const auto* app = static_cast<UFZ::Application*>(context);
     auto* ctx = CTX(app->getUserPointer());
 
     bool consumed = false;
