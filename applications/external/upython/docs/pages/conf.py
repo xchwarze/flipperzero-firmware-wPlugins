@@ -57,4 +57,6 @@ autodoc_default_options = {
     'member-order': 'bysource',
 }
 
-add_module_names = False
+add_module_names = True
+
+maximum_signature_line_length = 50

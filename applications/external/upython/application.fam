@@ -12,6 +12,7 @@ App(
         "*.c*",
         "!./lib/micropython",
         "!./lib/micropython-port",
+        "!./docs/pages",
         "!./flipperzero",
         "!./venv",
         "!./dist",

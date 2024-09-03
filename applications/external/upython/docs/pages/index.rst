@@ -3,12 +3,11 @@
    :maxdepth: 2
 
    quickstart
-   installation
-   users-guide
-   best-practice
-   architecture
    reference
-   Changes </changes>
+   features
+   examples
+   roadmap
+   Changelog </changelog>
    License </license>
 
 MicroPython on Flipper Zero
@@ -32,6 +31,8 @@ Features
 * Support for basic language constructs like functions, classes, loops, ...
 * Access the Flipper's hardware: buttons, speaker, LED & screen light, ...
 * No custom firmware required, so no risk to brick your Flipper.
+
+A complete list can be found in the :doc:`features </features>` section.
 
 How to Start
 ------------
