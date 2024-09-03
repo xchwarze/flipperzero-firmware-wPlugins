@@ -23,6 +23,7 @@ typedef struct InsultsFiles {
     FileLines* imperatives;
     FileLines* adjectives;
     FileLines* nouns;
+    FileLines* overlaps;
 } InsultsFiles;
 
 FileLines* file_lines_alloc(void);
@@ -34,6 +35,11 @@ InsultsFiles* insults_files_alloc(void);
 void insults_files_free(InsultsFiles* insults_files);
 
 void insults_files_get_lines(InsultsFiles* insults_files, const char* path, FileLines* file_lines);
+
+bool insults_files_check_overlap(
+    InsultsFiles* insults_files,
+    const char* adjective,
+    const char* noun);
 
 char* insults_files_get_insult(InsultsFiles* insults_files);
 
