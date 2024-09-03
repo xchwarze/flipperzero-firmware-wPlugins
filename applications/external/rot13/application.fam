@@ -1,16 +1,13 @@
-# For details & more options, see documentation/AppManifests.md in firmware repo
-
 App(
-    appid="rot13_app",  # Must be unique
-    name="ROT13",  # Displayed in menus
+    appid="rot13",
+    name="ROT13",
     apptype=FlipperAppType.EXTERNAL,
     entry_point="rot13_main",
     stack_size=2 * 1024,
-    fap_category="Tools",
-    # Optional values
-    fap_version="0.1",
     fap_icon="icon.png",
-    fap_description="Cipher text with ROT13",
+    fap_category="Tools",
     fap_author="nothingbutlucas",
     fap_weburl="https://codeberg.org/nothingbutlucas/flipperzero_rot13",
+    fap_version="0.1",
+    fap_description="Cipher text with ROT13",
 )

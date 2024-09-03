@@ -51,6 +51,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Add the Procrastination animation #3860 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3860)
 - [Patreon Build Updates](https://www.patreon.com/RogueMaster/membership): [Procrastinating and Intruder Alert animations have been added to these builds: ANIMSWITCHER, Dolphin, Stock & RM Minimal](https://github.com/RogueMaster/awesome-flipperzero-withModules/commit/643b94c9cbf00a59cb80bbef38d6b0a8b6910389)
 - OFW: [Publishing T5577 page 1 block count macro #3864 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3864)
+- Added: [ROT13 v0.1 (By nothingbutlucas)](https://codeberg.org/nothingbutlucas/flipperzero_rot13)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
@@ -551,6 +552,7 @@ $ ./fbt dolphin_ext
 - [RFID Fuzzer v1.6 (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/507)
 - [RGB LED (By flyandi)](https://github.com/flyandi/flipper_zero_rgb_led)
 - [R.O.B. Control (By riney)](https://github.com/riney/flip_rob)
+- [ROT13 v0.1 (By nothingbutlucas)](https://codeberg.org/nothingbutlucas/flipperzero_rot13)
 - [SAM (By Unknown)][Original?](https://github.com/ctoth/SAM)
 - [Oscilloscope v0.2 (By anfractuosity)](https://github.com/anfractuosity/flipperscope)
 - [SD SPI v0.2 (By Gl1tchub)](https://github.com/Gl1tchub/Flipperzero-SD-SPI) `Req: External SD Board`
