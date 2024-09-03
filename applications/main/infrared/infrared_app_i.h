@@ -174,9 +174,9 @@ typedef enum {
  * @param[in] infrared pointer to the application instance.
  * @param[in] name pointer to a zero-terminated string containing the signal name.
  * @param[in] signal pointer to the signal to be added.
- * @return true if the remote was successfully created, false otherwise.
+ * @return InfraredErrorCodeNone if the remote was successfully created, otherwise error code.
  */
-bool infrared_add_remote_with_button(
+InfraredErrorCode infrared_add_remote_with_button(
     const InfraredApp* infrared,
     const char* name,
     const InfraredSignal* signal);
@@ -186,9 +186,10 @@ bool infrared_add_remote_with_button(
  *
  * @param[in] infrared pointer to the application instance.
  * @param[in] new_name pointer to a zero-terminated string containing the new remote name.
- * @return true if the remote was successfully renamed, false otherwise.
+ * @return InfraredErrorCodeNone if the remote was successfully renamed, otherwise error code.
  */
-bool infrared_rename_current_remote(const InfraredApp* infrared, const char* new_name);
+InfraredErrorCode
+    infrared_rename_current_remote(const InfraredApp* infrared, const char* new_name);
 
 /**
  * @brief Begin transmission of the currently loaded signal.
@@ -236,9 +237,9 @@ void infrared_blocking_task_start(InfraredApp* infrared, FuriThreadCallback call
  * (e.g. to display the results), the caller code MUST set it explicitly.
  *
  * @param[in,out] infrared pointer to the application instance.
- * @return true if the blocking task finished successfully, false otherwise.
+ * @return InfraredErrorCodeNone if the blocking task finished successfully, otherwise error code.
  */
-bool infrared_blocking_task_finalize(InfraredApp* infrared);
+InfraredErrorCode infrared_blocking_task_finalize(InfraredApp* infrared);
 
 /**
  * @brief Set the internal text store with formatted text.
