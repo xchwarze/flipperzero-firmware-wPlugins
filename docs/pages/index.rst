@@ -6,6 +6,7 @@
    reference
    features
    examples
+   roadmap
    Changelog </changelog>
    License </license>
 
