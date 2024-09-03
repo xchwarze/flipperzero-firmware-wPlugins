@@ -54,10 +54,10 @@ struct ApplicationData {
 };
 
 namespace Data {
-void writeContainerString(const NoteContainer& container, UFZ::File& file) noexcept;
-void readContainerString(NoteContainer& container, UFZ::File& file) noexcept;
+void writeContainerString(const NoteContainer& container, const UFZ::File& file) noexcept;
+void readContainerString(NoteContainer& container, const UFZ::File& file) noexcept;
 
-void save(UFZ::Application& application) noexcept;
-void load(UFZ::Application& application) noexcept;
+void save(const UFZ::Application& application) noexcept;
+void load(const UFZ::Application& application) noexcept;
 }
 }

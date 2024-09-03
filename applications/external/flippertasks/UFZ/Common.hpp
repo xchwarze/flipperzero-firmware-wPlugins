@@ -144,15 +144,15 @@ public:
         uint32_t tickPeriod = 0) noexcept;
 
     template <typename T>
-    T* getWidget(size_t i) noexcept {
+    T* getWidget(const size_t i) noexcept {
         return static_cast<T*>(widgets[i]);
     }
 
-    const ViewDispatcher& getViewDispatcher() noexcept;
-    const SceneManager& getSceneManager() noexcept;
-    const Filesystem& getFilesystem() noexcept;
+    [[nodiscard]] const ViewDispatcher& getViewDispatcher() const noexcept;
+    [[nodiscard]] const SceneManager& getSceneManager() const noexcept;
+    [[nodiscard]] const Filesystem& getFilesystem() const noexcept;
 
-    void* getUserPointer() noexcept;
+    [[nodiscard]] void* getUserPointer() const noexcept;
 
     void destroy() noexcept;
 
