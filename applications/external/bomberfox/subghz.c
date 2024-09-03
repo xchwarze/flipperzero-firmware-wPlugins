@@ -1,3 +1,5 @@
+#include <dolphin/dolphin.h>
+
 #include "subghz.h"
 #include "types.h"
 #include "helpers.h"
@@ -57,7 +59,11 @@ void tx_death(BomberAppState* state) {
     }
 
     state->tx_buffer[0] = action;
-    state->tx_buffer[1] = 0x00;
+    if(state->suicide) {
+        state->tx_buffer[1] = 0x01;
+    } else {
+        state->tx_buffer[1] = 0x00;
+    }
     state->tx_buffer[2] = 0x00;
 
     FURI_LOG_I(TAG, "Transmitting death: action=0x%02X", action);
@@ -121,11 +127,10 @@ void bomber_game_post_rx(BomberAppState* state, size_t rx_size) {
         break;
     case ACTION_DEATH:
         bomber_app_set_mode(state, BomberAppMode_GameOver);
-        if(state->isPlayerTwo) {
-            state->dead = WhoDied_Fox;
-        } else {
-            state->dead = WhoDied_Wolf;
+        if(state->rx_buffer[1] == 0x01) {
+            state->suicide = true;
         }
+        dolphin_deed(DolphinDeedPluginGameWin);
         break;
     }
 }

@@ -1,3 +1,5 @@
+#include <dolphin/dolphin.h>
+
 #include "bomber_loop.h"
 #include "helpers.h"
 #include "subghz.h"
@@ -31,6 +33,8 @@ static void bomber_app_wait(BomberAppState* state) {
 // Start playing
 static void bomber_app_start(BomberAppState* state) {
     FURI_LOG_I(TAG, "Start playing");
+
+    dolphin_deed(DolphinDeedPluginGameStart);
 
     // Figure out player starting positions from level data
     state->fox = bomber_app_get_block(state->level, BlockType_Fox);
@@ -345,7 +349,7 @@ void bomber_main_loop(BomberAppState* state) {
     }
 }
 
-static bool handle_explosion(BomberAppState* state, uint8_t x, uint8_t y) {
+static bool handle_explosion(BomberAppState* state, uint8_t x, uint8_t y, bool ownBombs) {
     // Out of bounds.
     // No need to check negatives as uint8_t is unsigned and will underflow, resulting in a value way over MAX_X and MAX_Y.
     if(x >= MAX_X || y >= MAX_Y) {
@@ -356,12 +360,9 @@ static bool handle_explosion(BomberAppState* state, uint8_t x, uint8_t y) {
 
     if(player->x == x && player->y == y) {
         tx_death(state);
+        state->isDead = true;
+        state->suicide = ownBombs;
         bomber_app_set_mode(state, BomberAppMode_GameOver);
-        if(state->isPlayerTwo) {
-            state->dead = WhoDied_Wolf;
-        } else {
-            state->dead = WhoDied_Fox;
-        }
     }
 
     switch(state->level[ix(x, y)]) {
@@ -379,7 +380,7 @@ static bool handle_explosion(BomberAppState* state, uint8_t x, uint8_t y) {
     }
 }
 
-static bool update_bombs(Player* player, BomberAppState* state) {
+static bool update_bombs(Player* player, BomberAppState* state, bool ownBombs) {
     bool changed = false;
 
     for(uint8_t i = 0; i < MAX_BOMBS; i++) {
@@ -397,10 +398,10 @@ static bool update_bombs(Player* player, BomberAppState* state) {
                 bomb->state = BombState_Explode;
 
                 for(uint8_t j = 0; j < player->bomb_power + 1; j++) {
-                    changed &= handle_explosion(state, bomb->x - j, bomb->y);
-                    changed &= handle_explosion(state, bomb->x + j, bomb->y);
-                    changed &= handle_explosion(state, bomb->x, bomb->y + j);
-                    changed &= handle_explosion(state, bomb->x, bomb->y - j);
+                    changed &= handle_explosion(state, bomb->x - j, bomb->y, ownBombs);
+                    changed &= handle_explosion(state, bomb->x + j, bomb->y, ownBombs);
+                    changed &= handle_explosion(state, bomb->x, bomb->y + j, ownBombs);
+                    changed &= handle_explosion(state, bomb->x, bomb->y - j, ownBombs);
                 }
 
                 continue;
@@ -419,8 +420,8 @@ static bool update_bombs(Player* player, BomberAppState* state) {
 
 bool bomber_game_tick(BomberAppState* state) {
     bool changed = false;
-    changed &= update_bombs(&state->fox, state);
-    changed &= update_bombs(&state->wolf, state);
+    changed &= update_bombs(&state->fox, state, !state->isPlayerTwo);
+    changed &= update_bombs(&state->wolf, state, state->isPlayerTwo);
 
     return changed;
 }

@@ -8,7 +8,6 @@
 #include "radio_device_loader.h"
 #include "types.h"
 #include "subghz.h"
-//#include <dolphin/dolphin.h>
 
 static BomberAppState* state;
 
@@ -168,6 +167,9 @@ int32_t bomber_main(void* p) {
 
     state->selectedLevel = 0;
     state->rxMode = RxMode_Command;
+
+    state->isDead = false;
+    state->suicide = false;
 
     bomber_app_set_mode(state, BomberAppMode_PlayerSelect);
 
