@@ -2,6 +2,7 @@
 #include <lib/toolbox/stream/stream.h>
 #include <lib/flipper_format/flipper_format_i.h>
 #include "../helpers/weather_station_types.h"
+#include <float_tools.h>
 
 #define TAG "WSBlockGeneric"
 
@@ -251,4 +252,44 @@ SubGhzProtocolStatus ws_block_generic_deserialize_check_count_bit(
         }
     } while(false);
     return ret;
+}
+
+void ws_block_generic_get_string(WSBlockGeneric* instance, FuriString* output) {
+    furi_string_cat_printf(
+        output, "%s\r\n%dbit", instance->protocol_name, instance->data_count_bit);
+    if(instance->channel != WS_NO_CHANNEL) {
+        furi_string_cat_printf(output, "   Ch: %01d", instance->channel);
+    }
+    if(instance->btn != WS_NO_BTN) {
+        furi_string_cat_printf(output, "   Btn: %01d\r\n", instance->btn);
+    } else {
+        furi_string_cat(output, "\r\n");
+    }
+
+    if(instance->id != WS_NO_ID) {
+        furi_string_cat_printf(output, "Sn: 0x%02lX   ", instance->id);
+    }
+    if(instance->battery_low != WS_NO_BATT) {
+        furi_string_cat_printf(output, "Batt: %s\r\n", (!instance->battery_low ? "ok" : "low"));
+    } else {
+        furi_string_cat(output, "\r\n");
+    }
+
+    furi_string_cat_printf(
+        output,
+        "Data: 0x%lX%08lX\r\n",
+        (uint32_t)(instance->data >> 32),
+        (uint32_t)(instance->data));
+
+    if(!float_is_equal(instance->temp, WS_NO_TEMPERATURE)) {
+        bool is_metric = furi_hal_rtc_get_locale_units() == FuriHalRtcLocaleUnitsMetric;
+        furi_string_cat_printf(
+            output,
+            "Temp: %3.1f%c   ",
+            (double)(is_metric ? instance->temp : locale_celsius_to_fahrenheit(instance->temp)),
+            is_metric ? 'C' : 'F');
+    }
+    if(instance->humidity != WS_NO_HUMIDITY) {
+        furi_string_cat_printf(output, "Hum: %d%%", instance->humidity);
+    }
 }
