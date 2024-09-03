@@ -44,9 +44,13 @@ if [ "${prevremotedir}" != "" ]; then
     mv -T "${prevremotedir}" "${path}"
 fi
 
-# Add new remote at the top
-echo "${repo} ${branch} ${subdir}" | cat - "${gitsubtree}" 2> /dev/null > "${gitsubtree}.new"
-mv "${gitsubtree}.new" "${gitsubtree}"
+if [ -e "${gitsubtree}" ]; then
+    # Add new remote at the top
+    echo "${repo} ${branch} ${subdir}" | cat - "${gitsubtree}" > "${gitsubtree}.new"
+    mv "${gitsubtree}.new" "${gitsubtree}"
+else
+    echo "${repo} ${branch} ${subdir}" > "${gitsubtree}"
+fi
 git add "${gitsubtree}"
 git commit --amend --no-edit
 

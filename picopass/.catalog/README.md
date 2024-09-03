@@ -34,7 +34,7 @@ There are some situations when the offline loclass may not find a key, such as:
 
 # NR-MAC Attack
 
-Due to the nature of how secure mode picopass works, it is possible to emulate some public fields from a card and capture the reader's response, which can be used to authenticate.  Two of the pieces involved in this are the `NR` and `MAC`.  This allows you to get a dump of the card, except for the key, even if you don't know the key.  For picopass in non-HID systems this can allow you to see what the data looks like.  For iClass SE the data (SIO) is encrypted, but a friend with a HID SAM can decrypt it.
+Due to the nature of how secure mode picopass works, it is possible to emulate some public fields from a card and capture the reader's response, which can be used to authenticate.  Two of the pieces involved in this are the 'NR' and 'MAC'.  This allows you to get a dump of the card, except for the key, even if you don't know the key.  For picopass in non-HID systems this can allow you to see what the data looks like.  For iClass SE the data (SIO) is encrypted, but a friend with a HID SAM can decrypt it.
 
 *These instructions are intended to be performed all at the same time.  If you use the card with the reader between Card Part 1 and Card Part 2, then Card Part 2 will fail.*
 
