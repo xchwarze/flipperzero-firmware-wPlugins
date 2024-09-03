@@ -52,6 +52,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [Patreon Build Updates](https://www.patreon.com/RogueMaster/membership): [Procrastinating and Intruder Alert animations have been added to these builds: ANIMSWITCHER, Dolphin, Stock & RM Minimal](https://github.com/RogueMaster/awesome-flipperzero-withModules/commit/643b94c9cbf00a59cb80bbef38d6b0a8b6910389)
 - OFW: [Publishing T5577 page 1 block count macro #3864 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3864)
 - Added: [ROT13 v0.1 (By nothingbutlucas)](https://codeberg.org/nothingbutlucas/flipperzero_rot13)
+- Updated: [Wendigo Bluetooth Tracker WIP v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
