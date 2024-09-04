@@ -1,12 +1,7 @@
 #include <furi.h>
 #include <furi_hal.h>
-#include <cli/cli.h>
 #include <gui/gui.h>
 #include <stm32wbxx_ll_dma.h>
-#include <dialogs/dialogs.h>
-#include <notification/notification_messages.h>
-#include <gui/view_holder.h>
-#include <toolbox/stream/file_stream.h>
 #include "wav_player_hal.h"
 #include "wav_parser.h"
 #include "wav_player_view.h"
@@ -81,6 +76,23 @@ static void wav_player_dma_isr(void* ctx) {
     }
 }
 
+static void exit_callback(void* ctx) {
+    FuriMessageQueue* event_queue = ctx;
+
+    WavPlayerEvent event;
+    event.type = WavPlayerEventCtrlBack;
+    furi_message_queue_put(event_queue, &event, 0);
+}
+
+static bool thread_exit_signal_callback(uint32_t signal, void* arg, void* ctx) {
+    UNUSED(arg);
+    if(signal == FuriSignalExit) {
+        exit_callback(ctx);
+        return true;
+    }
+    return false;
+}
+
 static WavPlayerApp* app_alloc() {
     WavPlayerApp* app = malloc(sizeof(WavPlayerApp));
     app->samples_count_half = 1024 * 4;
@@ -99,13 +111,16 @@ static WavPlayerApp* app_alloc() {
     app->view_holder = view_holder_alloc();
     app->view = wav_player_view_alloc();
 
-    app->path = furi_string_alloc();
-
+    view_holder_set_back_callback(app->view_holder, exit_callback, app->queue);
     view_holder_attach_to_gui(app->view_holder, app->gui);
     view_holder_set_view(app->view_holder, wav_player_view_get_view(app->view));
+    view_holder_send_to_front(app->view_holder);
 
     app->notification = furi_record_open(RECORD_NOTIFICATION);
     notification_message(app->notification, &sequence_display_backlight_enforce_on);
+
+    furi_thread_set_signal_callback(
+        furi_thread_get_current(), thread_exit_signal_callback, app->queue);
 
     return app;
 }
@@ -335,10 +350,6 @@ static void ctrl_callback(WavPlayerCtrl ctrl, void* ctx) {
         break;
     case WavPlayerCtrlOk:
         event.type = WavPlayerEventCtrlOk;
-        furi_message_queue_put(event_queue, &event, 0);
-        break;
-    case WavPlayerCtrlBack:
-        event.type = WavPlayerEventCtrlBack;
         furi_message_queue_put(event_queue, &event, 0);
         break;
     default:
