@@ -2,19 +2,20 @@
 #include <gui/gui.h>
 #include <input/input.h>
 #include <stdlib.h>
-#include <counter_icons.h>
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
+#include <storage/storage.h>
 
-#define MAX_COUNT     99999
-#define NUM_WIDTH     12
-#define BOXTIME       2
-#define MIN_BOXWIDTH  30
-#define BOXHEIGHT     30
-#define MIDDLE_Y      32 - BOXHEIGHT / 2
-#define OFFSET_X      8
-#define OFFSET_Y      9
-#define VIBRO_TIME_MS 20
+#define MAX_COUNT         99999
+#define NUM_WIDTH         12
+#define BOXTIME           2
+#define MIN_BOXWIDTH      30
+#define BOXHEIGHT         30
+#define MIDDLE_Y          32 - BOXHEIGHT / 2
+#define OFFSET_X          8
+#define OFFSET_Y          9
+#define VIBRO_TIME_MS     20
+#define COUNTER_FILE_PATH APP_DATA_PATH("tex_counter_value.txt")
 
 typedef struct {
     FuriMessageQueue* input_queue;
@@ -28,6 +29,40 @@ typedef struct {
     int boxtimer;
     bool vibro;
 } Counter;
+
+void save_counter_value(int count) {
+    Storage* storage = furi_record_open(RECORD_STORAGE);
+    File* file = storage_file_alloc(storage);
+
+    if(storage_file_open(file, COUNTER_FILE_PATH, FSAM_WRITE, FSOM_CREATE_ALWAYS)) {
+        char buffer[16];
+        snprintf(buffer, sizeof(buffer), "%d", count);
+        storage_file_write(file, buffer, strlen(buffer));
+        storage_file_close(file);
+    }
+
+    storage_file_free(file);
+    furi_record_close(RECORD_STORAGE);
+}
+
+int load_counter_value() {
+    Storage* storage = furi_record_open(RECORD_STORAGE);
+    File* file = storage_file_alloc(storage);
+    int count = 0;
+
+    if(storage_file_open(file, COUNTER_FILE_PATH, FSAM_READ, FSOM_OPEN_EXISTING)) {
+        char buffer[16];
+        if(storage_file_read(file, buffer, sizeof(buffer)) > 0) {
+            count = atoi(buffer);
+        }
+        storage_file_close(file);
+    }
+
+    storage_file_free(file);
+    furi_record_close(RECORD_STORAGE);
+
+    return count;
+}
 
 void state_free(Counter* c) {
     gui_remove_view_port(c->gui, c->view_port);
@@ -84,7 +119,7 @@ Counter* state_init() {
     c->gui = furi_record_open(RECORD_GUI);
     c->mutex = furi_mutex_alloc(FuriMutexTypeNormal);
     c->notifications = furi_record_open(RECORD_NOTIFICATION);
-    c->count = 0;
+    c->count = load_counter_value(); // Load the saved counter value
     c->boxtimer = 0;
     c->vibro = false;
     view_port_input_callback_set(c->view_port, input_callback, c);
@@ -93,7 +128,7 @@ Counter* state_init() {
     return c;
 }
 
-int32_t counterapp(void) {
+int32_t texcounterapp(void) {
     Counter* c = state_init();
 
     InputEvent input;
@@ -112,6 +147,7 @@ int32_t counterapp(void) {
                         c->pressed = true;
                         c->boxtimer = BOXTIME;
                         c->count++;
+                        save_counter_value(c->count); // Save counter value
                         if(c->vibro) {
                             notification_message(c->notifications, &sequence_set_vibro_on);
                             furi_delay_ms(VIBRO_TIME_MS);
@@ -124,6 +160,7 @@ int32_t counterapp(void) {
                         c->pressed = true;
                         c->boxtimer = BOXTIME;
                         c->count--;
+                        save_counter_value(c->count); // Save counter value
                     }
                     break;
                 default:
@@ -133,6 +170,7 @@ int32_t counterapp(void) {
                 switch(input.key) {
                 case InputKeyBack:
                     c->count = 0;
+                    save_counter_value(c->count); // Save counter value
                     break;
                 case InputKeyOk:
                     c->vibro = !c->vibro;
