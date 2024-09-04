@@ -1,0 +1,17 @@
+# For details & more options, see documentation/AppManifests.md in firmware repo
+
+App(
+    appid="flipper_platformer_game",  # Must be unique
+    name="Devillier's Platformer",  # Displayed in menus
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="flipper_platformer_game",
+    stack_size=2 * 1024,
+    fap_category="Examples",
+    # Optional values
+    # fap_version="0.1",
+    fap_icon="flipper_platformer_game.png",  # 10x10 1-bit PNG
+    # fap_description="A simple app",
+    # fap_author="J. Doe",
+    # fap_weburl="https://github.com/user/adevil5",
+    fap_icon_assets="images",  # Image assets to compile for this application
+)
