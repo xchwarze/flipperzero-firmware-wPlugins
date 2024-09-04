@@ -1,0 +1,14 @@
+App(
+    appid="apple_grabber",
+    name="Apple Grabber",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="apple_grabber_app",
+    stack_size=2 * 1024,
+    fap_category="Games",
+    fap_version="0.1",
+    fap_icon="icon.png",
+    fap_description="Apple grabber game",
+    fap_author="Julio Rodriguez",
+    # fap_weburl="https://github.com/user/test",
+    fap_icon_assets="images", 
+)
