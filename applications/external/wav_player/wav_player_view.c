@@ -100,6 +100,9 @@ static bool wav_player_view_input_callback(InputEvent* event, void* context) {
             } else if(event->key == InputKeyOk) {
                 wav_player_view->callback(WavPlayerCtrlOk, wav_player_view->context);
                 consumed = true;
+            } else if(event->key == InputKeyBack) {
+                wav_player_view->callback(WavPlayerCtrlBack, wav_player_view->context);
+                consumed = true;
             }
         }
     }
