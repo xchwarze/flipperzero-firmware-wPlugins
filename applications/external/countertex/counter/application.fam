@@ -1,0 +1,16 @@
+App(
+    appid="texcounter",
+    name="TEX-Counter",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="texcounterapp",
+    requires=[
+        "gui",
+    ],
+    fap_category="Tools",
+    fap_icon="icons/counter_icon.png",
+    fap_icon_assets="icons",
+    fap_author="@TEXploder",
+    fap_weburl="https://github.com/TEXploder/TEX-Counter",
+    fap_version="1.5",
+    fap_description="Improved counter",
+)
