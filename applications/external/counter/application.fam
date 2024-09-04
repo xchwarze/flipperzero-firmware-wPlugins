@@ -2,14 +2,15 @@ App(
     appid="counter",
     name="Counter",
     apptype=FlipperAppType.EXTERNAL,
-    entry_point="counterapp",
-    fap_category="Tools",
+    entry_point="texcounterapp",
     fap_icon="icons/counter_icon.png",
-    fap_icon_assets="icons",
-    fap_author="Krulknul",
-    fap_weburl="https://github.com/Krulknul/dolphin-counter",
-    fap_version="1.4",
-    fap_description="Simple counter",
+    fap_category="Tools",
+    fap_author="TEXploder",
+    fap_weburl="https://github.com/TEXploder/TEX-Counter",
+    fap_version="1.5",
+    fap_description="Improved counter",
     #  [Improved (By plasticuproject)](https://github.com/plasticuproject/dolphin-better-counter)
     #  [Improve counter with extending range and adding vibro feedback #2 (By vzhestkov)](https://github.com/Krulknul/dolphin-counter/pull/2)
+    #  [Counter v1.4 (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
+    #  [Counter v1.5 (By Krulknul & TEXploder)](https://github.com/TEXploder/TEX-Counter)
 )
