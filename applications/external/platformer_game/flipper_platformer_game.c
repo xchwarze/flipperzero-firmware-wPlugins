@@ -6,7 +6,7 @@
 
 #define SCREEN_WIDTH  128
 #define SCREEN_HEIGHT 64
-#define CHAR_WIDTH    4
+#define CHAR_WIDTH2   4
 #define CHAR_HEIGHT   6
 #define TILE_SIZE     4
 #define MOVE_SPEED    1
@@ -135,7 +135,7 @@ static void draw_level(Canvas* canvas, int camera_x) {
 }
 
 static void draw_character(Canvas* canvas, Character* character, int camera_x) {
-    canvas_draw_box(canvas, character->x - camera_x, character->y, CHAR_WIDTH, CHAR_HEIGHT);
+    canvas_draw_box(canvas, character->x - camera_x, character->y, CHAR_WIDTH2, CHAR_HEIGHT);
 }
 
 static bool check_collision(int x, int y, int width, int height) {
@@ -163,12 +163,12 @@ static void update_character(Character* character, GameContext* game_context) {
 
     // Update vertical position
     int new_y = character->y + (int)character->y_velocity;
-    if(!check_collision(character->x, new_y, CHAR_WIDTH, CHAR_HEIGHT)) {
+    if(!check_collision(character->x, new_y, CHAR_WIDTH2, CHAR_HEIGHT)) {
         character->y = new_y;
         character->is_jumping = true;
     } else {
         // Find the ground
-        while(check_collision(character->x, character->y + 1, CHAR_WIDTH, CHAR_HEIGHT)) {
+        while(check_collision(character->x, character->y + 1, CHAR_WIDTH2, CHAR_HEIGHT)) {
             character->y--;
         }
         character->y_velocity = 0;
@@ -397,7 +397,7 @@ int32_t flipper_platformer_game(void* p) {
             }
 
             // Check for collision and update if no collision
-            if(!check_collision(new_x, game_context.character.y, CHAR_WIDTH, CHAR_HEIGHT)) {
+            if(!check_collision(new_x, game_context.character.y, CHAR_WIDTH2, CHAR_HEIGHT)) {
                 game_context.character.x = new_x;
             }
 
