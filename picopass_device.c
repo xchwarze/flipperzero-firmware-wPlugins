@@ -261,13 +261,18 @@ bool picopass_device_save(PicopassDevice* dev, const char* dev_name) {
     return false;
 }
 
-bool picopass_hex_str_to_uint8(const char* value_str, uint8_t* value) {
+bool picopass_hex_str_to_uint8(const char* value_str, size_t max, uint8_t* value) {
     furi_check(value_str);
     furi_check(value);
 
     bool parse_success = false;
-    while(*value_str && value_str[1]) {
-        parse_success = hex_char_to_uint8(*value_str, value_str[1], value++);
+    size_t count = 0;
+    while(value_str[0] && value_str[1]) {
+        if(count++ >= max) {
+            parse_success = true;
+            break;
+        }
+        parse_success = hex_char_to_uint8(value_str[0], value_str[1], value++);
         if(!parse_success) break;
         value_str += 3;
     }
@@ -315,7 +320,8 @@ static bool picopass_device_load_data(PicopassDevice* dev, FuriString* path, boo
                 memset(card_data[i].data, 0, PICOPASS_BLOCK_LEN);
             } else {
                 FURI_LOG_D(TAG, "Block %i: %s (hex)", i, furi_string_get_cstr(block_str));
-                if(!picopass_hex_str_to_uint8(furi_string_get_cstr(block_str), card_data[i].data)) {
+                if(!picopass_hex_str_to_uint8(
+                       furi_string_get_cstr(block_str), PICOPASS_BLOCK_LEN, card_data[i].data)) {
                     block_read = false;
                     break;
                 }
@@ -355,7 +361,8 @@ static bool picopass_device_load_data(PicopassDevice* dev, FuriString* path, boo
                 memset(card_data[i].data, 0, PICOPASS_BLOCK_LEN);
             } else {
                 FURI_LOG_D(TAG, "Block %i: %s (hex)", i, furi_string_get_cstr(block_str));
-                if(!picopass_hex_str_to_uint8(furi_string_get_cstr(block_str), card_data[i].data)) {
+                if(!picopass_hex_str_to_uint8(
+                       furi_string_get_cstr(block_str), PICOPASS_BLOCK_LEN, card_data[i].data)) {
                     block_read = false;
                     break;
                 }
