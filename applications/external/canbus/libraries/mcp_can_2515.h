@@ -1,7 +1,7 @@
 #ifndef __MCP_CAN_2515_H_
 #define __MCP_CAN_2515_H_
 
-#include "spi_lib.h"
+#include "Spi_lib.h"
 #include "log_user.h"
 
 #ifdef __LOG_USER_H_

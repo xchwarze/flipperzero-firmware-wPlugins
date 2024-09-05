@@ -65,8 +65,6 @@ typedef struct {
     uint32_t sniffer_index;
     uint32_t sniffer_index_aux;
 
-    uint8_t config_timing_index;
-
     uint8_t num_of_devices;
     uint8_t sender_selected_item;
     uint8_t sender_id_compose[4];
@@ -82,7 +80,6 @@ typedef enum {
     SenderOption,
     ObdiiOption,
     ReadLOGOption,
-    PlayLOGOption,
     SettingsOption,
     AboutUsOption,
 } MainMenuOptions;
@@ -94,7 +91,6 @@ typedef enum {
     SettingsOptionEvent,
     ObdiiOptionEvent,
     ReadLOGOptionEvent,
-    PlayLOGOptionEvent,
     AboutUsEvent,
 } MainMenuEvents;
 
@@ -117,12 +113,6 @@ typedef enum {
     SetIdEvent,
     ReturnEvent
 } SenderEvents;
-
-// These are the player events
-typedef enum {
-    ChooseTimingEvent,
-    ReturnTimingEvent
-} PlayerEvents;
 
 // These are the options to save
 typedef enum {
