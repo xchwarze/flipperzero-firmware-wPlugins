@@ -83,4 +83,3 @@ void action_ir_power_otg(bool enable) {
     else
         furi_hal_power_disable_otg();
 }
->
