@@ -1,4 +1,4 @@
-#include "Spi_lib.h"
+#include "spi_lib.h"
 
 // Function to callback for the SPI to work
 inline static void furi_hal_spi_bus_r_handle_event_callback(
