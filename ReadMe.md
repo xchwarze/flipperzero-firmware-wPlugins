@@ -45,7 +45,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - UL: SubGHz: [Add new protocols: Marantec24 (static 24 bit) and GangQi (static 34 bit) (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/3a193f7dc59a7de0b0e62f0506f0fa2080706e54)
 - Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac)
 - Updated: NFC: [Parser for SmartRider (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/203)
-- OFW: [feat: Add up and down button drawing functions to GUI elements #3804 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3804)
+- OFW: [feat: Add up and down button drawing functions to GUI elements #3804 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3804)
+- Updated: [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
