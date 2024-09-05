@@ -9,9 +9,13 @@
 
 #define CONST const __auto_type
 
+#if defined __has_include && __has_include("hangman_icons.h")
 #include "hangman_icons.h"
+#else
+extern const Icon I_button_ok_7x7, I_1, I_2, I_3, I_4, I_5, I_6,
+    I_7
+#endif
 
-#include <math.h>
 #include <gui/gui.h>
 #include <gui/elements.h>
 #include <furi.h>

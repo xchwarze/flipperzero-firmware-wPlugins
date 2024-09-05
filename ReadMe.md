@@ -52,6 +52,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Debug: use proper hook for handle_exit in flipperapps #3842 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3842)
 - OFW: [Infrared: Add Airwell AW-HKD012-N91 #3856 (By valeraOlexienko)](https://github.com/flipperdevices/flipperzero-firmware/pull/3856) (Already In RM)
 - OFW: [DialogEx: Fix NULL ptr crash #3878 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3878)
+- Updated: [Hangman v1.5 (By Evgeny Stepanischev & Eva Stepanischeva)](https://github.com/bolknote/Flipper-Zero-Hangman-Game)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3839](https://github.com/flipperdevices/flipperzero-firmware/pull/3839) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852)
 
 <a name="release">
