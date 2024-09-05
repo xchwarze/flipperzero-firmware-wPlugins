@@ -31,30 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-09-04 17:02 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-09-04 17:02 EST`
-- Updated: [NFC Seader v3.1 (By bettse)](https://github.com/bettse/seader)
-- Updated: [MODBUS v1.1.3.1 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-rs485modbus) `Req: Modbus By ElectronicCats`
-- OFW: PR: [Infrared: Add Airwell AW-HKD012-N91 #3856 (By valeraOlexienko)](https://github.com/flipperdevices/flipperzero-firmware/pull/3856)
-- OFW: PR: [NFC: Fix crash on Ultralight unlock #3855 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3855)
-- OFW: PR: [Fix detection of GProx II cards and false detection of other cards #3869 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3869)
-- Updated: [JS: BadUSB Demo Script (By jamisonderek)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/121ec24282f22cc14f8e77e01266eb97f3270fd2)
-- Updated: [Authenticator/TOTP v5.16.0 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
-- Updated: [Genie Recorder v3.1 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/subghz/apps/genie-recorder)
-- Updated: [Bomberfox v1.0 (By ashleyhuxley)](https://github.com/ashleyhuxley/bomber)
-- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Updated: [Laser Tag v2.0 (By RocketGod & jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag)
-- Updated: [Insults v0.1 (By ERSUCC)](https://github.com/ERSUCC/Flipper-Insults)
-- Updated: [Simultanious UHF RFID Reader v1.1 (By RileyHaffner)](https://github.com/haffnerriley/Simultaneous-UHF-RFID-FlipperZero) `Req: M6e Nano UHF RFID Reader & Raspberry Pi Zero`
-- Updated: [Tasks v1.1 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
-- Updated: [Solitaire v1.1.4 (By teeebor)](https://github.com/teeebor/flipper_games)
-- OFW: [Add the Procrastination animation #3860 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3860)
-- [Patreon Build Updates](https://www.patreon.com/RogueMaster/membership): [Procrastinating and Intruder Alert animations have been added to these builds: ANIMSWITCHER, Dolphin, Stock & RM Minimal](https://github.com/RogueMaster/awesome-flipperzero-withModules/commit/643b94c9cbf00a59cb80bbef38d6b0a8b6910389)
-- OFW: [Publishing T5577 page 1 block count macro #3864 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3864)
-- Added: [ROT13 v0.1 (By nothingbutlucas)](https://codeberg.org/nothingbutlucas/flipperzero_rot13)
-- Updated: [Wendigo Bluetooth Tracker WIP v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
-- NFC: [Parser for SmartRider (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/203)
-- NFC: [Parser for Saflok Updates (By zinongli & xtruan & zacharyweiss & evilmog & Arkwin)](https://github.com/Next-Flip/Momentum-Firmware/pull/196)
-- NFC: [Parser for Saflok Updates for Date Rollover (By Arkwin)](https://github.com/Next-Flip/Momentum-Firmware/pull/201)
-- OFW: PR: [Infrared: Button operation fails now shows more informative messages #3859 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3859)
 - Updated: [Weather Station v1.8 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Solight TE44 recognition (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/183)
 - Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
 - OFW: PR: [NFC: MIFARE Classic Key Recovery Improvements WIP #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
@@ -68,6 +44,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Laser Tag v2.0 (By RocketGod & jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag)
 - Updated: NFC: [Parser for SmartRider (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/203)
 - UL: SubGHz: [Add new protocols: Marantec24 (static 24 bit) and GangQi (static 34 bit) (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/3a193f7dc59a7de0b0e62f0506f0fa2080706e54)
+- Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
