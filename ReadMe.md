@@ -47,6 +47,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [feat: Add up and down button drawing functions to GUI elements #3804 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3804)
 - Updated: [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
 - Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
+- OFW: [Gui: change dialog_ex text ownership model #3831 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3831)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
