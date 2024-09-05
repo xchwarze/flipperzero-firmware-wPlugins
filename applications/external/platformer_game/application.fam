@@ -1,0 +1,13 @@
+App(
+    appid="platformer_game",
+    name="Devillier's Platformer",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="flipper_platformer_game",
+    stack_size=2 * 1024,
+    fap_icon="flipper_platformer_game.png",
+    fap_category="Games",
+    fap_author="adevil5",
+    fap_weburl="https://github.com/adevil5/flipper-platformer-game",
+    fap_version="0.1",
+    fap_description="This is a simple platformer game developed for the Flipper Zero. The game allows players to control a character as they navigate through a level filled with obstacles and platforms, aiming to reach the finish line.",
+)
