@@ -323,6 +323,23 @@ static bool picopass_device_load_data(PicopassDevice* dev, FuriString* path, boo
             }
         }
 
+        // Check if legacy or SE
+        PicopassBlock temp_block = {};
+        memset(temp_block.data, 0xff, PICOPASS_BLOCK_LEN);
+        pacs->legacy =
+            (memcmp(
+                 card_data[PICOPASS_SECURE_AIA_BLOCK_INDEX].data,
+                 temp_block.data,
+                 PICOPASS_BLOCK_LEN) == 0);
+
+        temp_block.data[3] = 0x00;
+        temp_block.data[4] = 0x06;
+        pacs->se_enabled =
+            (memcmp(
+                 card_data[PICOPASS_SECURE_AIA_BLOCK_INDEX].data,
+                 temp_block.data,
+                 PICOPASS_BLOCK_LEN) == 0);
+
         size_t app_limit = card_data[PICOPASS_CONFIG_BLOCK_INDEX].data[0];
         // Fix for unpersonalized cards that have app_limit set to 0xFF
         if(app_limit > PICOPASS_MAX_APP_LIMIT) app_limit = PICOPASS_MAX_APP_LIMIT;
@@ -347,7 +364,9 @@ static bool picopass_device_load_data(PicopassDevice* dev, FuriString* path, boo
         }
         if(!block_read) break;
 
-        if(card_data[PICOPASS_ICLASS_PACS_CFG_BLOCK_INDEX].valid) {
+        if(pacs->se_enabled) {
+            FURI_LOG_D(TAG, "Skipping parsing: SE enabled");
+        } else if(card_data[PICOPASS_ICLASS_PACS_CFG_BLOCK_INDEX].valid) {
             picopass_device_parse_credential(card_data, pacs);
             picopass_device_parse_wiegand(pacs);
         }
