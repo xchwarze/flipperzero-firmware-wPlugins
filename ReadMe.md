@@ -32,7 +32,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-09-04 17:02 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-09-04 17:02 EST`
 - Updated: [Weather Station v1.8 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Solight TE44 recognition (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/183)
-- Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
 - OFW: PR: [NFC: MIFARE Classic Key Recovery Improvements WIP #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
 - Updated: [Counter v1.5 (By Krulknul & TEXploder)](https://github.com/TEXploder/TEX-Counter)
 - Added: [Apple Grabber v0.1 (By d7d8)](https://github.com/d7d8/apple-grabber)
@@ -47,6 +46,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: NFC: [Parser for SmartRider (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/203)
 - OFW: [feat: Add up and down button drawing functions to GUI elements #3804 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3804)
 - Updated: [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
+- Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834)
 
 <a name="release">
