@@ -58,6 +58,10 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [Profile Picture: Fallout (By Kuronons)](https://github.com/Kuronons/FZ_graphics/blob/main/Passport%20profile%20pictures/Profile%20pictures%20(.png%20files%20-%2046x49px)/Fallout_happy_46x49.png)
 - OFW: [Fix crash on Ultralight unlock #3855 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3855)
 - OFW: [Exposed view_dispatcher_get_event_loop #3858 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3858)
+- Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac)
+- OFW: [Rename `Detect Reader` to `Extract MF Keys` #3874 (By bettse)](https://github.com/flipperdevices/flipperzero-firmware/pull/3874)
+- OFW: [LFRFID: Guard GProxII Wiegand Check Against False Positive and Correct 36-bit Parsing #3868 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3868)
+- OFW: [Infrared: add TCL 75S451 to TV universal remote #3880 (By christhetech131)](https://github.com/flipperdevices/flipperzero-firmware/pull/3880)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3839](https://github.com/flipperdevices/flipperzero-firmware/pull/3839) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859)
 
 <a name="release">
