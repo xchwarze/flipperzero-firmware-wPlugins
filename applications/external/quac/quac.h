@@ -52,6 +52,7 @@ typedef struct App {
 
     FuriString* temp_str; // used for renames/etc
     char temp_cstr[MAX_NAME_LEN]; // used for renames/etc
+    uint32_t temp_u32;
 
     struct {
         QuacAppLayout layout; // Defaults to Portrait
@@ -61,6 +62,7 @@ typedef struct App {
         uint32_t nfc_duration; // Defaults to 1000 ms
         uint32_t subghz_repeat; // Defaults to 10, just like the CLI
         bool subghz_use_ext_antenna; // Defaults to False
+        bool ir_use_ext_module; // Defaults to False
         bool show_hidden; // Defaults to False
     } settings;
 

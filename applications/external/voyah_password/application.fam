@@ -1,0 +1,13 @@
+App(
+    appid="voyah_pass",
+    name="Voyah Password",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="voyah_pass_main",
+    fap_icon="voyah_pass.png",
+    fap_icon_assets="images",
+    fap_category="Tools",
+    fap_author="bolknote",
+    fap_weburl="https://github.com/bolknote/Flipper-Zero-Voyah-Password",
+    fap_version="0.2",
+    fap_description="This program allows you to generate the engineering menu password for Voyah vehicles. Since the password depends on the current date and is calculated according to the Chinese time zone, you will need to set your current time zone after launching the program.",
+)

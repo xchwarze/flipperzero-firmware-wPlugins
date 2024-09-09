@@ -321,7 +321,7 @@ bool subghz_scene_set_type_on_event(void* context, SceneManagerEvent event) {
                 .faac_slh.serial = ((key & 0x00FFFFF0) | 0xA0000006) >> 4,
                 .faac_slh.btn = 0x06,
                 .faac_slh.cnt = 0x02,
-                .faac_slh.seed = key,
+                .faac_slh.seed = (key & 0x0FFFFFFF),
                 .faac_slh.manuf = "FAAC_SLH"};
             break;
         case SetTypeBeninca433:

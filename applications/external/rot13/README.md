@@ -1,3 +1,9 @@
+# MOVED
+
+I moved the source code to github because the flipper zero application catalog [only accepts repos from github](https://github.com/flipperdevices/flipper-application-catalog/pull/480#issuecomment-2334083599)
+
+Actual repo: https://github.com/nothingbutlucas/flipperzero_rot13
+
 # ROT13
 
 ## ROT13 application
