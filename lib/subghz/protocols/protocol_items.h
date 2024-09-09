@@ -53,3 +53,5 @@
 #include "dickert_mahs.h"
 #include "gangqi.h"
 #include "marantec24.h"
+#include "hollarm.h"
+#include "hay21.h"
