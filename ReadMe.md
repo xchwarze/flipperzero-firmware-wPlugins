@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0903-1422-0.104.1-e0ea7b9.tgz&channel=RM0903-1422-0.104.1-e0ea7b9&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0910-1644-0.104.1-d56e3fc.tgz&channel=RM0910-1644-0.104.1-d56e3fc&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,45 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-09-09 19:25 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-09-09 19:25 EST`
-- Updated: [Weather Station v1.8 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Solight TE44 recognition (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/183)
-- OFW: PR: [NFC: MIFARE Classic Key Recovery Improvements WIP #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
-- Updated: [Counter v1.5 (By Krulknul & TEXploder)](https://github.com/TEXploder/TEX-Counter)
-- Added: [Apple Grabber v0.1 (By d7d8)](https://github.com/d7d8/apple-grabber)
-- Updated: [Flizzer Tracker v0.10 (By LTVA1)](https://github.com/LTVA1/flizzer_tracker)
-- Updated: [NFC Playlist v2.5 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Updated: [Video Player v0.3 (By LTVA1)](https://github.com/LTVA1/flipper-zero-video-player)
-- Added: [Devilliers Platformer v0.1 (By adevil5)](https://github.com/adevil5/flipper-platformer-game)
-- OFW: PR: [NFC: Rename `Detect Reader` to `Collect Nonces` #3874 (By bettse)](https://github.com/flipperdevices/flipperzero-firmware/pull/3874)
-- UL: SubGHz: [Add new protocols: Marantec24 (static 24 bit) and GangQi (static 34 bit) (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/3a193f7dc59a7de0b0e62f0506f0fa2080706e54)
-- Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac)
-- Updated: NFC: [Parser for SmartRider (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/203)
-- OFW: [feat: Add up and down button drawing functions to GUI elements #3804 (By derskythe)](https://github.com/flipperdevices/flipperzero-firmware/pull/3804)
-- Updated: [PicoPass (iClass) v1.17 (By Bettse)](https://gitlab.com/bettse/picopass)
-- Updated: [CANBUS v1.1.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
-- OFW: [Gui: change dialog_ex text ownership model #3831 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3831)
-- OFW: [SubGhz: Fix RPC status for ButtonRelease event #3838 (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/3838) (Already In RM)
-- OFW: [Debug: use proper hook for handle_exit in flipperapps #3842 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3842)
-- OFW: [Infrared: Add Airwell AW-HKD012-N91 #3856 (By valeraOlexienko)](https://github.com/flipperdevices/flipperzero-firmware/pull/3856) (Already In RM)
-- OFW: [DialogEx: Fix NULL ptr crash #3878 (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3878)
-- Updated: [Hangman v1.5 (By Evgeny Stepanischev & Eva Stepanischeva)](https://github.com/bolknote/Flipper-Zero-Hangman-Game)
-- Removed: NFC: [Parser for SmartRider (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/203) (Till it is working right)
-- Added: [Profile Picture: Dokkaebi (By Dokka01)](https://github.com/Dokka01/Flipper-zero-Dokkaebi-R6-Asset-pack/blob/main/Dokka_Happy.png)
-- Added: [Profile Picture: Fallout (By Kuronons)](https://github.com/Kuronons/FZ_graphics/blob/main/Passport%20profile%20pictures/Profile%20pictures%20(.png%20files%20-%2046x49px)/Fallout_happy_46x49.png)
-- OFW: [Fix crash on Ultralight unlock #3855 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3855)
-- OFW: [Exposed view_dispatcher_get_event_loop #3858 (By CookiePLMonster)](https://github.com/flipperdevices/flipperzero-firmware/pull/3858)
-- Updated: [Quac! v0.6.3 (By rdefeo)](https://github.com/rdefeo/quac)
-- OFW: [Rename `Detect Reader` to `Extract MF Keys` #3874 (By bettse)](https://github.com/flipperdevices/flipperzero-firmware/pull/3874)
-- OFW: [LFRFID: Fix detection of GProx II cards and false detection of other cards #3869 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3869)
-- OFW: [LFRFID: Guard GProxII Wiegand Check Against False Positive and Correct 36-bit Parsing #3868 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3868)
-- OFW: [Infrared: add TCL 75S451 to TV universal remote #3880 (By christhetech131)](https://github.com/flipperdevices/flipperzero-firmware/pull/3880)
-- OFW: [feat: add linux/gnome badusb demo resource files #3846 (By thomasnemer)](https://github.com/flipperdevices/flipperzero-firmware/pull/3846)
-- Added: [Voyah Password v0.2 (By bolknote)](https://github.com/bolknote/Flipper-Zero-Voyah-Password)
-- UL: SubGHz: [Add new protocols: Hay21 and Hollarm (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/bc19dbfbda5db4aee1ed39e2ccf29cfa1d8bd508)
-- UL: [Extra checks for power enable on GPIO (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/4b89203cbd8e918a840314c29f7765f0c6a99478)
-- Added: [Cyborg Detector v1.0 (By RocketGod-Git)](https://github.com/RocketGod-Git/Flipper-Zero-Cyborg-Detector)
-- OFW: PR: [NFC: FeliCa anti-collision fix #3889 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3889)
-- OFW: [LFRFID GProxII Fix Writing and Rendering Conflict #3888 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3888)
-- Updated: [Laser Tag v2.1 (By RocketGod & jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag) (Version Only)
 - Temp Revert: UL: SubGHz: [Add new protocols: GangQi, Hay21 and Hollarm (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/dd30ef7a2c0e6edcf757696c1a7177b31e390cdc)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3839](https://github.com/flipperdevices/flipperzero-firmware/pull/3839) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887)
 
@@ -654,4 +615,4 @@ $ ./fbt dolphin_ext
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0903-1422-0.104.1-e0ea7b9.tgz&channel=RM0903-1422-0.104.1-e0ea7b9&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0910-1644-0.104.1-d56e3fc.tgz&channel=RM0910-1644-0.104.1-d56e3fc&version=0.104.1)
