@@ -9,6 +9,6 @@ App(
     fap_category="RFID",
     fap_icon_assets="images",
     fap_author="SkorP",
-    fap_version="1.3",
+    fap_version="1.4",
     fap_description="Identify the reader type: NFC (13 MHz) and/or RFID (125 KHz).",
 )

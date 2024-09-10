@@ -1,5 +1,6 @@
 ## 1.8
  - [Solight TE44 recognition (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/183)
+ - Removed call to legacy SDK API
 ## 1.7
  - Added external CC1101 radio modules support
 ## 1.6
