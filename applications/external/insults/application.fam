@@ -9,6 +9,6 @@ App(
     fap_category="Games",
     fap_author="ERSUCC",
     fap_weburl="https://github.com/ERSUCC/Flipper-Insults",
-    fap_version="0.1",
+    fap_version="1.0",
     fap_description="Insult generator",
 )
