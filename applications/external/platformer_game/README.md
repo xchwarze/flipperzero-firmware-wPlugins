@@ -45,10 +45,10 @@ The objective of the game is to guide the character to the finish line as fast a
 
 1. Run `ufbt` in the root directory (the one with the `application.fam` file in it). This will build your application and place the resulting binary in the `dist` subdirectory.
 2. You can upload and start your application on a Flipper attached over USB using:
-
     ```sh
     ufbt launch
     ```
+3. See [https://github.com/flipperdevices/flipperzero-ufbt](https://github.com/flipperdevices/flipperzero-ufbt) for more info.
 
 ### VS Code Integration
 
