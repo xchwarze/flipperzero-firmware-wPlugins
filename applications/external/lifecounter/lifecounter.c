@@ -12,7 +12,7 @@
 #include <toolbox/stream/file_stream.h>
 #include "lifecounter_icons.h"
 
-#define TAG "Lifecounter"
+#define TAG          "Lifecounter"
 #define CFG_FILENAME "lifecounter.cfg"
 
 static int default_life_values[] = {0, 10, 20, 40, 100};
@@ -115,7 +115,7 @@ static void beep(float frequency, float duration, float volume) {
  * @param      sound  The sound we want to play.
  */
 static void audio_feedback(LifecounterModel* model, LifecounterSound sound) {
-    if (!model->sound_on) {
+    if(!model->sound_on) {
         return;
     }
 
@@ -182,7 +182,7 @@ LifecounterModel* read_config(LifecounterModel* model) {
 
     FuriString* line = furi_string_alloc();
     if(file_stream_open(stream, path, FSAM_READ, FSOM_OPEN_EXISTING)) {
-        for (int i = 0; i < 3; i++) {
+        for(int i = 0; i < 3; i++) {
             if(!stream_read_line(stream, line)) {
                 FURI_LOG_E(TAG, "Failed to read line %d", i);
                 break;
@@ -210,7 +210,12 @@ LifecounterModel* read_config(LifecounterModel* model) {
     furi_string_free(line);
     furi_record_close(RECORD_STORAGE);
 
-    FURI_LOG_T(TAG, "Configuration state - Life: %d, Backlight: %d, Sound: %d", default_life, backlight_on, sound_on);
+    FURI_LOG_T(
+        TAG,
+        "Configuration state - Life: %d, Backlight: %d, Sound: %d",
+        default_life,
+        backlight_on,
+        sound_on);
 
     model->default_life = default_life;
     model->player_1_life = default_life;
@@ -271,7 +276,7 @@ static void backlight_change(VariableItem* item) {
     uint8_t index = variable_item_get_current_value_index(item);
     variable_item_set_current_value_text(item, toggle_states_names[index]);
     app->notifications = furi_record_open(RECORD_NOTIFICATION);
-    if (index == 0) {
+    if(index == 0) {
         notification_message(app->notifications, &sequence_display_backlight_enforce_auto);
     } else {
         notification_message(app->notifications, &sequence_display_backlight_enforce_on);
@@ -295,7 +300,7 @@ static void audio_change(VariableItem* item) {
 /**
  * Dummy callback for the save button (its value doesn't change).
  */
-static void value_change_callback_dummy(VariableItem *item) {
+static void value_change_callback_dummy(VariableItem* item) {
     UNUSED(item);
 }
 
@@ -349,14 +354,18 @@ static void view_main_draw_callback(Canvas* canvas, void* model) {
 
     size_t triangle_height = 6;
     size_t triangle_width = 8;
-    if (my_model->selected_player == 0) {
+    if(my_model->selected_player == 0) {
         canvas_draw_rframe(canvas, 4, 4, 56, 56, radius);
-        canvas_draw_triangle(canvas, 32, 20, triangle_width, triangle_height, CanvasDirectionBottomToTop);
-        canvas_draw_triangle(canvas, 32, 44, triangle_width, triangle_height, CanvasDirectionTopToBottom);
+        canvas_draw_triangle(
+            canvas, 32, 20, triangle_width, triangle_height, CanvasDirectionBottomToTop);
+        canvas_draw_triangle(
+            canvas, 32, 44, triangle_width, triangle_height, CanvasDirectionTopToBottom);
     } else {
         canvas_draw_rframe(canvas, 68, 4, 56, 56, radius);
-        canvas_draw_triangle(canvas, 96, 20, triangle_width, triangle_height, CanvasDirectionBottomToTop);
-        canvas_draw_triangle(canvas, 96, 44, triangle_width, triangle_height, CanvasDirectionTopToBottom);
+        canvas_draw_triangle(
+            canvas, 96, 20, triangle_width, triangle_height, CanvasDirectionBottomToTop);
+        canvas_draw_triangle(
+            canvas, 96, 44, triangle_width, triangle_height, CanvasDirectionTopToBottom);
     }
 
     furi_string_free(life1);
@@ -422,7 +431,7 @@ static bool view_main_custom_event_callback(uint32_t event, void* context) {
         {
             bool redraw = true;
             with_view_model(
-                app->view_main, LifecounterModel* _model, { UNUSED(_model); }, redraw);
+                app->view_main, LifecounterModel * _model, { UNUSED(_model); }, redraw);
             return true;
         }
     default:
@@ -462,21 +471,21 @@ static bool view_main_input_callback(InputEvent* event, void* context) {
 
     if(event->type == InputTypeShort) {
         if(event->key == InputKeyUp) {
-            if (my_model->selected_player == 0) {
+            if(my_model->selected_player == 0) {
                 my_model->player_1_life++;
             } else {
                 my_model->player_2_life++;
             }
             audio_feedback(my_model, SoundLifeChanged);
         } else if(event->key == InputKeyDown) {
-            if (my_model->selected_player == 0) {
+            if(my_model->selected_player == 0) {
                 my_model->player_1_life--;
             } else {
                 my_model->player_2_life--;
             }
             audio_feedback(my_model, SoundLifeChanged);
         } else if(event->key == InputKeyLeft || event->key == InputKeyRight) {
-           if (my_model->selected_player == 0) {
+            if(my_model->selected_player == 0) {
                 my_model->selected_player = 1;
             } else {
                 my_model->selected_player = 0;
@@ -490,13 +499,7 @@ static bool view_main_input_callback(InputEvent* event, void* context) {
         }
     }
 
-    with_view_model(
-    app->view_main,
-        LifecounterModel* my_model,
-        {
-            UNUSED(my_model);
-        },
-        true);
+    with_view_model(app->view_main, LifecounterModel * my_model, { UNUSED(my_model); }, true);
 
     return false;
 }
@@ -504,11 +507,11 @@ static bool view_main_input_callback(InputEvent* event, void* context) {
 /**
 * Find the index of a value in an array
 */
-int find_index( const int a[], int size, int value )
-{
+int find_index(const int a[], int size, int value) {
     int index = 0;
-    while ( index < size && a[index] != value ) ++index;
-    return ( index == size ? -1 : index );
+    while(index < size && a[index] != value)
+        ++index;
+    return (index == size ? -1 : index);
 }
 
 /**
@@ -525,20 +528,29 @@ static LifecounterApp* app_alloc() {
 
     FURI_LOG_T(TAG, "allocate dispatcher");
     app->view_dispatcher = view_dispatcher_alloc();
+    view_dispatcher_enable_queue(app->view_dispatcher);
     view_dispatcher_attach_to_gui(app->view_dispatcher, gui, ViewDispatcherTypeFullscreen);
     view_dispatcher_set_event_callback_context(app->view_dispatcher, app);
 
     FURI_LOG_T(TAG, "allocate menu");
     app->submenu = submenu_alloc();
-    submenu_add_item(app->submenu, "Return to life view", LifecounterSubmenuIndexMain, submenu_callback, app);
+    submenu_add_item(
+        app->submenu, "Return to life view", LifecounterSubmenuIndexMain, submenu_callback, app);
 
-    submenu_add_item(app->submenu, "Reset lifes", LifecounterSubmenuIndexReset, submenu_callback, app);
+    submenu_add_item(
+        app->submenu, "Reset lifes", LifecounterSubmenuIndexReset, submenu_callback, app);
 
-    submenu_add_item(app->submenu, "Configure settings", LifecounterSubmenuIndexConfigure, submenu_callback, app);
+    submenu_add_item(
+        app->submenu,
+        "Configure settings",
+        LifecounterSubmenuIndexConfigure,
+        submenu_callback,
+        app);
 
     view_set_previous_callback(submenu_get_view(app->submenu), navigation_exit_callback);
 
-    view_dispatcher_add_view(app->view_dispatcher, LifecounterViewSubmenu, submenu_get_view(app->submenu));
+    view_dispatcher_add_view(
+        app->view_dispatcher, LifecounterViewSubmenu, submenu_get_view(app->submenu));
 
     app->variable_item_list_settings = variable_item_list_alloc();
     variable_item_list_reset(app->variable_item_list_settings);
@@ -549,7 +561,8 @@ static LifecounterApp* app_alloc() {
         default_life_change,
         app);
 
-    uint8_t default_life_index = find_index(default_life_values, sizeof(default_life_values), settings->default_life);
+    uint8_t default_life_index =
+        find_index(default_life_values, sizeof(default_life_values), settings->default_life);
     variable_item_set_current_value_index(item, default_life_index);
     variable_item_set_current_value_text(item, default_life_names[default_life_index]);
 
@@ -560,7 +573,8 @@ static LifecounterApp* app_alloc() {
         backlight_change,
         app);
 
-    uint8_t backlight_index = find_index(toggle_state_values, sizeof(toggle_state_values), settings->backlight_on);
+    uint8_t backlight_index =
+        find_index(toggle_state_values, sizeof(toggle_state_values), settings->backlight_on);
     variable_item_set_current_value_index(item, backlight_index);
     variable_item_set_current_value_text(item, toggle_states_names[backlight_index]);
 
@@ -571,20 +585,23 @@ static LifecounterApp* app_alloc() {
         audio_change,
         app);
 
-    uint8_t audio_state_index = find_index(toggle_state_values, sizeof(toggle_state_values), settings->sound_on);
+    uint8_t audio_state_index =
+        find_index(toggle_state_values, sizeof(toggle_state_values), settings->sound_on);
     variable_item_set_current_value_index(item, audio_state_index);
     variable_item_set_current_value_text(item, toggle_states_names[audio_state_index]);
 
     item = variable_item_list_add(
-        app->variable_item_list_settings,
-        "Save settings",
-        0,
-        value_change_callback_dummy,
-        app);
+        app->variable_item_list_settings, "Save settings", 0, value_change_callback_dummy, app);
 
-    variable_item_list_set_enter_callback(app->variable_item_list_settings, setting_item_clicked, app);
-    view_set_previous_callback(variable_item_list_get_view(app->variable_item_list_settings), navigation_submenu_callback);
-    view_dispatcher_add_view(app->view_dispatcher, LifecounterViewConfigure, variable_item_list_get_view(app->variable_item_list_settings));
+    variable_item_list_set_enter_callback(
+        app->variable_item_list_settings, setting_item_clicked, app);
+    view_set_previous_callback(
+        variable_item_list_get_view(app->variable_item_list_settings),
+        navigation_submenu_callback);
+    view_dispatcher_add_view(
+        app->view_dispatcher,
+        LifecounterViewConfigure,
+        variable_item_list_get_view(app->variable_item_list_settings));
 
     FURI_LOG_T(TAG, "allocate main view");
     app->view_main = view_alloc();
@@ -616,7 +633,7 @@ static LifecounterApp* app_alloc() {
 
     app->notifications = furi_record_open(RECORD_NOTIFICATION);
 
-    if (settings->backlight_on) {
+    if(settings->backlight_on) {
         notification_message(app->notifications, &sequence_display_backlight_enforce_on);
     } else {
         notification_message(app->notifications, &sequence_display_backlight_enforce_auto);

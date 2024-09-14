@@ -1,20 +1,14 @@
-# For details & more options, see documentation/AppManifests.md in firmware repo
-
 App(
-    appid="lifecounter",  # Must be unique
-    name="Lifecounter",  # Displayed in menus
+    appid="lifecounter",
+    name="Lifecounter",
     apptype=FlipperAppType.EXTERNAL,
     entry_point="lifecounter_app",
     stack_size=2 * 1024,
+    fap_icon="lifecounter.png",
+    fap_icon_assets="images",
     fap_category="Games",
-    # Optional values
-    fap_version="1.0",
-    fap_icon="lifecounter.png",  # 10x10 1-bit PNG
-    fap_description="Application to record life situation of a collectible card game",
     fap_author="Antsy",
     fap_weburl="https://github.com/antsy/Lifecounter",
-    fap_icon_assets="images",  # Image assets to compile for this application
-    requires=[
-        "gui",
-    ],
+    fap_version="1.0",
+    fap_description="Application to record life situation of a collectible card game",
 )
