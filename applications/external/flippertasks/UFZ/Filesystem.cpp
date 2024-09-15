@@ -66,7 +66,8 @@ void UFZ::Filesystem::resolvePathAndEnsureAppDirectory(FuriString* path) const n
 
 bool UFZ::Filesystem::areEquivalent(const char* path1, const char* path2, const bool bTruncate) const noexcept
 {
-    return storage_common_equivalent_path(storage, path1, path2, bTruncate);
+    UNUSED(bTruncate);
+    return storage_common_equivalent_path(storage, path1, path2);
 }
 
 const char* UFZ::Filesystem::getErrorDescription(const FS_Error error) noexcept
