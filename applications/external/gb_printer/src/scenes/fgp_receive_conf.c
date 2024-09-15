@@ -11,102 +11,82 @@
 
 #include <src/include/fgp_palette.h>
 
-const char * const list_text[] = {
-	"Add header?",
-	"Palette:",
-	"Receive!",
+const char* const list_text[] = {
+    "Add header?",
+    "Palette:",
+    "Receive!",
 };
 
-
-const char * const yes_no_text[] = {
-	"No",
-	"Yes",
+const char* const yes_no_text[] = {
+    "No",
+    "Yes",
 };
 
-static void add_header_change(VariableItem *item)
-{
-	struct fgp_app *fgp = variable_item_get_context(item);
-	uint8_t index = variable_item_get_current_value_index(item);
+static void add_header_change(VariableItem* item) {
+    struct fgp_app* fgp = variable_item_get_context(item);
+    uint8_t index = variable_item_get_current_value_index(item);
 
-	variable_item_set_current_value_text(item, yes_no_text[index]);
-	fgp->add_header = index;
+    variable_item_set_current_value_text(item, yes_no_text[index]);
+    fgp->add_header = index;
 }
 
-static void set_palette(VariableItem* item)
-{
-	struct fgp_app * fgp = variable_item_get_context(item);
-	uint8_t index = variable_item_get_current_value_index(item);
+static void set_palette(VariableItem* item) {
+    struct fgp_app* fgp = variable_item_get_context(item);
+    uint8_t index = variable_item_get_current_value_index(item);
 
-	variable_item_set_current_value_text(item, palette_name_get(index));
-	fgp->palette_idx = index;
+    variable_item_set_current_value_text(item, palette_name_get(index));
+    fgp->palette_idx = index;
 }
 
-static void enter_callback(void* context, uint32_t index)
-{
-	struct fgp_app *fgp = context;
+static void enter_callback(void* context, uint32_t index) {
+    struct fgp_app* fgp = context;
 
-	/* When the user presses enter on the last option in the list, that is
+    /* When the user presses enter on the last option in the list, that is
 	 * the cue to switch to the next scene.
 	 */
-	if (index == COUNT_OF(list_text) - 1)
-		view_dispatcher_send_custom_event(fgp->view_dispatcher, fgpViewReceive);
+    if(index == COUNT_OF(list_text) - 1)
+        view_dispatcher_send_custom_event(fgp->view_dispatcher, fgpViewReceive);
 }
 
-void fgp_scene_receive_conf_on_enter(void* context)
-{
-	struct fgp_app *fgp = context;
-	VariableItem *item;
+void fgp_scene_receive_conf_on_enter(void* context) {
+    struct fgp_app* fgp = context;
+    VariableItem* item;
 
-	variable_item_list_reset(fgp->variable_item_list);
-	variable_item_list_set_selected_item(fgp->variable_item_list, 0);
+    variable_item_list_reset(fgp->variable_item_list);
+    variable_item_list_set_selected_item(fgp->variable_item_list, 0);
 
+    /* Default enable adding the header */
+    fgp->add_header = true;
+    item = variable_item_list_add(
+        fgp->variable_item_list, list_text[0], COUNT_OF(yes_no_text), add_header_change, fgp);
+    variable_item_set_current_value_index(item, fgp->add_header);
+    variable_item_set_current_value_text(item, yes_no_text[fgp->add_header]);
 
-	/* Default enable adding the header */
-	fgp->add_header = true;
-	item = variable_item_list_add(fgp->variable_item_list,
-				      list_text[0],
-				      COUNT_OF(yes_no_text),
-				      add_header_change,
-				      fgp);
-	variable_item_set_current_value_index(item, fgp->add_header);
-	variable_item_set_current_value_text(item, yes_no_text[fgp->add_header]);
+    /* Default to the first palette */
+    fgp->palette_idx = 0;
+    item = variable_item_list_add(
+        fgp->variable_item_list, list_text[1], palette_count_get(), set_palette, fgp);
+    variable_item_set_current_value_index(item, fgp->palette_idx);
+    variable_item_set_current_value_text(item, palette_name_get(fgp->palette_idx));
 
-	/* Default to the first palette */
-	fgp->palette_idx = 0;
-	item = variable_item_list_add(fgp->variable_item_list,
-				      list_text[1],
-				      palette_count_get(),
-				      set_palette,
-				      fgp);
-	variable_item_set_current_value_index(item, fgp->palette_idx);
-	variable_item_set_current_value_text(item, palette_name_get(fgp->palette_idx));
+    item = variable_item_list_add(fgp->variable_item_list, list_text[2], 0, NULL, fgp);
 
+    variable_item_list_set_enter_callback(fgp->variable_item_list, enter_callback, fgp);
 
-	item = variable_item_list_add(fgp->variable_item_list,
-				      list_text[2],
-				      0,
-				      NULL,
-				      fgp);
-
-	variable_item_list_set_enter_callback(fgp->variable_item_list,
-					      enter_callback,
-					      fgp);
-
-	view_dispatcher_switch_to_view(fgp->view_dispatcher, fgpViewVariableItemList);
+    view_dispatcher_switch_to_view(fgp->view_dispatcher, fgpViewVariableItemList);
 }
 
-bool fgp_scene_receive_conf_on_event(void* context, SceneManagerEvent event)
-{
-	struct fgp_app *fgp = context;
-	bool consumed = false;
-	
-	if (event.type == SceneManagerEventTypeCustom) {
-		view_dispatcher_switch_to_view(fgp->view_dispatcher, event.event);
-		consumed = true;
-	}
-	return consumed;
+bool fgp_scene_receive_conf_on_event(void* context, SceneManagerEvent event) {
+    struct fgp_app* fgp = context;
+    bool consumed = false;
+
+    if(event.type == SceneManagerEventTypeCustom) {
+        view_dispatcher_switch_to_view(fgp->view_dispatcher, event.event);
+        consumed = true;
+    }
+    return consumed;
 }
 
 void fgp_scene_receive_conf_on_exit(void* context) {
-	UNUSED(context);
+    UNUSED(context);
 }

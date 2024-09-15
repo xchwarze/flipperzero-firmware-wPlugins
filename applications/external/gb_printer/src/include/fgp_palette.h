@@ -9,10 +9,10 @@
 
 size_t palette_count_get(void);
 
-char *palette_name_get(unsigned int idx);
+char* palette_name_get(unsigned int idx);
 
-char *palette_shortname_get(unsigned int idx);
+char* palette_shortname_get(unsigned int idx);
 
-void *palette_rgb16_get(unsigned int idx);
+void* palette_rgb16_get(unsigned int idx);
 
 #endif // FGP_PALETTE_H

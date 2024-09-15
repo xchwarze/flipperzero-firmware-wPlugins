@@ -7,6 +7,6 @@
 #pragma once
 
 /* Return the CRC of the bytes buf[0..len-1]. */
-uint32_t crc(uint8_t *buf, size_t len);
+uint32_t crc(uint8_t* buf, size_t len);
 
 #endif // CRC_H

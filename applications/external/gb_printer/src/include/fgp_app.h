@@ -19,32 +19,32 @@
 #include <src/include/fgp_palette.h>
 
 struct plte {
-    uint32_t data_len;     // Longitud de los datos de la paleta (en bytes)
-    uint8_t type[4];       // Tipo de chunk PLTE ('P', 'L', 'T', 'E')
-    uint8_t color[4][3];   // Colores en formato RGB, 4 colores con 3 bytes cada uno
+    uint32_t data_len; // Longitud de los datos de la paleta (en bytes)
+    uint8_t type[4]; // Tipo de chunk PLTE ('P', 'L', 'T', 'E')
+    uint8_t color[4][3]; // Colores en formato RGB, 4 colores con 3 bytes cada uno
 };
 
 struct fgp_app {
-	ViewDispatcher *view_dispatcher;
+    ViewDispatcher* view_dispatcher;
 
-	// Scenes
-	SceneManager *scene_manager;
-	Submenu *submenu;
-	VariableItemList *variable_item_list;
+    // Scenes
+    SceneManager* scene_manager;
+    Submenu* submenu;
+    VariableItemList* variable_item_list;
 
-	Storage *storage;
+    Storage* storage;
 
-	void *receive_handle;
-	void *gblink_handle;
+    void* receive_handle;
+    void* gblink_handle;
 
-	bool add_header;
-	unsigned int palette_idx;
+    bool add_header;
+    unsigned int palette_idx;
 };
 
 typedef enum {
-	fgpViewSubmenu,
-	fgpViewVariableItemList,
-	fgpViewReceive,
+    fgpViewSubmenu,
+    fgpViewVariableItemList,
+    fgpViewReceive,
 } fgpView;
 
 #endif // FGP_APP_H
