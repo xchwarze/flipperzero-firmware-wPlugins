@@ -1,9 +1,16 @@
 #include <furi.h>
 
-#include <gblink.h>
-#include <protocols/printer_proto.h>
+#include <gblink/include/gblink.h>
+#include <protocols/printer/include/printer_proto.h>
 #include "printer_i.h"
 
+/* XXX: Does this make sense to be a message dispatcher rather than calling callbacks?
+ * In order to keep the stack small for the thread, need to be weary of all calls made from here. */
+/* XXX TODO Test using a timer pending callback instead of this */
+/* XXX: TODO: Create a more streamlined callback that can simply pass a struct that has
+ * pointers to data, sz, reason, margins (aka is there more data coming), etc., could even place
+ * the callback context in there which would allow using the timer pending callback function
+ */
 static int32_t printer_callback_thread(void *context)
 {
 	struct printer_proto *printer = context;
@@ -16,22 +23,22 @@ static int32_t printer_callback_thread(void *context)
 		if (flags & THREAD_FLAGS_EXIT)
 			break;
 		if (flags & THREAD_FLAGS_DATA)
-			printer->callback(printer->cb_context, printer->data, printer->data_sz, reason_data);
+			printer->callback(printer->cb_context, printer->image, reason_data);
 		if (flags & THREAD_FLAGS_PRINT)
-			printer->callback(printer->cb_context, printer->data, printer->data_sz, reason_print);
+			printer->callback(printer->cb_context, printer->image, reason_print);
 	}
 
 	return 0;
 }
 
-void *printer_alloc(void *gblink_handle, void **buf)
+void *printer_alloc(void)
 {
-	furi_assert(buf);
 	struct printer_proto *printer = NULL;
 
 	printer = malloc(sizeof(struct printer_proto));
 
 	/* Allocate and start callback handling thread */
+	/* XXX: TODO: The stack can decrease if FURI_LOG calls are removed in callbacks! */
 	printer->thread = furi_thread_alloc_ex("GBLinkPrinterProtoCB",
 						1024,
 						printer_callback_thread,
@@ -41,22 +48,9 @@ void *printer_alloc(void *gblink_handle, void **buf)
 	furi_thread_start(printer->thread);
 
 	printer->packet = malloc(sizeof(struct packet));
-	printer->data = malloc(PRINT_FULL_SZ);
-	*buf = malloc(PRINT_FULL_SZ);
+	printer->image = printer_image_buffer_alloc();
 
-	/* Create a new handle.
-	 * We don't want higher layers clobbering the settings we need to use,
-	 * but we do need the pin setting from it.
-	 */
 	printer->gblink_handle = gblink_alloc();
-	gblink_pin_set(printer->gblink_handle, PIN_SERIN,
-			gblink_pin_get(gblink_handle, PIN_SERIN));
-	gblink_pin_set(printer->gblink_handle, PIN_SEROUT,
-			gblink_pin_get(gblink_handle, PIN_SEROUT));
-	gblink_pin_set(printer->gblink_handle, PIN_CLK,
-			gblink_pin_get(gblink_handle, PIN_CLK));
-	gblink_pin_set(printer->gblink_handle, PIN_SD,
-			gblink_pin_get(gblink_handle, PIN_SD));
 
 	/* Set up some settings for the print protocol. The final send/receive() calls
 	 * may clobber some of these, but that is intentional and they don't need to
@@ -69,6 +63,9 @@ void *printer_alloc(void *gblink_handle, void **buf)
 	return printer;
 }
 
+/* TODO: Allow free() without stop, add a way to check if printer_stop has not
+ * yet been called.
+ */
 void printer_free(void *printer_handle)
 {
 	struct printer_proto *printer = printer_handle;
@@ -77,8 +74,8 @@ void printer_free(void *printer_handle)
 	furi_thread_join(printer->thread);
 	furi_thread_free(printer->thread);
 	gblink_free(printer->gblink_handle);
-	free(printer->data);
 	free(printer->packet);
+	free(printer->image);
 	free(printer);
 }
 
@@ -89,12 +86,31 @@ void printer_callback_context_set(void *printer_handle, void *context)
 	printer->cb_context = context;
 }
 
-void printer_callback_set(void *printer_handle, void (*callback)(void *context, void *buf, size_t len, enum cb_reason reason))
+void printer_callback_set(void *printer_handle, void (*callback)(void *context, struct gb_image *image, enum cb_reason reason))
 {
 	struct printer_proto *printer = printer_handle;
 
 	printer->callback = callback;
 }
+
+int printer_pin_set_default(void *printer_handle, gblink_pinouts pinout)
+{
+	struct printer_proto *printer = printer_handle;
+	return gblink_pin_set_default(printer->gblink_handle, pinout);
+}
+
+int printer_pin_set(void *printer_handle, gblink_bus_pins pin, const GpioPin *gpio)
+{
+	struct printer_proto *printer = printer_handle;
+	return gblink_pin_set(printer->gblink_handle, pin, gpio);
+}
+
+const GpioPin *printer_pin_get(void *printer_handle, gblink_bus_pins pin)
+{
+	struct printer_proto *printer = printer_handle;
+	return gblink_pin_get(printer->gblink_handle, pin);
+}
+
 
 void printer_stop(void *printer_handle)
 {
@@ -117,3 +133,14 @@ void printer_stop(void *printer_handle)
 	 */
 }
 
+
+struct gb_image *printer_image_buffer_alloc(void)
+{
+	struct gb_image *image = malloc(sizeof(struct gb_image) + PRINT_FULL_SZ);
+	return image;
+}
+
+void printer_image_buffer_free(struct gb_image *image)
+{
+	free(image);
+}

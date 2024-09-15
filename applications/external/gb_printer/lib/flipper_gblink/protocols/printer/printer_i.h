@@ -1,7 +1,7 @@
 #ifndef PRINTER_I_H
 #define PRINTER_I_H
 
-#include <protocols/printer_proto.h>
+#include <protocols/printer/include/printer_proto.h>
 
 #define PKT_START_L		0x88
 #define PKT_START_H		0x33
@@ -23,6 +23,10 @@
 #define STATUS_PRINTING		(1 << 1)
 #define STATUS_CKSUM		(1 << 0)
 
+// Extra status bits used not used by the printer
+#define STATUS_PRINT_CMD	(1 << 8)
+#define STATUS_PRINTED		(1 << 9)
+
 /* emulate printer's internal print receive buffer */
 #define TILE_SIZE		16 // 8x8 tile, 2bpp color
 #define WIDTH			20 // 20 tiles wide
@@ -37,7 +41,7 @@
 //20 second print timeout
 
 
-typedef enum {
+enum packet_state {
 	START_L,
 	START_H,
 	COMMAND,
@@ -49,12 +53,12 @@ typedef enum {
 	CKSUM_H,
 	ALIVE,
 	STATUS,
-} printer_packet_state;
+};
 
-typedef enum {
+enum printer_method {
 	PROTO_RECV,
 	PROTO_SEND,
-} printer_proto;
+};
 
 /* Does not need to care about start bytes */
 struct packet {
@@ -67,29 +71,28 @@ struct packet {
 	/* These are not part of the packet, but used by us */
 	uint16_t cksum_calc;
 	size_t recv_data_sz;
-	uint8_t status;
-	bool printed;
+	uint16_t status;
+	uint8_t zero_counter;
+	enum packet_state state;
+	uint32_t time;
 };
 
 #define THREAD_FLAGS_EXIT	(1 << 0)
 #define THREAD_FLAGS_DATA	(1 << 1)
 #define THREAD_FLAGS_PRINT	(1 << 2)
-#define THREAD_FLAGS_ALL	(THREAD_FLAGS_EXIT | THREAD_FLAGS_DATA | THREAD_FLAGS_PRINT)
+#define THREAD_FLAGS_COMPLETE	(1 << 3)
+#define THREAD_FLAGS_ALL	(THREAD_FLAGS_EXIT | THREAD_FLAGS_DATA | THREAD_FLAGS_PRINT | THREAD_FLAGS_COMPLETE)
 
 struct printer_proto {
 	void *gblink_handle;
 
-	void (*callback)(void *cb_context, void *buf, size_t len, enum cb_reason reason);
+	void (*callback)(void *cb_context, struct gb_image *image, enum cb_reason reason);
 	void *cb_context;
 
 	struct packet *packet; //packet data used by send()/receive() for tracking
-	uint8_t *data; // Final resting place of image data
-	size_t data_sz;
 
-	printer_packet_state state;
-	printer_proto proto;
+	struct gb_image *image; // Details of the current image being sent/received
 
-	uint32_t time;
 
 	FuriThread *thread;
 };

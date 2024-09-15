@@ -3,7 +3,7 @@
 
 #pragma once
 
-void printer_receive(void *printer_handle);
+void printer_receive_start(void *printer_handle);
 
 void printer_receive_print_complete(void *printer_handle);
 

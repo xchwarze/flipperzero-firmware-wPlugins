@@ -2,138 +2,142 @@
 
 #include <furi.h>
 
-#include <gblink.h>
+#include <gblink/include/gblink.h>
 #include "printer_i.h"
 
 #define TAG "printer_receive"
 
+/* XXX: TODO: Double check this */
 #define TIMEOUT_US 1000000
 
 static void printer_reset(struct printer_proto *printer)
 {
-	printer->state = START_L;
+	/* Clear out the current packet data */
 	memset(printer->packet, '\0', sizeof(struct packet));
 
-	printer->data_sz = 0;
+	printer->image->data_sz = 0;
+	/* This is technically redundant, done for completeness */
+	printer->packet->state = START_L;
 
 	/* Packet timeout start */
-	printer->time = DWT->CYCCNT;
+	printer->packet->time = DWT->CYCCNT;
 }
 
 static void byte_callback(void *context, uint8_t val)
 {
 	struct printer_proto *printer = context;
-	size_t *recv_data_sz = &printer->packet->recv_data_sz;
+	struct packet *packet = printer->packet;
 	const uint32_t time_ticks = furi_hal_cortex_instructions_per_microsecond() * TIMEOUT_US;
 	uint8_t data_out = 0x00;
 
-	if ((DWT->CYCCNT - printer->time) > time_ticks)
+	if ((DWT->CYCCNT - printer->packet->time) > time_ticks)
 		printer_reset(printer);
 
 	/* TODO: flash led? */
 
-	switch (printer->state) {
+	switch (packet->state) {
 	case START_L:
 		if (val == PKT_START_L) {
-			printer->state = START_H;
+			packet->state = START_H;
 			/* Packet timeout restart */
-			printer->time = DWT->CYCCNT;
+			packet->time = DWT->CYCCNT;
+			packet->zero_counter = 0;
+		}
+		if (val == 0x00) {
+			packet->zero_counter++;
+			if (packet->zero_counter == 16)
+				printer_reset(printer);
 		}
 		break;
 	case START_H:
 		if (val == PKT_START_H)
-			printer->state = COMMAND;
+			packet->state = COMMAND;
 		else
-			printer->state = START_L;
+			packet->state = START_L;
 		break;
 	case COMMAND:
-		printer->packet->cmd = val;
-		printer->state = COMPRESS;
-		printer->packet->cksum_calc += val;
+		packet->cmd = val;
+		packet->state = COMPRESS;
+		packet->cksum_calc += val;
 
 		/* We only do a real reset after the packet is completed, however
 		 * we need to clear the status flags at this point.
 		 */
 		if (val == CMD_INIT)
-			printer->packet->status = 0;
+			packet->status = 0;
 
 		break;
 	case COMPRESS:
-		printer->packet->cksum_calc += val;
-		printer->state = LEN_L;
+		packet->cksum_calc += val;
+		packet->state = LEN_L;
 		if (val) {
 			FURI_LOG_E(TAG, "Compression not supported!");
-			printer->packet->status |= STATUS_PKT_ERR;
+			packet->status |= STATUS_PKT_ERR;
 		}
 		break;
 	case LEN_L:
-		printer->packet->cksum_calc += val;
-		printer->state = LEN_H;
-		printer->packet->len = (val & 0xff);
+		packet->cksum_calc += val;
+		packet->state = LEN_H;
+		packet->len = (val & 0xff);
 		break;
 	case LEN_H:
-		printer->packet->cksum_calc += val;
-		printer->packet->len |= ((val & 0xff) << 8);
+		packet->cksum_calc += val;
+		packet->len |= ((val & 0xff) << 8);
 		/* Override length for a TRANSFER */
-		if (printer->packet->cmd == CMD_TRANSFER)
-			printer->packet->len = TRANSFER_RECV_SZ;
+		if (packet->cmd == CMD_TRANSFER)
+			packet->len = TRANSFER_RECV_SZ;
 
-		if (printer->packet->len) {
-			printer->state = COMMAND_DAT;
+		if (packet->len) {
+			packet->state = COMMAND_DAT;
 		} else {
-			printer->state = CKSUM_L;
-			if (printer->packet->cmd == CMD_DATA)
-				printer->packet->status |= STATUS_FULL;
+			packet->state = CKSUM_L;
 		}
 		break;
 	case COMMAND_DAT:
-		printer->packet->cksum_calc += val;
-		printer->packet->recv_data[*recv_data_sz] = val;
-		(*recv_data_sz)++;
-		if (*recv_data_sz == printer->packet->len) 
-			printer->state = CKSUM_L;
+		packet->cksum_calc += val;
+		packet->recv_data[packet->recv_data_sz] = val;
+		packet->recv_data_sz++;
+		if (packet->recv_data_sz == packet->len) 
+			packet->state = CKSUM_L;
 		break;
 	case CKSUM_L:
-		/* TODO: TRANSFER from Photo! does not use checksum for some reason */
-		printer->state = CKSUM_H;
-		printer->packet->cksum = (val & 0xff);
+		packet->state = CKSUM_H;
+		packet->cksum = (val & 0xff);
 		break;
 	case CKSUM_H:
-		printer->state = ALIVE;
-		printer->packet->cksum |= ((val & 0xff) << 8);
-		if (printer->packet->cksum != printer->packet->cksum_calc)
-			printer->packet->status |= STATUS_CKSUM;
+		packet->state = ALIVE;
+		packet->cksum |= ((val & 0xff) << 8);
+		if (packet->cksum != packet->cksum_calc)
+			packet->status |= STATUS_CKSUM;
 		// TRANSFER does not set checksum bytes
-		if (printer->packet->cmd == CMD_TRANSFER)
-			printer->packet->status &= ~STATUS_CKSUM;
+		if (packet->cmd == CMD_TRANSFER)
+			packet->status &= ~STATUS_CKSUM;
 		data_out = PRINTER_ID;
 		break;
 	case ALIVE:
-		printer->state = STATUS;
-		data_out = printer->packet->status;
+		packet->state = STATUS;
+		data_out = packet->status;
 		break;
 	case STATUS:
-		printer->state = START_L;
-		switch (printer->packet->cmd) {
+		packet->state = START_L;
+		switch (packet->cmd) {
 		case CMD_INIT:
 			printer_reset(printer);
 			break;
 		case CMD_DATA:
-			/* READY is a measure of any valid data packets received */
-			if (!(printer->packet->status & STATUS_CKSUM))
-				printer->packet->status |= STATUS_READY;
-
-			/* If there is space in the printer buffer, copy our data to it */
-			if (printer->data_sz < PRINT_FULL_SZ) {
-				if ((printer->data_sz + printer->packet->len) <= PRINT_FULL_SZ) {
-					memcpy((printer->data)+printer->data_sz, printer->packet->recv_data, printer->packet->len);
-					printer->data_sz += printer->packet->len;
+			if (printer->image->data_sz < PRINT_FULL_SZ) {
+				if ((printer->image->data_sz + packet->len) <= PRINT_FULL_SZ) {
+					memcpy((printer->image->data)+printer->image->data_sz, packet->recv_data, packet->len);
+					printer->image->data_sz += packet->len;
 				} else {
-					memcpy((printer->data)+printer->data_sz, printer->packet->recv_data, ((printer->data_sz + printer->packet->len)) - PRINT_FULL_SZ);
-					printer->data_sz += (PRINT_FULL_SZ - (printer->data_sz + printer->packet->len));
-					furi_assert(printer->data_sz <= PRINT_FULL_SZ);
+					memcpy((printer->image->data)+printer->image->data_sz, packet->recv_data, ((printer->image->data_sz + packet->len)) - PRINT_FULL_SZ);
+					printer->image->data_sz += (PRINT_FULL_SZ - (printer->image->data_sz + packet->len));
+					furi_assert(printer->image->data_sz <= PRINT_FULL_SZ);
 				}
 			}
+			if (printer->image->data_sz == PRINT_FULL_SZ)
+				packet->status |= STATUS_READY;
+
 			furi_thread_flags_set(printer->thread, THREAD_FLAGS_DATA);
 			break;
 		case CMD_TRANSFER:
@@ -141,17 +145,22 @@ static void byte_callback(void *context, uint8_t val)
 			 * a transfer command. If so, then we have failed to beat the clock.
 			 */
 		case CMD_PRINT:
-			printer->packet->status &= ~STATUS_READY;
-			printer->packet->status |= STATUS_PRINTING;
+			packet->status &= ~STATUS_READY;
+			packet->status |= (STATUS_PRINTING | STATUS_FULL);
 			furi_thread_flags_set(printer->thread, THREAD_FLAGS_PRINT);
 			break;
 		case CMD_STATUS:
 			/* READY cleared on status request */
-			printer->packet->status &= ~STATUS_READY;
+			packet->status &= ~STATUS_READY;
+			if ((packet->status & STATUS_PRINTING) &&
+			    (packet->status & STATUS_PRINTED)) {
+				packet->status &= ~(STATUS_PRINTING | STATUS_PRINTED);
+				furi_thread_flags_set(printer->thread, THREAD_FLAGS_COMPLETE);
+			}
 		}
 
-		printer->packet->recv_data_sz = 0;
-		printer->packet->cksum_calc = 0;
+		packet->recv_data_sz = 0;
+		packet->cksum_calc = 0;
 
 
 		/* XXX: TODO: if the command had something we need to do, do it here. */
@@ -194,15 +203,13 @@ static void byte_callback(void *context, uint8_t val)
 	gblink_transfer(printer->gblink_handle, data_out);
 }
 
-void printer_receive(void *printer_handle)
+void printer_receive_start(void *printer_handle)
 {
 	struct printer_proto *printer = printer_handle;
 
 	/* Set up defaults the receive path needs */
 	gblink_callback_set(printer->gblink_handle, byte_callback, printer);
 	gblink_clk_source_set(printer->gblink_handle, GBLINK_CLK_EXT);
-
-	printer->proto = PROTO_RECV;
 
 	printer_reset(printer);
 
