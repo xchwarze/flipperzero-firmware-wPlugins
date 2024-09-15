@@ -7,8 +7,8 @@
 
 #define TAG "RadioScannerApp"
 
-#define SUBGHZ_FREQUENCY_MIN 300000000
-#define SUBGHZ_FREQUENCY_MAX 928000000
+#define SUBGHZ_FREQUENCY_MIN  300000000
+#define SUBGHZ_FREQUENCY_MAX  928000000
 #define SUBGHZ_FREQUENCY_STEP 10000
 
 static void radio_scanner_draw_callback(Canvas* canvas, void* context) {
@@ -31,7 +31,8 @@ static void radio_scanner_draw_callback(Canvas* canvas, void* context) {
     snprintf(sensitivity_str, sizeof(sensitivity_str), "Sens: %.2f", (double)app->sensitivity);
     canvas_draw_str_aligned(canvas, 64, 42, AlignCenter, AlignTop, sensitivity_str);
 
-    canvas_draw_str_aligned(canvas, 64, 54, AlignCenter, AlignTop, app->scanning ? "Scanning..." : "Locked");
+    canvas_draw_str_aligned(
+        canvas, 64, 54, AlignCenter, AlignTop, app->scanning ? "Scanning..." : "Locked");
     FURI_LOG_D(TAG, "Exiting draw callback");
 }
 
@@ -54,18 +55,18 @@ static bool radio_scanner_init_subghz(RadioScannerApp* app) {
     furi_assert(app);
     furi_hal_subghz_reset();
     furi_hal_subghz_idle();
-    
+
     if(!furi_hal_subghz_is_frequency_valid(app->frequency)) {
         FURI_LOG_E(TAG, "Invalid frequency: %lu", app->frequency);
         return false;
     }
-    
+
     FURI_LOG_D(TAG, "Setting frequency: %lu", app->frequency);
     furi_hal_subghz_set_frequency(app->frequency);
     FURI_LOG_D(TAG, "Frequency set");
     furi_hal_subghz_rx();
     FURI_LOG_D(TAG, "SubGhz set to RX mode");
-    
+
     FURI_LOG_D(TAG, "SubGhz initialization complete");
     return true;
 }
@@ -127,17 +128,17 @@ static void radio_scanner_process_scanning(RadioScannerApp* app) {
     radio_scanner_update_rssi(app);
 
     bool signal_detected = (app->rssi > app->sensitivity);
-    
+
     if(signal_detected) {
         FURI_LOG_I(TAG, "Signal detected above sensitivity threshold");
         if(app->scanning) {
             FURI_LOG_D(TAG, "Locking frequency due to signal detection");
-            speaker_on(app);  
-            app->scanning = false;  
+            speaker_on(app);
+            app->scanning = false;
         }
     } else {
         FURI_LOG_D(TAG, "No signal detected, continue scanning");
-        app->scanning = true;  
+        app->scanning = true;
     }
 
     if(app->scanning) {
@@ -157,9 +158,9 @@ static void radio_scanner_process_scanning(RadioScannerApp* app) {
 
         if(furi_hal_subghz_is_frequency_valid(new_frequency)) {
             FURI_LOG_D(TAG, "Setting new frequency: %lu", new_frequency);
-            subghz_txrx_rx_end();  
+            subghz_txrx_rx_end();
             app->frequency = new_frequency;
-            subghz_txrx_rx(app); 
+            subghz_txrx_rx(app);
         } else {
             FURI_LOG_W(TAG, "Invalid frequency: %lu, skipping", new_frequency);
             app->frequency = SUBGHZ_FREQUENCY_MIN;
