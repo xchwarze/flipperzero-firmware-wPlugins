@@ -17,6 +17,7 @@
 #include "acurite_5n1.h"
 #include "ambient_weather.h"
 #include "solight_te44.h"
+#include "bresser_3ch.h"
 #include "auriol_hg0601a.h"
 #include "oregon_v1.h"
 #include "tx_8300.h"
