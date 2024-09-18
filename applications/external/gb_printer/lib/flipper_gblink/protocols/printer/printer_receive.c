@@ -8,7 +8,8 @@
 #define TAG "printer_receive"
 
 /* XXX: TODO: Double check this */
-#define TIMEOUT_US 1000000
+#define HARD_TIMEOUT_US 1000000
+#define SOFT_TIMEOUT_US 20000
 
 static void printer_reset(struct printer_proto *printer)
 {
@@ -27,11 +28,17 @@ static void byte_callback(void *context, uint8_t val)
 {
 	struct printer_proto *printer = context;
 	struct packet *packet = printer->packet;
-	const uint32_t time_ticks = furi_hal_cortex_instructions_per_microsecond() * TIMEOUT_US;
+	const uint32_t time_ticks = furi_hal_cortex_instructions_per_microsecond() * HARD_TIMEOUT_US;
 	uint8_t data_out = 0x00;
 
-	if ((DWT->CYCCNT - printer->packet->time) > time_ticks)
+	if ((DWT->CYCCNT - packet->time) > time_ticks)
 		printer_reset(printer);
+
+	if ((DWT->CYCCNT - packet->time) > furi_hal_cortex_instructions_per_microsecond() * SOFT_TIMEOUT_US)
+		packet->state = START_L;
+
+	/* Packet timeout restart */
+	packet->time = DWT->CYCCNT;
 
 	/* TODO: flash led? */
 
@@ -39,8 +46,6 @@ static void byte_callback(void *context, uint8_t val)
 	case START_L:
 		if (val == PKT_START_L) {
 			packet->state = START_H;
-			/* Packet timeout restart */
-			packet->time = DWT->CYCCNT;
 			packet->zero_counter = 0;
 		}
 		if (val == 0x00) {
@@ -59,13 +64,6 @@ static void byte_callback(void *context, uint8_t val)
 		packet->cmd = val;
 		packet->state = COMPRESS;
 		packet->cksum_calc += val;
-
-		/* We only do a real reset after the packet is completed, however
-		 * we need to clear the status flags at this point.
-		 */
-		if (val == CMD_INIT)
-			packet->status = 0;
-
 		break;
 	case COMPRESS:
 		packet->cksum_calc += val;
@@ -135,8 +133,9 @@ static void byte_callback(void *context, uint8_t val)
 					furi_assert(printer->image->data_sz <= PRINT_FULL_SZ);
 				}
 			}
-			if (printer->image->data_sz == PRINT_FULL_SZ)
-				packet->status |= STATUS_READY;
+
+			/* Any time data is written to the buffer, READY is set */
+			packet->status |= STATUS_READY;
 
 			furi_thread_flags_set(printer->thread, THREAD_FLAGS_DATA);
 			break;
@@ -145,6 +144,11 @@ static void byte_callback(void *context, uint8_t val)
 			 * a transfer command. If so, then we have failed to beat the clock.
 			 */
 		case CMD_PRINT:
+			/* TODO: Be able to memcpy these */
+			printer->image->num_sheets = packet->recv_data[0];
+			printer->image->margins = packet->recv_data[1];
+			printer->image->palette = packet->recv_data[2];
+			printer->image->exposure = packet->recv_data[3];
 			packet->status &= ~STATUS_READY;
 			packet->status |= (STATUS_PRINTING | STATUS_FULL);
 			furi_thread_flags_set(printer->thread, THREAD_FLAGS_PRINT);
@@ -220,5 +224,5 @@ void printer_receive_print_complete(void *printer_handle)
 {
 	struct printer_proto *printer = printer_handle;
 
-	printer->packet->status &= ~STATUS_PRINTING;
+	printer->packet->status |= STATUS_PRINTED;
 }
