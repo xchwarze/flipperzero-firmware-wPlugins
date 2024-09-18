@@ -18,8 +18,9 @@ typedef struct {
     float rssi;
     float sensitivity;
     bool scanning;
-    const SubGhzDevice* radio_device;
     ScanDirection scan_direction;
+    const SubGhzDevice* radio_device;
+    bool speaker_acquired;
 } RadioScannerApp;
 
 RadioScannerApp* radio_scanner_app_alloc();
