@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0910-1644-0.104.1-d56e3fc.tgz&channel=RM0910-1644-0.104.1-d56e3fc&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0919-0056-0.104.1-9569ea4.tgz&channel=RM0919-0056-0.104.1-9569ea4&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,31 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-09-19 00:18 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-09-19 00:18 EST`
-- Updated: [Quac! v0.7 (By rdefeo)](https://github.com/rdefeo/quac)
-- Updated: [Five Nights at Flippers v1.3 (By sillygir1)](https://github.com/sillygir1/flipperzero-fnaf)
-- [About: Fix BLE stack version string (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/dee5a7c799fdcb3616480f127381dcf94e12a046)
-- Updated: [CANBUS v1.1.2.2 (By ElectronicCats)](https://github.com/ElectronicCats/flipper-MCP2515-CANBUS) `Req: CANBUS By ElectronicCats`
-- Updated: [NFC Playlist v2.6 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
-- Updated: [BT Remote for Kodi v1.2 (Remixed By coded-with-claws)](https://github.com/coded-with-claws/flipperzero-tools/tree/main/applications_user/bt_hid_kodi) (Version Only)
-- Added: [Lifecounter v1.0 (By antsy)](https://github.com/antsy/Lifecounter) (Multi Counter remake)
-- Added: [Radio Scanner v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Radio-Scanner)
-- OFW: [Put errno into TCB #3893 (By skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3893)
-- OFW: [kerel typo #3901 (By EntranceJew)](https://github.com/flipperdevices/flipperzero-firmware/pull/3901)
-- OFW: [Folder rename fails #3896 (By portasynthinca3)](https://github.com/flipperdevices/flipperzero-firmware/pull/3896)
-- Updated: [Laser Tag v2.3 (By RocketGod & jamisonderek)](https://github.com/RocketGod-git/Flipper-Zero-Laser-Tag)
-- Updated: [Weather Station v1.9 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Added Bressner 3CH Protocol (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/217)
-- Updated: [Tasks v1.1 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
-- Updated: [GB Printer v0.1 (By kbembedded)](https://github.com/kbembedded/flipper-gb-printer) `Req: GB Link Cable / Malveke`
-- Updated: [FlipBIP Crypto Wallet v1.17 (By xtruan)](https://github.com/xtruan/FlipBIP) (Version Only)
-- Added: [FlipTDI v1.0 (By Skorpionm)](https://github.com/flipperdevices/flipperzero-good-faps/pull/234)
-- Updated: [Radio Scanner v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Radio-Scanner)
-- OFW:  [Proper integer parsing #3839 (By portasynthinca3)](https://github.com/flipperdevices/flipperzero-firmware/pull/3839)
-- Added: [Flipper95 v1.0 (By CookiePLMonster)](https://github.com/CookiePLMonster/flipper-bakery/flipper95)
-- NFC: [Add API to enforce ISO15693 mode (By aaronjamt)](https://github.com/Next-Flip/Momentum-Firmware/pull/225)
-- Updated: [PicoPass (iClass) v1.18 (By Bettse)](https://gitlab.com/bettse/picopass) [Force ISO15693 1OutOf4 mode (By aaronjamt)](https://github.com/Next-Flip/Momentum-Apps/pull/22)
-- NFC: [Add SmartRider Parser (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/203)
-- NFC: [Update mf_classic_dict.nfc (From Bulgaria Hotel) (By z3r0l1nk)](https://github.com/Next-Flip/Momentum-Firmware/pull/216)
-- UL: SubGHz: [Add new protocols: GangQi, Hay21 and Hollarm (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/dd30ef7a2c0e6edcf757696c1a7177b31e390cdc) (With Latest Updates)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892)
 
 <a name="release">
@@ -643,4 +618,4 @@ $ ./fbt dolphin_ext
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0910-1644-0.104.1-d56e3fc.tgz&channel=RM0910-1644-0.104.1-d56e3fc&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0919-0056-0.104.1-9569ea4.tgz&channel=RM0919-0056-0.104.1-9569ea4&version=0.104.1)
