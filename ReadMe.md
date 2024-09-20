@@ -34,6 +34,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Quac! v0.7 (By rdefeo)](https://github.com/rdefeo/quac)
 - Updated: OFW: PR: [MIFARE Classic Key Recovery Improvements #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
 - Updated: [GB Printer v0.1 (By kbembedded)](https://github.com/kbembedded/flipper-gb-printer) `Req: GB Link Cable / Malveke`
+- Added: [Space Invaders v0.1 (By PavelZurek)](https://github.com/PavelZurek/flipperzero-space-invaders)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892)
 
 <a name="release">
@@ -318,6 +319,7 @@ $ ./fbt dolphin_ext
 - [Solitaire v1.1.4 (By teeebor)](https://github.com/teeebor/flipper_games)
 - [Sokoban v1.4 (By Racso)](https://github.com/Racso/fzero-apps)
 - [Space Impact WIP v0.2 (By Ka3u6y6a)](https://github.com/Ka3u6y6a/flipper-zero-space-impact)
+- [Space Invaders v0.1 (By PavelZurek)](https://github.com/PavelZurek/flipperzero-space-invaders)
 - [Strategem Zero v0.1 (By nymda)](https://github.com/nymda/StratagemZero)
 - [Sudoku v1.2 (By profelis)](https://github.com/profelis/fz-sudoku)
 - [SUPER-CHIP Emulator (By Milk-Cool)](https://github.com/Milk-Cool/fz-schip)
