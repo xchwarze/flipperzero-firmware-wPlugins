@@ -35,6 +35,7 @@ extern "C" {
 
 extern const MfClassicKey auth1_backdoor_key;
 extern const MfClassicKey auth2_backdoor_key;
+extern const MfClassicKey auth3_backdoor_key;
 extern const uint16_t valid_sums[19];
 
 typedef enum {
@@ -53,6 +54,7 @@ typedef enum {
     MfClassicNestedPhaseDictAttack,
     MfClassicNestedPhaseDictAttackResume,
     MfClassicNestedPhaseCalibrate,
+    MfClassicNestedPhaseRecalibrate,
     MfClassicNestedPhaseCollectNtEnc,
     MfClassicNestedPhaseFinished,
 } MfClassicNestedPhase;
@@ -68,8 +70,17 @@ typedef enum {
     MfClassicBackdoorUnknown, // Tag not yet tested
     MfClassicBackdoorNone, // No observed backdoor
     MfClassicBackdoorAuth1, // Tag responds to v1 auth backdoor
-    MfClassicBackdoorAuth2, // Tag responds to v2 auth backdoor (static encrypted nonce)
+    MfClassicBackdoorAuth2, // Tag responds to v2 auth backdoor
+    MfClassicBackdoorAuth3, // Tag responds to v3 auth backdoor (static encrypted nonce)
 } MfClassicBackdoor;
+
+typedef struct {
+    MfClassicKey key;
+    MfClassicBackdoor type;
+} MfClassicBackdoorKeyPair;
+
+extern const MfClassicBackdoorKeyPair mf_classic_backdoor_keys[];
+extern const size_t mf_classic_backdoor_keys_count;
 
 typedef struct {
     uint32_t cuid; // Card UID
@@ -168,6 +179,7 @@ typedef struct {
     uint8_t nt_enc_msb
         [32]; // Bit-packed array to track which unique most significant bytes have been seen (256 bits = 32 bytes)
     uint16_t msb_par_sum; // Sum of parity bits for each unique most significant byte
+    uint16_t msb_count; // Number of unique most significant bytes seen
 } MfClassicPollerDictAttackContext;
 
 typedef struct {

@@ -10,6 +10,32 @@ extern "C" {
 typedef struct DictAttack DictAttack;
 
 typedef enum {
+    MfClassicNestedPhaseNone,
+    MfClassicNestedPhaseAnalyzePRNG,
+    MfClassicNestedPhaseDictAttack,
+    MfClassicNestedPhaseDictAttackResume,
+    MfClassicNestedPhaseCalibrate,
+    MfClassicNestedPhaseRecalibrate,
+    MfClassicNestedPhaseCollectNtEnc,
+    MfClassicNestedPhaseFinished,
+} MfClassicNestedPhase;
+
+typedef enum {
+    MfClassicPrngTypeUnknown, // Tag not yet tested
+    MfClassicPrngTypeNoTag, // No tag detected during test
+    MfClassicPrngTypeWeak, // Weak PRNG, standard Nested
+    MfClassicPrngTypeHard, // Hard PRNG, Hardnested
+} MfClassicPrngType;
+
+typedef enum {
+    MfClassicBackdoorUnknown, // Tag not yet tested
+    MfClassicBackdoorNone, // No observed backdoor
+    MfClassicBackdoorAuth1, // Tag responds to v1 auth backdoor
+    MfClassicBackdoorAuth2, // Tag responds to v2 auth backdoor
+    MfClassicBackdoorAuth3, // Tag responds to v3 auth backdoor (static encrypted nonce)
+} MfClassicBackdoor;
+
+typedef enum {
     DictAttackEventSkipPressed,
 } DictAttackEvent;
 
@@ -50,6 +76,10 @@ void dict_attack_set_nested_phase(DictAttack* instance, uint8_t nested_phase);
 void dict_attack_set_prng_type(DictAttack* instance, uint8_t prng_type);
 
 void dict_attack_set_backdoor(DictAttack* instance, uint8_t backdoor);
+
+void dict_attack_set_nested_target_key(DictAttack* instance, uint16_t target_key);
+
+void dict_attack_set_msb_count(DictAttack* instance, uint16_t msb_count);
 
 #ifdef __cplusplus
 }
