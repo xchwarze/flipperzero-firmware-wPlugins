@@ -6,4 +6,8 @@ App(
     stack_size=8 * 1024,
     fap_icon="cligui.png",
     fap_category="Tools",
+    fap_author="ranchordo",
+    fap_weburl="https://github.com/ranchordo/flipperzero-cli-bridge",
+    fap_version="1.5",
+    fap_description="Allows CLI control from GUI, giving untethered access to sub-ghz chat, system diagnostics, and more.",
 )
