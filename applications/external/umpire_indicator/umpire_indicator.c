@@ -29,7 +29,7 @@ void draw_instructions(Canvas* canvas) {
     canvas_clear(canvas);
     canvas_set_font(canvas, FontPrimary);
     canvas_draw_str(canvas, 2, 12, "Umpire Indicator");
-    
+
     canvas_set_font(canvas, FontSecondary);
     canvas_draw_str(canvas, 2, 24, "Left: Ball   Up: Strike");
     canvas_draw_str(canvas, 2, 34, "Right: Out   Down: Undo");
@@ -68,16 +68,22 @@ void draw_counter(Canvas* canvas, UmpireIndicatorState* state) {
     // Draw indicator circles
     canvas_set_font(canvas, FontSecondary);
     for(int i = 0; i < 4; i++) {
-        if(i < state->balls) canvas_draw_disc(canvas, ball_x + 2 + (i * 9), box_y + box_height + 4, 3);
-        else canvas_draw_circle(canvas, ball_x + 2 + (i * 9), box_y + box_height + 4, 3);
+        if(i < state->balls)
+            canvas_draw_disc(canvas, ball_x + 2 + (i * 9), box_y + box_height + 4, 3);
+        else
+            canvas_draw_circle(canvas, ball_x + 2 + (i * 9), box_y + box_height + 4, 3);
     }
     for(int i = 0; i < 3; i++) {
-        if(i < state->strikes) canvas_draw_disc(canvas, strike_x + 2 + (i * 12), box_y + box_height + 4, 3);
-        else canvas_draw_circle(canvas, strike_x + 2 + (i * 12), box_y + box_height + 4, 3);
+        if(i < state->strikes)
+            canvas_draw_disc(canvas, strike_x + 2 + (i * 12), box_y + box_height + 4, 3);
+        else
+            canvas_draw_circle(canvas, strike_x + 2 + (i * 12), box_y + box_height + 4, 3);
     }
     for(int i = 0; i < 3; i++) {
-        if(i < state->outs) canvas_draw_disc(canvas, out_x + 2 + (i * 12), box_y + box_height + 4, 3);
-        else canvas_draw_circle(canvas, out_x + 2 + (i * 12), box_y + box_height + 4, 3);
+        if(i < state->outs)
+            canvas_draw_disc(canvas, out_x + 2 + (i * 12), box_y + box_height + 4, 3);
+        else
+            canvas_draw_circle(canvas, out_x + 2 + (i * 12), box_y + box_height + 4, 3);
     }
 }
 
@@ -115,7 +121,8 @@ void input_callback(InputEvent* input_event, void* ctx) {
                 if(state->strikes == 3) {
                     state->strikes = 0;
                     state->balls = 0;
-                    if(state->outs < 2) state->outs++;
+                    if(state->outs < 2)
+                        state->outs++;
                     else {
                         state->outs = 0;
                     }
@@ -124,7 +131,8 @@ void input_callback(InputEvent* input_event, void* ctx) {
             break;
         case InputKeyRight:
             if(state->state == StateCounter) {
-                if(state->outs < 2) state->outs++;
+                if(state->outs < 2)
+                    state->outs++;
                 else {
                     state->outs = 0;
                     state->balls = 0;
@@ -134,9 +142,12 @@ void input_callback(InputEvent* input_event, void* ctx) {
             break;
         case InputKeyDown:
             if(state->state == StateCounter) {
-                if(state->balls > 0) state->balls--;
-                else if(state->strikes > 0) state->strikes--;
-                else if(state->outs > 0) state->outs--;
+                if(state->balls > 0)
+                    state->balls--;
+                else if(state->strikes > 0)
+                    state->strikes--;
+                else if(state->outs > 0)
+                    state->outs--;
             }
             break;
         case InputKeyBack:
