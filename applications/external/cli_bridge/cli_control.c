@@ -22,18 +22,16 @@ static void tx_handler_stdout(const char* buffer, size_t size) {
 
 static size_t real_rx_handler(uint8_t* buffer, size_t size, uint32_t timeout) {
     size_t rx_cnt = 0;
-    while (size > 0) {
+    while(size > 0) {
         size_t batch_size = size;
-        if (batch_size > 128)
-            batch_size = 128;
+        if(batch_size > 128) batch_size = 128;
         size_t len = furi_stream_buffer_receive(cli_rx_stream, buffer, batch_size, timeout);
-        if (len == 0)
-            break;
+        if(len == 0) break;
         size -= len;
         buffer += len;
         rx_cnt += len;
     }
-    if (restore_tx_stdout) {
+    if(restore_tx_stdout) {
         furi_thread_set_stdout_callback(cli_vcp.tx_stdout);
     } else {
         furi_thread_set_stdout_callback(tx_handler_stdout);
@@ -43,7 +41,8 @@ static size_t real_rx_handler(uint8_t* buffer, size_t size, uint32_t timeout) {
 
 static CliSession* session;
 
-static void session_init(void) {}
+static void session_init(void) {
+}
 static void session_deinit(void) {
     free(session);
     session = NULL;
@@ -54,7 +53,7 @@ static bool session_connected(void) {
 }
 
 void clicontrol_hijack(size_t tx_size, size_t rx_size) {
-    if (cli_rx_stream != NULL && cli_tx_stream != NULL) {
+    if(cli_rx_stream != NULL && cli_tx_stream != NULL) {
         return;
     }
 
@@ -72,13 +71,13 @@ void clicontrol_hijack(size_t tx_size, size_t rx_size) {
     session->is_connected = &session_connected;
 
     CliCommandTree_it_t cmd_iterator;
-    for (CliCommandTree_it(cmd_iterator, global_cli->commands);
-         !CliCommandTree_end_p(cmd_iterator);
-         CliCommandTree_next(cmd_iterator)) {
+    for(CliCommandTree_it(cmd_iterator, global_cli->commands); !CliCommandTree_end_p(cmd_iterator);
+        CliCommandTree_next(cmd_iterator)) {
         CliCommand* t = CliCommandTree_cref(cmd_iterator)->value_ptr;
         // Move CliCommandFlagParallelSafe to another bit
-        t->flags ^= ((t->flags & (CliCommandFlagParallelSafe << 8)) ^
-                     ((t->flags & CliCommandFlagParallelSafe) << 8));
+        t->flags ^=
+            ((t->flags & (CliCommandFlagParallelSafe << 8)) ^
+             ((t->flags & CliCommandFlagParallelSafe) << 8));
         // Set parallel safe
         t->flags |= CliCommandFlagParallelSafe;
     }
@@ -94,21 +93,21 @@ void clicontrol_hijack(size_t tx_size, size_t rx_size) {
 }
 
 void clicontrol_unhijack(bool persist) {
-    if (cli_rx_stream == NULL && cli_tx_stream == NULL) {
+    if(cli_rx_stream == NULL && cli_tx_stream == NULL) {
         return;
     }
 
     // Consume remaining tx data
-    if (furi_stream_buffer_bytes_available(cli_tx_stream) > 0) {
+    if(furi_stream_buffer_bytes_available(cli_tx_stream) > 0) {
         char sink = 0;
-        while (!furi_stream_buffer_is_empty(cli_tx_stream)) {
+        while(!furi_stream_buffer_is_empty(cli_tx_stream)) {
             furi_stream_buffer_receive(cli_tx_stream, &sink, 1, FuriWaitForever);
         }
     }
 
     Cli* global_cli = furi_record_open(RECORD_CLI);
 
-    if (persist) {
+    if(persist) {
         // Don't trigger a terminal reset as the session switches
         cli_vcp.is_connected = &furi_hal_version_do_i_belong_here;
     } else {
@@ -121,15 +120,15 @@ void clicontrol_unhijack(bool persist) {
 
     // Restore command flags
     CliCommandTree_it_t cmd_iterator;
-    for (CliCommandTree_it(cmd_iterator, global_cli->commands);
-         !CliCommandTree_end_p(cmd_iterator);
-         CliCommandTree_next(cmd_iterator)) {
+    for(CliCommandTree_it(cmd_iterator, global_cli->commands); !CliCommandTree_end_p(cmd_iterator);
+        CliCommandTree_next(cmd_iterator)) {
         CliCommand* t = CliCommandTree_cref(cmd_iterator)->value_ptr;
-        t->flags ^= (((t->flags & CliCommandFlagParallelSafe) >> 8) ^
-                     ((t->flags & (CliCommandFlagParallelSafe << 8)) >> 8));
+        t->flags ^=
+            (((t->flags & CliCommandFlagParallelSafe) >> 8) ^
+             ((t->flags & (CliCommandFlagParallelSafe << 8)) >> 8));
     }
 
-    restore_tx_stdout = true;  // Ready for next rx call
+    restore_tx_stdout = true; // Ready for next rx call
 
     // Session switcharooney again
     FuriThreadStdoutWriteCallback prev_stdout = furi_thread_get_stdout_callback();

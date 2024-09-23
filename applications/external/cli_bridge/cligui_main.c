@@ -74,7 +74,8 @@ int32_t cligui_main(void* p) {
     cligui->gui = furi_record_open(RECORD_GUI);
     cligui->view_dispatcher = view_dispatcher_alloc();
     FuriPubSub* input_events = furi_record_open(RECORD_INPUT_EVENTS);
-    FuriPubSubSubscription* input_events_sub = furi_pubsub_subscribe(input_events, input_callback, (void*)cligui);
+    FuriPubSubSubscription* input_events_sub =
+        furi_pubsub_subscribe(input_events, input_callback, (void*)cligui);
     view_dispatcher_enable_queue(cligui->view_dispatcher);
     view_dispatcher_set_event_callback_context(cligui->view_dispatcher, cligui);
     view_dispatcher_set_custom_event_callback(cligui->view_dispatcher, cligui_custom_event_cb);
