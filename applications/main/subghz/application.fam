@@ -30,6 +30,7 @@ App(
     #  [Sync with OFW for brand new interface and improve to 4 elements of history, abillity to disable sound and vibro with saving (By derskythe)](https://github.com/DarkFlippers/unleashed-firmware/pull/121) (Elements from ClusterM, darmiel & Himura2la Stolen With No Credit)
     #  [Add CC1101 module external support (By gid9798)](https://github.com/DarkFlippers/unleashed-firmware/pull/534)
     #  And a few bugfixes (By xMasterX)
+    #  [SubGHz Frequency analyzer fixes and improvements (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a00e57698dbb8893132a04a40e117dca7163805a)
 )
 
 App(
