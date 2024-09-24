@@ -41,13 +41,13 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [CLI Bridge v1.5 (By ranchordo)](https://github.com/ranchordo/flipperzero-cli-bridge)
 - Updated: [Radio Scanner v0.2 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Radio-Scanner)
 - [Patreon Build Release](https://www.patreon.com/RogueMaster/membership): [New CyberPunk77 Animations for a New CyberPunk77 Build, Also included in AnimSwitcher Build (By Kuronons)](https://github.com/Kuronons/FZ_graphics/tree/main/Animations/CP77)
-- Updated: [Mfkey v2.9 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - Added: [Sand Simulation v0.1 (By JJoeDev)](https://github.com/JJoeDev/FZSandSimulation)
 - Added: [Umpire Indicator v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Umpire-Indicator)
 - Added: [Blackjack v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Blackjack)
 - [Updated Games Menu to have latest Games in Games Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/7b9034a0e6b886fcdca7448bb9f9f5d2ac326fe8)
 - OFW: PR: [New layout for BadUSB (es-LA) #3916 (By IRecabarren)](https://github.com/flipperdevices/flipperzero-firmware/pull/3916)
 - Updated: OFW: PR: [MIFARE Classic Key Recovery Improvements #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
+- Updated: [Mfkey v3.0 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892)
 
 <a name="release">
@@ -494,7 +494,7 @@ $ ./fbt dolphin_ext
 - [MAX31855 (By skotopes)](https://github.com/skotopes/flipperzero_max31855)
 - [Metronome v1.3 (By panki27)](https://github.com/panki27/Metronome)
 - [MFC Editor v1.0 (By TollyH)](https://github.com/TollyH/flipper-apps)
-- [Mfkey v2.9 (By noproto)](https://github.com/noproto/FlipperMfkey)
+- [Mfkey v3.0 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - [MH-Z19 CO2 Sensor v0.2 (By meshchaninov)](https://github.com/meshchaninov/flipper-zero-mh-z19)
 - [MH-Z19 UART (By skotopes)](https://github.com/skotopes/flipperzero_mhz19_uart)
 - [MIDI Ocarina v0.1 (By crackerjacques)](https://github.com/crackerjacques/Flipper_Zero_MIDI_Ocarina)

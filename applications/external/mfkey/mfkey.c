@@ -13,7 +13,6 @@
 //       https://eprint.iacr.org/2024/1275.pdf section X
 // TODO: Static Encrypted: Minimum RAM for adding to keys dict (avoid crashes)
 // TODO: Static Encrypted: Optimize KeysDict or buffer keys to write in chunks
-// TODO: Static Nested: Save all candidate keys (first key may be invalid)
 
 #include <furi.h>
 #include <furi_hal.h>
@@ -627,6 +626,7 @@ void mfkey(ProgramState* program_state) {
     // TODO: Track free state at the time this is called to ensure double free does not happen
     furi_assert(nonce_arr);
     furi_assert(nonce_arr->stream);
+    // TODO: Already closed?
     buffered_file_stream_close(nonce_arr->stream);
     stream_free(nonce_arr->stream);
     //FURI_LOG_I(TAG, "Free heap after free(): %zub", memmgr_get_free_heap());
