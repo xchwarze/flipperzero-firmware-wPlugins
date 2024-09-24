@@ -14,9 +14,12 @@
 
 #define TAG "SandSimulation"
 
-#define SCREEN_WIDTH  127
-#define SCREEN_HEIGHT 63
-#define FPS           10
+// REAL SCREEN DIMENTIONS AND FAKE SCREEN DIMENTIONS + FPS
+#define SCREEN_WIDTH    128
+#define F_SCREEN_WIDTH  127
+#define SCREEN_HEIGHT   64
+#define F_SCREEN_HEIGHT 63
+#define FPS             10
 
 // App menu items
 typedef enum {
@@ -38,7 +41,7 @@ typedef enum {
 
 typedef struct {
     ViewDispatcher* view_dispatcher;
-    NotificationApp* notifications; // Backlight controller
+    NotificationApp* notifications;
     Submenu* submenu; // App menu
     View* view_game; // The Sand simulation view
     Widget* widget_about;
@@ -50,8 +53,18 @@ typedef struct {
 typedef struct {
     FuriMutex* mutex;
 
-    uint8_t x, y;
+    uint8_t cursorX, cursorY;
+    bool map[SCREEN_WIDTH * SCREEN_HEIGHT];
 } SandSimGame;
+
+static bool SandSim_get_map_value(const SandSimGame* game, const uint16_t x, const uint16_t y) {
+    return game->map[(x * SCREEN_HEIGHT) + y];
+}
+
+static void
+    SandSim_set_map_value(SandSimGame* game, const uint16_t x, const uint16_t y, const bool value) {
+    game->map[(x * SCREEN_HEIGHT) + y] = value;
+}
 
 // Called when Back Button is pressed. Returns VIEW_NONE to indicate application termination
 static uint32_t SandSim_navigation_exit_callback(void* ctx) {
@@ -82,6 +95,7 @@ static void SandSim_submenu_callback(void* ctx, uint32_t index) {
     }
 }
 
+// We draw before we update sand. Else sand will avoid getting drawn
 static void SandSim_view_game_draw_callback(Canvas* canvas, void* ssGame) {
     furi_assert(ssGame);
     FURI_LOG_T(TAG, "SandSim_view_game_draw_callback");
@@ -89,8 +103,31 @@ static void SandSim_view_game_draw_callback(Canvas* canvas, void* ssGame) {
     SandSimGame* game = ssGame;
     furi_mutex_acquire(game->mutex, FuriWaitForever);
 
-    canvas_draw_dot(canvas, game->x, game->y);
-    canvas_draw_frame(canvas, game->x - 2, game->y - 2, 5, 5);
+    for(int i = SCREEN_WIDTH * SCREEN_HEIGHT; i > 0; --i) {
+        int x = i / SCREEN_HEIGHT;
+        int y = i % SCREEN_HEIGHT;
+
+        const bool currentCellState = SandSim_get_map_value(game, x, y);
+
+        if(currentCellState) canvas_draw_dot(canvas, x, y);
+
+        if(y >= SCREEN_HEIGHT - 1) continue;
+
+        if(currentCellState && !SandSim_get_map_value(game, x, y + 1)) {
+            SandSim_set_map_value(game, x, y, false);
+            SandSim_set_map_value(game, x, y + 1, true);
+        } else if(currentCellState && !SandSim_get_map_value(game, x + 1, y + 1)) {
+            SandSim_set_map_value(game, x, y, false);
+            SandSim_set_map_value(game, x + 1, y + 1, true);
+        } else if(currentCellState && !SandSim_get_map_value(game, x - 1, y + 1)) {
+            SandSim_set_map_value(game, x, y, false);
+            SandSim_set_map_value(game, x - 1, y + 1, true);
+        }
+    }
+
+    canvas_set_color(canvas, ColorXOR);
+    canvas_draw_dot(canvas, game->cursorX, game->cursorY);
+    canvas_draw_circle(canvas, game->cursorX, game->cursorY, 3);
 
     furi_mutex_release(game->mutex);
 }
@@ -131,7 +168,6 @@ static void SandSim_view_game_exit_callback(void* ctx) {
 
 static bool SandSim_view_game_custom_event_callback(uint32_t event, void* ctx) {
     furi_assert(ctx);
-    FURI_LOG_T(TAG, "SandSim_view_game_custom_event_callback");
 
     SandSimApp* app = ctx;
     switch(event) {
@@ -140,6 +176,11 @@ static bool SandSim_view_game_custom_event_callback(uint32_t event, void* ctx) {
         return true;
         break;
     case SandSimEventID_OkPressed:
+        with_view_model(
+            app->view_game,
+            SandSimGame * game,
+            { SandSim_set_map_value(game, game->cursorX, game->cursorY, true); },
+            true);
         return true;
         break;
     default:
@@ -156,37 +197,50 @@ static bool SandSim_view_game_input_callback(InputEvent* i_event, void* ctx) {
     if(i_event->type == InputTypeRepeat || i_event->type == InputTypePress) {
         uint8_t speed = (i_event->type == InputTypeRepeat) ? 4 : 1;
 
-        if(i_event->key == InputKeyLeft) {
+        switch(i_event->key) {
+        case InputKeyUp:
             with_view_model(
                 app->view_game,
                 SandSimGame * game,
-                { game->x = (game->x - speed > 0) ? game->x - speed : 0; },
+                { game->cursorY = (game->cursorY - speed > 0) ? game->cursorY - speed : 0; },
                 true);
-        } else if(i_event->key == InputKeyRight) {
+            break;
+        case InputKeyDown:
             with_view_model(
                 app->view_game,
                 SandSimGame * game,
-                { game->x = (game->x + speed < SCREEN_WIDTH) ? game->x + speed : SCREEN_WIDTH; },
+                {
+                    game->cursorY = (game->cursorY + speed < F_SCREEN_HEIGHT) ?
+                                        game->cursorY + speed :
+                                        F_SCREEN_HEIGHT;
+                },
                 true);
-        }
-
-        if(i_event->key == InputKeyUp) {
+            break;
+        case InputKeyRight:
             with_view_model(
                 app->view_game,
                 SandSimGame * game,
-                { game->y = (game->y - speed > 0) ? game->y - speed : 0; },
+                {
+                    game->cursorX = (game->cursorX + speed < F_SCREEN_WIDTH) ?
+                                        game->cursorX + speed :
+                                        F_SCREEN_WIDTH;
+                },
                 true);
-        } else if(i_event->key == InputKeyDown) {
+            break;
+        case InputKeyLeft:
             with_view_model(
                 app->view_game,
                 SandSimGame * game,
-                { game->y = (game->y + speed < SCREEN_HEIGHT) ? game->y + speed : SCREEN_HEIGHT; },
+                { game->cursorX = (game->cursorX - speed > 0) ? game->cursorX - speed : 0; },
                 true);
-        }
-    } else if(i_event->type == InputTypePress) {
-        if(i_event->key == InputKeyOk) {
+            break;
+        case InputKeyOk:
             view_dispatcher_send_custom_event(app->view_dispatcher, SandSimEventID_OkPressed);
-            return true;
+            break;
+        case InputKeyBack:
+            break;
+        case InputKeyMAX:
+            break;
         }
     }
 
@@ -194,12 +248,13 @@ static bool SandSim_view_game_input_callback(InputEvent* i_event, void* ctx) {
 }
 
 static SandSimApp* SandSim_application_alloc() {
+    FURI_LOG_D(TAG, "SandSim_application_alloc allocating memory for sand simulation");
+
     SandSimApp* app = malloc(sizeof(SandSimApp));
 
     Gui* gui = furi_record_open(RECORD_GUI);
 
     app->view_dispatcher = view_dispatcher_alloc();
-    view_dispatcher_enable_queue(app->view_dispatcher);
     view_dispatcher_attach_to_gui(app->view_dispatcher, gui, ViewDispatcherTypeFullscreen);
     view_dispatcher_set_event_callback_context(app->view_dispatcher, app);
 
@@ -227,8 +282,12 @@ static SandSimApp* SandSim_application_alloc() {
 
     SandSimGame* game = view_get_model(app->view_game);
     game->mutex = furi_mutex_alloc(FuriMutexTypeNormal);
-    game->x = SCREEN_WIDTH / 2;
-    game->y = SCREEN_HEIGHT / 2;
+    game->cursorX = SCREEN_WIDTH / 2;
+    game->cursorY = SCREEN_HEIGHT / 2;
+
+    for(int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; ++i) {
+        game->map[i] = false;
+    }
     view_dispatcher_add_view(app->view_dispatcher, SandSimView_Game, app->view_game);
 
     app->widget_about = widget_alloc();
@@ -251,6 +310,8 @@ static SandSimApp* SandSim_application_alloc() {
 }
 
 static void SandSim_application_free(SandSimApp* app) {
+    FURI_LOG_D(TAG, "SandSim_application_free deallocating sand simulation application");
+
     notification_message(app->notifications, &sequence_display_backlight_enforce_auto);
     furi_record_close(RECORD_NOTIFICATION);
 
