@@ -44,6 +44,7 @@ GamesMenuList Version 0
 /ext/apps/Games/matagotchi.fap
 /ext/apps/Games/minesweeper.fap
 /ext/apps/Games/minesweeper_redux.fap
+/ext/apps/Games/mode7_demo.fap
 /ext/apps/Games/montyhall.fap
 /ext/apps/Games/multi_counter.fap
 /ext/apps/Games/nu_pogodi.fap
