@@ -45,7 +45,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - Added: [Blackjack v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Blackjack)
 - [Updated Games Menu to have latest Games in Games Menu (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/7b9034a0e6b886fcdca7448bb9f9f5d2ac326fe8)
 - OFW: PR: [New layout for BadUSB (es-LA) #3916 (By IRecabarren)](https://github.com/flipperdevices/flipperzero-firmware/pull/3916)
-- Updated: [Mfkey v3.0 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - UL: [SubGHz Frequency analyzer fixes and improvements (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a00e57698dbb8893132a04a40e117dca7163805a)
 - Updated: [Sand Simulation v0.1 (By JJoeDev)](https://github.com/JJoeDev/FZSandSimulation)
 - Updated: [Flight Assault v0.4 (By evillero)](https://github.com/evillero/flight_assault)
@@ -55,6 +54,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [ESP Flasher v1.7 (By 0xchocolate)](https://github.com/0xchocolate/flipperzero-esp-flasher) [support for more boards (By xMasterX)](https://github.com/xMasterX/all-the-plugins/commit/8a208951c53ae5d50f639bd1f7bc77c3b8bb8fc0)
 - Added: [Mode 7 Demo v0.1 (By CookiePLMonster)](https://github.com/CookiePLMonster/flipper-bakery/mode7_demo)
 - Updated: [CLI Bridge v1.6 (By ranchordo)](https://github.com/ranchordo/flipperzero-cli-bridge) [add extended keyboard (By xMasterX)](https://github.com/xMasterX/all-the-plugins/commit/656af71e6d34d331868ab1112b4beebf517bee8b)
+- Updated: [Mfkey v3.0 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892)
 
 <a name="release">
