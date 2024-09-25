@@ -49,6 +49,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: OFW: PR: [MIFARE Classic Key Recovery Improvements #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
 - Updated: [Mfkey v3.0 (By noproto)](https://github.com/noproto/FlipperMfkey)
 - UL: [SubGHz Frequency analyzer fixes and improvements (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a00e57698dbb8893132a04a40e117dca7163805a)
+- Updated: [Flight Assault v0.4 (By evillero)](https://github.com/evillero/flight_assault)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892)
 
 <a name="release">
@@ -289,7 +290,7 @@ $ ./fbt dolphin_ext
 - [Etch-A-Sketch (By SimplyMinimal)](https://github.com/SimplyMinimal/FlipperZero-Etch-A-Sketch)
 - [Five Nights at Flippers v1.3 (By sillygir1)](https://github.com/sillygir1/flipperzero-fnaf)
 - [Flappy Bird v1.2 (By DroomOne)](https://github.com/DroomOne/flipperzero-firmware/tree/dev/applications/flappy_bird)
-- [Flight Assault v0.3 (By evillero)](https://github.com/evillero/flight_assault)
+- [Flight Assault v0.4 (By evillero)](https://github.com/evillero/flight_assault)
 - [Flipper Hero v1.2 (By mentoster)](https://github.com/mentoster/Flipper-hero)
 - [Flippy Road v1.0 (By rkilpadi)](https://github.com/rkilpadi/flippy-road)
 - [Game of Life v1.2 (Updated to work by tgxn) (By itsyourbedtime)](https://github.com/tgxn/flipperzero-firmware/blob/dev/applications/game_of_life/game_of_life.c)
