@@ -6,27 +6,27 @@
 #include <applications/services/dolphin/dolphin.h>
 #include <applications/services/dolphin/helpers/dolphin_deed.h>
 
-#include <assets_icons.h>
+#include <nfc_eink_icons.h>
 
-#include <../applications/services/notification/notification_messages.h>
+#include <applications/services/notification/notification_messages.h>
 
-#include <../applications/services/gui/gui.h>
-#include <../applications/services/gui/view.h>
-#include <../applications/services/gui/view_dispatcher.h>
-#include <../applications/services/gui/scene_manager.h>
-#include <../applications/services/gui/modules/submenu.h>
-#include <../applications/services/gui/modules/empty_screen.h>
-#include <../applications/services/gui/modules/dialog_ex.h>
-#include <../applications/services/gui/modules/popup.h>
-#include <../applications/services/gui/modules/loading.h>
-#include <../applications/services/gui/modules/text_input.h>
-#include <../applications/services/gui/modules/byte_input.h>
-#include <../applications/services/gui/modules/text_box.h>
-#include <../applications/services/gui/modules/widget.h>
-#include <../applications/services/gui/modules/variable_item_list.h>
+#include <applications/services/gui/gui.h>
+#include <applications/services/gui/view.h>
+#include <applications/services/gui/view_dispatcher.h>
+#include <applications/services/gui/scene_manager.h>
+#include <applications/services/gui/modules/submenu.h>
+#include <applications/services/gui/modules/empty_screen.h>
+#include <applications/services/gui/modules/dialog_ex.h>
+#include <applications/services/gui/modules/popup.h>
+#include <applications/services/gui/modules/loading.h>
+#include <applications/services/gui/modules/text_input.h>
+#include <applications/services/gui/modules/byte_input.h>
+#include <applications/services/gui/modules/text_box.h>
+#include <applications/services/gui/modules/widget.h>
+#include <applications/services/gui/modules/variable_item_list.h>
 
-#include <../applications/services/dialogs/dialogs.h>
-#include <../applications/services/storage/storage.h>
+#include <applications/services/dialogs/dialogs.h>
+#include <applications/services/storage/storage.h>
 
 #include <nfc/nfc_listener.h>
 #include <nfc/nfc_poller.h>

@@ -1,7 +1,7 @@
 #include "nfc_eink_screen_i.h"
 
-#include <../lib/flipper_format/flipper_format.h>
-#include <../applications/services/storage/storage.h>
+#include <flipper_format/flipper_format.h>
+#include <applications/services/storage/storage.h>
 
 #define TAG "NfcEinkScreen"
 
