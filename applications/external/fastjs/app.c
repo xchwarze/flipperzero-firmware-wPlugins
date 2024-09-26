@@ -244,9 +244,8 @@ static bool fast_js_file_browser_callback(void* context, uint32_t event) {
         browser_options.hide_ext = false;
 
         // Show the file browser dialog at the Scripts directory
-        FuriString *javascript_file_path = furi_string_alloc_set_str("/ext/apps/Scripts");
-        if (!javascript_file_path)
-        {
+        FuriString* javascript_file_path = furi_string_alloc_set_str("/ext/apps/Scripts");
+        if(!javascript_file_path) {
             furi_record_close(RECORD_DIALOGS);
             return false;
         }

@@ -116,10 +116,11 @@ static void SandSim_view_game_draw_callback(Canvas* canvas, void* ssGame) {
         if(currentCellState && !SandSim_get_map_value(game, x, y + 1)) {
             SandSim_set_map_value(game, x, y, false);
             SandSim_set_map_value(game, x, y + 1, true);
-        } else if(currentCellState && !SandSim_get_map_value(game, x + 1, y + 1)) {
+        } else if(
+            x < F_SCREEN_WIDTH && currentCellState && !SandSim_get_map_value(game, x + 1, y + 1)) {
             SandSim_set_map_value(game, x, y, false);
             SandSim_set_map_value(game, x + 1, y + 1, true);
-        } else if(currentCellState && !SandSim_get_map_value(game, x - 1, y + 1)) {
+        } else if(x > 0 && currentCellState && !SandSim_get_map_value(game, x - 1, y + 1)) {
             SandSim_set_map_value(game, x, y, false);
             SandSim_set_map_value(game, x - 1, y + 1, true);
         }
