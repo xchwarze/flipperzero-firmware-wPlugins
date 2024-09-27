@@ -531,20 +531,17 @@ static FastJSApp* fast_js_app_alloc() {
 
     // Initialize the submenu view
     app->submenu = submenu_alloc();
-
-    submenu_add_item(
-        app->submenu, "Run Playlist", FastJSSubmenuIndexRun, fast_js_submenu_callback, app);
-    submenu_add_item(
-        app->submenu, "About", FastJSSubmenuIndexAbout, fast_js_submenu_callback, app);
-    submenu_add_item(
-        app->submenu, "Config", FastJSSubmenuIndexConfig, fast_js_submenu_callback, app);
+    submenu_set_header(app->submenu, "FastJS");
+    submenu_add_item(app->submenu, "Run Playlist", FastJSSubmenuIndexRun, fast_js_submenu_callback, app);
+    submenu_add_item(app->submenu, "About", FastJSSubmenuIndexAbout, fast_js_submenu_callback, app);
+    submenu_add_item(app->submenu, "Config", FastJSSubmenuIndexConfig, fast_js_submenu_callback, app);
     view_set_previous_callback(submenu_get_view(app->submenu), fast_js_submenu_exit_callback);
     view_dispatcher_add_view(
         app->view_dispatcher, FastJSViewSubmenu, submenu_get_view(app->submenu));
 
     // Initialize the configuration view
     app->config_view = submenu_alloc();
-
+    submenu_set_header(app->config_view, "Playlist");
     // Add existing scripts to the submenu, showing only the filename
     for(size_t i = 0; i < app->playlist.count; ++i) {
         FuriString* filename = furi_string_alloc_set(app->playlist.scripts[i]);
