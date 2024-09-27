@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM0926-1832-0.104.1-ae4950f](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM0927-1315-0.104.1-27877fa](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-09-26 18:32 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-09-26 18:32 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-09-27 13:15 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-09-27 13:15 EST`
 - Updated: [NFC E-Ink v0.1 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245) (View Dispatcher Fix for present API)
 - Updated: [FastJS v1.2 (By jblanked)](https://github.com/jblanked/FastJS-FlipperZero)
 - NFC: [NDEF parser supports NTAG I2C Plus 1k and 2k chips too (By RocketGod)](https://github.com/Next-Flip/Momentum-Firmware/pull/237)
