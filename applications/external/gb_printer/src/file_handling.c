@@ -17,6 +17,8 @@ void fgp_storage_next_count(void* fgp_storage) {
     storage->count++;
 }
 
+/* TODO: Add a tell() function */
+
 /* True if file opened successfully */
 bool fgp_storage_open(void* fgp_storage, const char* extension) {
     struct fgp_storage* storage = fgp_storage;
@@ -30,7 +32,7 @@ bool fgp_storage_open(void* fgp_storage, const char* extension) {
         extension);
 
     ret = storage_file_open(
-        storage->file, furi_string_get_cstr(fs_tmp), FSAM_WRITE, FSOM_CREATE_NEW);
+        storage->file, furi_string_get_cstr(fs_tmp), FSAM_WRITE, FSOM_OPEN_APPEND);
 
     furi_string_free(fs_tmp);
 
@@ -45,6 +47,16 @@ size_t fgp_storage_write(void* fgp_storage, const void* buf, size_t len) {
 bool fgp_storage_close(void* fgp_storage) {
     struct fgp_storage* storage = fgp_storage;
     return storage_file_close(storage->file);
+}
+
+bool fgp_storage_seek(void* fgp_storage, off_t offs, bool from_start) {
+    struct fgp_storage* storage = fgp_storage;
+
+    if(from_start)
+        return storage_file_seek(storage->file, (uint32_t)offs, true);
+    else
+        return storage_file_seek(
+            storage->file, (uint32_t)(storage_file_tell(storage->file) + offs), true);
 }
 
 void fgp_storage_free(void* fgp_storage) {
