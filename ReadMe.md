@@ -36,6 +36,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - NFC: [NDEF parser supports NTAG I2C Plus 1k and 2k chips too (By RocketGod)](https://github.com/Next-Flip/Momentum-Firmware/pull/237)
 - Removed: [Mifare Nested v1.6.6 (By AloneLiberty)](https://github.com/AloneLiberty/FlipperNested) (Superseded by NFC app with OFW 3822)
 - Updated: [BLE Spam v6.6 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam) [Fix menu index callback (By Willy-JL)](https://github.com/Next-Flip/Momentum-Apps/commit/7219d039d94e5ed0674e948e5623bc79a20a5f62)
+- Added: [Cognizant Flipper v1.0 (By TunnelDog)](https://github.com/TunnelDog/Cognizant-Flipper)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892)
 
 <a name="release">
@@ -264,6 +265,7 @@ $ ./fbt dolphin_ext
 - [Chess v1.11 (By xtruan)](https://github.com/xtruan/flipper-chess)
 - [Chess Clock (By ihatecsv)](https://github.com/ihatecsv/flipper_chess_clock)
 - [City Bloxx (By Milk-Cool)](https://github.com/Milk-Cool/fz-citybloxx)
+- [Cognizant Flipper v1.0 (By TunnelDog)](https://github.com/TunnelDog/Cognizant-Flipper)
 - [Color Guess v1.5 (By leedave)](https://github.com/leedave/Leeds-Flipper-Zero-Applications)
 - [Connect Wires v1.2 (By AlexTaran)](https://github.com/AlexTaran/flipperzero)
 - [Crossy Road v1.0 (By Mikael098)](https://github.com/Mikael098/CrossyRoad-FlipperZero-)

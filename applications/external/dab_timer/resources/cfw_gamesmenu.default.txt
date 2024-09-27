@@ -15,6 +15,7 @@ GamesMenuList Version 0
 /ext/apps/Games/chess.fap
 /ext/apps/Games/chess_clock.fap
 /ext/apps/Games/citybloxx.fap
+/ext/apps/Games/cognizantflipper.fap
 /ext/apps/Games/color_guess.fap
 /ext/apps/Games/connect_wires.fap
 /ext/apps/Games/crossy_road.fap

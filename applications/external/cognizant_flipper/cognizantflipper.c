@@ -5,9 +5,9 @@
 #include <string.h>
 #include "word_bank.h"
 
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-#define MAX_LINES (SCREEN_HEIGHT / 8)
+#define SCREEN_WIDTH       128
+#define SCREEN_HEIGHT      64
+#define MAX_LINES          (SCREEN_HEIGHT / 8)
 #define MAX_CHARS_PER_LINE (SCREEN_WIDTH / 6)
 
 typedef struct {
@@ -21,11 +21,11 @@ static void word_generator_draw_callback(Canvas* canvas, void* ctx) {
     WordGeneratorState* state = ctx;
     canvas_clear(canvas);
 
-    if (state->show_instructions) {
+    if(state->show_instructions) {
         canvas_set_font(canvas, FontPrimary);
         canvas_draw_str_aligned(canvas, 64, 32, AlignCenter, AlignCenter, "Press OK to start");
     } else {
-        for (int i = 0; i < MAX_LINES; i++) {
+        for(int i = 0; i < MAX_LINES; i++) {
             canvas_draw_str(canvas, 0, (i + 1) * 8, state->display[i]);
         }
     }
@@ -38,7 +38,7 @@ static void word_generator_input_callback(InputEvent* input_event, void* ctx) {
 }
 
 static void clear_screen(WordGeneratorState* state) {
-    for (int i = 0; i < MAX_LINES; i++) {
+    for(int i = 0; i < MAX_LINES; i++) {
         memset(state->display[i], 0, MAX_CHARS_PER_LINE + 1);
     }
     state->current_line = 0;
@@ -50,22 +50,25 @@ static void add_word_to_display(WordGeneratorState* state) {
     uint32_t random_index = rand() % WORD_COUNT;
     const char* new_word = WORD_BANK[random_index];
     size_t word_length = strlen(new_word);
-    
-    if (state->current_position + word_length + 1 > MAX_CHARS_PER_LINE) {
+
+    if(state->current_position + word_length + 1 > MAX_CHARS_PER_LINE) {
         state->current_line++;
         state->current_position = 0;
-        
-        if (state->current_line >= MAX_LINES) {
+
+        if(state->current_line >= MAX_LINES) {
             clear_screen(state);
         }
     }
-    
-    if (state->current_position > 0) {
+
+    if(state->current_position > 0) {
         state->display[state->current_line][state->current_position] = ' ';
         state->current_position++;
     }
-    
-    strncpy(&state->display[state->current_line][state->current_position], new_word, MAX_CHARS_PER_LINE - state->current_position);
+
+    strncpy(
+        &state->display[state->current_line][state->current_position],
+        new_word,
+        MAX_CHARS_PER_LINE - state->current_position);
     state->current_position += word_length;
 }
 
@@ -86,22 +89,22 @@ int32_t word_generator_app(void* p) {
 
     InputEvent event;
     bool running = true;
-    while (running) {
-        if (furi_message_queue_get(event_queue, &event, 100) == FuriStatusOk) {
-            if (event.type == InputTypePress) {
-                switch (event.key) {
-                    case InputKeyOk:
-                        if (state.show_instructions) {
-                            state.show_instructions = false;
-                        } else {
-                            add_word_to_display(&state);
-                        }
-                        break;
-                    case InputKeyBack:
-                        running = false;
-                        break;
-                    default:
-                        break;
+    while(running) {
+        if(furi_message_queue_get(event_queue, &event, 100) == FuriStatusOk) {
+            if(event.type == InputTypePress) {
+                switch(event.key) {
+                case InputKeyOk:
+                    if(state.show_instructions) {
+                        state.show_instructions = false;
+                    } else {
+                        add_word_to_display(&state);
+                    }
+                    break;
+                case InputKeyBack:
+                    running = false;
+                    break;
+                default:
+                    break;
                 }
             }
         }
