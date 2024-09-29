@@ -1,6 +1,6 @@
 # Picopass
 
-https://lab.flipper.net/apps/picopass
+See readme: [https://lab.flipper.net/apps/picopass/](https://lab.flipper.net/apps/picopass/)
 
 ## Build
 
