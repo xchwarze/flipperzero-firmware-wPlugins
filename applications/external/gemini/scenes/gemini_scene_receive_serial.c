@@ -9,7 +9,7 @@ void gemini_scene_receive_serial_timer_callback(void* context) {
     GeminiApp* app = context;
     furi_string_reset(line);
     bool read = uart_helper_read(app->uart_helper, line, 0);
-    if (read) {
+    if(read) {
         text_box_set_text(app->text_box, "");
         size_t new_len = furi_string_size(contents) + furi_string_size(line);
         if(new_len >= 4096) {
@@ -26,7 +26,8 @@ void gemini_scene_receive_serial_on_enter(void* context) {
     line = furi_string_alloc();
     text_box_set_text(app->text_box, "");
     text_box_set_focus(app->text_box, TextBoxFocusEnd);
-    app->timer = furi_timer_alloc(gemini_scene_receive_serial_timer_callback, FuriTimerTypePeriodic, app);
+    app->timer =
+        furi_timer_alloc(gemini_scene_receive_serial_timer_callback, FuriTimerTypePeriodic, app);
     view_dispatcher_switch_to_view(app->view_dispatcher, GeminiViewTextBox);
     furi_timer_start(app->timer, REFRESH_RATE);
 }

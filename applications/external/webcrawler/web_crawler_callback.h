@@ -11,16 +11,15 @@ GpioPin test_pins[9] = {
     {.port = GPIOC, .pin = LL_GPIO_PIN_0}};
 
 // Forward declaration of callback functions
-static void web_crawler_setting_item_path_clicked(void *context, uint32_t index);
-static void web_crawler_setting_item_ssid_clicked(void *context, uint32_t index);
-static void web_crawler_setting_item_password_clicked(void *context, uint32_t index);
+static void web_crawler_setting_item_path_clicked(void* context, uint32_t index);
+static void web_crawler_setting_item_ssid_clicked(void* context, uint32_t index);
+static void web_crawler_setting_item_password_clicked(void* context, uint32_t index);
 /**
  * @brief      Navigation callback to handle exiting from other views to the submenu.
  * @param      context   The context - WebCrawlerApp object.
  * @return     WebCrawlerViewSubmenu
  */
-static uint32_t web_crawler_back_to_main_callback(void *context)
-{
+static uint32_t web_crawler_back_to_main_callback(void* context) {
     UNUSED(context);
     return WebCrawlerViewSubmenu; // Return to the main submenu view
 }
@@ -30,8 +29,7 @@ static uint32_t web_crawler_back_to_main_callback(void *context)
  * @param      context   The context - WebCrawlerApp object.
  * @return     WebCrawlerViewConfigure
  */
-static uint32_t web_crawler_back_to_configure_callback(void *context)
-{
+static uint32_t web_crawler_back_to_configure_callback(void* context) {
     UNUSED(context);
     return WebCrawlerViewConfigure; // Return to the Configure screen
 }
@@ -41,8 +39,7 @@ static uint32_t web_crawler_back_to_configure_callback(void *context)
  * @param      context   The context - unused
  * @return     VIEW_NONE to exit the app
  */
-static uint32_t web_crawler_exit_app_callback(void *context)
-{
+static uint32_t web_crawler_exit_app_callback(void* context) {
     UNUSED(context);
     return VIEW_NONE; // Exit the app
 }
@@ -52,11 +49,9 @@ static uint32_t web_crawler_exit_app_callback(void *context)
  * @param      context   The context - WebCrawlerApp object.
  * @param      index     The WebCrawlerSubmenuIndex item that was clicked.
  */
-static void web_crawler_submenu_callback(void *context, uint32_t index)
-{
-    WebCrawlerApp *app = (WebCrawlerApp *)context;
-    switch (index)
-    {
+static void web_crawler_submenu_callback(void* context, uint32_t index) {
+    WebCrawlerApp* app = (WebCrawlerApp*)context;
+    switch(index) {
     case WebCrawlerSubmenuIndexRun:
         // Switch to the main view where the saved path will be displayed
         view_dispatcher_switch_to_view(app->view_dispatcher, WebCrawlerViewMain);
@@ -78,10 +73,8 @@ static void web_crawler_submenu_callback(void *context, uint32_t index)
  * @param      context   The context - WebCrawlerApp object.
  * @param      index     The index of the item that was clicked.
  */
-static void web_crawler_config_enter_callback(void *context, uint32_t index)
-{
-    switch (index)
-    {
+static void web_crawler_config_enter_callback(void* context, uint32_t index) {
+    switch(index) {
     case 0:
         web_crawler_setting_item_path_clicked(context, index);
         break;
@@ -98,17 +91,16 @@ static void web_crawler_config_enter_callback(void *context, uint32_t index)
 }
 
 // At the top of your file, after includes and defines
-static WebCrawlerApp *app_instance = NULL;
+static WebCrawlerApp* app_instance = NULL;
 
 // Modify the draw callback function to match the expected signature
-static void web_crawler_view_draw_callback(Canvas *canvas, void *model)
-{
-    WebCrawlerMainModel *main_model = (WebCrawlerMainModel *)model; // Cast model to WebCrawlerMainModel
+static void web_crawler_view_draw_callback(Canvas* canvas, void* model) {
+    WebCrawlerMainModel* main_model =
+        (WebCrawlerMainModel*)model; // Cast model to WebCrawlerMainModel
     canvas_clear(canvas);
     canvas_set_font(canvas, FontPrimary);
 
-    if (main_model->path[0] != '\0')
-    {
+    if(main_model->path[0] != '\0') {
         canvas_draw_str(canvas, 1, 10, "Sending GET request...");
 
         // Initialize the GPIO pin for output mode
@@ -125,24 +117,19 @@ static void web_crawler_view_draw_callback(Canvas *canvas, void *model)
         furi_delay_ms(1000); // Delay for 1 second
 
         // Read data from UART sent by the dev board
-        if (read_data_from_uart_and_save(canvas))
-        {
+        if(read_data_from_uart_and_save(canvas)) {
             furi_hal_gpio_write(&test_pins[1], false); // Set GPIO pin low
             canvas_draw_str(canvas, 1, 80, "Data received and saved");
 
             // Switch back to submenu view
-            if (app_instance)
-            {
-                view_dispatcher_switch_to_view(app_instance->view_dispatcher, WebCrawlerViewSubmenu);
+            if(app_instance) {
+                view_dispatcher_switch_to_view(
+                    app_instance->view_dispatcher, WebCrawlerViewSubmenu);
             }
-        }
-        else
-        {
+        } else {
             furi_hal_gpio_write(&test_pins[1], false); // Set GPIO pin low
         }
-    }
-    else
-    {
+    } else {
         canvas_draw_str(canvas, 1, 10, "No path saved.");
     }
 }
@@ -152,8 +139,7 @@ static void web_crawler_view_draw_callback(Canvas *canvas, void *model)
  * @param      context  The context - WebCrawlerApp object.
  * @return     true if the event was handled, false otherwise.
  */
-static bool web_crawler_view_input_callback(InputEvent *event, void *context)
-{
+static bool web_crawler_view_input_callback(InputEvent* event, void* context) {
     UNUSED(event);
     UNUSED(context);
     return false;
@@ -163,9 +149,8 @@ static bool web_crawler_view_input_callback(InputEvent *event, void *context)
  * @brief      Callback for when the user finishes entering the URL.
  * @param      context   The context - WebCrawlerApp object.
  */
-static void web_crawler_set_path_updated(void *context)
-{
-    WebCrawlerApp *app = (WebCrawlerApp *)context;
+static void web_crawler_set_path_updated(void* context) {
+    WebCrawlerApp* app = (WebCrawlerApp*)context;
 
     // Store the entered URL from temp_buffer_path to path
     strncpy(app->path, app->temp_buffer_path, app->temp_buffer_size_path - 1);
@@ -173,8 +158,7 @@ static void web_crawler_set_path_updated(void *context)
     // Ensure null-termination
     app->path[app->temp_buffer_size_path - 1] = '\0';
 
-    if (app->path_item)
-    {
+    if(app->path_item) {
         variable_item_set_current_value_text(app->path_item, app->path);
 
         // Save the URL to the settings
@@ -184,9 +168,8 @@ static void web_crawler_set_path_updated(void *context)
     }
 
     // Update the main view's model
-    WebCrawlerMainModel *main_model = (WebCrawlerMainModel *)view_get_model(app->view_main);
-    if (main_model)
-    {
+    WebCrawlerMainModel* main_model = (WebCrawlerMainModel*)view_get_model(app->view_main);
+    if(main_model) {
         strncpy(main_model->path, app->path, sizeof(main_model->path) - 1);
         main_model->path[sizeof(main_model->path) - 1] = '\0';
     }
@@ -199,9 +182,8 @@ static void web_crawler_set_path_updated(void *context)
  * @brief      Callback for when the user finishes entering the SSID.
  * @param      context   The context - WebCrawlerApp object.
  */
-static void web_crawler_set_ssid_updated(void *context)
-{
-    WebCrawlerApp *app = (WebCrawlerApp *)context;
+static void web_crawler_set_ssid_updated(void* context) {
+    WebCrawlerApp* app = (WebCrawlerApp*)context;
 
     // Store the entered SSID from temp_buffer_ssid to ssid
     strncpy(app->ssid, app->temp_buffer_ssid, app->temp_buffer_size_ssid - 1);
@@ -209,8 +191,7 @@ static void web_crawler_set_ssid_updated(void *context)
     // Ensure null-termination
     app->ssid[app->temp_buffer_size_ssid - 1] = '\0';
 
-    if (app->ssid_item)
-    {
+    if(app->ssid_item) {
         variable_item_set_current_value_text(app->ssid_item, app->ssid);
 
         // Save the SSID to the settings
@@ -220,9 +201,8 @@ static void web_crawler_set_ssid_updated(void *context)
     }
 
     // Update the main view's model
-    WebCrawlerMainModel *main_model = (WebCrawlerMainModel *)view_get_model(app->view_main);
-    if (main_model)
-    {
+    WebCrawlerMainModel* main_model = (WebCrawlerMainModel*)view_get_model(app->view_main);
+    if(main_model) {
         strncpy(main_model->ssid, app->ssid, sizeof(main_model->ssid) - 1);
         main_model->ssid[sizeof(main_model->ssid) - 1] = '\0';
     }
@@ -234,9 +214,8 @@ static void web_crawler_set_ssid_updated(void *context)
  * @brief      Callback for when the user finishes entering the Password.
  * @param      context   The context - WebCrawlerApp object.
  */
-static void web_crawler_set_password_update(void *context)
-{
-    WebCrawlerApp *app = (WebCrawlerApp *)context;
+static void web_crawler_set_password_update(void* context) {
+    WebCrawlerApp* app = (WebCrawlerApp*)context;
 
     // Store the entered Password from temp_buffer_password to password
     strncpy(app->password, app->temp_buffer_password, app->temp_buffer_size_password - 1);
@@ -244,8 +223,7 @@ static void web_crawler_set_password_update(void *context)
     // Ensure null-termination
     app->password[app->temp_buffer_size_password - 1] = '\0';
 
-    if (app->password_item)
-    {
+    if(app->password_item) {
         variable_item_set_current_value_text(app->password_item, app->password);
 
         // Save the Password to the settings
@@ -255,9 +233,8 @@ static void web_crawler_set_password_update(void *context)
     }
 
     // Update the main view's model
-    WebCrawlerMainModel *main_model = (WebCrawlerMainModel *)view_get_model(app->view_main);
-    if (main_model)
-    {
+    WebCrawlerMainModel* main_model = (WebCrawlerMainModel*)view_get_model(app->view_main);
+    if(main_model) {
         strncpy(main_model->password, app->password, sizeof(main_model->password) - 1);
         main_model->password[sizeof(main_model->password) - 1] = '\0';
     }
@@ -270,9 +247,8 @@ static void web_crawler_set_password_update(void *context)
  * @param      context  The context - WebCrawlerApp object.
  * @param      index    The index of the item that was clicked.
  */
-static void web_crawler_setting_item_path_clicked(void *context, uint32_t index)
-{
-    WebCrawlerApp *app = (WebCrawlerApp *)context;
+static void web_crawler_setting_item_path_clicked(void* context, uint32_t index) {
+    WebCrawlerApp* app = (WebCrawlerApp*)context;
     UNUSED(index);
 
     // Set up the text input
@@ -294,8 +270,7 @@ static void web_crawler_setting_item_path_clicked(void *context, uint32_t index)
 
     // Set the previous callback to return to Configure screen
     view_set_previous_callback(
-        text_input_get_view(app->text_input_path),
-        web_crawler_back_to_configure_callback);
+        text_input_get_view(app->text_input_path), web_crawler_back_to_configure_callback);
 
     // Show text input dialog
     view_dispatcher_switch_to_view(app->view_dispatcher, WebCrawlerViewTextInput);
@@ -306,9 +281,8 @@ static void web_crawler_setting_item_path_clicked(void *context, uint32_t index)
  * @param      context  The context - WebCrawlerApp object.
  * @param      index    The index of the item that was clicked.
  */
-static void web_crawler_setting_item_ssid_clicked(void *context, uint32_t index)
-{
-    WebCrawlerApp *app = (WebCrawlerApp *)context;
+static void web_crawler_setting_item_ssid_clicked(void* context, uint32_t index) {
+    WebCrawlerApp* app = (WebCrawlerApp*)context;
     UNUSED(index);
 
     // Set up the text input
@@ -330,8 +304,7 @@ static void web_crawler_setting_item_ssid_clicked(void *context, uint32_t index)
 
     // Set the previous callback to return to Configure screen
     view_set_previous_callback(
-        text_input_get_view(app->text_input_ssid),
-        web_crawler_back_to_configure_callback);
+        text_input_get_view(app->text_input_ssid), web_crawler_back_to_configure_callback);
 
     // Show text input dialog
     view_dispatcher_switch_to_view(app->view_dispatcher, WebCrawlerViewTextInputSSID);
@@ -342,9 +315,8 @@ static void web_crawler_setting_item_ssid_clicked(void *context, uint32_t index)
  * @param      context  The context - WebCrawlerApp object.
  * @param      index    The index of the item that was clicked.
  */
-static void web_crawler_setting_item_password_clicked(void *context, uint32_t index)
-{
-    WebCrawlerApp *app = (WebCrawlerApp *)context;
+static void web_crawler_setting_item_password_clicked(void* context, uint32_t index) {
+    WebCrawlerApp* app = (WebCrawlerApp*)context;
     UNUSED(index);
 
     // Set up the text input
@@ -366,8 +338,7 @@ static void web_crawler_setting_item_password_clicked(void *context, uint32_t in
 
     // Set the previous callback to return to Configure screen
     view_set_previous_callback(
-        text_input_get_view(app->text_input_password),
-        web_crawler_back_to_configure_callback);
+        text_input_get_view(app->text_input_password), web_crawler_back_to_configure_callback);
 
     // Show text input dialog
     view_dispatcher_switch_to_view(app->view_dispatcher, WebCrawlerViewTextInputPassword);

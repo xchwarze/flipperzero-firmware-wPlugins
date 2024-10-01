@@ -1,6 +1,5 @@
 // Function to free allocated buffers
-static void free_buffers(WebCrawlerApp *app)
-{
+static void free_buffers(WebCrawlerApp* app) {
     free(app->path);
     free(app->temp_buffer_path);
     free(app->ssid);
@@ -9,21 +8,18 @@ static void free_buffers(WebCrawlerApp *app)
     free(app->temp_buffer_password);
 }
 
-static void free_resources(WebCrawlerApp *app)
-{
+static void free_resources(WebCrawlerApp* app) {
     free_buffers(app);
     free(app);
 }
 
-static void free_inputs(WebCrawlerApp *app)
-{
+static void free_inputs(WebCrawlerApp* app) {
     free(app->temp_buffer_path);
     free(app->temp_buffer_ssid);
     free(app->temp_buffer_password);
 }
 
-static void free_all(WebCrawlerApp *app, char *reason)
-{
+static void free_all(WebCrawlerApp* app, char* reason) {
     FURI_LOG_E(TAG, reason);
     view_free(app->view_main);
     submenu_free(app->submenu);
@@ -38,10 +34,8 @@ static void free_all(WebCrawlerApp *app, char *reason)
  * @brief      Function to free the resources used by WebCrawlerApp.
  * @param      app  The WebCrawlerApp object to free.
  */
-static void web_crawler_app_free(WebCrawlerApp *app)
-{
-    if (!app)
-        return;
+static void web_crawler_app_free(WebCrawlerApp* app) {
+    if(!app) return;
 
     // Remove and free Main view
     view_dispatcher_remove_view(app->view_dispatcher, WebCrawlerViewMain);

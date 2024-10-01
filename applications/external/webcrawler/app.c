@@ -22,13 +22,11 @@
  * @param      p  Input parameter - unused
  * @return     0 to indicate success, -1 on failure
  */
-int32_t web_crawler_app(void *p)
-{
+int32_t web_crawler_app(void* p) {
     UNUSED(p);
 
-    WebCrawlerApp *app = web_crawler_app_alloc();
-    if (!app)
-    {
+    WebCrawlerApp* app = web_crawler_app_alloc();
+    if(!app) {
         FURI_LOG_E(TAG, "Failed to allocate WebCrawlerApp");
         return -1;
     }

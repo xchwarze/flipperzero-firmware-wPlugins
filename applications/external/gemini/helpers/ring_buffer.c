@@ -65,7 +65,7 @@ void ring_buffer_set_delimiter(RingBuffer* rb, char delimiter, bool include_deli
 
 size_t ring_buffer_available(RingBuffer* rb) {
     size_t available = false;
-    if (furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
+    if(furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
         if(rb->ring_buffer_write == rb->ring_buffer_read) {
             // Empty buffer has size - 1 available bytes
             available = ring_buffer_size - 1;
@@ -85,7 +85,7 @@ size_t ring_buffer_available(RingBuffer* rb) {
 bool ring_buffer_add(RingBuffer* rb, uint8_t* data, size_t length) {
     bool hasDelim = false;
 
-    if (furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
+    if(furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
         for(size_t i = 0; i < length; i++) {
             // Copy the data into the ring buffer
             rb->ring_buffer[rb->ring_buffer_write] = data[i];
@@ -118,7 +118,7 @@ bool ring_buffer_add(RingBuffer* rb, uint8_t* data, size_t length) {
 size_t ring_buffer_find_delim(RingBuffer* rb) {
     size_t index = FURI_STRING_FAILURE;
 
-    if (furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
+    if(furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
         // Search for the delimiter, starting at the read index
         size_t i = rb->ring_buffer_read;
 
@@ -143,7 +143,7 @@ size_t ring_buffer_find_delim(RingBuffer* rb) {
 }
 
 void ring_buffer_extract_line(RingBuffer* rb, size_t delim_index, FuriString* line) {
-    if (furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
+    if(furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
         if(delim_index > rb->ring_buffer_read) {
             // line is in one chunk
             furi_string_set_strn(
@@ -176,20 +176,20 @@ void ring_buffer_extract_line(RingBuffer* rb, size_t delim_index, FuriString* li
         }
 
         furi_mutex_release(rb->mutex);
-    }        
+    }
 }
 
 bool ring_buffer_read(RingBuffer* rb, FuriString* text) {
     bool read = false;
-    if (furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
-        if (rb->ring_buffer_read < rb->ring_buffer_write) {
+    if(furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
+        if(rb->ring_buffer_read < rb->ring_buffer_write) {
             furi_string_set_strn(
                 text,
                 (char*)&rb->ring_buffer[rb->ring_buffer_read],
                 rb->ring_buffer_write - rb->ring_buffer_read);
             rb->ring_buffer_read = rb->ring_buffer_write;
             read = true;
-        } else if (rb->ring_buffer_read > rb->ring_buffer_write) {
+        } else if(rb->ring_buffer_read > rb->ring_buffer_write) {
             furi_string_set_strn(
                 text,
                 (char*)&rb->ring_buffer[rb->ring_buffer_read],
@@ -204,7 +204,7 @@ bool ring_buffer_read(RingBuffer* rb, FuriString* text) {
 }
 
 void ring_buffer_clear(RingBuffer* rb) {
-    if (furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
+    if(furi_mutex_acquire(rb->mutex, FuriWaitForever) == FuriStatusOk) {
         rb->ring_buffer_read = 0;
         rb->ring_buffer_write = 0;
         furi_mutex_release(rb->mutex);

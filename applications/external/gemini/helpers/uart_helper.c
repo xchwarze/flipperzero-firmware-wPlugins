@@ -232,7 +232,7 @@ bool uart_helper_read(UartHelper* helper, FuriString* text) {
 }
 
 void uart_helper_send(UartHelper* helper, const char* data, size_t length) {
-    if (length == 0) {
+    if(length == 0) {
         length = strlen(data) + 1;
     }
 
