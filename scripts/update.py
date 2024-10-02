@@ -128,7 +128,7 @@ class Main(App):
         stage_size = os.stat(self.args.stage).st_size
         max_stage_size = 131072  # 2 * MAX_READ in src/update.c
         if stage_size > max_stage_size:
-            self.logger.warn(
+            self.logger.warning(
                 f"RAM {stage_basename} size too big ({stage_size} > {max_stage_size} bytes)"
             )
             return 2
@@ -157,7 +157,7 @@ class Main(App):
                 f_zip.write(resources_raw)
 
         if not self.layout_check(dfu_size, radio_addr):
-            self.logger.warn("Memory layout looks suspicious")
+            self.logger.warning("Memory layout looks suspicious")
             if not self.args.disclaimer == "yes":
                 self.disclaimer()
                 return 2
@@ -217,7 +217,7 @@ class Main(App):
         self.logger.debug(f"Expected LFS size: {lfs_span}")
         lfs_span_pages = lfs_span / (4 * 1024)
         if lfs_span_pages < self.MIN_LFS_PAGES:
-            self.logger.warn(
+            self.logger.warning(
                 f"Expected LFS size is too small (~{int(lfs_span_pages)} pages)"
             )
             return False
