@@ -1,6 +1,6 @@
 /***
  * HC-11 wireless modem emulator for the Flipper Zero
- * Version: 0.1
+ * Version: 1.1
  *
  * Main app
 ***/
@@ -16,7 +16,7 @@
 #include "hc11_radio_comm.h"
 
 /*** Defines ***/
-#define VERSION FAP_VERSION
+#define VERSION "1.1"
 #define TAG     "hc11_modem"
 
 #define CONFIG_FILE "hc11_modem.save"
