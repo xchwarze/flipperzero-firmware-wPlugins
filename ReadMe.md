@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0926-1851-0.104.1-f3088ef.tgz&channel=RM0926-1851-0.104.1-f3088ef&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM1002-2317-0.104.1-b09dc3e.tgz&channel=RM1002-2317-0.104.1-b09dc3e&version=0.104.1)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,27 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-02 22:55 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-02 22:55 EST`
-- Updated: [NFC E-Ink v0.1 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245) (View Dispatcher Fix for present API)
-- Updated: [FastJS v1.2 (By jblanked)](https://github.com/jblanked/FastJS-FlipperZero)
-- NFC: [NDEF parser supports NTAG I2C Plus 1k and 2k chips too (By RocketGod)](https://github.com/Next-Flip/Momentum-Firmware/pull/237)
-- Removed: [Mifare Nested v1.6.6 (By AloneLiberty)](https://github.com/AloneLiberty/FlipperNested) (Superseded by NFC app with OFW 3822)
-- Updated: [BLE Spam v6.6 (By Willy-JL & ECTO-1A & Spooks4576 with research from xMasterX; OFW API thanks to noproto)](https://github.com/Next-Flip/Momentum-Apps/tree/dev/ble_spam) [Fix menu index callback (By Willy-JL)](https://github.com/Next-Flip/Momentum-Apps/commit/7219d039d94e5ed0674e948e5623bc79a20a5f62)
-- Added: [Cognizant Flipper v1.0 (By TunnelDog)](https://github.com/TunnelDog/Cognizant-Flipper)
-- Updated: [GB Printer v0.2 (By kbembedded)](https://github.com/kbembedded/flipper-gb-printer) `Req: GB Link Cable / Malveke`
-- Updated: [Time Tracker v1.0.3 (By MassivDash)](https://github.com/MassivDash/flipper-tracker)
-- UL: [Updated Infrared Assets  (By amec0e)](https://github.com/DarkFlippers/unleashed-firmware/pull/813)
-- Updated: [Solitaire v2.0 (By teeebor)](https://github.com/teeebor/flipper_games)
-- Added: [uPython v1.4 (By ofabel)](https://github.com/ofabel/mp-flipper)
-- UL: SubGHz: [frequency analyzer multiple fixes (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/bdb402b0687a4510b2f7ebdaa5a209504b123d8d)
-- Added: [Gemini IA v0.1 (By d4rks1d33 & jamisonderek)](https://github.com/d4rks1d33/Gemini-Flipper)
-- Added: [Web Crawler v0.1 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
-- PATREON Build Update: [Kuronons CyberPunk77 Animation Set Updated to have all 27 unique animations](https://github.com/Kuronons/FZ_graphics/blob/main/Animations/CP77/)
-- OFW: [Fix EM4100 T5577 writing block order #3904 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3904)
-- Updated: [HC-11 Modem v1.1 (By Giraut)](https://github.com/Giraut/flipper_zero_hc11_wireless_modem) `Req: HC-11`
-- Updated: [Noptel LRF Sampler v2.0 (By Giraut)](https://github.com/Giraut/flipper_zero_noptel_lrf_sampler)
-- Removed: [Gemini IA Precompiled ESP32 FW Assets from App Package](https://github.com/d4rks1d33/Gemini-Flipper) (These are available in the app folder)
-- OFW: [Improve bit_buffer.h docs #3783 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3783)
-- OFW: [IR universal remote additions #3922 (By jaylikesbunda)](https://github.com/flipperdevices/flipperzero-firmware/pull/3922)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909)
 
 <a name="release">
@@ -648,4 +627,4 @@ $ ./fbt dolphin_ext
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM0926-1851-0.104.1-f3088ef.tgz&channel=RM0926-1851-0.104.1-f3088ef&version=0.104.1)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM1002-2317-0.104.1-b09dc3e.tgz&channel=RM1002-2317-0.104.1-b09dc3e&version=0.104.1)
