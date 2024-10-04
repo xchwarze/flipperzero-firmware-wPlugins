@@ -160,6 +160,7 @@ void input_callback(InputEvent* input_event, void* ctx) {
         default:
             break;
         }
+        view_port_update(state->view_port);
     } else if(input_event->type == InputTypeLong && input_event->key == InputKeyBack) {
         state->exit = true;
     }
