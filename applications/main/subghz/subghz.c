@@ -203,6 +203,10 @@ SubGhz* subghz_alloc(bool alloc_for_tx_only) {
     subghz->last_settings = subghz_last_settings_alloc();
     size_t preset_count = subghz_setting_get_preset_count(setting);
     subghz_last_settings_load(subghz->last_settings, preset_count);
+
+    // Set LED and Amp GPIO control state
+    furi_hal_subghz_set_ext_leds_and_amp(subghz->last_settings->leds_and_amp);
+
     if(!alloc_for_tx_only) {
         // Make sure we select a frequency available in loaded setting configuration
         uint32_t last_frequency = subghz->last_settings->frequency;
