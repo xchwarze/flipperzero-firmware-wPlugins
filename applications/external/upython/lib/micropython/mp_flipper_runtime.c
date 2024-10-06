@@ -33,7 +33,7 @@ void mp_flipper_init(void* heap, size_t heap_size, size_t stack_size, void* stac
 
 void mp_flipper_deinit() {
     gc_sweep_all();
-    
+
     mp_deinit();
 
     mp_flipper_context_free(mp_flipper_context);

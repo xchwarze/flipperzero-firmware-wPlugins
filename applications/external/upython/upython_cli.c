@@ -1,6 +1,13 @@
+#include <furi.h>
 #include <storage/storage.h>
 
 #include "upython.h"
+
+static FuriStreamBuffer* stdout_buffer = NULL;
+
+static void write_to_stdout_buffer(const char* data, size_t size) {
+    furi_stream_buffer_send(stdout_buffer, data, size, 0);
+}
 
 void upython_cli(Cli* cli, FuriString* args, void* ctx) {
     UNUSED(ctx);
@@ -20,7 +27,21 @@ void upython_cli(Cli* cli, FuriString* args, void* ctx) {
     } else {
         furi_string_set(file_path, args);
 
+        stdout_buffer = furi_stream_buffer_alloc(128, 1);
+
+        stdout_callback = write_to_stdout_buffer;
+
         action = ActionExec;
+
+        char data = '\0';
+
+        while(action == ActionExec || !furi_stream_buffer_is_empty(stdout_buffer)) {
+            if(furi_stream_buffer_receive(stdout_buffer, &data, 1, 0) > 0) {
+                printf("%c", data);
+            }
+        }
+
+        furi_stream_buffer_free(stdout_buffer);
     }
 }
 

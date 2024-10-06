@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2024-10-06
+
+### Added
+
+* Support for basic file system operations using the `io` module:
+  * Read and write files.
+  * Open in text or binary mode.
+* Simple `logging` module:
+  * Log levels according to the Flipper Zero API: trace, debug, info, warn, error.
+  * Only the root logger is supported, so no `getLogger` function.
+  * Logs directly to the log output, so no output in the REPL.
+* Redirect output of `print` statements:
+  * To `stdout` when a script is invoked by `py` command from the CLI.
+  * To the log buffer, if a script is invoked from the UI.
+* UART support for the `flipperzero` module.
+
+### Changed
+
+* The `py` command waits until the script terminates.
+
+### Fixed
+
+* [#3](https://github.com/ofabel/mp-flipper/issues/3): Proper `CR` and `LF` handling in the REPL.
+
 ## [1.4.0] - 2024-09-29
 
 ### Added
@@ -132,7 +156,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Basic build setup
 * Minimal working example
 
-[Unreleased]: https://github.com/ofabel/mp-flipper/compare/v1.4.0...dev
+[Unreleased]: https://github.com/ofabel/mp-flipper/compare/v1.5.0...dev
+[1.5.0]: https://github.com/ofabel/mp-flipper/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/ofabel/mp-flipper/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/ofabel/mp-flipper/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/ofabel/mp-flipper/compare/v1.1.0...v1.2.0

@@ -1,3 +1,11 @@
+## 1.5
+
+* Added **io** module for basic file system operations.
+* Added **logging** module to allow level based log messages.
+* Rework of the **print** function: output redirection, based on script invocation.
+* Added UART support: connect, read and write.
+* Fixed the line feed handling in the REPL.
+
 ## 1.4
 
 * Added interactive Python shell (aka REPL) as a CLI command.

@@ -6,8 +6,13 @@
 
 #include "upython.h"
 
-Action action = ActionNone;
+volatile Action action = ActionNone;
 FuriString* file_path = NULL;
+volatile FuriThreadStdoutWriteCallback stdout_callback = NULL;
+
+static void write_to_log_output(const char* data, size_t size) {
+    furi_log_tx((const uint8_t*)data, size);
+}
 
 void upython_reset_file_path() {
     furi_string_set(file_path, APP_ASSETS_PATH("upython"));
@@ -24,6 +29,7 @@ int32_t upython(void* args) {
             break;
         case ActionOpen:
             if(upython_select_python_file(file_path)) {
+                stdout_callback = write_to_log_output;
                 action = ActionExec;
             } else {
                 upython_reset_file_path();
@@ -35,11 +41,15 @@ int32_t upython(void* args) {
         case ActionRepl:
             break;
         case ActionExec:
+            furi_thread_set_stdout_callback(stdout_callback);
+
             upython_file_execute(file_path);
 
             upython_reset_file_path();
 
             action = ActionNone;
+
+            furi_thread_set_stdout_callback(stdout_callback = NULL);
 
             break;
         case ActionExit:

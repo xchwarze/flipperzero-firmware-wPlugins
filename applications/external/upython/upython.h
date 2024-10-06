@@ -15,8 +15,9 @@ typedef enum {
     ActionTerm
 } Action;
 
-extern Action action;
 extern FuriString* file_path;
+extern volatile Action action;
+extern volatile FuriThreadStdoutWriteCallback stdout_callback;
 
 void upython_reset_file_path();
 

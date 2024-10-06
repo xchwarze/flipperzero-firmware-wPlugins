@@ -267,7 +267,6 @@ void upython_repl_execute(Cli* cli) {
     uint8_t* buffer = malloc(sizeof(uint8_t));
 
     bool exit = false;
-    bool wait_for_lf = false;
 
     // REPL loop
     do {
@@ -306,20 +305,13 @@ void upython_repl_execute(Cli* cli) {
                     break;
                 }
 
-                // wait for line feed character
+                // skip line feed
+                if(character == CliSymbolAsciiLF) {
+                    continue;
+                }
+
+                // handle carriage return
                 if(character == CliSymbolAsciiCR) {
-                    wait_for_lf = true;
-
-                    continue;
-                }
-
-                // skip if we don't wait for line feed
-                if(!wait_for_lf && character == CliSymbolAsciiLF) {
-                    continue;
-                }
-
-                // handle line feed
-                if(wait_for_lf && character == CliSymbolAsciiLF) {
                     furi_string_push_back(context->code, '\n');
                     furi_string_cat(context->code, context->line);
                     furi_string_trim(context->code);

@@ -1,5 +1,6 @@
 #include <string.h>
 
+#include "py/mperrno.h"
 #include "py/compile.h"
 #include "py/runtime.h"
 #include "py/persistentcode.h"
