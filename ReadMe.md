@@ -46,6 +46,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [NFC E-Ink Tags v1.0 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245)
 - [Allow to disable control of GPIO pin on rx/tx states in subghz (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/65b9a5bf1303ad64d2b8275ad3f557d4102df156)
 - PATREON Build Update: [Kuronons CyberPunk77 Animation Set Updated to have corrected durations for the 15 animations in the MC Collection](https://github.com/Kuronons/FZ_graphics/blob/main/Animations/CP77/)
+- Updated: [Weather Station v1.9.1 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Bresser 3CH protocol: added V0 message format (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/245)
+- UL: [Updated IR assets (By amec0e)](https://github.com/DarkFlippers/unleashed-firmware/pull/816)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3912](https://github.com/flipperdevices/flipperzero-firmware/pull/3912)
 
 <a name="release">
@@ -614,7 +616,7 @@ $ ./fbt dolphin_ext
 - [WAV Player v1.3 (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/tree/zlo/wav-player)
 - [WAV Recorder v0.2 (By scrolltex)](https://github.com/scrolltex/flipper-wav-recorder)
 - [WHC SWIO Flasher v1.1 (By sukvojte)](https://github.com/sukvojte/wch_swio_flasher)
-- [Weather Station v1.9 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station)
+- [Weather Station v1.9.1 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station)
 - [Web Crawler v0.2 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - [Wendigo Bluetooth Tracker WIP v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
 - [Wiegand Reader v1.3 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
