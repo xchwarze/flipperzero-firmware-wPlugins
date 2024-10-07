@@ -53,9 +53,9 @@ typedef struct {
     const GpioPin* async_mirror_pin;
 
     int8_t rolling_counter_mult;
-    bool extended_range : 1;
-    bool bypass_region  : 1;
-    bool ext_leds_and_amp      : 1;
+    bool extended_range   : 1;
+    bool bypass_region    : 1;
+    bool ext_leds_and_amp : 1;
 } FuriHalSubGhz;
 
 volatile FuriHalSubGhz furi_hal_subghz = {

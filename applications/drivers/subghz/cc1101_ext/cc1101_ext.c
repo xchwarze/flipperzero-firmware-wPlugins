@@ -248,7 +248,8 @@ bool subghz_device_cc1101_ext_alloc(SubGhzDeviceConf* conf) {
 
     furi_hal_spi_bus_handle_init(subghz_device_cc1101_ext->spi_bus_handle);
     if(subghz_device_cc1101_ext->amp_and_leds) {
-        furi_hal_gpio_init_simple(SUBGHZ_DEVICE_CC1101_EXT_E07M20S_AMP_GPIO, GpioModeOutputPushPull);
+        furi_hal_gpio_init_simple(
+            SUBGHZ_DEVICE_CC1101_EXT_E07M20S_AMP_GPIO, GpioModeOutputPushPull);
     }
 
     return subghz_device_cc1101_ext_check_init();
@@ -265,7 +266,7 @@ void subghz_device_cc1101_ext_free(void) {
     } else if(cfw_settings.spi_nrf24_handle == SpiExtra) {
         furi_hal_gpio_init_simple(&gpio_ext_pa4, GpioModeAnalog);
     }
-	if(subghz_device_cc1101_ext->amp_and_leds) {
+    if(subghz_device_cc1101_ext->amp_and_leds) {
         furi_hal_gpio_init_simple(SUBGHZ_DEVICE_CC1101_EXT_E07M20S_AMP_GPIO, GpioModeAnalog);
     }
 
@@ -438,7 +439,7 @@ void subghz_device_cc1101_ext_reset(void) {
     cc1101_reset(subghz_device_cc1101_ext->spi_bus_handle);
     // Warning: push pull cc1101 clock output on GD0
     cc1101_write_reg(
-    subghz_device_cc1101_ext->spi_bus_handle, CC1101_IOCFG0, CC1101IocfgHighImpedance);
+        subghz_device_cc1101_ext->spi_bus_handle, CC1101_IOCFG0, CC1101IocfgHighImpedance);
     // Reset GDO2 (!TX/RX) to floating state
     cc1101_write_reg(
         subghz_device_cc1101_ext->spi_bus_handle, CC1101_IOCFG2, CC1101IocfgHighImpedance);
