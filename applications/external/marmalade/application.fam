@@ -1,16 +1,16 @@
 App(
-    appid="jammer_app",
-    name="Jammer",
+    appid="marmalade_app",
+    name="Marmalade",
     apptype=FlipperAppType.EXTERNAL,
-    entry_point="jammer_app",
-    requires=["gui", "subghz", "furi"],
-    cdefines=["APP_JAMMER"],
+    entry_point="marmalade_app",
     stack_size=2 * 1024,
-    fap_category="Sub-GHz",
-    fap_version="0.1",
     fap_icon_assets="assets",
-    fap_author="@RocketGod-git",
-    fap_description="Jammer for Flipper Zero",
-    fap_icon="icons/jammer_icon.png",
-    fap_weburl="https://github.com/RocketGod-Git/Flipper-Zero-Jammer",
+    fap_icon="icons/marmalade_icon.png",
+    fap_category="Sub-GHz",
+    fap_author="RocketGod-git",
+    fap_weburl="https://github.com/RocketGod-git/flipper-zero-rf-jammer",
+    fap_version="0.1",
+    fap_description="Frequency and preset adjustable subghz radio frequency marmalade for Flipper Zero. Exercise Caution and Follow Your Local Laws!",
+    #   Exercise Caution and Follow Your Local Laws!
+    #   This software is for experimental purposes only and is not meant for any illegal activity/purposes. We do not condone illegal activity and strongly encourage keeping transmissions to legal/valid uses allowed by law.
 )

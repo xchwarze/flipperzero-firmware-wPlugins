@@ -1,4 +1,4 @@
-#include "jammer_app.h"
+#include "marmalade_app.h"
 #include <furi_hal_region.h>
 
 static FuriHalRegion unlockedRegion = {
@@ -11,7 +11,7 @@ static FuriHalRegion unlockedRegion = {
     },
 };
 
-static const char* jamming_modes[] = {
+static const char* marmalade_modes[] = {
     "OOK 650kHz",
     "2FSK 2.38kHz",
     "2FSK 47.6kHz",
@@ -64,8 +64,8 @@ static uint32_t adjust_frequency_to_valid(uint32_t frequency, bool up) {
     }
 }
 
-static void jammer_draw_callback(Canvas* canvas, void* context) {
-    JammerApp* app = (JammerApp*)context;
+static void marmalade_draw_callback(Canvas* canvas, void* context) {
+    MarmaladeApp* app = (MarmaladeApp*)context;
     canvas_clear(canvas);
 
     char freq_str[20];
@@ -93,15 +93,15 @@ static void jammer_draw_callback(Canvas* canvas, void* context) {
     }
 
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str_aligned(canvas, 64, 55, AlignCenter, AlignTop, jamming_modes[app->jamming_mode]);
+    canvas_draw_str_aligned(canvas, 64, 55, AlignCenter, AlignTop, marmalade_modes[app->marmalade_mode]);
 }
 
-static void jammer_input_callback(InputEvent* input_event, void* context) {
-    JammerApp* app = (JammerApp*)context;
+static void marmalade_input_callback(InputEvent* input_event, void* context) {
+    MarmaladeApp* app = (MarmaladeApp*)context;
     furi_message_queue_put(app->event_queue, input_event, FuriWaitForever);
 }
 
-static void jammer_adjust_frequency(JammerApp* app, bool up) {
+static void marmalade_adjust_frequency(MarmaladeApp* app, bool up) {
     uint32_t frequency = app->frequency;
     uint32_t step;
 
@@ -132,27 +132,27 @@ static void jammer_adjust_frequency(JammerApp* app, bool up) {
     }
 }
 
-static int32_t jammer_tx_thread(void* context) {
-    JammerApp* app = context;
+static int32_t marmalade_tx_thread(void* context) {
+    MarmaladeApp* app = context;
     uint8_t jam_data[MESSAGE_MAX_LEN];
 
-    switch(app->jamming_mode) {
-        case JammerModeOok650Async:
+    switch(app->marmalade_mode) {
+        case MarmaladeModeOok650Async:
             memset(jam_data, 0xFF, sizeof(jam_data));
             break;
-        case JammerMode2FSKDev238Async:
-        case JammerMode2FSKDev476Async:
+        case MarmaladeMode2FSKDev238Async:
+        case MarmaladeMode2FSKDev476Async:
             for(size_t i = 0; i < sizeof(jam_data); i++) {
                 jam_data[i] = (i % 2 == 0) ? 0xAA : 0x55;
             }
             break;
-        case JammerModeMSK99_97KbAsync:
-        case JammerModeGFSK9_99KbAsync:
+        case MarmaladeModeMSK99_97KbAsync:
+        case MarmaladeModeGFSK9_99KbAsync:
             for(size_t i = 0; i < sizeof(jam_data); i++) {
                 jam_data[i] = rand() % 256;
             }
             break;
-        case JammerModeBruteforce:
+        case MarmaladeModeBruteforce:
             memset(jam_data, 0xFF, sizeof(jam_data));
             break;
     }
@@ -167,7 +167,7 @@ static int32_t jammer_tx_thread(void* context) {
     return 0;
 }
 
-static void jammer_switch_mode(JammerApp* app) {
+static void marmalade_switch_mode(MarmaladeApp* app) {
     app->tx_running = false;
 
     if(app->tx_thread) {
@@ -180,25 +180,25 @@ static void jammer_switch_mode(JammerApp* app) {
         subghz_tx_rx_worker_stop(app->subghz_txrx);
     }
 
-    app->jamming_mode = (app->jamming_mode + 1) % 6;
+    app->marmalade_mode = (app->marmalade_mode + 1) % 6;
 
-    switch(app->jamming_mode) {
-        case JammerModeOok650Async:
+    switch(app->marmalade_mode) {
+        case MarmaladeModeOok650Async:
             subghz_devices_load_preset(app->device, FuriHalSubGhzPresetOok650Async, NULL);
             break;
-        case JammerMode2FSKDev238Async:
+        case MarmaladeMode2FSKDev238Async:
             subghz_devices_load_preset(app->device, FuriHalSubGhzPreset2FSKDev238Async, NULL);
             break;
-        case JammerMode2FSKDev476Async:
+        case MarmaladeMode2FSKDev476Async:
             subghz_devices_load_preset(app->device, FuriHalSubGhzPreset2FSKDev476Async, NULL);
             break;
-        case JammerModeMSK99_97KbAsync:
+        case MarmaladeModeMSK99_97KbAsync:
             subghz_devices_load_preset(app->device, FuriHalSubGhzPresetMSK99_97KbAsync, NULL);
             break;
-        case JammerModeGFSK9_99KbAsync:
+        case MarmaladeModeGFSK9_99KbAsync:
             subghz_devices_load_preset(app->device, FuriHalSubGhzPresetGFSK9_99KbAsync, NULL);
             break;
-        case JammerModeBruteforce:
+        case MarmaladeModeBruteforce:
             subghz_devices_load_preset(app->device, FuriHalSubGhzPresetOok650Async, NULL);
             break;
         default:
@@ -209,18 +209,18 @@ static void jammer_switch_mode(JammerApp* app) {
 
     app->tx_running = true;
     app->tx_thread = furi_thread_alloc();
-    furi_thread_set_name(app->tx_thread, "Jammer TX");
+    furi_thread_set_name(app->tx_thread, "Marmalade TX");
     furi_thread_set_stack_size(app->tx_thread, 2048);
     furi_thread_set_context(app->tx_thread, app);
-    furi_thread_set_callback(app->tx_thread, jammer_tx_thread);
+    furi_thread_set_callback(app->tx_thread, marmalade_tx_thread);
     furi_thread_start(app->tx_thread);
 }
 
-static void jammer_update_view(JammerApp* app) {
+static void marmalade_update_view(MarmaladeApp* app) {
     view_port_update(app->view_port);
 }
 
-static bool jammer_init_subghz(JammerApp* app) {
+static bool marmalade_init_subghz(MarmaladeApp* app) {
     app->device = subghz_devices_get_by_name(SUBGHZ_DEVICE_NAME);
     if(!app->device) {
         return false;
@@ -235,7 +235,7 @@ static bool jammer_init_subghz(JammerApp* app) {
     return true;
 }
 
-static void jammer_splash_screen_draw_callback(Canvas* canvas, void* context) {
+static void marmalade_splash_screen_draw_callback(Canvas* canvas, void* context) {
     UNUSED(context);
 
     canvas_clear(canvas);
@@ -247,20 +247,20 @@ static void jammer_splash_screen_draw_callback(Canvas* canvas, void* context) {
     }
 
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str_aligned(canvas, 64, 15, AlignCenter, AlignTop, "RF Jammer");
+    canvas_draw_str_aligned(canvas, 64, 15, AlignCenter, AlignTop, "RF Marmalade");
     canvas_draw_str_aligned(canvas, 64, 35, AlignCenter, AlignTop, "by RocketGod");
     canvas_draw_frame(canvas, 0, 0, 128, 64);
 }
 
-static void jammer_show_splash_screen(JammerApp* app) {
-    view_port_draw_callback_set(app->view_port, jammer_splash_screen_draw_callback, app);
+static void marmalade_show_splash_screen(MarmaladeApp* app) {
+    view_port_draw_callback_set(app->view_port, marmalade_splash_screen_draw_callback, app);
     view_port_update(app->view_port);
     furi_delay_ms(2000);
-    view_port_draw_callback_set(app->view_port, jammer_draw_callback, app);
+    view_port_draw_callback_set(app->view_port, marmalade_draw_callback, app);
 }
 
-JammerApp* jammer_app_alloc(void) {
-    JammerApp* app = malloc(sizeof(JammerApp));
+MarmaladeApp* marmalade_app_alloc(void) {
+    MarmaladeApp* app = malloc(sizeof(MarmaladeApp));
     if(!app) {
         return NULL;
     }
@@ -272,13 +272,13 @@ JammerApp* jammer_app_alloc(void) {
     app->cursor_position = 0;
     app->running = true;
     app->tx_running = false;
-    app->jamming_mode = JammerModeOok650Async;
+    app->marmalade_mode = MarmaladeModeOok650Async;
     app->gui = furi_record_open(RECORD_GUI);
 
     furi_hal_region_set(&unlockedRegion);
 
-    view_port_draw_callback_set(app->view_port, jammer_draw_callback, app);
-    view_port_input_callback_set(app->view_port, jammer_input_callback, app);
+    view_port_draw_callback_set(app->view_port, marmalade_draw_callback, app);
+    view_port_input_callback_set(app->view_port, marmalade_input_callback, app);
     gui_add_view_port(app->gui, app->view_port, GuiLayerFullscreen);
 
     app->tx_thread = NULL;
@@ -292,7 +292,7 @@ JammerApp* jammer_app_alloc(void) {
     return app;
 }
 
-void jammer_app_free(JammerApp* app) {
+void marmalade_app_free(MarmaladeApp* app) {
     app->tx_running = false;
     if(app->tx_thread) {
         furi_thread_join(app->tx_thread);
@@ -316,18 +316,18 @@ void jammer_app_free(JammerApp* app) {
     free(app);
 }
 
-int32_t jammer_app(void* p) {
+int32_t marmalade_app(void* p) {
     UNUSED(p);
 
-    JammerApp* app = jammer_app_alloc();
+    MarmaladeApp* app = marmalade_app_alloc();
     if(!app) {
         return -1;
     }
 
-    jammer_show_splash_screen(app);
+    marmalade_show_splash_screen(app);
 
-    if(!jammer_init_subghz(app)) {
-        jammer_app_free(app);
+    if(!marmalade_init_subghz(app)) {
+        marmalade_app_free(app);
         return -1;
     }
 
@@ -337,8 +337,8 @@ int32_t jammer_app(void* p) {
             if(event.type == InputTypeShort) {
                 switch(event.key) {
                     case InputKeyOk:
-                        jammer_switch_mode(app);
-                        jammer_update_view(app);
+                        marmalade_switch_mode(app);
+                        marmalade_update_view(app);
                         break;
                     case InputKeyBack:
                         app->running = false;
@@ -346,22 +346,22 @@ int32_t jammer_app(void* p) {
                     case InputKeyRight:
                         if(app->cursor_position < 4) {
                             app->cursor_position++;
-                            jammer_update_view(app);
+                            marmalade_update_view(app);
                         }
                         break;
                     case InputKeyLeft:
                         if(app->cursor_position > 0) {
                             app->cursor_position--;
-                            jammer_update_view(app);
+                            marmalade_update_view(app);
                         }
                         break;
                     case InputKeyUp:
-                        jammer_adjust_frequency(app, true);
-                        jammer_update_view(app);
+                        marmalade_adjust_frequency(app, true);
+                        marmalade_update_view(app);
                         break;
                     case InputKeyDown:
-                        jammer_adjust_frequency(app, false);
-                        jammer_update_view(app);
+                        marmalade_adjust_frequency(app, false);
+                        marmalade_update_view(app);
                         break;
                     default:
                         break;
@@ -370,7 +370,7 @@ int32_t jammer_app(void* p) {
         }
     }
 
-    jammer_app_free(app);
+    marmalade_app_free(app);
 
     return 0;
 }

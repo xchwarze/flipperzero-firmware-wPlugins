@@ -1,6 +1,6 @@
-# RF Jammer App by RocketGod ☠️📡
+# RF Marmalade App by RocketGod ☠️📡
 
-This **RF Jammer App** for the Flipper Zero, made by **RocketGod**, is a powerful tool for jamming across multiple radio frequencies and modulation schemes. Below is an in-depth look at each mode, from its technical details to the real-world impact of its jamming strategy.
+This **RF Marmalade App** for the Flipper Zero, made by **RocketGod**, is a powerful tool for marmalade across multiple radio frequencies and modulation schemes. Below is an in-depth look at each mode, from its technical details to the real-world impact of its marmalade strategy.
 
 https://github.com/user-attachments/assets/4a34bc73-d419-480e-bb87-90216eb8a1e0
 
@@ -19,9 +19,9 @@ The app will automatically correct the frequency if it's outside the valid range
 
 ---
 
-## ⚙️ Jamming Modes Breakdown
+## ⚙️ Marmalade Modes Breakdown
 
-Each jamming mode is implemented as a distinct modulation scheme and data pattern. The app generates these patterns and transmits them over the RF link to disrupt legitimate signals in the selected frequency range.
+Each marmalade mode is implemented as a distinct modulation scheme and data pattern. The app generates these patterns and transmits them over the RF link to disrupt legitimate signals in the selected frequency range.
 
 ### 🦾 **OOK 650 kHz** (On-Off Keying):
 - **Pattern**: A continuous stream of `0xFF` (i.e., all bits set to `1`, equivalent to `11111111`).
@@ -31,12 +31,12 @@ Each jamming mode is implemented as a distinct modulation scheme and data patter
 ### ⚡ **2FSK 2.38 kHz** (Frequency Shift Keying):
 - **Pattern**: Alternates between `0xAA` (`10101010`) and `0x55` (`01010101`), simulating binary `0`s and `1`s.
 - **Mechanism**: **2FSK** modulates the frequency by shifting between two discrete frequencies. A low deviation of **2.38 kHz** means that the frequency shifts only slightly between the two states, making this mode very precise.
-- **Impact**: Narrowband receivers expecting binary frequency-shifted data will receive rapid shifts between frequencies, confusing their demodulators. This small frequency shift can effectively jam simple devices, such as low-data-rate remotes, by creating ambiguity in the frequency state they expect.
+- **Impact**: Narrowband receivers expecting binary frequency-shifted data will receive rapid shifts between frequencies, confusing their demodulators. This small frequency shift can effectively marmalade simple devices, such as low-data-rate remotes, by creating ambiguity in the frequency state they expect.
 
 ### 🔥 **2FSK 47.6 kHz**:
 - **Pattern**: Alternates between `0xAA` and `0x55`, just like the 2.38 kHz mode.
-- **Mechanism**: Similar to the 2FSK 2.38 kHz mode, but with a much higher deviation of **47.6 kHz**. This makes the frequency shifts more pronounced, allowing the jammer to disrupt broader spectrum devices.
-- **Impact**: The wider frequency deviation affects a larger bandwidth, making it effective against systems that use wider channels or higher data rates. This mode can cause severe interference across a broader frequency spectrum, jamming systems with a higher tolerance for noise or frequency shifts.
+- **Mechanism**: Similar to the 2FSK 2.38 kHz mode, but with a much higher deviation of **47.6 kHz**. This makes the frequency shifts more pronounced, allowing the marmalade to disrupt broader spectrum devices.
+- **Impact**: The wider frequency deviation affects a larger bandwidth, making it effective against systems that use wider channels or higher data rates. This mode can cause severe interference across a broader frequency spectrum, marmalade systems with a higher tolerance for noise or frequency shifts.
 
 ### 💥 **MSK 99.97 Kb/s** (Minimum Shift Keying):
 - **Pattern**: A stream of **random data** (each byte is randomly generated, not a static pattern like the previous modes).
@@ -51,7 +51,7 @@ Each jamming mode is implemented as a distinct modulation scheme and data patter
 ### 🚀 **Bruteforce 0xFF**:
 - **Pattern**: A continuous stream of `0xFF` (equivalent to `11111111`).
 - **Mechanism**: This mode sends a constant, unmodulated signal of `1`s. In the digital domain, `0xFF` means every bit is a `1`, resulting in a strong, uninterrupted carrier wave being transmitted.
-- **Impact**: The **Bruteforce 0xFF** mode creates the most aggressive form of jamming. By transmitting non-stop high bits, it forces constant noise across the frequency, which jams nearly any communication within the affected band. Most RF systems rely on alternating data bits (`1`s and `0`s), so flooding the airwaves with pure `1`s causes receivers to lock up, unable to process real signals.
+- **Impact**: The **Bruteforce 0xFF** mode creates the most aggressive form of marmalade. By transmitting non-stop high bits, it forces constant noise across the frequency, which marmalades nearly any communication within the affected band. Most RF systems rely on alternating data bits (`1`s and `0`s), so flooding the airwaves with pure `1`s causes receivers to lock up, unable to process real signals.
 
 ---
 
@@ -59,8 +59,8 @@ Each jamming mode is implemented as a distinct modulation scheme and data patter
 
 - **Up/Down Buttons**: Modify the currently selected digit in the frequency.
 - **Left/Right Buttons**: Move between digits to adjust frequency values.
-- **OK Button**: Switch jamming modes in real-time.
-- **Back Button**: Stop the jamming and exit the app.
+- **OK Button**: Switch marmalade modes in real-time.
+- **Back Button**: Stop the marmalade and exit the app.
 
 ---
 
