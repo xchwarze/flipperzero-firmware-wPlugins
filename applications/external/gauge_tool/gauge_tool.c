@@ -1,7 +1,7 @@
 #include <furi.h>
 #include <furi_hal.h>
 
-#include <gauge_tool_icons.h>
+// #include <gauge_tool_icons.h>
 
 #include <gui/gui.h>
 #include <gui/elements.h>
