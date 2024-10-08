@@ -35,6 +35,7 @@ bool gemini_scene_set_name_on_event(void* context, SceneManagerEvent event) {
         case GeminiSceneSetNameEventOk:
             uart_helper_send(app->uart_helper, text_buffer, TEXT_BUFFER_SIZE);
             // We want BACK to go back to the main menu, not our current scene.
+            gemini_scene_receive_serial_set_next(app, GeminiSceneMainMenu);
             scene_manager_search_and_switch_to_another_scene(
                 app->scene_manager, GeminiSceneReceiveSerial);
             consumed = true;
