@@ -263,8 +263,10 @@ static void marmalade_splash_screen_draw_callback(Canvas* canvas, void* context)
     }
 
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str_aligned(canvas, 64, 15, AlignCenter, AlignTop, "RF Marmalade");
-    canvas_draw_str_aligned(canvas, 64, 35, AlignCenter, AlignTop, "by RocketGod");
+    canvas_draw_str_aligned(canvas, 64, 5, AlignCenter, AlignTop, "RF Marmalade");
+    canvas_draw_str_aligned(canvas, 64, 15, AlignCenter, AlignTop, "by RocketGod");
+    canvas_draw_str_aligned(canvas, 64, 30, AlignCenter, AlignTop, "For Educational Testing");
+    canvas_draw_str_aligned(canvas, 64, 45, AlignCenter, AlignTop, "in a Dedicated Lab Only");
     canvas_draw_frame(canvas, 0, 0, 128, 64);
 }
 
