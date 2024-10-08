@@ -6,7 +6,6 @@
 #include "scenes/clippy_scene.h"
 #include "storage/filesystem_api_internal.h"
 #include <gui/gui.h>
-#include <assets_icons.h>
 #include <gui/view_dispatcher.h>
 #include <gui/scene_manager.h>
 #include <dialogs/dialogs.h>

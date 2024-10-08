@@ -4,11 +4,12 @@
 static FuriHalRegion unlockedRegion = {
     .country_code = "FTW",
     .bands_count = 3,
-    .bands = {
-        {.start = 299999755, .end = 348000000, .power_limit = 12, .duty_cycle = 50},
-        {.start = 386999938, .end = 464000000, .power_limit = 12, .duty_cycle = 50},
-        {.start = 778999847, .end = 928000000, .power_limit = 12, .duty_cycle = 50},
-    },
+    .bands =
+        {
+            {.start = 299999755, .end = 348000000, .power_limit = 12, .duty_cycle = 50},
+            {.start = 386999938, .end = 464000000, .power_limit = 12, .duty_cycle = 50},
+            {.start = 778999847, .end = 928000000, .power_limit = 12, .duty_cycle = 50},
+        },
 };
 
 static const char* marmalade_modes[] = {
@@ -17,8 +18,7 @@ static const char* marmalade_modes[] = {
     "2FSK 47.6kHz",
     "MSK 99.97Kb/s",
     "GFSK 9.99Kb/s",
-    "Bruteforce 0xFF"
-};
+    "Bruteforce 0xFF"};
 
 typedef struct {
     uint32_t min;
@@ -26,16 +26,17 @@ typedef struct {
 } FrequencyBand;
 
 static const FrequencyBand valid_frequency_bands[] = {
-    {300000000, 348000000},  // Band 1
-    {387000000, 464000000},  // Band 2
-    {779000000, 928000000}   // Band 3
+    {300000000, 348000000}, // Band 1
+    {387000000, 464000000}, // Band 2
+    {779000000, 928000000} // Band 3
 };
 
 #define NUM_FREQUENCY_BANDS (sizeof(valid_frequency_bands) / sizeof(valid_frequency_bands[0]))
 
 static bool is_frequency_valid(uint32_t frequency) {
     for(size_t i = 0; i < NUM_FREQUENCY_BANDS; i++) {
-        if(frequency >= valid_frequency_bands[i].min && frequency <= valid_frequency_bands[i].max) {
+        if(frequency >= valid_frequency_bands[i].min &&
+           frequency <= valid_frequency_bands[i].max) {
             return true;
         }
     }
@@ -69,9 +70,12 @@ static void marmalade_draw_callback(Canvas* canvas, void* context) {
     canvas_clear(canvas);
 
     char freq_str[20];
-    snprintf(freq_str, sizeof(freq_str), "%3lu.%02lu",
-             app->frequency / 1000000,
-             (app->frequency % 1000000) / 10000);
+    snprintf(
+        freq_str,
+        sizeof(freq_str),
+        "%3lu.%02lu",
+        app->frequency / 1000000,
+        (app->frequency % 1000000) / 10000);
 
     int total_width = strlen(freq_str) * 12;
     int start_x = (128 - total_width) / 2;
@@ -93,7 +97,8 @@ static void marmalade_draw_callback(Canvas* canvas, void* context) {
     }
 
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str_aligned(canvas, 64, 55, AlignCenter, AlignTop, marmalade_modes[app->marmalade_mode]);
+    canvas_draw_str_aligned(
+        canvas, 64, 55, AlignCenter, AlignTop, marmalade_modes[app->marmalade_mode]);
 }
 
 static void marmalade_input_callback(InputEvent* input_event, void* context) {
@@ -106,12 +111,23 @@ static void marmalade_adjust_frequency(MarmaladeApp* app, bool up) {
     uint32_t step;
 
     switch(app->cursor_position) {
-        case 0: step = 100000000; break;
-        case 1: step = 10000000; break;
-        case 2: step = 1000000; break;
-        case 3: step = 100000; break;
-        case 4: step = 10000; break;
-        default: return;
+    case 0:
+        step = 100000000;
+        break;
+    case 1:
+        step = 10000000;
+        break;
+    case 2:
+        step = 1000000;
+        break;
+    case 3:
+        step = 100000;
+        break;
+    case 4:
+        step = 10000;
+        break;
+    default:
+        return;
     }
 
     frequency = up ? frequency + step : frequency - step;
@@ -137,24 +153,24 @@ static int32_t marmalade_tx_thread(void* context) {
     uint8_t jam_data[MESSAGE_MAX_LEN];
 
     switch(app->marmalade_mode) {
-        case MarmaladeModeOok650Async:
-            memset(jam_data, 0xFF, sizeof(jam_data));
-            break;
-        case MarmaladeMode2FSKDev238Async:
-        case MarmaladeMode2FSKDev476Async:
-            for(size_t i = 0; i < sizeof(jam_data); i++) {
-                jam_data[i] = (i % 2 == 0) ? 0xAA : 0x55;
-            }
-            break;
-        case MarmaladeModeMSK99_97KbAsync:
-        case MarmaladeModeGFSK9_99KbAsync:
-            for(size_t i = 0; i < sizeof(jam_data); i++) {
-                jam_data[i] = rand() % 256;
-            }
-            break;
-        case MarmaladeModeBruteforce:
-            memset(jam_data, 0xFF, sizeof(jam_data));
-            break;
+    case MarmaladeModeOok650Async:
+        memset(jam_data, 0xFF, sizeof(jam_data));
+        break;
+    case MarmaladeMode2FSKDev238Async:
+    case MarmaladeMode2FSKDev476Async:
+        for(size_t i = 0; i < sizeof(jam_data); i++) {
+            jam_data[i] = (i % 2 == 0) ? 0xAA : 0x55;
+        }
+        break;
+    case MarmaladeModeMSK99_97KbAsync:
+    case MarmaladeModeGFSK9_99KbAsync:
+        for(size_t i = 0; i < sizeof(jam_data); i++) {
+            jam_data[i] = rand() % 256;
+        }
+        break;
+    case MarmaladeModeBruteforce:
+        memset(jam_data, 0xFF, sizeof(jam_data));
+        break;
     }
 
     while(app->tx_running) {
@@ -183,26 +199,26 @@ static void marmalade_switch_mode(MarmaladeApp* app) {
     app->marmalade_mode = (app->marmalade_mode + 1) % 6;
 
     switch(app->marmalade_mode) {
-        case MarmaladeModeOok650Async:
-            subghz_devices_load_preset(app->device, FuriHalSubGhzPresetOok650Async, NULL);
-            break;
-        case MarmaladeMode2FSKDev238Async:
-            subghz_devices_load_preset(app->device, FuriHalSubGhzPreset2FSKDev238Async, NULL);
-            break;
-        case MarmaladeMode2FSKDev476Async:
-            subghz_devices_load_preset(app->device, FuriHalSubGhzPreset2FSKDev476Async, NULL);
-            break;
-        case MarmaladeModeMSK99_97KbAsync:
-            subghz_devices_load_preset(app->device, FuriHalSubGhzPresetMSK99_97KbAsync, NULL);
-            break;
-        case MarmaladeModeGFSK9_99KbAsync:
-            subghz_devices_load_preset(app->device, FuriHalSubGhzPresetGFSK9_99KbAsync, NULL);
-            break;
-        case MarmaladeModeBruteforce:
-            subghz_devices_load_preset(app->device, FuriHalSubGhzPresetOok650Async, NULL);
-            break;
-        default:
-            return;
+    case MarmaladeModeOok650Async:
+        subghz_devices_load_preset(app->device, FuriHalSubGhzPresetOok650Async, NULL);
+        break;
+    case MarmaladeMode2FSKDev238Async:
+        subghz_devices_load_preset(app->device, FuriHalSubGhzPreset2FSKDev238Async, NULL);
+        break;
+    case MarmaladeMode2FSKDev476Async:
+        subghz_devices_load_preset(app->device, FuriHalSubGhzPreset2FSKDev476Async, NULL);
+        break;
+    case MarmaladeModeMSK99_97KbAsync:
+        subghz_devices_load_preset(app->device, FuriHalSubGhzPresetMSK99_97KbAsync, NULL);
+        break;
+    case MarmaladeModeGFSK9_99KbAsync:
+        subghz_devices_load_preset(app->device, FuriHalSubGhzPresetGFSK9_99KbAsync, NULL);
+        break;
+    case MarmaladeModeBruteforce:
+        subghz_devices_load_preset(app->device, FuriHalSubGhzPresetOok650Async, NULL);
+        break;
+    default:
+        return;
     }
 
     subghz_tx_rx_worker_start(app->subghz_txrx, app->device, app->frequency);
@@ -336,35 +352,35 @@ int32_t marmalade_app(void* p) {
         if(furi_message_queue_get(app->event_queue, &event, 10) == FuriStatusOk) {
             if(event.type == InputTypeShort) {
                 switch(event.key) {
-                    case InputKeyOk:
-                        marmalade_switch_mode(app);
+                case InputKeyOk:
+                    marmalade_switch_mode(app);
+                    marmalade_update_view(app);
+                    break;
+                case InputKeyBack:
+                    app->running = false;
+                    break;
+                case InputKeyRight:
+                    if(app->cursor_position < 4) {
+                        app->cursor_position++;
                         marmalade_update_view(app);
-                        break;
-                    case InputKeyBack:
-                        app->running = false;
-                        break;
-                    case InputKeyRight:
-                        if(app->cursor_position < 4) {
-                            app->cursor_position++;
-                            marmalade_update_view(app);
-                        }
-                        break;
-                    case InputKeyLeft:
-                        if(app->cursor_position > 0) {
-                            app->cursor_position--;
-                            marmalade_update_view(app);
-                        }
-                        break;
-                    case InputKeyUp:
-                        marmalade_adjust_frequency(app, true);
+                    }
+                    break;
+                case InputKeyLeft:
+                    if(app->cursor_position > 0) {
+                        app->cursor_position--;
                         marmalade_update_view(app);
-                        break;
-                    case InputKeyDown:
-                        marmalade_adjust_frequency(app, false);
-                        marmalade_update_view(app);
-                        break;
-                    default:
-                        break;
+                    }
+                    break;
+                case InputKeyUp:
+                    marmalade_adjust_frequency(app, true);
+                    marmalade_update_view(app);
+                    break;
+                case InputKeyDown:
+                    marmalade_adjust_frequency(app, false);
+                    marmalade_update_view(app);
+                    break;
+                default:
+                    break;
                 }
             }
         }

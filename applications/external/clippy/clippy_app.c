@@ -1,13 +1,13 @@
-#include "applications_user/clippy/clippy_app.h"
-#include "core/string.h"
-#include "flipper_format.h"
-#include "gui/modules/loading.h"
-#include "gui/modules/variable_item_list.h"
-#include "gui/modules/widget.h"
-#include "gui/view_dispatcher.h"
+#include "clippy_app.h"
+#include <core/string.h>
+#include <flipper_format/flipper_format.h>
+#include <gui/modules/loading.h>
+#include <gui/modules/variable_item_list.h>
+#include <gui/modules/widget.h>
+#include <gui/view_dispatcher.h>
 #include "helpers/ducky_script.h"
-#include "storage/filesystem_api_defines.h"
-#include "storage/storage.h"
+#include <storage/filesystem_api_defines.h>
+#include <storage/storage.h>
 #include "views/clippy_bad_usb_view.h"
 #include "views/clippy_mass_storage_view.h"
 #include "views/clippy_main_view.h"
@@ -140,6 +140,7 @@ ClippyApp* clippy_app_alloc() {
     }
 
     app->view_dispatcher = view_dispatcher_alloc();
+    view_dispatcher_enable_queue(app->view_dispatcher);
     app->scene_manager = scene_manager_alloc(&clippy_scene_handlers, app);
 
     view_dispatcher_set_event_callback_context(app->view_dispatcher, app);

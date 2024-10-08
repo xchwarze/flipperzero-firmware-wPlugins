@@ -8,11 +8,11 @@
 #include <furi_hal.h>
 #include <lib/subghz/subghz_tx_rx_worker.h>
 
-#define TAG "MarmaladeApp"
-#define SUBGHZ_DEVICE_NAME "cc1101_int"
+#define TAG                  "MarmaladeApp"
+#define SUBGHZ_DEVICE_NAME   "cc1101_int"
 #define SUBGHZ_FREQUENCY_MIN 300000000
 #define SUBGHZ_FREQUENCY_MAX 928000000
-#define MESSAGE_MAX_LEN 256
+#define MESSAGE_MAX_LEN      256
 
 typedef enum {
     MarmaladeModeOok650Async,
