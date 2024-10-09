@@ -32,7 +32,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-08 16:17 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-08 16:17 EST`
 - Updated: [Umpire Indicator v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Umpire-Indicator)
-- Updated: [Web Crawler v0.2 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - Added: [Lishi HU66 v0.1 (By evillero)](https://github.com/evillero/lishi_hu66)
 - Updated: [Infrared Remote Assets for Digital Sign / LED & Monitors (By jaylikesbunda)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/527f259a6fe2b05466e3b90f09a5a3d97d659b28)
 - OFW: [furi_hal_random: Wait for ready state and no errors before sampling #3933 (By n1kolasM)](https://github.com/flipperdevices/flipperzero-firmware/pull/3933)
@@ -65,6 +64,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - [JS: Script to control sk9822 leds (By jamisonderek)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fe8abb8f1897537002dd5f0dd0b510de37b07503)
 - Updated: [Gemini IA v0.1 (By d4rks1d33 & jamisonderek)](https://github.com/d4rks1d33/Gemini-Flipper)
 - OFW: PR: [nfc/clipper: Update BART station codes #3937 (By ted-logan)](https://github.com/flipperdevices/flipperzero-firmware/pull/3937)
+- Updated: [Web Crawler v0.4 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881)
 
 <a name="release">
@@ -637,7 +637,7 @@ $ ./fbt dolphin_ext
 - [WAV Recorder v0.2 (By scrolltex)](https://github.com/scrolltex/flipper-wav-recorder)
 - [WHC SWIO Flasher v1.1 (By sukvojte)](https://github.com/sukvojte/wch_swio_flasher)
 - [Weather Station v1.9.1 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station)
-- [Web Crawler v0.3 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
+- [Web Crawler v0.4 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - [Wendigo Bluetooth Tracker WIP v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
 - [Wiegand Reader v1.3 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
 - [WiFi (Deauther) V2 (By Timmotools)](https://github.com/Timmotools/flipperzero_esp8266_deautherv2) `Req: ESP8266`

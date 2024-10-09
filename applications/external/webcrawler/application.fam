@@ -5,9 +5,10 @@ App(
     entry_point="web_crawler_app",
     stack_size=4 * 1024,
     fap_icon="app.png",
+    fap_icon_assets=".assets",
     fap_category="GPIO",
     fap_author="JBlanked",
     fap_weburl="https://github.com/jblanked/WebCrawler-FlipperZero",
-    fap_version="0.3",
-    fap_description="Use Wifi to access the internet and web scrape",
+    fap_version="0.4",
+    fap_description="Use Wi-Fi to access the internet and scrape data from the web.",
 )
