@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM1008-1617-0.420.0-aae9345](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-08 16:17 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-08 16:17 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-09 17:05 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-09 17:05 EST`
 - Updated: [Umpire Indicator v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Umpire-Indicator)
 - Added: [Lishi HU66 v0.1 (By evillero)](https://github.com/evillero/lishi_hu66)
 - Updated: [Infrared Remote Assets for Digital Sign / LED & Monitors (By jaylikesbunda)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/527f259a6fe2b05466e3b90f09a5a3d97d659b28)
@@ -40,7 +40,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [NFC Emulation freeze #3930 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3930)
 - GARBAGE (NOT INCLUDED UNLESS PROVEN NECESSARY): OFW: [Split BadUSB into BadUSB and BadBLE #3931 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/3931)
 - Updated: [uPython v1.5 (By ofabel)](https://github.com/ofabel/mp-flipper)
-- Updated: OFW: PR: [MIFARE Classic Key Recovery Improvements #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
 - [Check our Discord server](https://discord.gg/gF2bBUzAFe) for our [Hooked Up Transparent Flipper Zero Giveaway](https://discord.com/channels/213686842745290752/992875465901625394/1291871536713695364)
 - Updated: [NFC E-Ink Tags v1.0 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245)
 - [Allow to disable control of GPIO pin on rx/tx states in subghz (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/65b9a5bf1303ad64d2b8275ad3f557d4102df156)
@@ -62,9 +61,10 @@ This software is for experimental purposes only and is not meant for any illegal
 - [NFC: Fix memory leak in static encrypted attack (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822/commits/a1590fc74a15a2d838ef9231d0070ac8f79ef862)
 - Updated: [NFC Playlist v2.7 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
 - [JS: Script to control sk9822 leds (By jamisonderek)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fe8abb8f1897537002dd5f0dd0b510de37b07503)
-- OFW: PR: [nfc/clipper: Update BART station codes #3937 (By ted-logan)](https://github.com/flipperdevices/flipperzero-firmware/pull/3937)
+- OFW: [nfc/clipper: Update BART station codes #3937 (By ted-logan)](https://github.com/flipperdevices/flipperzero-firmware/pull/3937)
 - Updated: [Gemini IA v0.1 (By d4rks1d33 & jamisonderek)](https://github.com/d4rks1d33/Gemini-Flipper)
 - Updated: [Web Crawler v0.4 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
+- Updated: OFW: PR: [MIFARE Classic Key Recovery Improvements #3822 (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881)
 
 <a name="release">
