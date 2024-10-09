@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM1008-1617-0.420.0-aae9345](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM1009-1725-0.420.0-0892452](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-09 17:05 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-09 17:05 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-09 17:25 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-09 17:25 EST`
 - Updated: [Umpire Indicator v0.1 (By RocketGod)](https://github.com/RocketGod-Git/Flipper-Zero-Umpire-Indicator)
 - Added: [Lishi HU66 v0.1 (By evillero)](https://github.com/evillero/lishi_hu66)
 - Updated: [Infrared Remote Assets for Digital Sign / LED & Monitors (By jaylikesbunda)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/527f259a6fe2b05466e3b90f09a5a3d97d659b28)
