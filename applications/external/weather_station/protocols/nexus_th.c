@@ -25,13 +25,14 @@
  * - humidity is 8 bits
  * The sensors can be bought at Clas Ohlsen (Nexus) and Pearl (infactory/FreeTec).
  * 
+ *  Generate test files: https://htotoo.github.io/FlipperSUBGenerator/nexus-th-generator/index.html
  */
 
 #define NEXUS_TH_CONST_DATA 0b1111
 
 static const SubGhzBlockConst ws_protocol_nexus_th_const = {
-    .te_short = 500,
-    .te_long = 2000,
+    .te_short = 490,
+    .te_long = 1980,
     .te_delta = 150,
     .min_count_bit_for_found = 36,
 };
@@ -56,39 +57,26 @@ typedef enum {
     Nexus_THDecoderStepCheckDuration,
 } Nexus_THDecoderStep;
 
-const SubGhzProtocolDecoder ws_protocol_nexus_th_decoder = {
-    .alloc = ws_protocol_decoder_nexus_th_alloc,
-    .free = ws_protocol_decoder_nexus_th_free,
+void* ws_protocol_encoder_nexus_th_alloc(SubGhzEnvironment* environment) {
+    UNUSED(environment);
+    WSProtocolEncoderNexus_TH* instance = malloc(sizeof(WSProtocolEncoderNexus_TH));
 
-    .feed = ws_protocol_decoder_nexus_th_feed,
-    .reset = ws_protocol_decoder_nexus_th_reset,
+    instance->base.protocol = &ws_protocol_nexus_th;
+    instance->generic.protocol_name = instance->base.protocol->name;
 
-    .get_hash_data = NULL,
-    .get_hash_data_long = ws_protocol_decoder_nexus_th_get_hash_data,
-    .serialize = ws_protocol_decoder_nexus_th_serialize,
-    .deserialize = ws_protocol_decoder_nexus_th_deserialize,
-    .get_string = ws_protocol_decoder_nexus_th_get_string,
-    .get_string_brief = NULL,
-};
+    instance->encoder.repeat = 12;
+    instance->encoder.size_upload = ws_protocol_nexus_th_const.min_count_bit_for_found * 2 + 2;
+    instance->encoder.upload = malloc(instance->encoder.size_upload * sizeof(LevelDuration));
+    instance->encoder.is_running = false;
+    return instance;
+}
 
-const SubGhzProtocolEncoder ws_protocol_nexus_th_encoder = {
-    .alloc = NULL,
-    .free = NULL,
-
-    .deserialize = NULL,
-    .stop = NULL,
-    .yield = NULL,
-};
-
-const SubGhzProtocol ws_protocol_nexus_th = {
-    .name = WS_PROTOCOL_NEXUS_TH_NAME,
-    .type = SubGhzProtocolWeatherStation,
-    .flag = SubGhzProtocolFlag_433 | SubGhzProtocolFlag_315 | SubGhzProtocolFlag_868 |
-            SubGhzProtocolFlag_AM | SubGhzProtocolFlag_Decodable,
-
-    .decoder = &ws_protocol_nexus_th_decoder,
-    .encoder = &ws_protocol_nexus_th_encoder,
-};
+void ws_protocol_encoder_nexus_th_free(void* context) {
+    furi_assert(context);
+    WSProtocolEncoderNexus_TH* instance = context;
+    free(instance->encoder.upload);
+    free(instance);
+}
 
 void* ws_protocol_decoder_nexus_th_alloc(SubGhzEnvironment* environment) {
     UNUSED(environment);
@@ -113,12 +101,118 @@ void ws_protocol_decoder_nexus_th_reset(void* context) {
 static bool ws_protocol_nexus_th_check(WSProtocolDecoderNexus_TH* instance) {
     uint8_t type = (instance->decoder.decode_data >> 8) & 0x0F;
 
-    if((type == NEXUS_TH_CONST_DATA) && ((instance->decoder.decode_data >> 4) != 0xffffffff)) {
-        return true;
-    } else {
-        return false;
-    }
+    if(type != NEXUS_TH_CONST_DATA) return false;
+    if((instance->decoder.decode_data >> 4) == 0xffffffff) return false;
+
+    if(!((instance->decoder.decode_data >> 23) & 1) &&
+       ((instance->decoder.decode_data >> 12) & 0x07FF) > 1000)
+        return false; // temp>100C
+    if(((instance->decoder.decode_data >> 23) & 1) &&
+       (~(instance->decoder.decode_data >> 12) & 0x07FF) > 500)
+        return false; // temp<-50C
+    if((instance->decoder.decode_data & 0xFF) > 100) return false; // hum>100
+
+    // The nexus protocol will trigger on rubicson data, so calculate the rubicson crc and make sure
+    // it doesn't match. By guesstimate it should generate a correct crc 1/255% of the times.
+    // So less then 0.5% which should be acceptable.
+    uint8_t msg_rubicson_crc[] = {
+        instance->decoder.decode_data >> 28,
+        instance->decoder.decode_data >> 20,
+        instance->decoder.decode_data >> 12,
+        0xf0,
+        (instance->decoder.decode_data & 0xf0) | (instance->decoder.decode_data & 0x0f)};
+
+    if(subghz_protocol_blocks_crc8(msg_rubicson_crc, 5, 0x31, 0x6c) == 0)
+        return false; // rubicson match, probably not a Nexus
+
     return true;
+}
+
+static bool ws_protocol_encoder_nexus_th_get_upload(WSProtocolEncoderNexus_TH* instance) {
+    furi_assert(instance);
+    size_t index = 0;
+    size_t size_upload = (instance->generic.data_count_bit * 2) + 2;
+    if(size_upload > instance->encoder.size_upload) {
+        FURI_LOG_E(TAG, "Size upload exceeds allocated encoder buffer.");
+        return false;
+    } else {
+        instance->encoder.size_upload = size_upload;
+    }
+
+    for(uint8_t i = instance->generic.data_count_bit; i > 0; i--) {
+        if(!bit_read(instance->generic.data, i - 1)) {
+            //send bit 1
+            instance->encoder.upload[index++] =
+                level_duration_make(true, (uint32_t)ws_protocol_nexus_th_const.te_short);
+            instance->encoder.upload[index++] =
+                level_duration_make(false, (uint32_t)ws_protocol_nexus_th_const.te_short * 2);
+        } else {
+            //send bit 0
+            instance->encoder.upload[index++] =
+                level_duration_make(true, (uint32_t)ws_protocol_nexus_th_const.te_short);
+            instance->encoder.upload[index++] =
+                level_duration_make(false, (uint32_t)ws_protocol_nexus_th_const.te_short * 4);
+        }
+    }
+
+    instance->encoder.upload[index++] =
+        level_duration_make(true, (uint32_t)ws_protocol_nexus_th_const.te_short);
+    instance->encoder.upload[index++] =
+        level_duration_make(false, (uint32_t)ws_protocol_nexus_th_const.te_short * 8);
+
+    return true;
+}
+
+SubGhzProtocolStatus
+    ws_protocol_encoder_nexus_th_deserialize(void* context, FlipperFormat* flipper_format) {
+    furi_assert(context);
+    WSProtocolEncoderNexus_TH* instance = context;
+    SubGhzProtocolStatus ret = SubGhzProtocolStatusError;
+    do {
+        ret = ws_block_generic_deserialize(&instance->generic, flipper_format);
+        if(ret != SubGhzProtocolStatusOk) {
+            break;
+        }
+        if((instance->generic.data_count_bit >
+            ws_protocol_nexus_th_const.min_count_bit_for_found + 1)) {
+            FURI_LOG_E(TAG, "Wrong number of bits in key");
+            ret = SubGhzProtocolStatusErrorValueBitCount;
+            break;
+        }
+        //optional parameter parameter
+        flipper_format_read_uint32(
+            flipper_format, "Repeat", (uint32_t*)&instance->encoder.repeat, 12);
+
+        if(!ws_protocol_encoder_nexus_th_get_upload(instance)) {
+            ret = SubGhzProtocolStatusErrorEncoderGetUpload;
+            break;
+        }
+        instance->encoder.is_running = true;
+    } while(false);
+
+    return ret;
+}
+
+LevelDuration ws_protocol_encoder_nexus_th_yield(void* context) {
+    WSProtocolEncoderNexus_TH* instance = context;
+
+    if(instance->encoder.repeat == 0 || !instance->encoder.is_running) {
+        instance->encoder.is_running = false;
+        return level_duration_reset();
+    }
+
+    LevelDuration ret = instance->encoder.upload[instance->encoder.front];
+
+    if(++instance->encoder.front == instance->encoder.size_upload) {
+        instance->encoder.repeat--;
+        instance->encoder.front = 0;
+    }
+    return ret;
+}
+
+void ws_protocol_encoder_nexus_th_stop(void* context) {
+    WSProtocolEncoderNexus_TH* instance = context;
+    instance->encoder.is_running = false;
 }
 
 /**
@@ -139,6 +233,8 @@ static void ws_protocol_nexus_th_remote_controller(WSBlockGeneric* instance) {
     instance->humidity = instance->data & 0xFF;
     if(instance->humidity > 95)
         instance->humidity = 95;
+    else if(instance->humidity == 0)
+        instance->humidity = WS_NO_HUMIDITY;
     else if(instance->humidity < 20)
         instance->humidity = 20;
 }
@@ -238,19 +334,42 @@ SubGhzProtocolStatus
 void ws_protocol_decoder_nexus_th_get_string(void* context, FuriString* output) {
     furi_assert(context);
     WSProtocolDecoderNexus_TH* instance = context;
-    furi_string_printf(
-        output,
-        "%s %dbit\r\n"
-        "Key:0x%lX%08lX\r\n"
-        "Sn:0x%lX Ch:%d  Bat:%d\r\n"
-        "Temp:%3.1f C Hum:%d%%",
-        instance->generic.protocol_name,
-        instance->generic.data_count_bit,
-        (uint32_t)(instance->generic.data >> 32),
-        (uint32_t)(instance->generic.data),
-        instance->generic.id,
-        instance->generic.channel,
-        instance->generic.battery_low,
-        (double)instance->generic.temp,
-        instance->generic.humidity);
+    ws_block_generic_get_string(&instance->generic, output);
 }
+
+const SubGhzProtocolDecoder ws_protocol_nexus_th_decoder = {
+    .alloc = ws_protocol_decoder_nexus_th_alloc,
+    .free = ws_protocol_decoder_nexus_th_free,
+
+    .feed = ws_protocol_decoder_nexus_th_feed,
+    .reset = ws_protocol_decoder_nexus_th_reset,
+
+    .get_hash_data = NULL,
+    .get_hash_data_long = ws_protocol_decoder_nexus_th_get_hash_data,
+    .serialize = ws_protocol_decoder_nexus_th_serialize,
+    .deserialize = ws_protocol_decoder_nexus_th_deserialize,
+    .get_string = ws_protocol_decoder_nexus_th_get_string,
+    .get_string_brief = NULL,
+};
+
+const SubGhzProtocolEncoder ws_protocol_nexus_th_encoder = {
+    .alloc = ws_protocol_encoder_nexus_th_alloc,
+    .free = ws_protocol_encoder_nexus_th_free,
+
+    .deserialize = ws_protocol_encoder_nexus_th_deserialize,
+    .stop = ws_protocol_encoder_nexus_th_stop,
+    .yield = ws_protocol_encoder_nexus_th_yield,
+};
+
+const SubGhzProtocol ws_protocol_nexus_th = {
+    .name = WS_PROTOCOL_NEXUS_TH_NAME,
+    .type = SubGhzProtocolTypeStatic,
+    .flag = SubGhzProtocolFlag_433 | SubGhzProtocolFlag_315 | SubGhzProtocolFlag_868 |
+            SubGhzProtocolFlag_AM | SubGhzProtocolFlag_Decodable | SubGhzProtocolFlag_Load |
+            SubGhzProtocolFlag_Save | SubGhzProtocolFlag_Send,
+
+    .decoder = &ws_protocol_nexus_th_decoder,
+    .encoder = &ws_protocol_nexus_th_encoder,
+
+    .filter = SubGhzProtocolFilter_Weather,
+};
