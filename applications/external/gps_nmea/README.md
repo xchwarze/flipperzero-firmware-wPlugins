@@ -62,6 +62,7 @@ the hardware setup.
 * [u-Blox NEO-6M]
 * [u-Blox NEO-7M]
 * [Uputronics u-blox MAX-M8C Pico]
+* NewHail GNSS Modul
 * [Quectel L80]
 * [M10Q-5883]
 
