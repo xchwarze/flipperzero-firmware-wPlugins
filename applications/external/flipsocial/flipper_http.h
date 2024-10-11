@@ -10,90 +10,96 @@
 
 // STORAGE_EXT_PATH_PREFIX is defined in the Furi SDK as /ext
 
-#define HTTP_TAG "FlipSocial"             // change this to your app name
-#define http_tag "flip_social"            // change this to your app id
-#define UART_CH (FuriHalSerialIdUsart)    // UART channel
+#define HTTP_TAG               "FlipSocial" // change this to your app name
+#define http_tag               "flip_social" // change this to your app id
+#define UART_CH                (FuriHalSerialIdUsart) // UART channel
 #define TIMEOUT_DURATION_TICKS (2 * 1000) // 2 seconds
-#define BAUDRATE (115200)                 // UART baudrate
-#define RX_BUF_SIZE 1024                  // UART RX buffer size
+#define BAUDRATE               (115200) // UART baudrate
+#define RX_BUF_SIZE            1024 // UART RX buffer size
 
 // Forward declaration for callback
-typedef void (*FlipperHTTP_Callback)(const char *line, void *context);
+typedef void (*FlipperHTTP_Callback)(const char* line, void* context);
 
 // Functions
-bool flipper_http_init(FlipperHTTP_Callback callback, void *context);
+bool flipper_http_init(FlipperHTTP_Callback callback, void* context);
 void flipper_http_deinit();
 //---
-void flipper_http_rx_callback(const char *line, void *context);
-bool flipper_http_send_data(const char *data);
+void flipper_http_rx_callback(const char* line, void* context);
+bool flipper_http_send_data(const char* data);
 //---
 bool flipper_http_connect_wifi();
 bool flipper_http_disconnect_wifi();
 bool flipper_http_ping();
-bool flipper_http_save_wifi(const char *ssid, const char *password);
+bool flipper_http_save_wifi(const char* ssid, const char* password);
 //---
-bool flipper_http_get_request(const char *url);
-bool flipper_http_get_request_with_headers(const char *url, const char *headers);
-bool flipper_http_post_request_with_headers(const char *url, const char *headers, const char *payload);
-bool flipper_http_put_request_with_headers(const char *url, const char *headers, const char *payload);
-bool flipper_http_delete_request_with_headers(const char *url, const char *headers, const char *payload);
+bool flipper_http_get_request(const char* url);
+bool flipper_http_get_request_with_headers(const char* url, const char* headers);
+bool flipper_http_post_request_with_headers(
+    const char* url,
+    const char* headers,
+    const char* payload);
+bool flipper_http_put_request_with_headers(
+    const char* url,
+    const char* headers,
+    const char* payload);
+bool flipper_http_delete_request_with_headers(
+    const char* url,
+    const char* headers,
+    const char* payload);
 //---
 bool flipper_http_save_received_data(size_t bytes_received, const char line_buffer[]);
-static char *trim(const char *str);
+static char* trim(const char* str);
 
 // Define GPIO pins for UART
 GpioPin test_pins[2] = {
     {.port = GPIOA, .pin = LL_GPIO_PIN_7}, // USART1_RX
-    {.port = GPIOA, .pin = LL_GPIO_PIN_6}  // USART1_TX
+    {.port = GPIOA, .pin = LL_GPIO_PIN_6} // USART1_TX
 };
 
 // State variable to track the UART state
-typedef enum
-{
-    INACTIVE,  // Inactive state
-    IDLE,      // Default state
+typedef enum {
+    INACTIVE, // Inactive state
+    IDLE, // Default state
     RECEIVING, // Receiving data
-    SENDING,   // Sending data
-    ISSUE,     // Issue with connection
+    SENDING, // Sending data
+    ISSUE, // Issue with connection
 } SerialState;
 
 // Event Flags for UART Worker Thread
-typedef enum
-{
+typedef enum {
     WorkerEvtStop = (1 << 0),
     WorkerEvtRxDone = (1 << 1),
 } WorkerEvtFlags;
 
 // FlipperHTTP Structure
-typedef struct
-{
-    FuriStreamBuffer *flipper_http_stream;  // Stream buffer for UART communication
-    FuriHalSerialHandle *serial_handle;     // Serial handle for UART communication
-    FuriThread *rx_thread;                  // Worker thread for UART
-    uint8_t rx_buf[RX_BUF_SIZE];            // Buffer for received data
-    FuriThreadId rx_thread_id;              // Worker thread ID
+typedef struct {
+    FuriStreamBuffer* flipper_http_stream; // Stream buffer for UART communication
+    FuriHalSerialHandle* serial_handle; // Serial handle for UART communication
+    FuriThread* rx_thread; // Worker thread for UART
+    uint8_t rx_buf[RX_BUF_SIZE]; // Buffer for received data
+    FuriThreadId rx_thread_id; // Worker thread ID
     FlipperHTTP_Callback handle_rx_line_cb; // Callback for received lines
-    void *callback_context;                 // Context for the callback
-    SerialState state;                      // State of the UART
+    void* callback_context; // Context for the callback
+    SerialState state; // State of the UART
 
     // variable to store the last received data from the UART
-    char *last_response;
+    char* last_response;
 
     // Timer-related members
-    FuriTimer *get_timeout_timer; // Timer for HTTP request timeout
-    char *received_data;          // Buffer to store received data
+    FuriTimer* get_timeout_timer; // Timer for HTTP request timeout
+    char* received_data; // Buffer to store received data
 
     bool started_receiving_get; // Indicates if a GET request has started
-    bool just_started_get;      // Indicates if GET data reception has just started
+    bool just_started_get; // Indicates if GET data reception has just started
 
     bool started_receiving_post; // Indicates if a POST request has started
-    bool just_started_post;      // Indicates if POST data reception has just started
+    bool just_started_post; // Indicates if POST data reception has just started
 
     bool started_receiving_put; // Indicates if a PUT request has started
-    bool just_started_put;      // Indicates if PUT data reception has just started
+    bool just_started_put; // Indicates if PUT data reception has just started
 
     bool started_receiving_delete; // Indicates if a DELETE request has started
-    bool just_started_delete;      // Indicates if DELETE data reception has just started
+    bool just_started_delete; // Indicates if DELETE data reception has just started
 } FlipperHTTP;
 
 FlipperHTTP fhttp;
@@ -108,8 +114,7 @@ FlipperHTTP fhttp;
  * @param      context   The context to pass to the callback.
  * @note       This function will be called when the GET request times out.
  */
-void get_timeout_timer_callback(void *context)
-{
+void get_timeout_timer_callback(void* context) {
     UNUSED(context);
     FURI_LOG_E(HTTP_TAG, "Timeout reached: 2 seconds without receiving the end.");
 
@@ -120,8 +125,7 @@ void get_timeout_timer_callback(void *context)
     fhttp.started_receiving_delete = false;
 
     // Free received data if any
-    if (fhttp.received_data)
-    {
+    if(fhttp.received_data) {
         free(fhttp.received_data);
         fhttp.received_data = NULL;
     }
@@ -139,11 +143,12 @@ void get_timeout_timer_callback(void *context)
  * @param      context   The context to pass to the callback.
  * @note       This function will handle received data asynchronously via the callback.
  */
-static void _flipper_http_rx_callback(FuriHalSerialHandle *handle, FuriHalSerialRxEvent event, void *context)
-{
+static void _flipper_http_rx_callback(
+    FuriHalSerialHandle* handle,
+    FuriHalSerialRxEvent event,
+    void* context) {
     UNUSED(context);
-    if (event == FuriHalSerialRxEventData)
-    {
+    if(event == FuriHalSerialRxEventData) {
         uint8_t data = furi_hal_serial_async_rx(handle);
         furi_stream_buffer_send(fhttp.flipper_http_stream, &data, 1, 0);
         furi_thread_flags_set(fhttp.rx_thread_id, WorkerEvtRxDone);
@@ -157,36 +162,29 @@ static void _flipper_http_rx_callback(FuriHalSerialHandle *handle, FuriHalSerial
  * @param      context   The context to pass to the callback.
  * @note       This function will handle received data asynchronously via the callback.
  */
-static int32_t flipper_http_worker(void *context)
-{
+static int32_t flipper_http_worker(void* context) {
     UNUSED(context);
     size_t rx_line_pos = 0;
     char rx_line_buffer[256]; // Buffer to collect a line
 
-    while (1)
-    {
-        uint32_t events = furi_thread_flags_wait(WorkerEvtStop | WorkerEvtRxDone, FuriFlagWaitAny, FuriWaitForever);
-        if (events & WorkerEvtStop)
-            break;
-        if (events & WorkerEvtRxDone)
-        {
-            size_t len = furi_stream_buffer_receive(fhttp.flipper_http_stream, fhttp.rx_buf, RX_BUF_SIZE * 10, 0);
-            for (size_t i = 0; i < len; i++)
-            {
+    while(1) {
+        uint32_t events = furi_thread_flags_wait(
+            WorkerEvtStop | WorkerEvtRxDone, FuriFlagWaitAny, FuriWaitForever);
+        if(events & WorkerEvtStop) break;
+        if(events & WorkerEvtRxDone) {
+            size_t len = furi_stream_buffer_receive(
+                fhttp.flipper_http_stream, fhttp.rx_buf, RX_BUF_SIZE * 10, 0);
+            for(size_t i = 0; i < len; i++) {
                 char c = fhttp.rx_buf[i];
-                if (c == '\n' || rx_line_pos >= sizeof(rx_line_buffer) - 1)
-                {
+                if(c == '\n' || rx_line_pos >= sizeof(rx_line_buffer) - 1) {
                     rx_line_buffer[rx_line_pos] = '\0';
                     // Invoke the callback with the complete line
-                    if (fhttp.handle_rx_line_cb)
-                    {
+                    if(fhttp.handle_rx_line_cb) {
                         fhttp.handle_rx_line_cb(rx_line_buffer, fhttp.callback_context);
                     }
                     // Reset the line buffer
                     rx_line_pos = 0;
-                }
-                else
-                {
+                } else {
                     rx_line_buffer[rx_line_pos++] = c;
                 }
             }
@@ -204,28 +202,23 @@ static int32_t flipper_http_worker(void *context)
  * @param      context   The context to pass to the callback.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_init(FlipperHTTP_Callback callback, void *context)
-{
-    if (!context)
-    {
+bool flipper_http_init(FlipperHTTP_Callback callback, void* context) {
+    if(!context) {
         FURI_LOG_E(HTTP_TAG, "Invalid context provided to flipper_http_init.");
         return false;
     }
-    if (!callback)
-    {
+    if(!callback) {
         FURI_LOG_E(HTTP_TAG, "Invalid callback provided to flipper_http_init.");
         return false;
     }
     fhttp.flipper_http_stream = furi_stream_buffer_alloc(RX_BUF_SIZE, 1);
-    if (!fhttp.flipper_http_stream)
-    {
+    if(!fhttp.flipper_http_stream) {
         FURI_LOG_E(HTTP_TAG, "Failed to allocate UART stream buffer.");
         return false;
     }
 
     fhttp.rx_thread = furi_thread_alloc();
-    if (!fhttp.rx_thread)
-    {
+    if(!fhttp.rx_thread) {
         FURI_LOG_E(HTTP_TAG, "Failed to allocate UART thread.");
         furi_stream_buffer_free(fhttp.flipper_http_stream);
         return false;
@@ -247,15 +240,13 @@ bool flipper_http_init(FlipperHTTP_Callback callback, void *context)
     furi_hal_gpio_init_simple(&test_pins[1], GpioModeOutputPushPull);
 
     // handle when the UART control is busy to avoid furi_check failed
-    if (furi_hal_serial_control_is_busy(UART_CH))
-    {
+    if(furi_hal_serial_control_is_busy(UART_CH)) {
         FURI_LOG_E(HTTP_TAG, "UART control is busy.");
         return false;
     }
 
     fhttp.serial_handle = furi_hal_serial_control_acquire(UART_CH);
-    if (!fhttp.serial_handle)
-    {
+    if(!fhttp.serial_handle) {
         FURI_LOG_E(HTTP_TAG, "Failed to acquire UART control - handle is NULL");
         // Cleanup resources
         furi_thread_free(fhttp.rx_thread);
@@ -278,12 +269,11 @@ bool flipper_http_init(FlipperHTTP_Callback callback, void *context)
     // Allocate the timer for handling timeouts
     fhttp.get_timeout_timer = furi_timer_alloc(
         get_timeout_timer_callback, // Callback function
-        FuriTimerTypeOnce,          // One-shot timer
-        &fhttp                      // Context passed to callback
+        FuriTimerTypeOnce, // One-shot timer
+        &fhttp // Context passed to callback
     );
 
-    if (!fhttp.get_timeout_timer)
-    {
+    if(!fhttp.get_timeout_timer) {
         FURI_LOG_E(HTTP_TAG, "Failed to allocate HTTP request timeout timer.");
         // Cleanup resources
         furi_hal_serial_async_rx_stop(fhttp.serial_handle);
@@ -310,10 +300,8 @@ bool flipper_http_init(FlipperHTTP_Callback callback, void *context)
  * @return     void
  * @note       This function will stop the asynchronous RX, release the serial handle, and free the resources.
  */
-void flipper_http_deinit()
-{
-    if (fhttp.serial_handle == NULL)
-    {
+void flipper_http_deinit() {
+    if(fhttp.serial_handle == NULL) {
         FURI_LOG_E(HTTP_TAG, "UART handle is NULL. Already deinitialized?");
         return;
     }
@@ -336,22 +324,19 @@ void flipper_http_deinit()
     furi_stream_buffer_free(fhttp.flipper_http_stream);
 
     // Free the timer
-    if (fhttp.get_timeout_timer)
-    {
+    if(fhttp.get_timeout_timer) {
         furi_timer_free(fhttp.get_timeout_timer);
         fhttp.get_timeout_timer = NULL;
     }
 
     // Free received data if any
-    if (fhttp.received_data)
-    {
+    if(fhttp.received_data) {
         free(fhttp.received_data);
         fhttp.received_data = NULL;
     }
 
     // Free the last response
-    if (fhttp.last_response)
-    {
+    if(fhttp.last_response) {
         free(fhttp.last_response);
         fhttp.last_response = NULL;
     }
@@ -366,37 +351,34 @@ void flipper_http_deinit()
  * @param      data  The data to send over UART.
  * @note       The data will be sent over UART with a newline character appended.
  */
-bool flipper_http_send_data(const char *data)
-{
+bool flipper_http_send_data(const char* data) {
     size_t data_length = strlen(data);
-    if (data_length == 0)
-    {
+    if(data_length == 0) {
         FURI_LOG_E("FlipperHTTP", "Attempted to send empty data.");
         return false;
     }
 
     // Create a buffer with data + '\n'
     size_t send_length = data_length + 1; // +1 for '\n'
-    if (send_length > 256)
-    { // Ensure buffer size is sufficient
+    if(send_length > 256) { // Ensure buffer size is sufficient
         FURI_LOG_E("FlipperHTTP", "Data too long to send over FHTTP.");
         return false;
     }
 
     char send_buffer[257]; // 256 + 1 for safety
     strncpy(send_buffer, data, 256);
-    send_buffer[data_length] = '\n';     // Append newline
+    send_buffer[data_length] = '\n'; // Append newline
     send_buffer[data_length + 1] = '\0'; // Null-terminate
 
-    if (fhttp.state == INACTIVE && ((strstr(send_buffer, "[PING]") == NULL) && (strstr(send_buffer, "[WIFI/CONNECT]") == NULL)))
-    {
+    if(fhttp.state == INACTIVE && ((strstr(send_buffer, "[PING]") == NULL) &&
+                                   (strstr(send_buffer, "[WIFI/CONNECT]") == NULL))) {
         FURI_LOG_E("FlipperHTTP", "Cannot send data while INACTIVE.");
         fhttp.last_response = "Cannot send data while INACTIVE.";
         return false;
     }
 
     fhttp.state = SENDING;
-    furi_hal_serial_tx(fhttp.serial_handle, (const uint8_t *)send_buffer, send_length);
+    furi_hal_serial_tx(fhttp.serial_handle, (const uint8_t*)send_buffer, send_length);
 
     // Uncomment below line to log the data sent over UART
     // FURI_LOG_I("FlipperHTTP", "Sent data over UART: %s", send_buffer);
@@ -413,11 +395,9 @@ bool flipper_http_send_data(const char *data)
  * @note       This is best used to check if the Wifi Dev Board is connected.
  * @note       The state will remain INACTIVE until a PONG is received.
  */
-bool flipper_http_ping()
-{
-    const char *command = "[PING]";
-    if (!flipper_http_send_data(command))
-    {
+bool flipper_http_ping() {
+    const char* command = "[PING]";
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send PING command.");
         return false;
     }
@@ -433,23 +413,20 @@ bool flipper_http_ping()
  * @return     true if the request was successful, false otherwise.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_save_wifi(const char *ssid, const char *password)
-{
-    if (!ssid || !password)
-    {
+bool flipper_http_save_wifi(const char* ssid, const char* password) {
+    if(!ssid || !password) {
         FURI_LOG_E("FlipperHTTP", "Invalid arguments provided to flipper_http_save_wifi.");
         return false;
     }
     char buffer[256];
-    int ret = snprintf(buffer, sizeof(buffer), "[WIFI/SAVE]{\"ssid\":\"%s\",\"password\":\"%s\"}", ssid, password);
-    if (ret < 0 || ret >= (int)sizeof(buffer))
-    {
+    int ret = snprintf(
+        buffer, sizeof(buffer), "[WIFI/SAVE]{\"ssid\":\"%s\",\"password\":\"%s\"}", ssid, password);
+    if(ret < 0 || ret >= (int)sizeof(buffer)) {
         FURI_LOG_E("FlipperHTTP", "Failed to format WiFi save command.");
         return false;
     }
 
-    if (!flipper_http_send_data(buffer))
-    {
+    if(!flipper_http_send_data(buffer)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send WiFi save command.");
         return false;
     }
@@ -464,11 +441,9 @@ bool flipper_http_save_wifi(const char *ssid, const char *password)
  * @return     true if the request was successful, false otherwise.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_disconnect_wifi()
-{
-    const char *command = "[WIFI/DISCONNECT]";
-    if (!flipper_http_send_data(command))
-    {
+bool flipper_http_disconnect_wifi() {
+    const char* command = "[WIFI/DISCONNECT]";
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send WiFi disconnect command.");
         return false;
     }
@@ -483,11 +458,9 @@ bool flipper_http_disconnect_wifi()
  * @return     true if the request was successful, false otherwise.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_connect_wifi()
-{
-    const char *command = "[WIFI/CONNECT]";
-    if (!flipper_http_send_data(command))
-    {
+bool flipper_http_connect_wifi() {
+    const char* command = "[WIFI/CONNECT]";
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send WiFi connect command.");
         return false;
     }
@@ -503,10 +476,8 @@ bool flipper_http_connect_wifi()
  * @param      url  The URL to send the GET request to.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_get_request(const char *url)
-{
-    if (!url)
-    {
+bool flipper_http_get_request(const char* url) {
+    if(!url) {
         FURI_LOG_E("FlipperHTTP", "Invalid arguments provided to flipper_http_get_request.");
         return false;
     }
@@ -514,15 +485,13 @@ bool flipper_http_get_request(const char *url)
     // Prepare GET request command
     char command[256];
     int ret = snprintf(command, sizeof(command), "[GET]%s", url);
-    if (ret < 0 || ret >= (int)sizeof(command))
-    {
+    if(ret < 0 || ret >= (int)sizeof(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to format GET request command.");
         return false;
     }
 
     // Send GET request via UART
-    if (!flipper_http_send_data(command))
-    {
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send GET request command.");
         return false;
     }
@@ -538,26 +507,24 @@ bool flipper_http_get_request(const char *url)
  * @param      headers  The headers to send with the GET request.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_get_request_with_headers(const char *url, const char *headers)
-{
-    if (!url || !headers)
-    {
-        FURI_LOG_E("FlipperHTTP", "Invalid arguments provided to flipper_http_get_request_with_headers.");
+bool flipper_http_get_request_with_headers(const char* url, const char* headers) {
+    if(!url || !headers) {
+        FURI_LOG_E(
+            "FlipperHTTP", "Invalid arguments provided to flipper_http_get_request_with_headers.");
         return false;
     }
 
     // Prepare GET request command with headers
     char command[256];
-    int ret = snprintf(command, sizeof(command), "[GET/HTTP]{\"url\":\"%s\",\"headers\":%s}", url, headers);
-    if (ret < 0 || ret >= (int)sizeof(command))
-    {
+    int ret = snprintf(
+        command, sizeof(command), "[GET/HTTP]{\"url\":\"%s\",\"headers\":%s}", url, headers);
+    if(ret < 0 || ret >= (int)sizeof(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to format GET request command with headers.");
         return false;
     }
 
     // Send GET request via UART
-    if (!flipper_http_send_data(command))
-    {
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send GET request command with headers.");
         return false;
     }
@@ -574,26 +541,33 @@ bool flipper_http_get_request_with_headers(const char *url, const char *headers)
  * @param      data  The data to send with the POST request.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_post_request_with_headers(const char *url, const char *headers, const char *payload)
-{
-    if (!url || !headers || !payload)
-    {
-        FURI_LOG_E("FlipperHTTP", "Invalid arguments provided to flipper_http_post_request_with_headers.");
+bool flipper_http_post_request_with_headers(
+    const char* url,
+    const char* headers,
+    const char* payload) {
+    if(!url || !headers || !payload) {
+        FURI_LOG_E(
+            "FlipperHTTP",
+            "Invalid arguments provided to flipper_http_post_request_with_headers.");
         return false;
     }
 
     // Prepare POST request command with headers and data
     char command[256];
-    int ret = snprintf(command, sizeof(command), "[POST/HTTP]{\"url\":\"%s\",\"headers\":%s,\"payload\":%s}", url, headers, payload);
-    if (ret < 0 || ret >= (int)sizeof(command))
-    {
+    int ret = snprintf(
+        command,
+        sizeof(command),
+        "[POST/HTTP]{\"url\":\"%s\",\"headers\":%s,\"payload\":%s}",
+        url,
+        headers,
+        payload);
+    if(ret < 0 || ret >= (int)sizeof(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to format POST request command with headers and data.");
         return false;
     }
 
     // Send POST request via UART
-    if (!flipper_http_send_data(command))
-    {
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send POST request command with headers and data.");
         return false;
     }
@@ -610,26 +584,32 @@ bool flipper_http_post_request_with_headers(const char *url, const char *headers
  * @param      data  The data to send with the PUT request.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_put_request_with_headers(const char *url, const char *headers, const char *payload)
-{
-    if (!url || !headers || !payload)
-    {
-        FURI_LOG_E("FlipperHTTP", "Invalid arguments provided to flipper_http_put_request_with_headers.");
+bool flipper_http_put_request_with_headers(
+    const char* url,
+    const char* headers,
+    const char* payload) {
+    if(!url || !headers || !payload) {
+        FURI_LOG_E(
+            "FlipperHTTP", "Invalid arguments provided to flipper_http_put_request_with_headers.");
         return false;
     }
 
     // Prepare PUT request command with headers and data
     char command[256];
-    int ret = snprintf(command, sizeof(command), "[PUT/HTTP]{\"url\":\"%s\",\"headers\":%s,\"payload\":%s}", url, headers, payload);
-    if (ret < 0 || ret >= (int)sizeof(command))
-    {
+    int ret = snprintf(
+        command,
+        sizeof(command),
+        "[PUT/HTTP]{\"url\":\"%s\",\"headers\":%s,\"payload\":%s}",
+        url,
+        headers,
+        payload);
+    if(ret < 0 || ret >= (int)sizeof(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to format PUT request command with headers and data.");
         return false;
     }
 
     // Send PUT request via UART
-    if (!flipper_http_send_data(command))
-    {
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send PUT request command with headers and data.");
         return false;
     }
@@ -646,26 +626,34 @@ bool flipper_http_put_request_with_headers(const char *url, const char *headers,
  * @param      data  The data to send with the DELETE request.
  * @note       The received data will be handled asynchronously via the callback.
  */
-bool flipper_http_delete_request_with_headers(const char *url, const char *headers, const char *payload)
-{
-    if (!url || !headers || !payload)
-    {
-        FURI_LOG_E("FlipperHTTP", "Invalid arguments provided to flipper_http_delete_request_with_headers.");
+bool flipper_http_delete_request_with_headers(
+    const char* url,
+    const char* headers,
+    const char* payload) {
+    if(!url || !headers || !payload) {
+        FURI_LOG_E(
+            "FlipperHTTP",
+            "Invalid arguments provided to flipper_http_delete_request_with_headers.");
         return false;
     }
 
     // Prepare DELETE request command with headers and data
     char command[256];
-    int ret = snprintf(command, sizeof(command), "[DELETE/HTTP]{\"url\":\"%s\",\"headers\":%s,\"payload\":%s}", url, headers, payload);
-    if (ret < 0 || ret >= (int)sizeof(command))
-    {
-        FURI_LOG_E("FlipperHTTP", "Failed to format DELETE request command with headers and data.");
+    int ret = snprintf(
+        command,
+        sizeof(command),
+        "[DELETE/HTTP]{\"url\":\"%s\",\"headers\":%s,\"payload\":%s}",
+        url,
+        headers,
+        payload);
+    if(ret < 0 || ret >= (int)sizeof(command)) {
+        FURI_LOG_E(
+            "FlipperHTTP", "Failed to format DELETE request command with headers and data.");
         return false;
     }
 
     // Send DELETE request via UART
-    if (!flipper_http_send_data(command))
-    {
+    if(!flipper_http_send_data(command)) {
         FURI_LOG_E("FlipperHTTP", "Failed to send DELETE request command with headers and data.");
         return false;
     }
@@ -681,25 +669,20 @@ bool flipper_http_delete_request_with_headers(const char *url, const char *heade
  * @param      context  The context passed to the callback.
  * @note       The received data will be handled asynchronously via the callback and handles the state of the UART.
  */
-void flipper_http_rx_callback(const char *line, void *context)
-{
-
-    if (!line || !context)
-    {
+void flipper_http_rx_callback(const char* line, void* context) {
+    if(!line || !context) {
         FURI_LOG_E(HTTP_TAG, "Invalid arguments provided to flipper_http_rx_callback.");
         return;
     }
 
     // Trim the received line to check if it's empty
-    char *trimmed_line = trim(line);
-    if (trimmed_line != NULL && trimmed_line[0] != '\0')
-    {
-        fhttp.last_response = (char *)line;
+    char* trimmed_line = trim(line);
+    if(trimmed_line != NULL && trimmed_line[0] != '\0') {
+        fhttp.last_response = (char*)line;
     }
     free(trimmed_line); // Free the allocated memory for trimmed_line
 
-    if (fhttp.state != INACTIVE && fhttp.state != ISSUE)
-    {
+    if(fhttp.state != INACTIVE && fhttp.state != ISSUE) {
         fhttp.state = RECEIVING;
     }
 
@@ -707,28 +690,23 @@ void flipper_http_rx_callback(const char *line, void *context)
     // FURI_LOG_I(HTTP_TAG, "Received UART line: %s", line);
 
     // Check if we've started receiving data from a GET request
-    if (fhttp.started_receiving_get)
-    {
+    if(fhttp.started_receiving_get) {
         // Restart the timeout timer each time new data is received
         furi_timer_restart(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
 
-        if (strstr(line, "[GET/END]") != NULL)
-        {
+        if(strstr(line, "[GET/END]") != NULL) {
             FURI_LOG_I(HTTP_TAG, "GET request completed.");
             // Stop the timer since we've completed the GET request
             furi_timer_stop(fhttp.get_timeout_timer);
 
-            if (fhttp.received_data)
-            {
+            if(fhttp.received_data) {
                 // uncomment if you want to save the received data to the external storage
                 // flipper_http_save_received_data(strlen(fhttp.received_data), fhttp.received_data);
                 fhttp.started_receiving_get = false;
                 fhttp.just_started_get = false;
                 fhttp.state = IDLE;
                 return;
-            }
-            else
-            {
+            } else {
                 FURI_LOG_E(HTTP_TAG, "No data received.");
                 fhttp.started_receiving_get = false;
                 fhttp.just_started_get = false;
@@ -738,59 +716,52 @@ void flipper_http_rx_callback(const char *line, void *context)
         }
 
         // Append the new line to the existing data
-        if (fhttp.received_data == NULL)
-        {
-            fhttp.received_data = (char *)malloc(strlen(line) + 2); // +2 for newline and null terminator
-            if (fhttp.received_data)
-            {
+        if(fhttp.received_data == NULL) {
+            fhttp.received_data =
+                (char*)malloc(strlen(line) + 2); // +2 for newline and null terminator
+            if(fhttp.received_data) {
                 strcpy(fhttp.received_data, line);
-                fhttp.received_data[strlen(line)] = '\n';     // Add newline
+                fhttp.received_data[strlen(line)] = '\n'; // Add newline
                 fhttp.received_data[strlen(line) + 1] = '\0'; // Null terminator
             }
-        }
-        else
-        {
+        } else {
             size_t current_len = strlen(fhttp.received_data);
             size_t new_size = current_len + strlen(line) + 2; // +2 for newline and null terminator
-            fhttp.received_data = (char *)realloc(fhttp.received_data, new_size);
-            if (fhttp.received_data)
-            {
-                memcpy(fhttp.received_data + current_len, line, strlen(line)); // Copy line at the end of the current data
-                fhttp.received_data[current_len + strlen(line)] = '\n';        // Add newline
-                fhttp.received_data[current_len + strlen(line) + 1] = '\0';    // Null terminator
+            fhttp.received_data = (char*)realloc(fhttp.received_data, new_size);
+            if(fhttp.received_data) {
+                memcpy(
+                    fhttp.received_data + current_len,
+                    line,
+                    strlen(line)); // Copy line at the end of the current data
+                fhttp.received_data[current_len + strlen(line)] = '\n'; // Add newline
+                fhttp.received_data[current_len + strlen(line) + 1] = '\0'; // Null terminator
             }
         }
 
-        if (!fhttp.just_started_get)
-        {
+        if(!fhttp.just_started_get) {
             fhttp.just_started_get = true;
         }
         return;
     }
 
     // Check if we've started receiving data from a POST request
-    else if (fhttp.started_receiving_post)
-    {
+    else if(fhttp.started_receiving_post) {
         // Restart the timeout timer each time new data is received
         furi_timer_restart(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
 
-        if (strstr(line, "[POST/END]") != NULL)
-        {
+        if(strstr(line, "[POST/END]") != NULL) {
             FURI_LOG_I(HTTP_TAG, "POST request completed.");
             // Stop the timer since we've completed the POST request
             furi_timer_stop(fhttp.get_timeout_timer);
 
-            if (fhttp.received_data)
-            {
+            if(fhttp.received_data) {
                 // uncomment if you want to save the received data to the external storage
                 // flipper_http_save_received_data(strlen(fhttp.received_data), fhttp.received_data);
                 fhttp.started_receiving_post = false;
                 fhttp.just_started_post = false;
                 fhttp.state = IDLE;
                 return;
-            }
-            else
-            {
+            } else {
                 FURI_LOG_E(HTTP_TAG, "No data received.");
                 fhttp.started_receiving_post = false;
                 fhttp.just_started_post = false;
@@ -800,59 +771,52 @@ void flipper_http_rx_callback(const char *line, void *context)
         }
 
         // Append the new line to the existing data
-        if (fhttp.received_data == NULL)
-        {
-            fhttp.received_data = (char *)malloc(strlen(line) + 2); // +2 for newline and null terminator
-            if (fhttp.received_data)
-            {
+        if(fhttp.received_data == NULL) {
+            fhttp.received_data =
+                (char*)malloc(strlen(line) + 2); // +2 for newline and null terminator
+            if(fhttp.received_data) {
                 strcpy(fhttp.received_data, line);
-                fhttp.received_data[strlen(line)] = '\n';     // Add newline
+                fhttp.received_data[strlen(line)] = '\n'; // Add newline
                 fhttp.received_data[strlen(line) + 1] = '\0'; // Null terminator
             }
-        }
-        else
-        {
+        } else {
             size_t current_len = strlen(fhttp.received_data);
             size_t new_size = current_len + strlen(line) + 2; // +2 for newline and null terminator
-            fhttp.received_data = (char *)realloc(fhttp.received_data, new_size);
-            if (fhttp.received_data)
-            {
-                memcpy(fhttp.received_data + current_len, line, strlen(line)); // Copy line at the end of the current data
-                fhttp.received_data[current_len + strlen(line)] = '\n';        // Add newline
-                fhttp.received_data[current_len + strlen(line) + 1] = '\0';    // Null terminator
+            fhttp.received_data = (char*)realloc(fhttp.received_data, new_size);
+            if(fhttp.received_data) {
+                memcpy(
+                    fhttp.received_data + current_len,
+                    line,
+                    strlen(line)); // Copy line at the end of the current data
+                fhttp.received_data[current_len + strlen(line)] = '\n'; // Add newline
+                fhttp.received_data[current_len + strlen(line) + 1] = '\0'; // Null terminator
             }
         }
 
-        if (!fhttp.just_started_post)
-        {
+        if(!fhttp.just_started_post) {
             fhttp.just_started_post = true;
         }
         return;
     }
 
     // Check if we've started receiving data from a PUT request
-    else if (fhttp.started_receiving_put)
-    {
+    else if(fhttp.started_receiving_put) {
         // Restart the timeout timer each time new data is received
         furi_timer_restart(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
 
-        if (strstr(line, "[PUT/END]") != NULL)
-        {
+        if(strstr(line, "[PUT/END]") != NULL) {
             FURI_LOG_I(HTTP_TAG, "PUT request completed.");
             // Stop the timer since we've completed the PUT request
             furi_timer_stop(fhttp.get_timeout_timer);
 
-            if (fhttp.received_data)
-            {
+            if(fhttp.received_data) {
                 // uncomment if you want to save the received data to the external storage
                 // flipper_http_save_received_data(strlen(fhttp.received_data), fhttp.received_data);
                 fhttp.started_receiving_put = false;
                 fhttp.just_started_put = false;
                 fhttp.state = IDLE;
                 return;
-            }
-            else
-            {
+            } else {
                 FURI_LOG_E(HTTP_TAG, "No data received.");
                 fhttp.started_receiving_put = false;
                 fhttp.just_started_put = false;
@@ -862,59 +826,52 @@ void flipper_http_rx_callback(const char *line, void *context)
         }
 
         // Append the new line to the existing data
-        if (fhttp.received_data == NULL)
-        {
-            fhttp.received_data = (char *)malloc(strlen(line) + 2); // +2 for newline and null terminator
-            if (fhttp.received_data)
-            {
+        if(fhttp.received_data == NULL) {
+            fhttp.received_data =
+                (char*)malloc(strlen(line) + 2); // +2 for newline and null terminator
+            if(fhttp.received_data) {
                 strcpy(fhttp.received_data, line);
-                fhttp.received_data[strlen(line)] = '\n';     // Add newline
+                fhttp.received_data[strlen(line)] = '\n'; // Add newline
                 fhttp.received_data[strlen(line) + 1] = '\0'; // Null terminator
             }
-        }
-        else
-        {
+        } else {
             size_t current_len = strlen(fhttp.received_data);
             size_t new_size = current_len + strlen(line) + 2; // +2 for newline and null terminator
-            fhttp.received_data = (char *)realloc(fhttp.received_data, new_size);
-            if (fhttp.received_data)
-            {
-                memcpy(fhttp.received_data + current_len, line, strlen(line)); // Copy line at the end of the current data
-                fhttp.received_data[current_len + strlen(line)] = '\n';        // Add newline
-                fhttp.received_data[current_len + strlen(line) + 1] = '\0';    // Null terminator
+            fhttp.received_data = (char*)realloc(fhttp.received_data, new_size);
+            if(fhttp.received_data) {
+                memcpy(
+                    fhttp.received_data + current_len,
+                    line,
+                    strlen(line)); // Copy line at the end of the current data
+                fhttp.received_data[current_len + strlen(line)] = '\n'; // Add newline
+                fhttp.received_data[current_len + strlen(line) + 1] = '\0'; // Null terminator
             }
         }
 
-        if (!fhttp.just_started_put)
-        {
+        if(!fhttp.just_started_put) {
             fhttp.just_started_put = true;
         }
         return;
     }
 
     // Check if we've started receiving data from a DELETE request
-    else if (fhttp.started_receiving_delete)
-    {
+    else if(fhttp.started_receiving_delete) {
         // Restart the timeout timer each time new data is received
         furi_timer_restart(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
 
-        if (strstr(line, "[DELETE/END]") != NULL)
-        {
+        if(strstr(line, "[DELETE/END]") != NULL) {
             FURI_LOG_I(HTTP_TAG, "DELETE request completed.");
             // Stop the timer since we've completed the DELETE request
             furi_timer_stop(fhttp.get_timeout_timer);
 
-            if (fhttp.received_data)
-            {
+            if(fhttp.received_data) {
                 // uncomment if you want to save the received data to the external storage
                 // flipper_http_save_received_data(strlen(fhttp.received_data), fhttp.received_data);
                 fhttp.started_receiving_delete = false;
                 fhttp.just_started_delete = false;
                 fhttp.state = IDLE;
                 return;
-            }
-            else
-            {
+            } else {
                 FURI_LOG_E(HTTP_TAG, "No data received.");
                 fhttp.started_receiving_delete = false;
                 fhttp.just_started_delete = false;
@@ -924,118 +881,92 @@ void flipper_http_rx_callback(const char *line, void *context)
         }
 
         // Append the new line to the existing data
-        if (fhttp.received_data == NULL)
-        {
-            fhttp.received_data = (char *)malloc(strlen(line) + 2); // +2 for newline and null terminator
-            if (fhttp.received_data)
-            {
+        if(fhttp.received_data == NULL) {
+            fhttp.received_data =
+                (char*)malloc(strlen(line) + 2); // +2 for newline and null terminator
+            if(fhttp.received_data) {
                 strcpy(fhttp.received_data, line);
-                fhttp.received_data[strlen(line)] = '\n';     // Add newline
+                fhttp.received_data[strlen(line)] = '\n'; // Add newline
                 fhttp.received_data[strlen(line) + 1] = '\0'; // Null terminator
             }
-        }
-        else
-        {
+        } else {
             size_t current_len = strlen(fhttp.received_data);
             size_t new_size = current_len + strlen(line) + 2; // +2 for newline and null terminator
-            fhttp.received_data = (char *)realloc(fhttp.received_data, new_size);
-            if (fhttp.received_data)
-            {
-                memcpy(fhttp.received_data + current_len, line, strlen(line)); // Copy line at the end of the current data
-                fhttp.received_data[current_len + strlen(line)] = '\n';        // Add newline
-                fhttp.received_data[current_len + strlen(line) + 1] = '\0';    // Null terminator
+            fhttp.received_data = (char*)realloc(fhttp.received_data, new_size);
+            if(fhttp.received_data) {
+                memcpy(
+                    fhttp.received_data + current_len,
+                    line,
+                    strlen(line)); // Copy line at the end of the current data
+                fhttp.received_data[current_len + strlen(line)] = '\n'; // Add newline
+                fhttp.received_data[current_len + strlen(line) + 1] = '\0'; // Null terminator
             }
         }
 
-        if (!fhttp.just_started_delete)
-        {
+        if(!fhttp.just_started_delete) {
             fhttp.just_started_delete = true;
         }
         return;
     }
 
     // Handle different types of responses
-    if (strstr(line, "[SUCCESS]") != NULL || strstr(line, "[CONNECTED]") != NULL)
-    {
+    if(strstr(line, "[SUCCESS]") != NULL || strstr(line, "[CONNECTED]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "Operation succeeded.");
-    }
-    else if (strstr(line, "[INFO]") != NULL)
-    {
+    } else if(strstr(line, "[INFO]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "Received info: %s", line);
 
-        if (fhttp.state == INACTIVE && strstr(line, "[INFO] Already connected to Wifi.") != NULL)
-        {
+        if(fhttp.state == INACTIVE && strstr(line, "[INFO] Already connected to Wifi.") != NULL) {
             fhttp.state = IDLE;
         }
-    }
-    else if (strstr(line, "[GET/SUCCESS]") != NULL)
-    {
+    } else if(strstr(line, "[GET/SUCCESS]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "GET request succeeded.");
         fhttp.started_receiving_get = true;
         furi_timer_start(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
         fhttp.state = RECEIVING;
         fhttp.received_data = NULL;
         return;
-    }
-    else if (strstr(line, "[POST/SUCCESS]") != NULL)
-    {
+    } else if(strstr(line, "[POST/SUCCESS]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "POST request succeeded.");
         fhttp.started_receiving_post = true;
         furi_timer_start(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
         fhttp.state = RECEIVING;
         fhttp.received_data = NULL;
         return;
-    }
-    else if (strstr(line, "[PUT/SUCCESS]") != NULL)
-    {
+    } else if(strstr(line, "[PUT/SUCCESS]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "PUT request succeeded.");
         fhttp.started_receiving_put = true;
         furi_timer_start(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
         fhttp.state = RECEIVING;
         fhttp.received_data = NULL;
         return;
-    }
-    else if (strstr(line, "[DELETE/SUCCESS]") != NULL)
-    {
+    } else if(strstr(line, "[DELETE/SUCCESS]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "DELETE request succeeded.");
         fhttp.started_receiving_delete = true;
         furi_timer_start(fhttp.get_timeout_timer, TIMEOUT_DURATION_TICKS);
         fhttp.state = RECEIVING;
         fhttp.received_data = NULL;
         return;
-    }
-    else if (strstr(line, "[DISCONNECTED]") != NULL)
-    {
+    } else if(strstr(line, "[DISCONNECTED]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "WiFi disconnected successfully.");
-    }
-    else if (strstr(line, "[ERROR]") != NULL)
-    {
+    } else if(strstr(line, "[ERROR]") != NULL) {
         FURI_LOG_E(HTTP_TAG, "Received error: %s", line);
         fhttp.state = ISSUE;
         return;
-    }
-    else if (strstr(line, "[PONG]") != NULL)
-    {
+    } else if(strstr(line, "[PONG]") != NULL) {
         FURI_LOG_I(HTTP_TAG, "Received PONG response: Wifi Dev Board is still alive.");
 
         // send command to connect to WiFi
-        if (fhttp.state == INACTIVE)
-        {
+        if(fhttp.state == INACTIVE) {
             fhttp.state = IDLE;
             return;
         }
     }
 
-    if (fhttp.state == INACTIVE && strstr(line, "[PONG]") != NULL)
-    {
+    if(fhttp.state == INACTIVE && strstr(line, "[PONG]") != NULL) {
         fhttp.state = IDLE;
-    }
-    else if (fhttp.state == INACTIVE && strstr(line, "[PONG]") == NULL)
-    {
+    } else if(fhttp.state == INACTIVE && strstr(line, "[PONG]") == NULL) {
         fhttp.state = INACTIVE;
-    }
-    else
-    {
+    } else {
         fhttp.state = IDLE;
     }
 }
@@ -1047,16 +978,17 @@ void flipper_http_rx_callback(const char *line, void *context)
  * @param      line_buffer     The buffer containing the received data.
  * @note       The data will be saved to a file in the STORAGE_EXT_PATH_PREFIX "/apps_data/" http_tag "/received_data.txt" directory.
  */
-bool flipper_http_save_received_data(size_t bytes_received, const char line_buffer[])
-{
-    const char *output_file_path = STORAGE_EXT_PATH_PREFIX "/apps_data/" http_tag "/received_data.txt";
+bool flipper_http_save_received_data(size_t bytes_received, const char line_buffer[]) {
+    const char* output_file_path = STORAGE_EXT_PATH_PREFIX "/apps_data/" http_tag
+                                                           "/received_data.txt";
 
     // Ensure the directory exists
     char directory_path[128];
-    snprintf(directory_path, sizeof(directory_path), STORAGE_EXT_PATH_PREFIX "/apps_data/" http_tag);
+    snprintf(
+        directory_path, sizeof(directory_path), STORAGE_EXT_PATH_PREFIX "/apps_data/" http_tag);
 
-    Storage *_storage = NULL;
-    File *_file = NULL;
+    Storage* _storage = NULL;
+    File* _file = NULL;
     // Open the storage if not opened already
     // Initialize storage and create the directory if it doesn't exist
     _storage = furi_record_open(RECORD_STORAGE);
@@ -1064,8 +996,7 @@ bool flipper_http_save_received_data(size_t bytes_received, const char line_buff
     _file = storage_file_alloc(_storage);
 
     // Open file for writing and append data line by line
-    if (!storage_file_open(_file, output_file_path, FSAM_WRITE, FSOM_CREATE_ALWAYS))
-    {
+    if(!storage_file_open(_file, output_file_path, FSAM_WRITE, FSOM_CREATE_ALWAYS)) {
         FURI_LOG_E(HTTP_TAG, "Failed to open output file for writing.");
         storage_file_free(_file);
         furi_record_close(RECORD_STORAGE);
@@ -1073,25 +1004,20 @@ bool flipper_http_save_received_data(size_t bytes_received, const char line_buff
     }
 
     // Write each line received from the UART to the file
-    if (bytes_received > 0 && _file)
-    {
+    if(bytes_received > 0 && _file) {
         storage_file_write(_file, line_buffer, bytes_received);
         storage_file_write(_file, "\n", 1); // Add a newline after each line
-    }
-    else
-    {
+    } else {
         FURI_LOG_E(HTTP_TAG, "No data received.");
         return false;
     }
 
-    if (_file)
-    {
+    if(_file) {
         storage_file_close(_file);
         storage_file_free(_file);
         _file = NULL;
     }
-    if (_storage)
-    {
+    if(_storage) {
         furi_record_close(RECORD_STORAGE);
         _storage = NULL;
     }
@@ -1099,32 +1025,29 @@ bool flipper_http_save_received_data(size_t bytes_received, const char line_buff
     return true;
 }
 // Function to trim leading and trailing spaces and newlines from a constant string
-char *trim(const char *str)
-{
-    const char *end;
-    char *trimmed_str;
+char* trim(const char* str) {
+    const char* end;
+    char* trimmed_str;
     size_t len;
 
     // Trim leading space
-    while (isspace((unsigned char)*str))
+    while(isspace((unsigned char)*str))
         str++;
 
     // All spaces?
-    if (*str == 0)
-        return strdup(""); // Return an empty string if all spaces
+    if(*str == 0) return strdup(""); // Return an empty string if all spaces
 
     // Trim trailing space
     end = str + strlen(str) - 1;
-    while (end > str && isspace((unsigned char)*end))
+    while(end > str && isspace((unsigned char)*end))
         end--;
 
     // Set length for the trimmed string
     len = end - str + 1;
 
     // Allocate space for the trimmed string and null terminator
-    trimmed_str = (char *)malloc(len + 1);
-    if (trimmed_str == NULL)
-    {
+    trimmed_str = (char*)malloc(len + 1);
+    if(trimmed_str == NULL) {
         return NULL; // Handle memory allocation failure
     }
 
