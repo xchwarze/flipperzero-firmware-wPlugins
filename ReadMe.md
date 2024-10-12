@@ -35,6 +35,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Web Crawler v0.4 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - [NFC: MFC Refactor enums to avoid redefinition (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822/commits/a7c0819034fdbe591d64d16b95ba1f88cff660eb)
 - Added: [Flip Social v0.1 (By jblanked)](https://github.com/jblanked/FlipSocial)
+- [Infrared: Add option to `Load from Library File` for Universal Remotes (By zxkmm & Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a711e09ed3e87711a6d59dd9ae44ff120ef88534)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881)
 
 <a name="release">
@@ -169,6 +170,7 @@ $ ./fbt dolphin_ext
 	- Zombiez for every 20 Zombie kills
 - GUI: [Extended Keyboard (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/20bc89888ecaa47f3ee65c63416e609eeff70026)
 - Icon Decode/Encode [(Thanks to PixlEmly)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/55/files)
+- Infrared: [Add option to `Load from Library File` for Universal Remotes (By zxkmm & Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a711e09ed3e87711a6d59dd9ae44ff120ef88534)
 - Infrared: [allow disabling automatic signal decoding #273 (By Darmiel)](https://github.com/DarkFlippers/unleashed-firmware/pull/273)
 - Infrared: Assets for Toto and BioBidet bidets.
 - Infrared: Universal AC, Audio, Fans & Projectors from [amec0e / Unleashed](https://github.com/DarkFlippers/unleashed-firmware)
