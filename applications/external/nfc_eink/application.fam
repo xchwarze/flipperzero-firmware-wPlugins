@@ -11,6 +11,6 @@ App(
     fap_category="NFC",
     fap_author="RebornedBrain",
     fap_weburl="https://github.com/flipperdevices/flipperzero-good-faps/pull/245",
-    fap_version="1.0",
+    fap_version="1.0.1",
     fap_description="Application for emulation and writing to NFC Eink tags",
 )

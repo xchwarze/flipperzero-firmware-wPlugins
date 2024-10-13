@@ -39,6 +39,9 @@ This software is for experimental purposes only and is not meant for any illegal
 - Updated: [Flip Social v0.1 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - [JavaScript: Add I2C support (By jamisonderek) (With Updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/259)
 - Updated: [Weather Station v1.9.3 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Added Vauno-EN8822 weather station (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/262)
+- Updated: OFW: PR: [Some api adjustments #3918 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3918/commits/676eab29f23f169ffbd6af841c89028d960f6dd4)
+- Updated: [NFC E-Ink Tags v1.0.1 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245)
+- NFC: [Fix Mifare DESFire reading (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/4931b5b2f7e07502c15759d0934b494ff8830011#diff-874f33563125619a7a5cb567ebe523c59258662d69858d78d24d947b275f9c6cR33)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881)
 
 <a name="release">
@@ -514,7 +517,7 @@ $ ./fbt dolphin_ext
 - [Mx2125 Dual-Axis Accelerometer (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
 - [Mx2125 Step Counter v1.0 (By 47lecoste a.k.a. grugnoymeme)](https://github.com/grugnoymeme/flipperzero-stepcounter-fap)
 - [Name Changer (By ESurge)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/488)
-- [NFC E-Ink Tags v1.0 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245)
+- [NFC E-Ink Tags v1.0.1 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245)
 - [NFC Magic v1.12.1 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966)
 - [NFC Maker v1.2 (by Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/343cb39d08f60b75b537e1a31100707935cf6e9d)
 - [NFC Playlist v2.7 (By acegoal07)](https://github.com/acegoal07/FlipperZero_NFC_Playlist/tree/main)
