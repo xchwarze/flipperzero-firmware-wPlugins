@@ -309,7 +309,7 @@ void canvas_draw_xbm(
  * @param[in]  rotation  bitmap rotation
  * @param      bitmap  pointer to XBM bitmap data
  */
-void canvas_draw_xbm_custom(
+void canvas_draw_xbm_ex(
     Canvas* canvas,
     int32_t x,
     int32_t y,
