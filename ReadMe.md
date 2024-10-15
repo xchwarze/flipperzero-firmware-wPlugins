@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM1014-1147-0.420.0-a8f8194](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM1015-0208-0.420.0-787272b](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-14 11:47 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-14 11:47 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-15 02:08 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-15 02:08 EST`
 - Updated: [Weather Station v1.9.2 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Nexus-TH improvements on detection (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/256)
 - [NFC: MFC Refactor enums to avoid redefinition (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822/commits/a7c0819034fdbe591d64d16b95ba1f88cff660eb)
 - Added: [Flip Social v0.1 (By jblanked)](https://github.com/jblanked/FlipSocial)
