@@ -28,7 +28,7 @@ typedef struct {
 
 static void scroll_draw_callback(Canvas* canvas, void* model) {
     ImageScrollViewModel* m = model;
-    canvas_draw_xbm_custom(
+    canvas_draw_xbm_ex(
         canvas, 0, 0, IMAGE_WINDOW_WIDTH, IMAGE_WINDOW_HEIGHT, IconRotation180, m->view_image);
 }
 
