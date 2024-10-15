@@ -243,11 +243,6 @@ void cli_command_help(Cli* cli, FuriString* args, void* context) {
                 CliCommandTree_next(iterators[c]);
             }
         }
-        // Right Column
-        if(!CliCommandTree_end_p(it_right)) {
-            printf("%s", furi_string_get_cstr(*CliCommandTree_ref(it_right)->key_ptr));
-            CliCommandTree_next(it_right);
-        }
     }
 
     if(furi_string_size(args) > 0) {

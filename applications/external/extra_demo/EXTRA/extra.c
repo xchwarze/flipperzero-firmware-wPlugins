@@ -6,9 +6,10 @@
 // Flipper Zero libraries
 #include <furi.h>
 #include <cli/cli.h>
+#include <cli/cli_ansi.h>
+#include <cli/cli_i.h>
 #include <storage/storage.h>
 #include <toolbox/path.h>
-#include <cli/cli_i.h>
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
 
@@ -276,14 +277,14 @@ static FuriString* read_line(Cli* cli) {
     while(true) {
         char c;
         cli_read(cli, (uint8_t*)&c, 1);
-        if(c == CliSymbolAsciiBackspace) {
+        if(c == CliKeyBackspace) {
             furi_string_u_substr(input, 0, furi_string_size(input) - 1);
             printf("\b \b");
             fflush(stdout);
             continue;
         }
-        if(c == CliSymbolAsciiLF) continue;
-        if(c == CliSymbolAsciiCR) {
+        if(c == CliKeyLF) continue;
+        if(c == CliKeyCR) {
             return input;
         } else {
             furi_string_push_back(input, c);
@@ -511,8 +512,8 @@ static void write_handler(Cli* cli, FuriString* args, void* context) {
     printf("Type the new file contents here, then press Ctrl+C to exit...\r\n\r\n");
     while(true) {
         char input = cli_getc(cli);
-        if(input == CliSymbolAsciiETX) break;
-        if(input == CliSymbolAsciiBackspace) {
+        if(input == CliKeyETX) break;
+        if(input == CliKeyBackspace) {
             furi_string_u_substr(content, 0, furi_string_size(content) - 1);
             printf("\b \b");
             fflush(stdout);
