@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include <cli/cli.h>
-#include <cli/cli_ansi.h>
 #include <furi.h>
 
 #include <genhdr/mpversion.h>
@@ -288,7 +287,7 @@ void upython_repl_execute(Cli* cli) {
                 character = cli_getc(cli);
 
                 // Ctrl + C
-                if(character == CliKeyETX) {
+                if(character == CliSymbolAsciiETX) {
                     context->cursor = 0;
 
                     furi_string_reset(context->line);
@@ -300,19 +299,19 @@ void upython_repl_execute(Cli* cli) {
                 }
 
                 // Ctrl + D
-                if(character == CliKeyEOT) {
+                if(character == CliSymbolAsciiEOT) {
                     exit = true;
 
                     break;
                 }
 
                 // skip line feed
-                if(character == CliKeyLF) {
+                if(character == CliSymbolAsciiLF) {
                     continue;
                 }
 
                 // handle carriage return
-                if(character == CliKeyCR) {
+                if(character == CliSymbolAsciiCR) {
                     furi_string_push_back(context->code, '\n');
                     furi_string_cat(context->code, context->line);
                     furi_string_trim(context->code);
@@ -333,14 +332,14 @@ void upython_repl_execute(Cli* cli) {
                 }
 
                 // handle tab, do autocompletion
-                if(character == CliKeyTab) {
+                if(character == CliSymbolAsciiTab) {
                     handle_autocomplete(context);
 
                     continue;
                 }
 
                 // handle backspace
-                if(character == CliKeyBackspace || character == CliKeyDEL) {
+                if(character == CliSymbolAsciiBackspace || character == CliSymbolAsciiDel) {
                     handle_backspace(context);
 
                     continue;

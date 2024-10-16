@@ -8,6 +8,6 @@ App(
     fap_category="Tools/Educational",
     fap_author="Milk-Cool",
     fap_weburl="https://github.com/Milk-Cool/EXTRA-demo",
-    fap_version="0.4.1",
+    fap_version="0.4",
     fap_description="A pack of extra commands for the Flipper Zero (a C library).",
 )

@@ -56,10 +56,10 @@ static void handle(PluginState* plugin_state, FuriString* args, Cli* cli) {
         char user_pick;
         do {
             user_pick = tolower(cli_getc(cli));
-        } while(user_pick != 'y' && user_pick != 'n' && user_pick != CliKeyCR &&
-                user_pick != CliKeyETX && user_pick != CliKeyEsc);
+        } while(user_pick != 'y' && user_pick != 'n' && user_pick != CliSymbolAsciiCR &&
+                user_pick != CliSymbolAsciiETX && user_pick != CliSymbolAsciiEsc);
 
-        confirmed = user_pick == 'y' || user_pick == CliKeyCR;
+        confirmed = user_pick == 'y' || user_pick == CliSymbolAsciiCR;
     }
 
     if(confirmed) {
