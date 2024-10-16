@@ -35,7 +35,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - [NFC: MFC Refactor enums to avoid redefinition (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822/commits/a7c0819034fdbe591d64d16b95ba1f88cff660eb)
 - Added: [Flip Social v0.1 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - [Infrared: Add option to `Load from Library File` for Universal Remotes (By zxkmm & Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a711e09ed3e87711a6d59dd9ae44ff120ef88534)
-- Updated: [Web Crawler v0.4 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - Updated: [Flip Social v0.1 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - [JavaScript: Add I2C support (By jamisonderek) (With Updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/259)
 - Updated: [Weather Station v1.9.3 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Added Vauno-EN8822 weather station (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/262)
@@ -61,6 +60,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - OFW: [Small fixes in the wifi devboard docs #3953 (By rnadyrshin)](https://github.com/flipperdevices/flipperzero-firmware/pull/3953)
 - OFW: [NFC Parser for Tianjin Railway Transit #3954 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3954)
 - Updated: [NFC Seader v3.2 (By bettse)](https://github.com/bettse/seader)
+- Updated: [Web Crawler v0.5 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881) [#3942](https://github.com/flipperdevices/flipperzero-firmware/pull/3942) [#3841](https://github.com/flipperdevices/flipperzero-firmware/pull/3841) [#3950](https://github.com/flipperdevices/flipperzero-firmware/pull/3950) [#3952](https://github.com/flipperdevices/flipperzero-firmware/pull/3952)
 
 <a name="release">
@@ -635,7 +635,7 @@ $ ./fbt dolphin_ext
 - [WAV Recorder v0.2 (By scrolltex)](https://github.com/scrolltex/flipper-wav-recorder)
 - [WHC SWIO Flasher v1.1 (By sukvojte)](https://github.com/sukvojte/wch_swio_flasher)
 - [Weather Station v1.9.3 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station)
-- [Web Crawler v0.4 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
+- [Web Crawler v0.5 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - [Wendigo Bluetooth Tracker WIP v0.1 (By chris-bc)](https://github.com/chris-bc/wendigo) `WIP Req: ESP32`
 - [Wiegand Reader v1.3 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
 - [WiFi (Deauther) V2 (By Timmotools)](https://github.com/Timmotools/flipperzero_esp8266_deautherv2) `Req: ESP8266`
