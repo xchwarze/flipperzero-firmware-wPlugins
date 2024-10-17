@@ -15,30 +15,30 @@ static FlipLibraryApp *flip_library_app_alloc()
     }
 
     // Allocate the text input buffer
-    app->text_input_buffer_size_ssid = 64;
-    app->text_input_buffer_size_password = 64;
-    app->text_input_buffer_size_dictionary = 64;
-    if (!easy_flipper_set_buffer(&app->text_input_buffer_ssid, app->text_input_buffer_size_ssid))
+    app->uart_text_input_buffer_size_ssid = 64;
+    app->uart_text_input_buffer_size_password = 64;
+    app->uart_text_input_buffer_size_dictionary = 64;
+    if (!easy_flipper_set_buffer(&app->uart_text_input_buffer_ssid, app->uart_text_input_buffer_size_ssid))
     {
         return NULL;
     }
-    if (!easy_flipper_set_buffer(&app->text_input_temp_buffer_ssid, app->text_input_buffer_size_ssid))
+    if (!easy_flipper_set_buffer(&app->uart_text_input_temp_buffer_ssid, app->uart_text_input_buffer_size_ssid))
     {
         return NULL;
     }
-    if (!easy_flipper_set_buffer(&app->text_input_buffer_password, app->text_input_buffer_size_password))
+    if (!easy_flipper_set_buffer(&app->uart_text_input_buffer_password, app->uart_text_input_buffer_size_password))
     {
         return NULL;
     }
-    if (!easy_flipper_set_buffer(&app->text_input_temp_buffer_password, app->text_input_buffer_size_password))
+    if (!easy_flipper_set_buffer(&app->uart_text_input_temp_buffer_password, app->uart_text_input_buffer_size_password))
     {
         return NULL;
     }
-    if (!easy_flipper_set_buffer(&app->text_input_buffer_dictionary, app->text_input_buffer_size_dictionary))
+    if (!easy_flipper_set_buffer(&app->uart_text_input_buffer_dictionary, app->uart_text_input_buffer_size_dictionary))
     {
         return NULL;
     }
-    if (!easy_flipper_set_buffer(&app->text_input_temp_buffer_dictionary, app->text_input_buffer_size_dictionary))
+    if (!easy_flipper_set_buffer(&app->uart_text_input_temp_buffer_dictionary, app->uart_text_input_buffer_size_dictionary))
     {
         return NULL;
     }
@@ -74,15 +74,15 @@ static FlipLibraryApp *flip_library_app_alloc()
     }
 
     // Text Input
-    if (!easy_flipper_set_text_input(&app->text_input_ssid, FlipLibraryViewTextInputSSID, "Enter SSID", app->text_input_temp_buffer_ssid, app->text_input_buffer_size_ssid, text_updated_ssid, callback_to_wifi_settings, &app->view_dispatcher, app))
+    if (!easy_flipper_set_uart_text_input(&app->uart_text_input_ssid, FlipLibraryViewTextInputSSID, "Enter SSID", app->uart_text_input_temp_buffer_ssid, app->uart_text_input_buffer_size_ssid, text_updated_ssid, callback_to_wifi_settings, &app->view_dispatcher, app))
     {
         return NULL;
     }
-    if (!easy_flipper_set_text_input(&app->text_input_password, FlipLibraryViewTextInputPassword, "Enter Password", app->text_input_temp_buffer_password, app->text_input_buffer_size_password, text_updated_password, callback_to_wifi_settings, &app->view_dispatcher, app))
+    if (!easy_flipper_set_uart_text_input(&app->uart_text_input_password, FlipLibraryViewTextInputPassword, "Enter Password", app->uart_text_input_temp_buffer_password, app->uart_text_input_buffer_size_password, text_updated_password, callback_to_wifi_settings, &app->view_dispatcher, app))
     {
         return NULL;
     }
-    if (!easy_flipper_set_text_input(&app->text_input_dictionary, FlipLibraryViewDictionaryTextInput, "Enter a word", app->text_input_temp_buffer_dictionary, app->text_input_buffer_size_dictionary, text_updated_dictionary, callback_to_submenu, &app->view_dispatcher, app))
+    if (!easy_flipper_set_uart_text_input(&app->uart_text_input_dictionary, FlipLibraryViewDictionaryTextInput, "Enter a word", app->uart_text_input_temp_buffer_dictionary, app->uart_text_input_buffer_size_dictionary, text_updated_dictionary, callback_to_submenu, &app->view_dispatcher, app))
     {
         return NULL;
     }
@@ -117,23 +117,23 @@ static FlipLibraryApp *flip_library_app_alloc()
     submenu_add_item(app->submenu_random_facts, "Random", FlipLibrarySubmenuIndexRandomFactsAll, callback_submenu_choices, app);
 
     // load settings
-    if (load_settings(app->text_input_buffer_ssid, app->text_input_buffer_size_ssid, app->text_input_buffer_password, app->text_input_buffer_size_password))
+    if (load_settings(app->uart_text_input_buffer_ssid, app->uart_text_input_buffer_size_ssid, app->uart_text_input_buffer_password, app->uart_text_input_buffer_size_password))
     {
         // Update variable items
         if (app->variable_item_ssid)
-            variable_item_set_current_value_text(app->variable_item_ssid, app->text_input_buffer_ssid);
+            variable_item_set_current_value_text(app->variable_item_ssid, app->uart_text_input_buffer_ssid);
         // dont show password
 
         // Copy items into their temp buffers with safety checks
-        if (app->text_input_buffer_ssid && app->text_input_temp_buffer_ssid)
+        if (app->uart_text_input_buffer_ssid && app->uart_text_input_temp_buffer_ssid)
         {
-            strncpy(app->text_input_temp_buffer_ssid, app->text_input_buffer_ssid, app->text_input_buffer_size_ssid - 1);
-            app->text_input_temp_buffer_ssid[app->text_input_buffer_size_ssid - 1] = '\0';
+            strncpy(app->uart_text_input_temp_buffer_ssid, app->uart_text_input_buffer_ssid, app->uart_text_input_buffer_size_ssid - 1);
+            app->uart_text_input_temp_buffer_ssid[app->uart_text_input_buffer_size_ssid - 1] = '\0';
         }
-        if (app->text_input_buffer_password && app->text_input_temp_buffer_password)
+        if (app->uart_text_input_buffer_password && app->uart_text_input_temp_buffer_password)
         {
-            strncpy(app->text_input_temp_buffer_password, app->text_input_buffer_password, app->text_input_buffer_size_password - 1);
-            app->text_input_temp_buffer_password[app->text_input_buffer_size_password - 1] = '\0';
+            strncpy(app->uart_text_input_temp_buffer_password, app->uart_text_input_buffer_password, app->uart_text_input_buffer_size_password - 1);
+            app->uart_text_input_temp_buffer_password[app->uart_text_input_buffer_size_password - 1] = '\0';
         }
     }
 

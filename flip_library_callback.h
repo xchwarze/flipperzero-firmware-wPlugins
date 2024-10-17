@@ -425,7 +425,7 @@ static void view_draw_callback_random_facts(Canvas *canvas, void *model)
 
 static void view_draw_callback_dictionary_run(Canvas *canvas, void *model)
 {
-    if (!canvas || !app_instance || app_instance->text_input_buffer_dictionary == NULL)
+    if (!canvas || !app_instance || app_instance->uart_text_input_buffer_dictionary == NULL)
     {
         return;
     }
@@ -452,7 +452,7 @@ static void view_draw_callback_dictionary_run(Canvas *canvas, void *model)
         sent_random_fact_request = true;
 
         char payload[128];
-        snprintf(payload, sizeof(payload), "{\"word\":\"%s\"}", app_instance->text_input_buffer_dictionary);
+        snprintf(payload, sizeof(payload), "{\"word\":\"%s\"}", app_instance->uart_text_input_buffer_dictionary);
 
         random_fact_request_success = flipper_http_post_request_with_headers("https://www.flipsocial.net/api/define/", "{\"Content-Type\":\"application/json\"}", payload);
         if (!random_fact_request_success)
@@ -614,24 +614,24 @@ static void text_updated_ssid(void *context)
     }
 
     // store the entered text
-    strncpy(app->text_input_buffer_ssid, app->text_input_temp_buffer_ssid, app->text_input_buffer_size_ssid);
+    strncpy(app->uart_text_input_buffer_ssid, app->uart_text_input_temp_buffer_ssid, app->uart_text_input_buffer_size_ssid);
 
     // Ensure null-termination
-    app->text_input_buffer_ssid[app->text_input_buffer_size_ssid - 1] = '\0';
+    app->uart_text_input_buffer_ssid[app->uart_text_input_buffer_size_ssid - 1] = '\0';
 
     // update the variable item text
     if (app->variable_item_ssid)
     {
-        variable_item_set_current_value_text(app->variable_item_ssid, app->text_input_buffer_ssid);
+        variable_item_set_current_value_text(app->variable_item_ssid, app->uart_text_input_buffer_ssid);
     }
 
     // save settings
-    save_settings(app->text_input_buffer_ssid, app->text_input_buffer_password);
+    save_settings(app->uart_text_input_buffer_ssid, app->uart_text_input_buffer_password);
 
     // save wifi settings to devboard
-    if (strlen(app->text_input_buffer_ssid) > 0 && strlen(app->text_input_buffer_password) > 0)
+    if (strlen(app->uart_text_input_buffer_ssid) > 0 && strlen(app->uart_text_input_buffer_password) > 0)
     {
-        if (!flipper_http_save_wifi(app->text_input_buffer_ssid, app->text_input_buffer_password))
+        if (!flipper_http_save_wifi(app->uart_text_input_buffer_ssid, app->uart_text_input_buffer_password))
         {
             FURI_LOG_E(TAG, "Failed to save wifi settings");
         }
@@ -651,24 +651,24 @@ static void text_updated_password(void *context)
     }
 
     // store the entered text
-    strncpy(app->text_input_buffer_password, app->text_input_temp_buffer_password, app->text_input_buffer_size_password);
+    strncpy(app->uart_text_input_buffer_password, app->uart_text_input_temp_buffer_password, app->uart_text_input_buffer_size_password);
 
     // Ensure null-termination
-    app->text_input_buffer_password[app->text_input_buffer_size_password - 1] = '\0';
+    app->uart_text_input_buffer_password[app->uart_text_input_buffer_size_password - 1] = '\0';
 
     // update the variable item text
     if (app->variable_item_password)
     {
-        variable_item_set_current_value_text(app->variable_item_password, app->text_input_buffer_password);
+        variable_item_set_current_value_text(app->variable_item_password, app->uart_text_input_buffer_password);
     }
 
     // save settings
-    save_settings(app->text_input_buffer_ssid, app->text_input_buffer_password);
+    save_settings(app->uart_text_input_buffer_ssid, app->uart_text_input_buffer_password);
 
     // save wifi settings to devboard
-    if (strlen(app->text_input_buffer_ssid) > 0 && strlen(app->text_input_buffer_password) > 0)
+    if (strlen(app->uart_text_input_buffer_ssid) > 0 && strlen(app->uart_text_input_buffer_password) > 0)
     {
-        if (!flipper_http_save_wifi(app->text_input_buffer_ssid, app->text_input_buffer_password))
+        if (!flipper_http_save_wifi(app->uart_text_input_buffer_ssid, app->uart_text_input_buffer_password))
         {
             FURI_LOG_E(TAG, "Failed to save wifi settings");
         }
@@ -688,10 +688,10 @@ static void text_updated_dictionary(void *context)
     }
 
     // store the entered text
-    strncpy(app->text_input_buffer_dictionary, app->text_input_temp_buffer_dictionary, app->text_input_buffer_size_dictionary);
+    strncpy(app->uart_text_input_buffer_dictionary, app->uart_text_input_temp_buffer_dictionary, app->uart_text_input_buffer_size_dictionary);
 
     // Ensure null-termination
-    app->text_input_buffer_dictionary[app->text_input_buffer_size_dictionary - 1] = '\0';
+    app->uart_text_input_buffer_dictionary[app->uart_text_input_buffer_size_dictionary - 1] = '\0';
 
     // switch to the dictionary view
     view_dispatcher_switch_to_view(app->view_dispatcher, FlipLibraryViewDictionaryRun);

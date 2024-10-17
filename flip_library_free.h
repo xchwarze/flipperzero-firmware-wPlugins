@@ -64,20 +64,20 @@ static void flip_library_app_free(FlipLibraryApp *app)
     }
 
     // Free Text Input(s)
-    if (app->text_input_ssid)
+    if (app->uart_text_input_ssid)
     {
         view_dispatcher_remove_view(app->view_dispatcher, FlipLibraryViewTextInputSSID);
-        text_input_free(app->text_input_ssid);
+        uart_text_input_free(app->uart_text_input_ssid);
     }
-    if (app->text_input_password)
+    if (app->uart_text_input_password)
     {
         view_dispatcher_remove_view(app->view_dispatcher, FlipLibraryViewTextInputPassword);
-        text_input_free(app->text_input_password);
+        uart_text_input_free(app->uart_text_input_password);
     }
-    if (app->text_input_dictionary)
+    if (app->uart_text_input_dictionary)
     {
         view_dispatcher_remove_view(app->view_dispatcher, FlipLibraryViewDictionaryTextInput);
-        text_input_free(app->text_input_dictionary);
+        uart_text_input_free(app->uart_text_input_dictionary);
     }
 
     // deinitalize flipper http

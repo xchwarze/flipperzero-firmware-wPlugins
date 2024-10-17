@@ -52,33 +52,33 @@ typedef enum
 // Each screen will have its own view
 typedef struct
 {
-    ViewDispatcher *view_dispatcher;           // Switches between our views
-    View *view_random_facts;                   // The main screen that displays the random fact
-    View *view_dictionary;                     // The dictionary screen
-    Submenu *submenu_main;                     // The submenu for the main screen
-    Submenu *submenu_random_facts;             // The submenu for the random facts screen
-    Widget *widget;                            // The widget
-    VariableItemList *variable_item_list_wifi; // The variable item list (WiFi settings)
-    VariableItem *variable_item_ssid;          // The variable item (SSID)
-    VariableItem *variable_item_password;      // The variable item (password)
-    TextInput *text_input_ssid;                // The text input for the SSID
-    TextInput *text_input_password;            // The text input for the password
-    TextInput *text_input_dictionary;          // The text input for the dictionary
+    ViewDispatcher *view_dispatcher;            // Switches between our views
+    View *view_random_facts;                    // The main screen that displays the random fact
+    View *view_dictionary;                      // The dictionary screen
+    Submenu *submenu_main;                      // The submenu for the main screen
+    Submenu *submenu_random_facts;              // The submenu for the random facts screen
+    Widget *widget;                             // The widget
+    VariableItemList *variable_item_list_wifi;  // The variable item list (WiFi settings)
+    VariableItem *variable_item_ssid;           // The variable item (SSID)
+    VariableItem *variable_item_password;       // The variable item (password)
+    UART_TextInput *uart_text_input_ssid;       // The text input for the SSID
+    UART_TextInput *uart_text_input_password;   // The text input for the password
+    UART_TextInput *uart_text_input_dictionary; // The text input for the dictionary
     //
     Widget *widget_random_fact; // The text box that displays the random fact
     Widget *widget_dictionary;  // The text box that displays the dictionary
 
-    char *text_input_buffer_ssid;         // Buffer for the text input (SSID)
-    char *text_input_temp_buffer_ssid;    // Temporary buffer for the text input (SSID)
-    uint32_t text_input_buffer_size_ssid; // Size of the text input buffer (SSID)
+    char *uart_text_input_buffer_ssid;         // Buffer for the text input (SSID)
+    char *uart_text_input_temp_buffer_ssid;    // Temporary buffer for the text input (SSID)
+    uint32_t uart_text_input_buffer_size_ssid; // Size of the text input buffer (SSID)
 
-    char *text_input_buffer_password;         // Buffer for the text input (password)
-    char *text_input_temp_buffer_password;    // Temporary buffer for the text input (password)
-    uint32_t text_input_buffer_size_password; // Size of the text input buffer (password)
+    char *uart_text_input_buffer_password;         // Buffer for the text input (password)
+    char *uart_text_input_temp_buffer_password;    // Temporary buffer for the text input (password)
+    uint32_t uart_text_input_buffer_size_password; // Size of the text input buffer (password)
 
-    char *text_input_buffer_dictionary;         // Buffer for the text input (dictionary)
-    char *text_input_temp_buffer_dictionary;    // Temporary buffer for the text input (dictionary)
-    uint32_t text_input_buffer_size_dictionary; // Size of the text input buffer (dictionary)
+    char *uart_text_input_buffer_dictionary;         // Buffer for the text input (dictionary)
+    char *uart_text_input_temp_buffer_dictionary;    // Temporary buffer for the text input (dictionary)
+    uint32_t uart_text_input_buffer_size_dictionary; // Size of the text input buffer (dictionary)
 } FlipLibraryApp;
 
 #endif // FLIP_LIBRARY_E_H
