@@ -613,7 +613,7 @@ $ ./fbt dolphin_ext
 - [SWD Probe v1.2 (By g3gg0)](https://github.com/g3gg0/flipper-swd_probe)
 - [T5577 Multiwriter v0.2 (By Leptopt1los)](https://github.com/Leptopt1los/t5577_multiwriter)
 - [T5577 Raw Writer v1.1 (By zinongli)](https://github.com/zinongli/T5577_Raw_Writer)
-- [Tasks v1.1 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
+- [Tasks v1.2 (By MadLadSquad)](https://github.com/MadLadSquad/FlipperTasks)
 - [Temp Sensors Reader 1.6 (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: BMP180/BMP280/BME280/BME680/DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD/HTU21x/HDC1080/MAX31855/MAX6675/SCD30`
 - [Text To SAM v1.4 (By RoundPi)](https://github.com/Round-Pi/flipperzero-text2sam)
 - [Text Viewer v1.6 (By Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/ae4fc4a54febccb44b010c4025a99c2edef9a7f0)
