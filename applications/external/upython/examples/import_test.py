@@ -1,5 +1,5 @@
 from greeter_test import Greeter
 
-buddy = Greeter('buddy')
+buddy = Greeter("buddy")
 
 print(buddy)

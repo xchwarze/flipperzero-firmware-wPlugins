@@ -144,11 +144,6 @@ void draw_box_text(App* app) {
 // --------------------------- Thread on work
 // ------------------------------------------------------
 
-static void callback_interrupt(void* context) {
-    App* app = context;
-    furi_thread_flags_set(furi_thread_get_id(app->thread), WorkerflagReceived);
-}
-
 static int32_t worker_sniffing(void* context) {
     App* app = context;
     MCP2515* mcp_can = app->mcp_can;
@@ -162,9 +157,6 @@ static int32_t worker_sniffing(void* context) {
     bool run = true;
     bool first_address = true;
 
-    furi_hal_gpio_init(&gpio_swclk, GpioModeInterruptFall, GpioPullNo, GpioSpeedVeryHigh);
-    furi_hal_gpio_add_int_callback(&gpio_swclk, callback_interrupt, app);
-
     mcp_can->mode = MCP_LISTENONLY;
     ERROR_CAN debugStatus = mcp2515_init(mcp_can);
 
@@ -176,12 +168,7 @@ static int32_t worker_sniffing(void* context) {
     while(run) {
         bool new = true;
 
-        uint32_t events =
-            furi_thread_flags_wait(WORKER_ALL_RX_EVENTS, FuriFlagWaitAny, FuriWaitForever);
-        if(events & WorkerflagStop) break;
-        if(events & WorkerflagReceived) {
-            read_can_message(mcp_can, &frame);
-
+        if(read_can_message(mcp_can, &frame) == ERROR_OK) {
             if(first_address) {
                 app->frameArray[num_of_devices] = frame;
                 app->times[num_of_devices] = 0;
@@ -266,6 +253,11 @@ static int32_t worker_sniffing(void* context) {
 
             app->num_of_devices = num_of_devices;
         }
+
+        if(condition && !furi_hal_gpio_read(&gpio_button_back)) {
+            break;
+        }
+        furi_delay_ms(1);
     }
 
     if((app->save_logs == SaveAll) && (app->log_file_ready)) {
@@ -274,7 +266,6 @@ static int32_t worker_sniffing(void* context) {
     }
 
     furi_string_free(text_label);
-    furi_hal_gpio_remove_int_callback(&gpio_swclk);
     free_mcp2515(mcp_can);
     return 0;
 }
@@ -331,7 +322,6 @@ bool app_scene_sniffing_on_event(void* context, SceneManagerEvent event) {
 void app_scene_sniffing_on_exit(void* context) {
     App* app = context;
     if(condition) {
-        furi_thread_flags_set(furi_thread_get_id(app->thread), WorkerflagStop);
         furi_thread_join(app->thread);
         furi_thread_free(app->thread);
         submenu_reset(app->submenu);

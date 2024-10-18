@@ -36,6 +36,7 @@ App(
     #  [JS: Fix widget sometimes MemCrash on exit. (By jamisonderek)](https://github.com/Next-Flip/Momentum-Firmware/pull/103)
     #  [JS: Math (By Spooks4576) (Updated By nminaylov & skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3598)
     #  [JS: TextBox (By Willy-JL) (Updated By nminaylov & skotopes)](https://github.com/flipperdevices/flipperzero-firmware/pull/3598)
+    #  [JavaScript: Add I2C support (By jamisonderek) (With Updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/259)
 )
 
 App(
@@ -122,6 +123,14 @@ App(
     entry_point="js_textbox_ep",
     requires=["js_app"],
     sources=["modules/js_textbox.c"],
+)
+
+App(
+    appid="js_i2c",
+    apptype=FlipperAppType.PLUGIN,
+    entry_point="js_i2c_ep",
+    requires=["js_app"],
+    sources=["modules/js_i2c.c"],
 )
 
 App(

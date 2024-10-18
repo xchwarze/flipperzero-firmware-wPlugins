@@ -1,7 +1,7 @@
 ###########################
 #  Do not edit, this file will be overwritten after firmware update
 #  Use the user_dict file for user keys
-# Last update 11th July, 2024
+# Last updated 18 September 2024
 # -------------------------
 # MIFARE DEFAULT KEYS
 #   -- ICEMAN FORK VERSION --
@@ -2455,6 +2455,18 @@ EA19E58DD046
 3F41891454EE
 7EDAE7923287
 11DDA4862A1C
+# +------------------------------------------------------------------------------------------------------------------------+
+# | https://github.com/Next-Flip/Momentum-Firmware/blob/dev/applications/main/nfc/resources/nfc/assets/mf_classic_dict.nfc |
+# +------------------------------------------------------------------------------------------------------------------------++
+##############################################
+# BG Hotels - keys from Bulgaria
+# Found with FlipperNestedRecovery by Z3r0L1nk [2]
+8000806B5072
+8430A669558C
+1202165D4EAB
+B02094F92A71
+0402B44FB679
+A23412F92811
 ######################## COMMUNITY ###########################
 570FB865D650
 5669C363A4A5
@@ -2522,3 +2534,12 @@ C7D1CB6774B0
 544954CBB2C4
 4752533E1965
 17C06D19E92F
+7C9FB8474242
+537930363139
+6BE9314930D8
+# H World Hotel Chain Room Keys
+543071543071
+5F01015F0101
+200510241234
+# iq aparts hotel
+505209266A1F

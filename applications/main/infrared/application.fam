@@ -12,6 +12,7 @@ App(
     fap_icon="icon.png",
     fap_category="Infrared",
     fap_icon_assets="images",
+    #  [Infrared: Add option to `Load from Library File` for Universal Remotes (By zxkmm & Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a711e09ed3e87711a6d59dd9ae44ff120ef88534)
 )
 
 App(

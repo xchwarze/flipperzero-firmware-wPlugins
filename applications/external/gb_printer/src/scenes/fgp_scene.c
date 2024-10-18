@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: BSD-2-Clause
+// Copyright (c) 2024 KBEmbedded
+
 #include "include/fgp_scene.h"
 
 // Generate scene on_enter handlers array

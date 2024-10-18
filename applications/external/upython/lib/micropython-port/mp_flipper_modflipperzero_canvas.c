@@ -1,4 +1,5 @@
 #include <gui/gui.h>
+#include <gui/elements.h>
 
 #include <mp_flipper_modflipperzero.h>
 #include <mp_flipper_runtime.h>

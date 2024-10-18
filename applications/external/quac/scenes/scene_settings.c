@@ -18,7 +18,8 @@
 // of the list. Since we intend to place "About" last, it would be convenient to
 // dynamically know it's list index for our on_event method. However, we'll need to
 // hardcode the value..
-#define SCENE_SETTINGS_ABOUT 9 // 10 items in our Settings list, so last index is 9
+// TODO: Figure out a better way to do this
+#define SCENE_SETTINGS_ABOUT 10 // 11 items in our Settings list, so last index is 10
 
 static const char* const layout_text[2] = {"Vert", "Horiz"};
 static const uint32_t layout_value[2] = {QUAC_APP_PORTRAIT, QUAC_APP_LANDSCAPE};
@@ -99,6 +100,13 @@ static void scene_settings_nfc_duration_changed(VariableItem* item) {
     app->settings.nfc_duration = duration_value[index];
 }
 
+static void scene_settings_ibutton_duration_changed(VariableItem* item) {
+    App* app = variable_item_get_context(item);
+    uint8_t index = variable_item_get_current_value_index(item);
+    variable_item_set_current_value_text(item, duration_text[index]);
+    app->settings.ibutton_duration = duration_value[index];
+}
+
 static void scene_settings_subghz_repeat_changed(VariableItem* item) {
     App* app = variable_item_get_context(item);
     uint8_t index = variable_item_get_current_value_index(item);
@@ -168,6 +176,13 @@ void scene_settings_on_enter(void* context) {
     item = variable_item_list_add(
         vil, "NFC Duration", V_DURATION_COUNT, scene_settings_nfc_duration_changed, app);
     value_index = value_index_uint32(app->settings.nfc_duration, duration_value, V_DURATION_COUNT);
+    variable_item_set_current_value_index(item, value_index);
+    variable_item_set_current_value_text(item, duration_text[value_index]);
+
+    item = variable_item_list_add(
+        vil, "iButton Duration", V_DURATION_COUNT, scene_settings_ibutton_duration_changed, app);
+    value_index =
+        value_index_uint32(app->settings.ibutton_duration, duration_value, V_DURATION_COUNT);
     variable_item_set_current_value_index(item, value_index);
     variable_item_set_current_value_text(item, duration_text[value_index]);
 

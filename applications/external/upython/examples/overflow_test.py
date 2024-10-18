@@ -1,1 +1,1 @@
-data = list(range(0,9999))
+data = list(range(0, 9999))

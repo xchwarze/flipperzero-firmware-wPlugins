@@ -3,12 +3,12 @@
 #include "mf_classic_poller.h"
 #include <lib/nfc/protocols/iso14443_3a/iso14443_3a_poller_i.h>
 #include <bit_lib/bit_lib.h>
-#include "nfc/helpers/iso14443_crc.h"
+#include <nfc/helpers/iso14443_crc.h>
 #include <nfc/helpers/crypto1.h>
 #include <stream/stream.h>
 #include <stream/buffered_file_stream.h>
-#include "keys_dict.h"
-#include "helpers/nfc_util.h"
+#include <toolbox/keys_dict.h>
+#include <helpers/nfc_util.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,6 +35,7 @@ extern "C" {
 
 extern const MfClassicKey auth1_backdoor_key;
 extern const MfClassicKey auth2_backdoor_key;
+extern const MfClassicKey auth3_backdoor_key;
 extern const uint16_t valid_sums[19];
 
 typedef enum {
@@ -47,29 +48,13 @@ typedef enum {
     MfClassicCardStateLost,
 } MfClassicCardState;
 
-typedef enum {
-    MfClassicNestedPhaseNone,
-    MfClassicNestedPhaseAnalyzePRNG,
-    MfClassicNestedPhaseDictAttack,
-    MfClassicNestedPhaseDictAttackResume,
-    MfClassicNestedPhaseCalibrate,
-    MfClassicNestedPhaseCollectNtEnc,
-    MfClassicNestedPhaseFinished,
-} MfClassicNestedPhase;
+typedef struct {
+    MfClassicKey key;
+    MfClassicBackdoor type;
+} MfClassicBackdoorKeyPair;
 
-typedef enum {
-    MfClassicPrngTypeUnknown, // Tag not yet tested
-    MfClassicPrngTypeNoTag, // No tag detected during test
-    MfClassicPrngTypeWeak, // Weak PRNG, standard Nested
-    MfClassicPrngTypeHard, // Hard PRNG, Hardnested
-} MfClassicPrngType;
-
-typedef enum {
-    MfClassicBackdoorUnknown, // Tag not yet tested
-    MfClassicBackdoorNone, // No observed backdoor
-    MfClassicBackdoorAuth1, // Tag responds to v1 auth backdoor
-    MfClassicBackdoorAuth2, // Tag responds to v2 auth backdoor (static encrypted nonce)
-} MfClassicBackdoor;
+extern const MfClassicBackdoorKeyPair mf_classic_backdoor_keys[];
+extern const size_t mf_classic_backdoor_keys_count;
 
 typedef struct {
     uint32_t cuid; // Card UID
@@ -148,6 +133,7 @@ typedef struct {
     uint8_t reuse_key_sector;
     MfClassicBackdoor backdoor;
     // Enhanced dictionary attack and nested nonce collection
+    bool enhanced_dict;
     MfClassicNestedPhase nested_phase;
     MfClassicKey nested_known_key;
     MfClassicKeyType nested_known_key_type;
@@ -168,6 +154,7 @@ typedef struct {
     uint8_t nt_enc_msb
         [32]; // Bit-packed array to track which unique most significant bytes have been seen (256 bits = 32 bytes)
     uint16_t msb_par_sum; // Sum of parity bits for each unique most significant byte
+    uint16_t msb_count; // Number of unique most significant bytes seen
 } MfClassicPollerDictAttackContext;
 
 typedef struct {

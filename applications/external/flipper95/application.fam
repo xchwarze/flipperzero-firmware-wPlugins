@@ -1,0 +1,14 @@
+App(
+    appid="flipper95",
+    name="Flipper95",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="flipper95_app",
+    stack_size=2 * 1024,
+    fap_libs=["mbedtls"],
+    fap_category="Tools",
+    fap_icon="flipper95.png",
+    fap_author="Silent / CookiePLMonster",
+    fap_weburl="https://github.com/CookiePLMonster/flipper-bakery/flipper95",
+    fap_version="1.0",
+    fap_description="Stress test your Flipper by crunching prime numbers",
+)

@@ -1,1 +1,1 @@
-raise Exception('something went wrong')
+raise Exception("something went wrong")

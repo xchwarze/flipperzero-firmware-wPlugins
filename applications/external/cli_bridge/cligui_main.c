@@ -2,7 +2,6 @@
 #include "cli_control.h"
 #include "text_input.h"
 #include "console_output.h"
-#include <gui/view_dispatcher_i.h>
 
 static bool cligui_custom_event_cb(void* context, uint32_t event) {
     UNUSED(event);
@@ -38,13 +37,14 @@ static void cligui_tick_event_cb(void* context) {
         }
         idx--;
     }
-    text_input_set_header_text(app->text_input, furi_string_get_cstr(app->text_box_store) + idx);
+    custom_text_input_set_header_text(
+        app->text_input, furi_string_get_cstr(app->text_box_store) + idx);
     UNUSED(app);
 }
 
-ViewPortInputCallback prev_input_callback;
 volatile bool persistent_exit = false;
-static void input_callback_wrapper(InputEvent* event, void* context) {
+static void input_callback(const void* event_ptr, void* context) {
+    InputEvent* event = (InputEvent*)event_ptr;
     CliguiApp* app = context;
     if(event->type == InputTypeLong && event->key == InputKeyBack) {
         persistent_exit = false;
@@ -61,7 +61,6 @@ static void input_callback_wrapper(InputEvent* event, void* context) {
     } else {
         console_output_input_handler(app, event);
     }
-    prev_input_callback(event, app->view_dispatcher);
 }
 
 int32_t cligui_main(void* p) {
@@ -69,16 +68,16 @@ int32_t cligui_main(void* p) {
     CliguiApp* cligui = malloc(sizeof(CliguiApp));
     cligui->data = malloc(sizeof(CliguiData));
 
-    latch_tx_handler();
-    cligui->data->streams.app_tx = rx_stream;
-    cligui->data->streams.app_rx = tx_stream;
+    clicontrol_hijack(512, 512);
+    cligui->data->streams.app_tx = cli_rx_stream;
+    cligui->data->streams.app_rx = cli_tx_stream;
 
     cligui->gui = furi_record_open(RECORD_GUI);
     cligui->view_dispatcher = view_dispatcher_alloc();
-    prev_input_callback = cligui->view_dispatcher->view_port->input_callback;
-    view_port_input_callback_set(
-        cligui->view_dispatcher->view_port, input_callback_wrapper, cligui);
-
+    FuriPubSub* input_events = furi_record_open(RECORD_INPUT_EVENTS);
+    FuriPubSubSubscription* input_events_sub =
+        furi_pubsub_subscribe(input_events, input_callback, (void*)cligui);
+    view_dispatcher_enable_queue(cligui->view_dispatcher);
     view_dispatcher_set_event_callback_context(cligui->view_dispatcher, cligui);
     view_dispatcher_set_custom_event_callback(cligui->view_dispatcher, cligui_custom_event_cb);
     view_dispatcher_set_navigation_event_callback(cligui->view_dispatcher, cligui_back_event_cb);
@@ -98,8 +97,8 @@ int32_t cligui_main(void* p) {
     text_box_set_text(cligui->text_box, furi_string_get_cstr(cligui->text_box_store));
     text_box_set_focus(cligui->text_box, TextBoxFocusEnd);
 
-    cligui->text_input = text_input_alloc();
-    text_input_set_result_callback(
+    cligui->text_input = custom_text_input_alloc();
+    custom_text_input_set_result_callback(
         cligui->text_input,
         text_input_result_callback,
         cligui,
@@ -107,7 +106,7 @@ int32_t cligui_main(void* p) {
         TEXT_INPUT_STORE_SIZE,
         true);
     view_dispatcher_add_view(
-        cligui->view_dispatcher, ViewTextInput, text_input_get_view(cligui->text_input));
+        cligui->view_dispatcher, ViewTextInput, custom_text_input_get_view(cligui->text_input));
 
     view_dispatcher_switch_to_view(cligui->view_dispatcher, ViewTextInput);
     cligui->data->state = ViewTextInput;
@@ -118,12 +117,15 @@ int32_t cligui_main(void* p) {
     view_dispatcher_remove_view(cligui->view_dispatcher, ViewTextInput);
     text_box_free(cligui->text_box);
     furi_string_free(cligui->text_box_store);
-    text_input_free(cligui->text_input);
+    custom_text_input_free(cligui->text_input);
     view_dispatcher_free(cligui->view_dispatcher);
 
-    unlatch_tx_handler(persistent_exit);
+    clicontrol_unhijack(persistent_exit);
+
+    furi_pubsub_unsubscribe(input_events, input_events_sub);
 
     furi_record_close(RECORD_GUI);
+    furi_record_close(RECORD_INPUT_EVENTS);
 
     free(cligui->data);
     free(cligui);

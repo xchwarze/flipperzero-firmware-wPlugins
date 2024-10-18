@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: BSD-2-Clause
+// Copyright (c) 2024 KBEmbedded
+
 #include <gui/modules/submenu.h>
 #include <src/include/fgp_app.h>
 #include <src/scenes/include/fgp_scene.h>
@@ -19,7 +22,11 @@ void fgp_scene_menu_on_enter(void* context) {
     submenu_reset(fgp->submenu);
     submenu_set_header(fgp->submenu, "Game Boy Printer");
 
-    submenu_add_item(fgp->submenu, "Receive One", fgpSceneReceive, scene_change_from_main_cb, fgp);
+    /* Init config variables here */
+    fgp->palette_idx = 0;
+
+    submenu_add_item(
+        fgp->submenu, "Receive from GB", fgpSceneReceiveConf, scene_change_from_main_cb, fgp);
 
     submenu_set_selected_item(
         fgp->submenu, scene_manager_get_scene_state(fgp->scene_manager, fgpSceneMenu));

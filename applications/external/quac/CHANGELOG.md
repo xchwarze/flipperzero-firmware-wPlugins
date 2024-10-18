@@ -1,3 +1,8 @@
+## 0.7.0
+
+- Addded support for iButton
+- Added IR Import All
+- Updated for firmware SDK 1.0.1
 
 ## 0.6.3
 
@@ -5,7 +10,7 @@
 
 ## 0.6.2
 
-- Fix IR Import bus fault on empty, explain to hold right when empty (By Willy-JL)
+- Fix IR Import bus fault on empty
 - Add hint text on Empty group
 
 ## 0.6.1

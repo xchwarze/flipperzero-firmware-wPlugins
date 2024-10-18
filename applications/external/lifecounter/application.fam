@@ -1,0 +1,14 @@
+App(
+    appid="lifecounter",
+    name="Lifecounter",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="lifecounter_app",
+    stack_size=2 * 1024,
+    fap_icon="lifecounter.png",
+    fap_icon_assets="images",
+    fap_category="Games",
+    fap_author="Antsy",
+    fap_weburl="https://github.com/antsy/Lifecounter",
+    fap_version="1.0",
+    fap_description="Application to record life situation of a collectible card game",
+)
