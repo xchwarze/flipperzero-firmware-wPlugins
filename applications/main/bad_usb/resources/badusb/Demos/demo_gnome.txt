@@ -1,21 +1,30 @@
-ID 1234:5678 Apple:Keyboard
-REM You can change these values to VID/PID of original Apple keyboard
-REM to bypass Keyboard Setup Assistant
+ID 1234:abcd Generic:USB Keyboard
+REM Declare ourselves as a generic usb keyboard
+REM You can override this to use something else
+REM Check the `lsusb` command to know your own devices IDs
 
-REM This is BadUSB demo script for macOS
+REM This is BadUSB demo script for Linux/Gnome
 
+REM Exit from Overview
+ESC
+DELAY 200
 REM Open terminal window
+ALT F2
 DELAY 1000
-GUI SPACE
-DELAY 500
-STRING terminal
-DELAY 500
+REM Let's guess user terminal, based on (almost) glib order with ptyxis now default in Fedora 41
+STRING sh -c "xdg-terminal-exec||kgx||ptyxis||gnome-terminal||mate-terminal||xfce4-terminal||tilix||konsole||xterm"
+DELAY 300
 ENTER
-DELAY 750
+REM It can take a bit to open the correct terminal
+DELAY 1500
 
-REM Copy-Paste previous string
-UP
-CTRL c
+REM Make sure we are running in a POSIX-compliant shell
+STRING env sh
+ENTER
+
+REM Clear the screen in case some banner was displayed
+STRING clear
+ENTER
 
 REM Bigger shell script example
 STRING cat > /dev/null << EOF
