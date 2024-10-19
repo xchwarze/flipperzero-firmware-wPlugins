@@ -4,7 +4,7 @@
 &nbsp;<a href='https://shop.rogue-master.net/' target='_blank'><img src='https://rogue-master.net/img/Merch.png' alt='RM Merch'' title='RM Merch'></a>
 &nbsp;<a href='https://github.com/RogueMaster/awesome-flipperzero-withModules' target='_blank'><img src='https://rogue-master.net/img/Resources.png' alt='More Research / Assets' title='More Research / Assets'></a></h1>
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM1009-1846-0.420.0-7e46dcd.tgz&channel=RM1009-1846-0.420.0-7e46dcd&version=0.420.0)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM1019-1748-0.420.0-81df18a.tgz&channel=RM1019-1748-0.420.0-81df18a&version=0.420.0)
 
 ## Thank you so much to our RM Pro/SUPER Patreon supporters! Because of people like you, we are able to offer the best and most up-to-date Flipper Zero Firmware!
 
@@ -31,47 +31,6 @@ This software is for experimental purposes only and is not meant for any illegal
 
 - Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-19 17:26 EST`
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-19 17:26 EST`
-- Updated: [Weather Station v1.9.2 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Nexus-TH improvements on detection (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/256)
-- [NFC: MFC Refactor enums to avoid redefinition (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822/commits/a7c0819034fdbe591d64d16b95ba1f88cff660eb)
-- Added: [Flip Social v0.1 (By jblanked)](https://github.com/jblanked/FlipSocial)
-- [Infrared: Add option to `Load from Library File` for Universal Remotes (By zxkmm & Willy-JL)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/a711e09ed3e87711a6d59dd9ae44ff120ef88534)
-- [JavaScript: Add I2C support (By jamisonderek) (With Updates By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/259)
-- Updated: [Weather Station v1.9.3 (By Skorpionm)-OFW](https://github.com/flipperdevices/flipperzero-good-faps/tree/dev/weather_station) [Added Vauno-EN8822 weather station (By m7i-org)](https://github.com/Next-Flip/Momentum-Firmware/pull/262)
-- Updated: OFW: PR: [Some api adjustments #3918 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3918/commits/676eab29f23f169ffbd6af841c89028d960f6dd4)
-- NFC: [Fix Mifare DESFire reading (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/4931b5b2f7e07502c15759d0934b494ff8830011#diff-874f33563125619a7a5cb567ebe523c59258662d69858d78d24d947b275f9c6cR33)
-- Updated: [Marmalade v0.1 (By RocketGod)](https://github.com/RocketGod-git/flipper-zero-rf-jammer) (Exercise Caution and Follow Your Local Laws)
-- OFW: [Wi-Fi Devboard documentation rework #3944 (By rnadyrshin)](https://github.com/flipperdevices/flipperzero-firmware/pull/3944)
-- OFW: [Fixes Mouse Clicker Should have a `0` value setting for `as fast as possible` #3894 (By sumukhj1219)](https://github.com/flipperdevices/flipperzero-firmware/pull/3894)
-- OFW: [NFC: H World Hotel Chain Room Key Parser #3946 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3846)
-- OFW: [NFC: iso14443_4a improvements. Canvas: extended icon draw. #3918 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-firmware/pull/3918)
-- OFW: [CLI improvements, part I #3928 (By portasynthinca3)](https://github.com/flipperdevices/flipperzero-firmware/pull/3928)
-- Updated: [NFC E-Ink Tags v1.0.2 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245)
-- OFW: [heap: increased size #3924 (By hedger)](https://github.com/flipperdevices/flipperzero-firmware/pull/3924)
-- Updated: [Enhanced Sub-Ghz Chat v1.3 (By twisted-pear)](https://github.com/twisted-pear/esubghz_chat)
-- Updated: [Ethernet W5500 v1.1 (By karasevia)](https://github.com/karasevia/finik_eth) `Req: W5500`
-- Updated: [SubGHz: remove serial check ui in gangqi (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/9799a07db6c5c25b40a35eaffcde439a35530201)
-- Updated: [NFC: add new nfc key (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/7415873449eefc55b3f81d55df8d232e190b936f)
-- OFW: [NFC: New Static Keys for Mifare Classic Dictionary #3947 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3947)
-- OFW: [BadUSB: Improve ChromeOS and GNOME demo scripts #3948 (By kowalski7cc)](https://github.com/flipperdevices/flipperzero-firmware/pull/3948)
-- OFW: [Small fixes in the wifi devboard docs #3953 (By rnadyrshin)](https://github.com/flipperdevices/flipperzero-firmware/pull/3953)
-- OFW: [NFC Parser for Tianjin Railway Transit #3954 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3954)
-- Updated: [NFC Seader v3.2 (By bettse)](https://github.com/bettse/seader)
-- OFW: PR: [REVERT CLI improvements, part I #3928 #3955 (By portasynthinca3)](https://github.com/flipperdevices/flipperzero-firmware/pull/3955)
-- Revert CLI Changes: [EXTRA Demo v0.4.1 (By Milk-Cool)](https://github.com/Milk-Cool/EXTRA-demo) (This app has VERY useful functions!)
-- Revert CLI Changes: [Authenticator/TOTP v5.16.1 (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
-- Revert CLI Changes: [uPython v1.5.1 (By ofabel)](https://github.com/ofabel/mp-flipper)
-- UL: [Read Ultralight block by block (By mishamyte)](https://github.com/DarkFlippers/unleashed-firmware/pull/825)
-- OFW: PR: [Add warning about stealth mode in vibro CLI #3957 (By ivanbarsukov)](https://github.com/flipperdevices/flipperzero-firmware/pull/3957)
-- UL: [NFC: Fixed bug with UL reading (By mishamyte)](https://github.com/DarkFlippers/unleashed-firmware/pull/826)
-- Updated: [Flip Social v0.1 (By jblanked)](https://github.com/jblanked/FlipSocial)
-- NFC: [MFC Fix multiple crashes and state machine logic (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822/commits/4be9e793421828516579b152bac716b961dd55f7)
-- Updated: [Web Crawler v0.5 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
-- OFW: PR: NFC: [Add API to enforce ISO15693 mode #3885: Fix compiling unit tests (By Willy-JL & aaronjamt)](https://github.com/flipperdevices/flipperzero-firmware/pull/3885/commits/5dff84cef46fc980c930e7b98734277df38c5d97)
-- NFC: [MIFARE Classic Key Recovery Improvements: Fix inconsistent assignment of known key and known key type/sector & Backdoor known key logic still needs the current key (By noproto)](https://github.com/flipperdevices/flipperzero-firmware/pull/3822/commits/897817a829583f705d0ece5734c2a3fdd235304a)
-- OFW: PR: [lib: digital_signal: digital_sequence: add furi_hal.h wrapped in ifdefs #3964 (By kbembedded)](https://github.com/flipperdevices/flipperzero-firmware/pull/3964)
-- UL: Sub-GHz: [fix zero issues in princeton (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/2aff3bca733a87182466570557830df4f1252fc5)
-- Updated: [NFC Magic v1.13.1 (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966)
-- Updated: [Solitaire v2.0.1 (By doofy-dev)](https://github.com/doofy-dev/flipper_solitaire)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881) [#3942](https://github.com/flipperdevices/flipperzero-firmware/pull/3942) [#3841](https://github.com/flipperdevices/flipperzero-firmware/pull/3841) [#3950](https://github.com/flipperdevices/flipperzero-firmware/pull/3950) [#3952](https://github.com/flipperdevices/flipperzero-firmware/pull/3952)
 
 <a name="release">
@@ -674,4 +633,4 @@ $ ./fbt dolphin_ext
 - [Amiibo Remixer ($200 ETH or BTC BOUNTY AND 6 Months Subscriber Builds)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/issues/1026)
 - `Bluetooth Audio` APP to allow flipper to pair to external speaker or headphones for wav/mp3 playback ($200 USD in ETH or BTC) (Don't think this is possible)
 
-# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM1009-1846-0.420.0-7e46dcd.tgz&channel=RM1009-1846-0.420.0-7e46dcd&version=0.420.0)
+# Install GitHub Version With [WEB INSTALLER](https://lab.flipper.net/?url=https%3A%2F%2Frogue-master.net%2F%3Ffile%3DRM1019-1748-0.420.0-81df18a.tgz&channel=RM1019-1748-0.420.0-81df18a&version=0.420.0)
