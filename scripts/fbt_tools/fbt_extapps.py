@@ -297,22 +297,38 @@ def _validate_app_imports(target, source, env):
             (
                 # advanced_plugin
                 "app_api_accumulator_",
+                # gallagher
+                "GALLAGHER_CARDAX_ASCII",
+                "gallagher_deobfuscate_and_parse_credential",
                 # js_
                 "js_delay_with_flags",
-                "js_flags_wait",
+                "js_event_loop_get_loop",
                 "js_flags_set",
+                "js_flags_wait",
+                "js_gui_make_view_factory",
+                "js_module_get",
+                # test_js
+                "js_thread_run",
+                "js_thread_stop",
                 # totp_
                 "totp_",
                 "token_info_",
                 "memset_s",
+                # social_moscow, troika
+                "mosgortrans_parse_transport_block",
+                "render_section_header",
             )
         )
         and any(
             prefix in source[0].path
             for prefix in [
                 "advanced_plugin",
-                "js_",
+                "gallagher",
+                "js_",  # js_app and all js_ modules
+                "social_moscow",
+                "test_js",
                 "totp_",
+                "troika",
             ]
         )
     ]
