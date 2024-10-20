@@ -21,7 +21,7 @@ The app automatically allocates necessary resources and initializes settings. If
 
 ## How to Use
 1. **Flash**: Flash your WiFi Devboard: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
-2. **Install**: Install the app from the App Store.
+2. **Install**: Install the app from the App Store: https://lab.flipper.net/apps/flip_library
 3. **Launch**: Open the FlipLibrary app.
 4. **Navigate**:
    - Use the **Dictionary** section to look up word definitions.
