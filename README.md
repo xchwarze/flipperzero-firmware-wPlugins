@@ -1,5 +1,9 @@
 # FlipWeather
-FlipWeather is an innovative app for the Flipper Zero that uses WiFi to fetch GPS and weather information, making your Flipper Zero even more versatile. It leverages the FlipperHTTP flash for the WiFi Devboard, originally introduced in the WebCrawler app: [FlipperHTTP on GitHub](https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP).
+FlipWeather is an innovative app for the Flipper Zero that uses WiFi to fetch GPS and weather information, making your Flipper Zero even more versatile. It leverages the FlipperHTTP flash for the WiFi Devboard, originally introduced in the WebCrawler app: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
+
+## Requirements
+- WiFi Dev Board for Flipper Zero with FlipperHTTP Flash: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
+- WiFi Access Point
 
 ## Features
 - **GPS Information**: Provides latitude, longitude, and other relevant GPS data.
