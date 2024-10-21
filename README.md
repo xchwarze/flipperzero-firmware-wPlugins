@@ -1,5 +1,9 @@
 # FlipTrader
-FlipTrader is an app for the Flipper Zero that uses WiFi to fetch the prices of stocks and currency pairs directly on your device. It utilizes the FlipperHTTP flash for the WiFi Devboard, originally introduced in the WebCrawler app: [FlipperHTTP on GitHub](https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP).
+FlipTrader is an app for the Flipper Zero that uses WiFi to fetch the prices of stocks and currency pairs directly on your device. It utilizes the FlipperHTTP flash for the WiFi Devboard, originally introduced in the WebCrawler app: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
+
+## Requirements
+- WiFi Dev Board for Flipper Zero with FlipperHTTP Flash: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
+- WiFi Access Point
 
 ## Supported Assets
 - **Crypto pairs**:
