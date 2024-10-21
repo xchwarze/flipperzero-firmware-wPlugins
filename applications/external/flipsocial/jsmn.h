@@ -37,12 +37,12 @@ extern "C" {
 #endif
 
 /**
- * JSON type identifier. Basic types are:
- * 	o Object
- * 	o Array
- * 	o String
- * 	o Other primitive: number, boolean (true/false) or null
- */
+   * JSON type identifier. Basic types are:
+   * 	o Object
+   * 	o Array
+   * 	o String
+   * 	o Other primitive: number, boolean (true/false) or null
+   */
 typedef enum {
     JSMN_UNDEFINED = 0,
     JSMN_OBJECT = 1 << 0,
@@ -61,11 +61,11 @@ enum jsmnerr {
 };
 
 /**
- * JSON token description.
- * type		type (object, array, string etc.)
- * start	start position in JSON data string
- * end		end position in JSON data string
- */
+   * JSON token description.
+   * type		type (object, array, string etc.)
+   * start	start position in JSON data string
+   * end		end position in JSON data string
+   */
 typedef struct jsmntok {
     jsmntype_t type;
     int start;
@@ -77,9 +77,9 @@ typedef struct jsmntok {
 } jsmntok_t;
 
 /**
- * JSON parser. Contains an array of token blocks available. Also stores
- * the string being parsed now and current position in that string.
- */
+   * JSON parser. Contains an array of token blocks available. Also stores
+   * the string being parsed now and current position in that string.
+   */
 typedef struct jsmn_parser {
     unsigned int pos; /* offset in the JSON string */
     unsigned int toknext; /* next token to allocate */
@@ -87,15 +87,15 @@ typedef struct jsmn_parser {
 } jsmn_parser;
 
 /**
- * Create JSON parser over an array of tokens
- */
+   * Create JSON parser over an array of tokens
+   */
 JSMN_API void jsmn_init(jsmn_parser* parser);
 
 /**
- * Run JSON parser. It parses a JSON data string into and array of tokens, each
- * describing
- * a single JSON object.
- */
+   * Run JSON parser. It parses a JSON data string into and array of tokens, each
+   * describing
+   * a single JSON object.
+   */
 JSMN_API int jsmn_parse(
     jsmn_parser* parser,
     const char* js,
@@ -105,8 +105,8 @@ JSMN_API int jsmn_parse(
 
 #ifndef JSMN_HEADER
 /**
- * Allocates a fresh unused token from the token pool.
- */
+   * Allocates a fresh unused token from the token pool.
+   */
 static jsmntok_t*
     jsmn_alloc_token(jsmn_parser* parser, jsmntok_t* tokens, const size_t num_tokens) {
     jsmntok_t* tok;
@@ -123,8 +123,8 @@ static jsmntok_t*
 }
 
 /**
- * Fills token type and boundaries.
- */
+   * Fills token type and boundaries.
+   */
 static void
     jsmn_fill_token(jsmntok_t* token, const jsmntype_t type, const int start, const int end) {
     token->type = type;
@@ -134,8 +134,8 @@ static void
 }
 
 /**
- * Fills next available token with JSON primitive.
- */
+   * Fills next available token with JSON primitive.
+   */
 static int jsmn_parse_primitive(
     jsmn_parser* parser,
     const char* js,
@@ -195,8 +195,8 @@ found:
 }
 
 /**
- * Fills next token with JSON string.
- */
+   * Fills next token with JSON string.
+   */
 static int jsmn_parse_string(
     jsmn_parser* parser,
     const char* js,
@@ -272,8 +272,8 @@ static int jsmn_parse_string(
 }
 
 /**
- * Parse JSON string and fill tokens.
- */
+   * Parse JSON string and fill tokens.
+   */
 JSMN_API int jsmn_parse(
     jsmn_parser* parser,
     const char* js,
@@ -465,9 +465,9 @@ JSMN_API int jsmn_parse(
 }
 
 /**
- * Creates a new parser based over a given buffer with an array of tokens
- * available.
- */
+   * Creates a new parser based over a given buffer with an array of tokens
+   * available.
+   */
 JSMN_API void jsmn_init(jsmn_parser* parser) {
     parser->pos = 0;
     parser->toknext = 0;
@@ -481,3 +481,78 @@ JSMN_API void jsmn_init(jsmn_parser* parser) {
 #endif
 
 #endif /* JSMN_H */
+
+/* Added in by JBlanked on 2024-10-16 for use in Flipper Zero SDK*/
+
+#include <string.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <furi.h>
+
+// Helper function to compare JSON keys
+int jsoneq(const char* json, jsmntok_t* tok, const char* s) {
+    if(tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
+       strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
+        return 0;
+    }
+    return -1;
+}
+
+// return the value of the key in the JSON data
+// works for the first level of the JSON data
+char* get_json_value(char* key, char* json_data, uint32_t max_tokens) {
+    // Parse the JSON feed
+    if(json_data != NULL) {
+        jsmn_parser parser;
+        jsmn_init(&parser);
+
+        // Allocate tokens array on the heap
+        jsmntok_t* tokens = malloc(sizeof(jsmntok_t) * max_tokens);
+        if(tokens == NULL) {
+            FURI_LOG_E("JSMM.H", "Failed to allocate memory for JSON tokens.");
+            return NULL;
+        }
+
+        int ret = jsmn_parse(&parser, json_data, strlen(json_data), tokens, max_tokens);
+        if(ret < 0) {
+            // Handle parsing errors
+            FURI_LOG_E("JSMM.H", "Failed to parse JSON: %d", ret);
+            free(tokens);
+            return NULL;
+        }
+
+        // Ensure that the root element is an object
+        if(ret < 1 || tokens[0].type != JSMN_OBJECT) {
+            FURI_LOG_E("JSMM.H", "Root element is not an object.");
+            free(tokens);
+            return NULL;
+        }
+
+        // Loop through the tokens to find the key
+        for(int i = 1; i < ret; i++) {
+            if(jsoneq(json_data, &tokens[i], key) == 0) {
+                // We found the key. Now, return the associated value.
+                int length = tokens[i + 1].end - tokens[i + 1].start;
+                char* value = malloc(length + 1);
+                if(value == NULL) {
+                    FURI_LOG_E("JSMM.H", "Failed to allocate memory for value.");
+                    free(tokens);
+                    return NULL;
+                }
+                strncpy(value, json_data + tokens[i + 1].start, length);
+                value[length] = '\0'; // Null-terminate the string
+
+                free(tokens); // Free the token array
+                return value; // Return the extracted value
+            }
+        }
+
+        // Free the token array if key was not found
+        free(tokens);
+    } else {
+        FURI_LOG_E("JSMM.H", "JSON data is NULL");
+    }
+    FURI_LOG_E("JSMM.H", "Failed to find the key in the JSON.");
+    return NULL; // Return NULL if something goes wrong
+}
