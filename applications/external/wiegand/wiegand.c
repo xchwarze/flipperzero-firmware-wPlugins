@@ -113,19 +113,15 @@ void app_free(void* context) {
 
 int wiegand_app(void* p) {
     UNUSED(p);
-
-    Expansion* expansion = furi_record_open(RECORD_EXPANSION);
-    expansion_disable(expansion);
-
     App* app = app_alloc();
 
     Gui* gui = furi_record_open(RECORD_GUI);
     view_dispatcher_attach_to_gui(app->view_dispatcher, gui, ViewDispatcherTypeFullscreen);
+    Expansion* expansion = furi_record_open(RECORD_EXPANSION);
+    expansion_disable(expansion);
     scene_manager_next_scene(app->scene_manager, WiegandMainMenuScene);
     view_dispatcher_run(app->view_dispatcher);
-
     app_free(app);
-
     expansion_enable(expansion);
     furi_record_close(RECORD_EXPANSION);
     return 0;
