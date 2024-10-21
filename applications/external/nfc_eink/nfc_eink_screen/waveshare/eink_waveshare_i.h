@@ -44,6 +44,7 @@ typedef enum {
     EinkWavesharePollerStatePowerOnV2,
     EinkWavesharePollerStateRefresh,
     EinkWavesharePollerStateWaitReady,
+    EinkWavesharePollerStateRetry,
     EinkWavesharePollerStateFinish,
     EinkWavesharePollerStateError,
     EinkWavesharePollerStateNum
@@ -52,6 +53,7 @@ typedef enum {
 typedef struct {
     NfcEinkWaveshareListenerStates listener_state;
     EinkWavesharePollerState poller_state;
+    uint8_t poller_retry_cnt;
     size_t data_index;
     uint16_t block_number; // TODO: try to remove this
     uint8_t buf[16 * 4];
@@ -74,9 +76,6 @@ typedef struct {
 
 #define eink_waveshare_on_updating(instance) \
     nfc_eink_screen_vendor_callback(instance, NfcEinkScreenEventTypeUpdating)
-
-#define eink_waveshare_on_error(instance) \
-    nfc_eink_screen_vendor_callback(instance, NfcEinkScreenEventTypeFailure)
 
 NfcCommand eink_waveshare_listener_callback(NfcGenericEvent event, void* context);
 NfcCommand eink_waveshare_poller_callback(NfcGenericEvent event, void* context);
