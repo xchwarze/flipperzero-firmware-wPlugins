@@ -6,7 +6,7 @@ App(
     stack_size=4 * 1024,
     fap_icon="app_new.png",
     fap_icon_assets="icons",
-    fap_category="GPIO",
+    fap_category="GPIO/ESP32",
     fap_author="jblanked",
     fap_weburl="https://github.com/jblanked/FlipSocial",
     fap_version="0.2",
