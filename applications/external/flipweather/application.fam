@@ -5,10 +5,10 @@ App(
     entry_point="flip_weather_app",
     stack_size=4 * 1024,
     fap_icon="app.png",
-    fap_category="GPIO",
     fap_icon_assets="assets",
-    fap_description="Use WiFi to get GPS and Weather information on your Flipper Zero.",
+    fap_category="GPIO/ESP32",
     fap_author="JBlanked",
     fap_weburl="https://github.com/jblanked/FlipWeather",
-    fap_version = "1.0",
+    fap_version="1.0",
+    fap_description="Use WiFi to get GPS and Weather information on your Flipper Zero.",
 )

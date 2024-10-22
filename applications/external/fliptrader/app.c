@@ -5,23 +5,20 @@
 #include "flip_trader_free.h"
 
 // Entry point for the FlipTrader application
-int32_t flip_trader_app(void *p)
-{
+int32_t flip_trader_app(void* p) {
     // Suppress unused parameter warning
     UNUSED(p);
 
     // Initialize the FlipTrader application
-    FlipTraderApp *app = flip_trader_app_alloc();
+    FlipTraderApp* app = flip_trader_app_alloc();
 
     // send settings and connect wifi
-    if (!flipper_http_connect_wifi())
-    {
+    if(!flipper_http_connect_wifi()) {
         FURI_LOG_E(TAG, "Failed to connect to WiFi");
         return -1;
     }
 
-    if (!flipper_http_ping())
-    {
+    if(!flipper_http_ping()) {
         FURI_LOG_E(TAG, "Failed to ping the device");
         return -1;
     }
