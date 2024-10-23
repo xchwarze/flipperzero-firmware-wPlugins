@@ -43,7 +43,15 @@ static const char* marmalade_modes[] = {
     "2FSK 47.6kHz",
     "MSK 99.97Kb/s",
     "GFSK 9.99Kb/s",
-    "Bruteforce 0xFF"};
+    "Bruteforce 0xFF",
+    "Sine Wave",
+    "Square Wave",
+    "Sawtooth Wave",
+    "White Noise",
+    "Triangle Wave",
+    "Chirp Signal",
+    "Gaussian Noise",
+    "Burst Mode"};
 
 static void marmalade_show_splash_screen(MarmaladeApp* app);
 static bool marmalade_init_subghz(MarmaladeApp* app);
@@ -495,7 +503,7 @@ static void marmalade_switch_mode(MarmaladeApp* app) {
     subghz_devices_reset(app->device);
     subghz_devices_idle(app->device);
 
-    app->marmalade_mode = (app->marmalade_mode + 1) % 6;
+    app->marmalade_mode = (app->marmalade_mode + 1) % 14;
 
     switch(app->marmalade_mode) {
     case MarmaladeModeOok650Async:
@@ -515,6 +523,16 @@ static void marmalade_switch_mode(MarmaladeApp* app) {
         break;
     case MarmaladeModeBruteforce:
         subghz_devices_load_preset(app->device, FuriHalSubGhzPresetOok650Async, NULL);
+        break;
+    case MarmaladeModeSineWave:
+    case MarmaladeModeSquareWave:
+    case MarmaladeModeSawtoothWave:
+    case MarmaladeModeWhiteNoise:
+    case MarmaladeModeTriangleWave:
+    case MarmaladeModeChirp:
+    case MarmaladeModeGaussianNoise:
+    case MarmaladeModeBurst:
+        FURI_LOG_I(TAG, "Switched to waveform generation mode: %d", app->marmalade_mode);
         break;
     default:
         return;
@@ -579,6 +597,50 @@ static int32_t marmalade_tx_thread(void* context) {
         break;
     case MarmaladeModeBruteforce:
         memset(marmalade_data, 0xFF, sizeof(marmalade_data));
+        break;
+    case MarmaladeModeSineWave:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            marmalade_data[i] = (uint8_t)(127 * sinf(2 * M_PI * i / sizeof(marmalade_data)) + 128);
+        }
+        break;
+    case MarmaladeModeSquareWave:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            marmalade_data[i] = (i % 2 == 0) ? 0xFF : 0x00;
+        }
+        break;
+    case MarmaladeModeSawtoothWave:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            marmalade_data[i] = (uint8_t)(255 * i / sizeof(marmalade_data));
+        }
+        break;
+    case MarmaladeModeWhiteNoise:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            marmalade_data[i] = rand() % 256;
+        }
+        break;
+    case MarmaladeModeTriangleWave:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            marmalade_data[i] = (i < sizeof(marmalade_data) / 2) ? (i * 255 / (sizeof(marmalade_data) / 2)) :
+                                                       (255 - (i * 255 / (sizeof(marmalade_data) / 2)));
+        }
+        break;
+    case MarmaladeModeChirp:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            marmalade_data[i] = (uint8_t)(127 * sinf(2 * M_PI * i * (1 + (float)i / sizeof(marmalade_data))));
+        }
+        break;
+    case MarmaladeModeGaussianNoise:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            float u1 = (float)rand() / RAND_MAX;
+            float u2 = (float)rand() / RAND_MAX;
+            float gaussian_noise = sqrtf(-2.0f * logf(u1)) * cosf(2 * M_PI * u2);
+            marmalade_data[i] = (uint8_t)(127 * gaussian_noise + 128);
+        }
+        break;
+    case MarmaladeModeBurst:
+        for(size_t i = 0; i < sizeof(marmalade_data); i++) {
+            marmalade_data[i] = (i % 10 == 0) ? 0xFF : 0x00;
+        }
         break;
     }
 

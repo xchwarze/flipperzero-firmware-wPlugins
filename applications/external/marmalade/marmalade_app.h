@@ -27,6 +27,14 @@ typedef enum {
     MarmaladeModeMSK99_97KbAsync,
     MarmaladeModeGFSK9_99KbAsync,
     MarmaladeModeBruteforce,
+    MarmaladeModeSineWave,
+    MarmaladeModeSquareWave,
+    MarmaladeModeSawtoothWave,
+    MarmaladeModeWhiteNoise,
+    MarmaladeModeTriangleWave,
+    MarmaladeModeChirp,
+    MarmaladeModeGaussianNoise,
+    MarmaladeModeBurst,
 } MarmaladeMode;
 
 MarmaladeApp* marmalade_app_alloc(void);

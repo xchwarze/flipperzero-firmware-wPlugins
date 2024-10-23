@@ -14,9 +14,9 @@ https://github.com/user-attachments/assets/77970e50-d46f-4d59-bbb0-6e2624a98127
 ![car_fob](https://github.com/user-attachments/assets/35cdb9c7-fcbe-4fdf-a10e-9e020a504f6f)
 ## 🧪 Community .sub files in Controlled Lab Test (-8dBm narrow)
 ![jammer_sub_files](https://github.com/user-attachments/assets/a2ad93ae-4e08-4af8-97cc-5ec85f9759a4)
-## 🧪 RF Jammer App and Internal CC1101/Antenna in Controlled Lab Test (-8dBm wide)
+## 🧪 RF Marmalade App and Internal CC1101/Antenna in Controlled Lab Test (-8dBm wide)
 ![rocketgod_jammer_app](https://github.com/user-attachments/assets/6ed6bb9b-2379-491c-9a69-845695de2542)
-## 🧪 RF Jammer App and External CC1101/Antenna Flux Capacitor by Rabbit Labs (10dBm) [TinySA Ultra hard wired w/25W attenuator]
+## 🧪 RF Marmalade App and External CC1101/Antenna Flux Capacitor by Rabbit Labs (10dBm) [TinySA Ultra hard wired w/25W attenuator]
 ![External_Flux-Capacitor_Rabbit-Labs](https://github.com/user-attachments/assets/63e7a4d8-1584-425b-8113-9495a6041836)
 
 https://github.com/user-attachments/assets/53a3123e-b749-4af6-b542-e1784b131084
