@@ -201,10 +201,7 @@ static FlipWiFiApp* flip_wifi_app_alloc() {
     // Load the playlist from storage
     if(!load_playlist(&app->wifi_playlist)) {
         FURI_LOG_E(TAG, "Failed to load playlist");
-    }
-
-    // load the playlist
-    if(load_playlist(&app->wifi_playlist)) {
+    } else {
         // Update the submenu
         flip_wifi_redraw_submenu_saved(app);
     }
