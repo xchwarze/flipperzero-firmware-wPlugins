@@ -620,13 +620,15 @@ static int32_t marmalade_tx_thread(void* context) {
         break;
     case MarmaladeModeTriangleWave:
         for(size_t i = 0; i < sizeof(marmalade_data); i++) {
-            marmalade_data[i] = (i < sizeof(marmalade_data) / 2) ? (i * 255 / (sizeof(marmalade_data) / 2)) :
-                                                       (255 - (i * 255 / (sizeof(marmalade_data) / 2)));
+            marmalade_data[i] = (i < sizeof(marmalade_data) / 2) ?
+                                    (i * 255 / (sizeof(marmalade_data) / 2)) :
+                                    (255 - (i * 255 / (sizeof(marmalade_data) / 2)));
         }
         break;
     case MarmaladeModeChirp:
         for(size_t i = 0; i < sizeof(marmalade_data); i++) {
-            marmalade_data[i] = (uint8_t)(127 * sinf(2 * M_PI * i * (1 + (float)i / sizeof(marmalade_data))));
+            marmalade_data[i] =
+                (uint8_t)(127 * sinf(2 * M_PI * i * (1 + (float)i / sizeof(marmalade_data))));
         }
         break;
     case MarmaladeModeGaussianNoise:
