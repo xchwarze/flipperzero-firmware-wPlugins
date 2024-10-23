@@ -8,10 +8,9 @@ static void handle(PluginState* plugin_state, FuriString* args, Cli* cli) {
     UNUSED(cli);
     UNUSED(plugin_state);
     TOTP_CLI_PRINTF(
-        "%" PRIu8 ".%" PRIu8 ".%" PRIu8 
+        "%" PRIu8 ".%" PRIu8 ".%" PRIu8
 #ifdef TOTP_APP_VERSION_META
-        "+"
-        TOTP_APP_VERSION_META
+        "+" TOTP_APP_VERSION_META
 #endif
         "\r\n",
         TOTP_APP_VERSION_MAJOR,
