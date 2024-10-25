@@ -248,10 +248,6 @@ bool flipper_http_init(FlipperHTTP_Callback callback, void *context)
     furi_thread_start(fhttp.rx_thread);
     fhttp.rx_thread_id = furi_thread_get_id(fhttp.rx_thread);
 
-    // Initialize GPIO pins for UART
-    // furi_hal_gpio_init_simple(&test_pins[0], GpioModeInput);
-    // furi_hal_gpio_init_simple(&test_pins[1], GpioModeOutputPushPull);
-
     // handle when the UART control is busy to avoid furi_check failed
     if (furi_hal_serial_control_is_busy(UART_CH))
     {

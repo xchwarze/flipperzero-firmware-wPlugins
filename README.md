@@ -4,6 +4,11 @@ The app includes a **dictionary**, **random facts**, and additional functionalit
 
 FlipLibrary uses the FlipperHTTP flash for the WiFi Devboard, first introduced in the WebCrawler app: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
 
+
+## Requirements
+- WiFi Dev Board for Flipper Zero with FlipperHTTP Flash: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
+- WiFi Access Point
+
 ## Features
 - **Dictionary**: Look up definitions of words directly on your Flipper Zero. Simply enter a word, and the app will provide its definition, making it easy to learn new vocabulary or clarify meaning.
 - **Random Facts**: Discover interesting and fun facts to share with friends or expand your general knowledge. The app offers various categories of facts, such as facts about cats or completely random trivia.
