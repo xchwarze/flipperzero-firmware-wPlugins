@@ -492,7 +492,20 @@ static bool ndef_parse_wifi(Ndef* ndef, size_t pos, size_t len) {
     return true;
 }
 
-static bool ndef_parse_payload(
+// ---=== ndef layout parsing ===---
+
+static bool
+    ndef_parse_message(Ndef* ndef, size_t pos, size_t len, size_t message_num, bool smart_poster);
+static size_t ndef_parse_tlv(Ndef* ndef, size_t pos, size_t already_parsed);
+static bool ndef_parse_record(
+    Ndef* ndef,
+    size_t pos,
+    size_t len,
+    NdefTnf tnf,
+    const char* type,
+    uint8_t type_len);
+
+static bool ndef_parse_record(
     Ndef* ndef,
     size_t pos,
     size_t len,
@@ -507,13 +520,16 @@ static bool ndef_parse_payload(
 
     switch(tnf) {
     case NdefTnfWellKnownType:
-        if(strncmp("U", type, type_len) == 0) {
+        if(strncmp("Sp", type, type_len) == 0) {
+            furi_string_cat(ndef->output, "SmartPoster\nContained records below\n\n");
+            return ndef_parse_message(ndef, pos, len, 0, true);
+        } else if(strncmp("U", type, type_len) == 0) {
             return ndef_parse_uri(ndef, pos, len);
         } else if(strncmp("T", type, type_len) == 0) {
             return ndef_parse_text(ndef, pos, len);
         }
         // Dump data without parsing
-        furi_string_cat(ndef->output, "Unsupported\n");
+        furi_string_cat(ndef->output, "Unknown\n");
         ndef_print(ndef, "Well-known Type", type, type_len, false);
         if(!ndef_dump(ndef, "Payload", pos, len, false)) return false;
         return true;
@@ -527,7 +543,7 @@ static bool ndef_parse_payload(
             return ndef_parse_wifi(ndef, pos, len);
         }
         // Dump data without parsing
-        furi_string_cat(ndef->output, "Unsupported\n");
+        furi_string_cat(ndef->output, "Unknown\n");
         ndef_print(ndef, "Media Type", type, type_len, false);
         if(!ndef_dump(ndef, "Payload", pos, len, false)) return false;
         return true;
@@ -548,11 +564,10 @@ static bool ndef_parse_payload(
     }
 }
 
-// ---=== tlv and message parsing ===---
-
 // NDEF message structure:
 // https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/protocols/nfc/index.html#ndef_message_and_record_format
-static bool ndef_parse_message(Ndef* ndef, size_t pos, size_t len, size_t message_num) {
+static bool
+    ndef_parse_message(Ndef* ndef, size_t pos, size_t len, size_t message_num, bool smart_poster) {
     size_t end = pos + len;
 
     size_t record_num = 0;
@@ -599,7 +614,7 @@ static bool ndef_parse_message(Ndef* ndef, size_t pos, size_t len, size_t messag
         }
 
         // Payload Type
-        char type_buf[32]; // Longest type supported in ndef_parse_payload() is 32 chars excl terminator
+        char type_buf[32]; // Longest type supported in ndef_parse_record() is 32 chars excl terminator
         char* type = type_buf;
         bool type_was_allocated = false;
         if(type_len) {
@@ -617,9 +632,12 @@ static bool ndef_parse_message(Ndef* ndef, size_t pos, size_t len, size_t messag
         // Payload ID
         pos += id_len;
 
-        furi_string_cat_printf(ndef->output, "\e*> M%dR%d: ", message_num, record_num);
-        if(!ndef_parse_payload(
-               ndef, pos, payload_len, flags_tnf.type_name_format, type, type_len)) {
+        if(smart_poster) {
+            furi_string_cat_printf(ndef->output, "\e*> SP-R%d: ", record_num);
+        } else {
+            furi_string_cat_printf(ndef->output, "\e*> M%d-R%d: ", message_num, record_num);
+        }
+        if(!ndef_parse_record(ndef, pos, payload_len, flags_tnf.type_name_format, type, type_len)) {
             if(type_was_allocated) free(type);
             return false;
         }
@@ -678,7 +696,8 @@ static size_t ndef_parse_tlv(Ndef* ndef, size_t pos, size_t already_parsed) {
                 break;
             }
 
-            if(!ndef_parse_message(ndef, pos, len, ++message_num + already_parsed)) return 0;
+            if(!ndef_parse_message(ndef, pos, len, ++message_num + already_parsed, false))
+                return 0;
             pos += len;
 
             break;
