@@ -39,7 +39,6 @@ This software is for experimental purposes only and is not meant for any illegal
 - [IR: Basic script to remove dupes (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/commit/9865a9367fac1ac4311004bca3b894c8aa9c7530)
 - [Fixed: IR Assets for LEDs (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware/commit/86b8c8d8592325655c79dd3b5f9c2e34016f136a)
 - Updated: [Wiegand Reader v1.4 (By jamisonderek)](https://github.com/jamisonderek/flipper-zero-tutorials/tree/main/gpio)
-- Updated: [FlipSocial v0.2 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - Updated: [NFC E-Ink Tags v1.0.3 (By RebornedBrain)](https://github.com/flipperdevices/flipperzero-good-faps/pull/245)
 - Updated: [NFC Seader v3.2 (By bettse)](https://github.com/bettse/seader)
 - Keeloq: Monarch full support, with add manually option (thanks to anonymous contributor (TBA by xMasterX))
@@ -57,6 +56,7 @@ This software is for experimental purposes only and is not meant for any illegal
 - Dolphin: CFW Settings: [Passport: Now has 9 NEW profile image options (By Kuronons)](https://github.com/Kuronons/FZ_graphics)
 - [NFC: NDEF parser Mifare Classic support, protocol-agnostic refactor and more improvements (By luu176)](https://github.com/Next-Flip/Momentum-Firmware/pull/265)
 - [NFC: NDEF SmartPoster support (By Willy-JL)](https://github.com/Next-Flip/Momentum-Firmware/pull/275)
+- Updated: [FlipSocial v0.3 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881) [#3942](https://github.com/flipperdevices/flipperzero-firmware/pull/3942) [#3841](https://github.com/flipperdevices/flipperzero-firmware/pull/3841) [#3950](https://github.com/flipperdevices/flipperzero-firmware/pull/3950) [#3952](https://github.com/flipperdevices/flipperzero-firmware/pull/3952)
 
 <a name="release">
@@ -446,7 +446,7 @@ $ ./fbt dolphin_ext
 - [FindMy Flipper v3.5 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/FindMyFlipper)
 - [Flashlight v1.2 (By xMasterX)](https://github.com/xMasterX/flipper-flashlight)
 - [FlipLibrary v1.0 (By jblanked)](https://github.com/jblanked/FlipLibrary)
-- [FlipSocial v0.2 (By jblanked)](https://github.com/jblanked/FlipSocial)
+- [FlipSocial v0.3 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - [FlipTrader v1.0 (By jblanked)](https://github.com/jblanked/FlipTrader)
 - [FlipWeather v1.0 (By jblanked)](https://github.com/jblanked/FlipWeather)
 - [FlipWifi v1.0 (By jblanked)](https://github.com/jblanked/FlipWiFi)
