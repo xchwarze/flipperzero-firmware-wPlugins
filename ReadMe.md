@@ -29,8 +29,8 @@ This software is for experimental purposes only and is not meant for any illegal
 
 ## Latest Updates - [PATREON: Latest Release RM1023-1851-0.420.0-205758b](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-23 18:51 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-23 18:51 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-10-25 14:25 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-25 14:25 EST`
 - Updated: [Web Crawler v0.5 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
 - OFW: PR: [NFC TRT Parser: Additional checks to prevent false positives #3966 (By zinongli)](https://github.com/flipperdevices/flipperzero-firmware/pull/3966)
 - [NDEF parser decodes URL-encoded URI characters (By jaylikesbunda)](https://github.com/Next-Flip/Momentum-Firmware/pull/267)
