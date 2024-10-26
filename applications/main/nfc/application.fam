@@ -148,6 +148,16 @@ App(
 )
 
 App(
+    appid="ndef_slix_parser",
+    apptype=FlipperAppType.PLUGIN,
+    cdefines=[("NDEF_PROTO", "NDEF_PROTO_SLIX")],
+    entry_point="ndef_plugin_ep",
+    targets=["f7"],
+    requires=["nfc"],
+    sources=["plugins/supported_cards/ndef.c"],
+)
+
+App(
     appid="ndef_ul_parser",
     apptype=FlipperAppType.PLUGIN,
     cdefines=[("NDEF_PROTO", "NDEF_PROTO_UL")],
