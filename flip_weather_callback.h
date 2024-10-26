@@ -25,85 +25,6 @@ static char time_data[32];
 
 #define MAX_TOKENS 64 // Adjust based on expected JSON size (50)
 
-// Helper function to compare JSON keys
-int jsoneq(const char *json, jsmntok_t *tok, const char *s)
-{
-    if (tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
-        strncmp(json + tok->start, s, tok->end - tok->start) == 0)
-    {
-        return 0;
-    }
-    return -1;
-}
-
-// return the value of the key in the JSON data
-// works for the first level of the JSON data
-char *get_json_value(char *key, char *json_data, uint32_t max_tokens)
-{
-    // Parse the JSON feed
-    if (json_data != NULL)
-    {
-        jsmn_parser parser;
-        jsmn_init(&parser);
-
-        // Allocate tokens array on the heap
-        jsmntok_t *tokens = malloc(sizeof(jsmntok_t) * max_tokens);
-        if (tokens == NULL)
-        {
-            FURI_LOG_E(TAG, "Failed to allocate memory for JSON tokens.");
-            return NULL;
-        }
-
-        int ret = jsmn_parse(&parser, json_data, strlen(json_data), tokens, max_tokens);
-        if (ret < 0)
-        {
-            // Handle parsing errors
-            FURI_LOG_E(TAG, "Failed to parse JSON: %d", ret);
-            free(tokens);
-            return NULL;
-        }
-
-        // Ensure that the root element is an object
-        if (ret < 1 || tokens[0].type != JSMN_OBJECT)
-        {
-            FURI_LOG_E(TAG, "Root element is not an object.");
-            free(tokens);
-            return NULL;
-        }
-
-        // Loop through the tokens to find the key
-        for (int i = 1; i < ret; i++)
-        {
-            if (jsoneq(json_data, &tokens[i], key) == 0)
-            {
-                // We found the key. Now, return the associated value.
-                int length = tokens[i + 1].end - tokens[i + 1].start;
-                char *value = malloc(length + 1);
-                if (value == NULL)
-                {
-                    FURI_LOG_E(TAG, "Failed to allocate memory for value.");
-                    free(tokens);
-                    return NULL;
-                }
-                strncpy(value, json_data + tokens[i + 1].start, length);
-                value[length] = '\0'; // Null-terminate the string
-
-                free(tokens); // Free the token array
-                return value; // Return the extracted value
-            }
-        }
-
-        // Free the token array if key was not found
-        free(tokens);
-    }
-    else
-    {
-        FURI_LOG_E(TAG, "JSON data is NULL");
-    }
-    FURI_LOG_E(TAG, "Failed to find the key in the JSON.");
-    return NULL; // Return NULL if something goes wrong
-}
-
 void flip_weather_request_error(Canvas *canvas)
 {
     if (fhttp.received_data == NULL)
@@ -216,6 +137,13 @@ static void process_weather()
         snprintf(time_data, 64, "Time: %s", time);
 
         fhttp.state = IDLE;
+    }
+    else if (!weather_information_processed && fhttp.received_data == NULL)
+    {
+        FURI_LOG_E(TAG, "Failed to process weather data");
+        // store error message
+        snprintf(temperature_data, 64, "Failed. Update WiFi settings.");
+        fhttp.state = ISSUE;
     }
 }
 
