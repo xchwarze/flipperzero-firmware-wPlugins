@@ -65,7 +65,6 @@ int32_t banana_main(void* p) {
                         state.inverted = true;
                         view_port_update(view_port);
                         furi_hal_vibro_on(true);
-                        furi_hal_led_set(FuriHalLedYellow, true);
                         furi_delay_ms(100);
                         furi_hal_vibro_on(false);
                         state.inverted = false;
