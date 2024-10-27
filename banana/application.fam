@@ -5,7 +5,7 @@ App(
     entry_point="banana_main",
     requires=["gui"],
     stack_size=1 * 1024,
-    fap_version="1.0",
+    fap_version="0.1",
     fap_icon="banana_10px.png",
     fap_icon_assets="images",
     fap_category="Games",
