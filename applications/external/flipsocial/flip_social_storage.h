@@ -16,7 +16,7 @@ void save_playlist(const PreSavedPlaylist* playlist) {
         return;
     }
     // Create the directory for saving settings
-    char directory_path[256];
+    char directory_path[128];
     snprintf(
         directory_path, sizeof(directory_path), STORAGE_EXT_PATH_PREFIX "/apps_data/flip_social");
 
@@ -46,8 +46,6 @@ void save_playlist(const PreSavedPlaylist* playlist) {
             FURI_LOG_E(TAG, "Failed to write newline after message %zu", i);
         }
     }
-
-    FURI_LOG_I(TAG, "Playlist saved: playlist_count=%zu", playlist->count);
 
     storage_file_close(file);
     storage_file_free(file);
@@ -147,7 +145,7 @@ static void save_settings(
     const char* change_password_logged_in,
     const char* is_logged_in) {
     // Create the directory for saving settings
-    char directory_path[256];
+    char directory_path[128];
     snprintf(
         directory_path, sizeof(directory_path), STORAGE_EXT_PATH_PREFIX "/apps_data/flip_social");
 

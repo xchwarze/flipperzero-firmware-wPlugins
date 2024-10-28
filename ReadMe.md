@@ -33,8 +33,8 @@ This software is for experimental purposes only and is not meant for any illegal
 - Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-10-25 23:39 EST`
 - [NFC: Plaintain parser fix (By mxcdoam)](https://github.com/flipperdevices/flipperzero-firmware/pull/3975)
 - Updated: [NFC: NDEF Parser support (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3973)
-- Updated: [FlipSocial v0.3 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - Updated: [Web Crawler v0.6 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
+- Updated: [FlipSocial v0.4 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - Coming Soon: OFW: [Storage: remove LFS #3577](https://github.com/flipperdevices/flipperzero-firmware/pull/3577) [FuriEventLoop Pt.2 #3703](https://github.com/flipperdevices/flipperzero-firmware/pull/3703) [#3824](https://github.com/flipperdevices/flipperzero-firmware/pull/3824) [#3836](https://github.com/flipperdevices/flipperzero-firmware/pull/3836) [#3834](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3830](https://github.com/flipperdevices/flipperzero-firmware/pull/3834) [#3837](https://github.com/flipperdevices/flipperzero-firmware/pull/3837) [#3849](https://github.com/flipperdevices/flipperzero-firmware/pull/3849) [#3852](https://github.com/flipperdevices/flipperzero-firmware/pull/3852) [#3879](https://github.com/flipperdevices/flipperzero-firmware/pull/3879) [#3875](https://github.com/flipperdevices/flipperzero-firmware/pull/3875) [#3859](https://github.com/flipperdevices/flipperzero-firmware/pull/3859) [#3863](https://github.com/flipperdevices/flipperzero-firmware/pull/3863) [#3866](https://github.com/flipperdevices/flipperzero-firmware/pull/3866) [#3865](https://github.com/flipperdevices/flipperzero-firmware/pull/3865) [#3887](https://github.com/flipperdevices/flipperzero-firmware/pull/3887) [#3892](https://github.com/flipperdevices/flipperzero-firmware/pull/3892) [#3909](https://github.com/flipperdevices/flipperzero-firmware/pull/3909) [#3881](https://github.com/flipperdevices/flipperzero-firmware/pull/3881) [#3942](https://github.com/flipperdevices/flipperzero-firmware/pull/3942) [#3841](https://github.com/flipperdevices/flipperzero-firmware/pull/3841) [#3950](https://github.com/flipperdevices/flipperzero-firmware/pull/3950) [#3952](https://github.com/flipperdevices/flipperzero-firmware/pull/3952)
 
 <a name="release">
@@ -424,7 +424,7 @@ $ ./fbt dolphin_ext
 - [FindMy Flipper v3.5 (By MatthewKuKanich)](https://github.com/MatthewKuKanich/FindMyFlipper)
 - [Flashlight v1.2 (By xMasterX)](https://github.com/xMasterX/flipper-flashlight)
 - [FlipLibrary v1.0 (By jblanked)](https://github.com/jblanked/FlipLibrary)
-- [FlipSocial v0.3 (By jblanked)](https://github.com/jblanked/FlipSocial)
+- [FlipSocial v0.4 (By jblanked)](https://github.com/jblanked/FlipSocial)
 - [FlipTrader v1.0 (By jblanked)](https://github.com/jblanked/FlipTrader)
 - [FlipWeather v1.0 (By jblanked)](https://github.com/jblanked/FlipWeather)
 - [FlipWifi v1.0 (By jblanked)](https://github.com/jblanked/FlipWiFi)
