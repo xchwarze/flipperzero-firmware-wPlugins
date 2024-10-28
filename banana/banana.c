@@ -3,9 +3,36 @@
 
 #include <gui/gui.h>
 #include <input/input.h>
+#include <storage/storage.h>
 
 #include "banana.h"
 #include "banana_icons.h"
+
+static void save_state(AppState* state) {
+    File* file = storage_file_alloc(furi_record_open(RECORD_STORAGE));
+
+    if(storage_file_open(file, APP_DATA_PATH("save.txt"), FSAM_WRITE, FSOM_CREATE_ALWAYS)) {
+        storage_file_write(file, state, sizeof(AppState));
+    }
+
+    storage_file_close(file);
+    storage_file_free(file);
+
+    furi_record_close(RECORD_STORAGE);
+}
+
+static void load_state(AppState* state) {
+    File* file = storage_file_alloc(furi_record_open(RECORD_STORAGE));
+
+    if(storage_file_open(file, APP_DATA_PATH("save.txt"), FSAM_READ, FSOM_OPEN_EXISTING)) {
+        storage_file_read(file, state, sizeof(AppState));
+    }
+
+    storage_file_close(file);
+    storage_file_free(file);
+
+    furi_record_close(RECORD_STORAGE);
+}
 
 static void draw_callback(Canvas* canvas, void* ctx) {
     furi_assert(ctx);
@@ -40,6 +67,8 @@ int32_t banana_main(void* p) {
         .counter = 0,
         .inverted = false,
     };
+
+    load_state(&state);
 
     FuriMessageQueue* event_queue = furi_message_queue_alloc(8, sizeof(InputEvent));
 
@@ -76,6 +105,8 @@ int32_t banana_main(void* p) {
         }
         view_port_update(view_port);
     }
+
+    save_state(&state);
 
     view_port_enabled_set(view_port, false);
     gui_remove_view_port(gui, view_port);
