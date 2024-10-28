@@ -4,12 +4,8 @@
 #include <gui/gui.h>
 #include <input/input.h>
 
+#include "banana.h"
 #include "banana_icons.h"
-
-typedef struct {
-    uint32_t counter;
-    bool inverted;
-} AppState;
 
 static void draw_callback(Canvas* canvas, void* ctx) {
     furi_assert(ctx);
@@ -26,7 +22,7 @@ static void draw_callback(Canvas* canvas, void* ctx) {
 
     // Draw counter
     char counter_str[16];
-    snprintf(counter_str, sizeof(counter_str), "Counter: %lu", state->counter);
+    snprintf(counter_str, sizeof(counter_str), "%lu", state->counter);
     canvas_draw_str_aligned(canvas, 64, 64, AlignCenter, AlignBottom, counter_str);
 }
 
@@ -39,12 +35,13 @@ static void input_callback(InputEvent* input_event, void* ctx) {
 
 int32_t banana_main(void* p) {
     UNUSED(p);
-    FuriMessageQueue* event_queue = furi_message_queue_alloc(1, sizeof(InputEvent));
 
     AppState state = {
         .counter = 0,
         .inverted = false,
     };
+
+    FuriMessageQueue* event_queue = furi_message_queue_alloc(8, sizeof(InputEvent));
 
     ViewPort* view_port = view_port_alloc();
     view_port_draw_callback_set(view_port, draw_callback, &state);
