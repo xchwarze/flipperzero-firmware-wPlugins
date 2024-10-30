@@ -10,5 +10,5 @@ App(
     fap_description="Dictionary, random facts, and more.",
     fap_author="JBlanked",
     fap_weburl="https://github.com/jblanked/FlipLibrary",
-    fap_version = "1.0",
+    fap_version = "1.1",
 )
