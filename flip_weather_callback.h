@@ -74,9 +74,7 @@ static bool send_geo_location_request()
     if (!sent_get_request && fhttp.state == IDLE)
     {
         sent_get_request = true;
-        char payload[256] = {0};
-        snprintf(payload, 256, "{\"ip\": \"%s\"}", ip_address);
-        get_request_success = flipper_http_post_request_with_headers("https://www.flipsocial.net/api/geo-location/", "{\"Content-Type\": \"application/json\"}", payload);
+        get_request_success = flipper_http_get_request_with_headers("https://ipwhois.app/json/", "{\"Content-Type\": \"application/json\"}");
         if (!get_request_success)
         {
             FURI_LOG_E(TAG, "Failed to send GET request");

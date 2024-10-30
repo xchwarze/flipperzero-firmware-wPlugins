@@ -78,7 +78,7 @@ static FlipWeatherApp *flip_weather_app_alloc()
     variable_item_set_current_value_text(app->variable_item_password, "");
 
     // Submenu
-    if (!easy_flipper_set_submenu(&app->submenu, FlipWeatherViewSubmenu, "FlipWeather v1.0", callback_exit_app, &app->view_dispatcher))
+    if (!easy_flipper_set_submenu(&app->submenu, FlipWeatherViewSubmenu, "FlipWeather v1.1", callback_exit_app, &app->view_dispatcher))
     {
         return NULL;
     }
