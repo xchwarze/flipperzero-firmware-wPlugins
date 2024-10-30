@@ -48,7 +48,7 @@ static FlipTraderApp *flip_trader_app_alloc()
     }
 
     // Widget
-    if (!easy_flipper_set_widget(&app->widget, FlipTraderViewAbout, "FlipTrader v1.0\n-----\nUse WiFi to get the price of\nstocks and currency pairs.\n-----\nwww.github.com/jblanked", callback_to_submenu, &app->view_dispatcher))
+    if (!easy_flipper_set_widget(&app->widget, FlipTraderViewAbout, "FlipTrader v1.1\n-----\nUse WiFi to get the price of\nstocks and currency pairs.\n-----\nwww.github.com/jblanked", callback_to_submenu, &app->view_dispatcher))
     {
         return NULL;
     }
@@ -74,7 +74,7 @@ static FlipTraderApp *flip_trader_app_alloc()
     variable_item_set_current_value_text(app->variable_item_password, "");
 
     // Submenu
-    if (!easy_flipper_set_submenu(&app->submenu_main, FlipTraderViewMainSubmenu, "FlipTrader v1.0", easy_flipper_callback_exit_app, &app->view_dispatcher))
+    if (!easy_flipper_set_submenu(&app->submenu_main, FlipTraderViewMainSubmenu, "FlipTrader v1.1", easy_flipper_callback_exit_app, &app->view_dispatcher))
     {
         return NULL;
     }
