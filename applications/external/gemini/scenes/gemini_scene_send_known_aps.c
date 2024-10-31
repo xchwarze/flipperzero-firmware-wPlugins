@@ -46,6 +46,8 @@ static bool gemini_app_send_access_points(GeminiApp* app) {
         furi_string_cat(access_points, "\n");
         uart_helper_send(app->uart_helper, furi_string_get_cstr(access_points), 0);
         sent = true;
+    } else {
+        uart_helper_send(app->uart_helper, "", 0);
     }
 
     furi_string_free(access_points);
@@ -57,7 +59,7 @@ void gemini_scene_send_known_aps_on_enter(void* context) {
     GeminiApp* app = context;
     widget_reset(app->widget);
     widget_add_string_element(
-        app->widget, 0, 25, AlignLeft, AlignTop, FontPrimary, "Enumerating APs");
+        app->widget, 0, 25, AlignLeft, AlignTop, FontPrimary, "Please wait...");
     view_dispatcher_switch_to_view(app->view_dispatcher, GeminiViewWidget);
 
     // Wait for the scan of APs to happen. (TODO: Implement a better way to wait for the scan to finish)
@@ -69,7 +71,8 @@ void gemini_scene_send_known_aps_on_enter(void* context) {
             app->widget, 0, 25, AlignLeft, AlignTop, FontPrimary, "SENT APs");
         view_dispatcher_send_custom_event(app->view_dispatcher, 42);
     } else {
-        widget_add_string_element(app->widget, 0, 25, AlignLeft, AlignTop, FontPrimary, "NO APs");
+        widget_add_string_element(
+            app->widget, 0, 25, AlignLeft, AlignTop, FontPrimary, "Required manual connect");
     }
 }
 
@@ -78,7 +81,6 @@ bool gemini_scene_send_known_aps_on_event(void* context, SceneManagerEvent event
 
     if(event.type == SceneManagerEventTypeCustom) {
         if(event.event == 42) {
-            // We want BACK to go back to the main menu, not our current scene.
             gemini_scene_receive_serial_set_next(app, GeminiSceneMainMenu);
             scene_manager_search_and_switch_to_another_scene(
                 app->scene_manager, GeminiSceneReceiveSerial);
@@ -86,7 +88,7 @@ bool gemini_scene_send_known_aps_on_event(void* context, SceneManagerEvent event
         }
     }
 
-    return false; // event not handled.
+    return false;
 }
 
 void gemini_scene_send_known_aps_on_exit(void* context) {
