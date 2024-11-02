@@ -4,8 +4,6 @@
 #include <storage/storage.h>
 #include <furi_hal.h>
 
-
-
 // Initialize settings storage
 bool settings_storage_init();
 

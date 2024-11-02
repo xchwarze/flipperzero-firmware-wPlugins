@@ -11,4 +11,4 @@ void show_confirmation_dialog_ex(
     ConfirmationViewCallback ok_callback,
     ConfirmationViewCallback cancel_callback);
 
-void show_confirmation_view_wrapper(void* context, ConfirmationView* view);  // Added declaration
+void show_confirmation_view_wrapper(void* context, ConfirmationView* view); // Added declaration

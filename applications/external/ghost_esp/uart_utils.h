@@ -10,7 +10,7 @@
 #include <gui/modules/text_box.h>
 #include "menu.h"
 #include "uart_storage.h"
-#define TEXT_BOX_STORE_SIZE (4096)  // 4KB text box buffer size
+#define TEXT_BOX_STORE_SIZE (4096) // 4KB text box buffer size
 
 #define RX_BUF_SIZE                   256
 #define GHOST_ESP_APP_FOLDER          "/ext/apps_data/ghost_esp"
@@ -18,9 +18,9 @@
 #define GHOST_ESP_APP_FOLDER_WARDRIVE "/ext/apps_data/ghost_esp/wardrive"
 #define GHOST_ESP_APP_FOLDER_LOGS     "/ext/apps_data/ghost_esp/logs"
 #define GHOST_ESP_APP_SETTINGS_FILE   "/ext/apps_data/ghost_esp/settings.ini"
-#define ESP_CHECK_TIMEOUT_MS 100
+#define ESP_CHECK_TIMEOUT_MS          100
 void update_text_box_view(AppState* state);
-void handle_uart_rx_data(uint8_t *buf, size_t len, void *context);
+void handle_uart_rx_data(uint8_t* buf, size_t len, void* context);
 // First define base structures
 
 typedef struct {
@@ -90,6 +90,6 @@ void uart_receive_data(
     const char* extension,
     const char* TargetFolder);
 bool uart_is_esp_connected(UartContext* uart);
-void uart_storage_reset_logs(UartStorageContext *ctx);
+void uart_storage_reset_logs(UartStorageContext* ctx);
 
 #endif

@@ -8,24 +8,23 @@
 
 #define WORKER_ALL_RX_EVENTS (WorkerEvtStop | WorkerEvtRxDone | WorkerEvtPcapDone)
 
-#define AP_LIST_TIMEOUT_MS 5000
-#define INITIAL_BUFFER_SIZE 2048
+#define AP_LIST_TIMEOUT_MS   5000
+#define INITIAL_BUFFER_SIZE  2048
 #define BUFFER_GROWTH_FACTOR 1.5
-#define MAX_BUFFER_SIZE (8 * 1024)  // 8KB max
+#define MAX_BUFFER_SIZE      (8 * 1024) // 8KB max
 static FuriMutex* buffer_mutex = NULL;
-#define MUTEX_TIMEOUT_MS 1000
+#define MUTEX_TIMEOUT_MS  1000
 #define BUFFER_CLEAR_SIZE 128
 
 // In uart_utils.c, after the defines
-static APListState g_ap_list_state = {
-    .in_ap_list = false,
-    .ap_count = 0,
-    .expected_ap_count = 0
-};
+static APListState g_ap_list_state = {.in_ap_list = false, .ap_count = 0, .expected_ap_count = 0};
 
-static bool process_chunk(LineProcessingState* state, const char* input, 
-                         char* output, size_t output_size,
-                         size_t* output_len);
+static bool process_chunk(
+    LineProcessingState* state,
+    const char* input,
+    char* output,
+    size_t output_size,
+    size_t* output_len);
 
 static bool format_line(const char* input, char* output, FilterConfig* config);
 
@@ -40,11 +39,12 @@ static bool init_buffer_mutex() {
     return true;
 }
 
-static void uart_rx_callback(FuriHalSerialHandle* handle, FuriHalSerialRxEvent event, void* context) {
+static void
+    uart_rx_callback(FuriHalSerialHandle* handle, FuriHalSerialRxEvent event, void* context) {
     UartContext* uart = (UartContext*)context;
-    static uint8_t rx_buf[256];  // Increased buffer size further for safety
+    static uint8_t rx_buf[256]; // Increased buffer size further for safety
     static size_t rx_buf_pos = 0;
-    
+
     if(event == FuriHalSerialRxEventData) {
         uint8_t data = furi_hal_serial_async_rx(handle);
         const char* mark_begin = "[BUF/BEGIN]";
@@ -61,14 +61,17 @@ static void uart_rx_callback(FuriHalSerialHandle* handle, FuriHalSerialRxEvent e
                     if(uart->mark_test_idx == 11) {
                         // Complete marker - check type and flush buffer first
                         if(rx_buf_pos > 0) {
-                            size_t sent = furi_stream_buffer_send(uart->rx_stream, rx_buf, rx_buf_pos, 0);
+                            size_t sent =
+                                furi_stream_buffer_send(uart->rx_stream, rx_buf, rx_buf_pos, 0);
                             if(sent != rx_buf_pos) {
-                                FURI_LOG_E("UART", "Buffer overflow - lost %d bytes", rx_buf_pos - sent);
+                                FURI_LOG_E(
+                                    "UART", "Buffer overflow - lost %d bytes", rx_buf_pos - sent);
                             }
-                            furi_thread_flags_set(furi_thread_get_id(uart->rx_thread), WorkerEvtRxDone);
+                            furi_thread_flags_set(
+                                furi_thread_get_id(uart->rx_thread), WorkerEvtRxDone);
                             rx_buf_pos = 0;
                         }
-                        
+
                         if(!memcmp(uart->mark_test_buf, mark_begin, 11)) {
                             uart->pcap = true;
                         } else if(!memcmp(uart->mark_test_buf, mark_close, 11)) {
@@ -80,14 +83,16 @@ static void uart_rx_callback(FuriHalSerialHandle* handle, FuriHalSerialRxEvent e
                 } else {
                     // Marker mismatch - add to appropriate buffer
                     if(uart->pcap) {
-                        size_t sent = furi_stream_buffer_send(uart->pcap_stream, uart->mark_test_buf,
-                                              uart->mark_test_idx, 0);
+                        size_t sent = furi_stream_buffer_send(
+                            uart->pcap_stream, uart->mark_test_buf, uart->mark_test_idx, 0);
                         if(sent != uart->mark_test_idx) {
-                            FURI_LOG_E("UART", "PCAP buffer overflow - lost %d bytes", 
-                                     uart->mark_test_idx - sent);
+                            FURI_LOG_E(
+                                "UART",
+                                "PCAP buffer overflow - lost %d bytes",
+                                uart->mark_test_idx - sent);
                         }
-                        furi_thread_flags_set(furi_thread_get_id(uart->rx_thread),
-                                            WorkerEvtPcapDone);
+                        furi_thread_flags_set(
+                            furi_thread_get_id(uart->rx_thread), WorkerEvtPcapDone);
                     } else {
                         // Add to line buffer
                         for(size_t i = 0; i < uart->mark_test_idx; i++) {
@@ -124,9 +129,9 @@ static void uart_rx_callback(FuriHalSerialHandle* handle, FuriHalSerialRxEvent e
                 if(rx_buf_pos < sizeof(rx_buf)) {
                     rx_buf[rx_buf_pos++] = data;
                 }
-                
+
                 // Send buffer when we have a complete line or buffer is getting full
-                if(data == '\n' || rx_buf_pos >= (sizeof(rx_buf) * 3/4)) {
+                if(data == '\n' || rx_buf_pos >= (sizeof(rx_buf) * 3 / 4)) {
                     size_t sent = furi_stream_buffer_send(uart->rx_stream, rx_buf, rx_buf_pos, 0);
                     if(sent != rx_buf_pos) {
                         FURI_LOG_E("UART", "Buffer overflow - lost %d bytes", rx_buf_pos - sent);
@@ -138,11 +143,14 @@ static void uart_rx_callback(FuriHalSerialHandle* handle, FuriHalSerialRxEvent e
         }
     }
 }
-static bool process_chunk(LineProcessingState* state, const char* input, 
-                         char* output, size_t output_size,
-                         size_t* output_len) {
+static bool process_chunk(
+    LineProcessingState* state,
+    const char* input,
+    char* output,
+    size_t output_size,
+    size_t* output_len) {
     if(!state || !input || !output || !output_len) return false;
-    
+
     size_t input_len = strlen(input);
     if(input_len == 0) return false;
 
@@ -151,7 +159,7 @@ static bool process_chunk(LineProcessingState* state, const char* input,
     if(existing_newline) {
         size_t line_len = existing_newline - state->partial_buffer;
         if(line_len >= output_size) line_len = output_size - 1;
-        
+
         memcpy(output, state->partial_buffer, line_len);
         output[line_len] = '\0';
         *output_len = line_len;
@@ -170,7 +178,7 @@ static bool process_chunk(LineProcessingState* state, const char* input,
     // Append new input if room
     size_t space = RX_BUF_SIZE - state->partial_len - 1;
     size_t to_copy = (input_len > space) ? space : input_len;
-    
+
     memcpy(state->partial_buffer + state->partial_len, input, to_copy);
     state->partial_len += to_copy;
     state->partial_buffer[state->partial_len] = '\0';
@@ -180,7 +188,7 @@ static bool process_chunk(LineProcessingState* state, const char* input,
     if(newline) {
         size_t line_len = newline - state->partial_buffer;
         if(line_len >= output_size) line_len = output_size - 1;
-        
+
         memcpy(output, state->partial_buffer, line_len);
         output[line_len] = '\0';
         *output_len = line_len;
@@ -200,11 +208,11 @@ static bool process_chunk(LineProcessingState* state, const char* input,
     if(state->partial_len >= RX_BUF_SIZE - 2) {
         size_t out_len = state->partial_len;
         if(out_len >= output_size) out_len = output_size - 1;
-        
+
         memcpy(output, state->partial_buffer, out_len);
         output[out_len] = '\0';
         *output_len = out_len;
-        
+
         state->partial_len = 0;
         state->partial_buffer[0] = '\0';
         return true;
@@ -214,14 +222,14 @@ static bool process_chunk(LineProcessingState* state, const char* input,
 }
 
 static bool is_ap_list_start(const char* line) {
-    if (!line) return false;
-    
-    if (strstr(line, "Found") && strstr(line, "access points:")) {
+    if(!line) return false;
+
+    if(strstr(line, "Found") && strstr(line, "access points:")) {
         // Extract expected AP count
         const char* count_start = strstr(line, "Found") + 6;
         char* end;
         int count = strtol(count_start, &end, 10);
-        if (count > 0) {
+        if(count > 0) {
             g_ap_list_state.expected_ap_count = count;
         }
         return true;
@@ -230,11 +238,9 @@ static bool is_ap_list_start(const char* line) {
 }
 
 static bool is_ap_list_entry(const char* line) {
-    if (!line) return false;
-    return strstr(line, "SSID:") != NULL && 
-           strstr(line, "BSSID:") != NULL && 
-           strstr(line, "RSSI:") != NULL && 
-           strstr(line, "Company:") != NULL;
+    if(!line) return false;
+    return strstr(line, "SSID:") != NULL && strstr(line, "BSSID:") != NULL &&
+           strstr(line, "RSSI:") != NULL && strstr(line, "Company:") != NULL;
 }
 
 static bool match_any_pattern(const char* line, const char* patterns[]) {
@@ -245,8 +251,8 @@ static bool match_any_pattern(const char* line, const char* patterns[]) {
 }
 
 static bool should_filter_line(const char* line) {
-    if(!line || !*line) return true;  // Filter empty lines
-    
+    if(!line || !*line) return true; // Filter empty lines
+
     // Handle AP list state
     if(g_ap_list_state.in_ap_list) {
         if(g_ap_list_state.ap_count >= g_ap_list_state.expected_ap_count) {
@@ -261,7 +267,7 @@ static bool should_filter_line(const char* line) {
         g_ap_list_state.ap_count = 0;
         return false;
     }
-    
+
     if(g_ap_list_state.in_ap_list) {
         if(is_ap_list_entry(line)) {
             g_ap_list_state.ap_count++;
@@ -273,24 +279,38 @@ static bool should_filter_line(const char* line) {
     }
 
     static const char* keep_patterns[] = {
-        "WiFiManager:", "BLE_MANAGER:", "ESP32",
-        "WiFi scan", "scan started", "scan stopped",
-        "monitor mode", "AP count", "Added station",
-        "HTTP server", "DHCP server", "IP Address:",
-        "AP IP Address:", "ready to scan",
-        "mode : sta", "mode : softAP",
-        NULL
-    };
+        "WiFiManager:",
+        "BLE_MANAGER:",
+        "ESP32",
+        "WiFi scan",
+        "scan started",
+        "scan stopped",
+        "monitor mode",
+        "AP count",
+        "Added station",
+        "HTTP server",
+        "DHCP server",
+        "IP Address:",
+        "AP IP Address:",
+        "ready to scan",
+        "mode : sta",
+        "mode : softAP",
+        NULL};
 
     static const char* filter_patterns[] = {
-        "No deauth transmission", "wifi:flush txq",
-        "wifi:stop sw txq", "wifi:lmac stop hw",
-        "wifi:enable tsf", "wifi:Total power save buffer",
-        "wifi:Init max length of beacon", "wifi:new:",
-        "wifi:station:", "wifi:<ba-", "own_addr_type=",
+        "No deauth transmission",
+        "wifi:flush txq",
+        "wifi:stop sw txq",
+        "wifi:lmac stop hw",
+        "wifi:enable tsf",
+        "wifi:Total power save buffer",
+        "wifi:Init max length of beacon",
+        "wifi:new:",
+        "wifi:station:",
+        "wifi:<ba-",
+        "own_addr_type=",
         "duration=forever",
-        NULL
-    };
+        NULL};
 
     // Keep patterns take precedence
     if(match_any_pattern(line, keep_patterns)) return false;
@@ -340,78 +360,78 @@ static void clean_text(char* str) {
 }
 
 static void strip_ansi_codes(const char* input, char* output) {
-    if (!input || !output) return;
-   
+    if(!input || !output) return;
+
     size_t j = 0;
     size_t input_len = strlen(input);
     bool in_escape = false;
     bool in_timestamp = false;
     char* temp = malloc(RX_BUF_SIZE);
-    if (!temp) {
+    if(!temp) {
         FURI_LOG_E("UART", "Failed to allocate temp buffer");
         return;
     }
     memset(temp, 0, RX_BUF_SIZE);
-    
+
     size_t temp_idx = 0;
     char last_char = 0;
     char next_char = 0;
-   
-    for (size_t i = 0; i < input_len; i++) {
+
+    for(size_t i = 0; i < input_len; i++) {
         unsigned char c = (unsigned char)input[i];
         next_char = (i + 1 < input_len) ? input[i + 1] : 0;
-       
+
         // Improved escape sequence handling
-        if (c == '\x1b' || (c == '[' && last_char == '\x1b')) {
+        if(c == '\x1b' || (c == '[' && last_char == '\x1b')) {
             in_escape = true;
             last_char = c;
             continue;
         }
-       
-        if (in_escape) {
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == 'm') {
+
+        if(in_escape) {
+            if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == 'm') {
                 in_escape = false;
             }
             last_char = c;
             continue;
         }
-       
+
         // Enhanced timestamp handling with boundary protection
-        if (c == '(' && next_char && isdigit((unsigned char)next_char)) {
+        if(c == '(' && next_char && isdigit((unsigned char)next_char)) {
             in_timestamp = true;
             continue;
         }
-        if (in_timestamp) {
-            if (c == ')') {
+        if(in_timestamp) {
+            if(c == ')') {
                 in_timestamp = false;
-                if (next_char && !isspace((unsigned char)next_char)) {
-                    if (temp_idx < RX_BUF_SIZE - 1) {
+                if(next_char && !isspace((unsigned char)next_char)) {
+                    if(temp_idx < RX_BUF_SIZE - 1) {
                         temp[temp_idx++] = ' ';
                     }
                 }
             }
             continue;
         }
-       
+
         // Improved color code fragment handling with boundary check
-        if (c == ';' && i + 2 < input_len &&
-            isdigit((unsigned char)next_char) && input[i + 2] == 'm') {
+        if(c == ';' && i + 2 < input_len && isdigit((unsigned char)next_char) &&
+           input[i + 2] == 'm') {
             i += 2;
             continue;
         }
-       
+
         // Enhanced buffer management with word boundary protection
-        if (temp_idx >= RX_BUF_SIZE - 2) {
+        if(temp_idx >= RX_BUF_SIZE - 2) {
             char* last_space = strrchr(temp, ' ');
-            if (last_space) {
+            if(last_space) {
                 size_t keep_len = last_space - temp;
-                if (j + keep_len < RX_BUF_SIZE) {
+                if(j + keep_len < RX_BUF_SIZE) {
                     memcpy(output + j, temp, keep_len);
                     j += keep_len;
-                   
+
                     // Move remaining content with overlap protection
                     size_t remaining = temp_idx - (keep_len + 1);
-                    if (remaining > 0) {
+                    if(remaining > 0) {
                         memmove(temp, last_space + 1, remaining);
                         temp_idx = remaining;
                     } else {
@@ -419,57 +439,57 @@ static void strip_ansi_codes(const char* input, char* output) {
                     }
                 }
             } else {
-                if (j + temp_idx < RX_BUF_SIZE) {
+                if(j + temp_idx < RX_BUF_SIZE) {
                     memcpy(output + j, temp, temp_idx);
                     j += temp_idx;
                     temp_idx = 0;
                 }
             }
         }
-       
+
         // Add character with boundary check
-        if (temp_idx < RX_BUF_SIZE - 1) {
+        if(temp_idx < RX_BUF_SIZE - 1) {
             temp[temp_idx++] = c;
         }
         last_char = c;
     }
-   
+
     // Handle remaining characters with improved cleanup
-    if (temp_idx > 0) {
+    if(temp_idx > 0) {
         temp[temp_idx] = '\0';
         clean_text(temp);
         size_t remaining_len = strlen(temp);
-        if (j + remaining_len < RX_BUF_SIZE) {
+        if(j + remaining_len < RX_BUF_SIZE) {
             memcpy(output + j, temp, remaining_len);
             j += remaining_len;
         }
     }
-   
+
     output[j] = '\0';
     free(temp);
     clean_text(output);
 }
 
 static bool format_line(const char* input, char* output, FilterConfig* config) {
-    if (!input || !output || !config) return false;
-    
-    if (!config->enabled) {
+    if(!input || !output || !config) return false;
+
+    if(!config->enabled) {
         strncpy(output, input, RX_BUF_SIZE - 1);
         output[RX_BUF_SIZE - 1] = '\0';
         return true;
     }
 
     char* temp = malloc(RX_BUF_SIZE);
-    if (!temp) return false;
-    
+    if(!temp) return false;
+
     // Initial cleanup with improved buffer management
     strncpy(temp, input, RX_BUF_SIZE - 1);
     temp[RX_BUF_SIZE - 1] = '\0';
 
     // Enhanced ANSI code handling
-    if (config->strip_ansi_codes) {
+    if(config->strip_ansi_codes) {
         char* stripped = malloc(RX_BUF_SIZE);
-        if (stripped) {
+        if(stripped) {
             strip_ansi_codes(temp, stripped);
             strncpy(temp, stripped, RX_BUF_SIZE - 1);
             free(stripped);
@@ -480,8 +500,8 @@ static bool format_line(const char* input, char* output, FilterConfig* config) {
 
     // Improved pattern fixing
     char* fixed = temp;
-    while (*fixed) {
-        if (strncmp(fixed, "Wi Fi", 5) == 0) {
+    while(*fixed) {
+        if(strncmp(fixed, "Wi Fi", 5) == 0) {
             memmove(fixed + 4, fixed + 5, strlen(fixed + 5) + 1);
             memcpy(fixed, "WiFi", 4);
         }
@@ -491,12 +511,13 @@ static bool format_line(const char* input, char* output, FilterConfig* config) {
 
     // Enhanced timestamp and ID cleanup
     char* start = temp;
-    while (*start) {
-        if (isdigit((unsigned char)*start) && strstr(start, "]")) {
+    while(*start) {
+        if(isdigit((unsigned char)*start) && strstr(start, "]")) {
             char* end = strstr(start, "]");
-            if (end) {
+            if(end) {
                 memmove(start, end + 1, strlen(end + 1) + 1);
-                while (*start == ' ') start++; // Remove leading spaces
+                while(*start == ' ')
+                    start++; // Remove leading spaces
                 continue;
             }
         }
@@ -504,22 +525,22 @@ static bool format_line(const char* input, char* output, FilterConfig* config) {
     }
 
     bool keep_line = !should_filter_line(start);
-    
-    if (keep_line) {
+
+    if(keep_line) {
         const char* prefix = "";
-        if (config->add_prefixes) {
-            if (strstr(start, "WiFi") || strstr(start, "AP_MANAGER") || 
-                strstr(start, "SSID:") || strstr(start, "BSSID:")) {
+        if(config->add_prefixes) {
+            if(strstr(start, "WiFi") || strstr(start, "AP_MANAGER") || strstr(start, "SSID:") ||
+               strstr(start, "BSSID:")) {
                 prefix = "[WIFI] ";
-            } else if (strstr(start, "BLE")) {
+            } else if(strstr(start, "BLE")) {
                 prefix = "[BLE] ";
-            } else if (strstr(start, "Found Flipper")) {
+            } else if(strstr(start, "Found Flipper")) {
                 prefix = "[FLIPPER] ";
             }
         }
 
         // More robust prefix handling
-        if (strlen(prefix) > 0 && strncmp(start, prefix, strlen(prefix)) != 0) {
+        if(strlen(prefix) > 0 && strncmp(start, prefix, strlen(prefix)) != 0) {
             snprintf(output, RX_BUF_SIZE - 1, "%s%s", prefix, start);
         } else {
             strncpy(output, start, RX_BUF_SIZE - 1);
@@ -527,28 +548,29 @@ static bool format_line(const char* input, char* output, FilterConfig* config) {
         output[RX_BUF_SIZE - 1] = '\0';
         clean_text(output);
     }
-    
+
     free(temp);
     return keep_line;
 }
-static bool format_line_with_state(LineProcessingState* state, 
-                                 const char* input,
-                                 char* output, 
-                                 FilterConfig* config) {
+static bool format_line_with_state(
+    LineProcessingState* state,
+    const char* input,
+    char* output,
+    FilterConfig* config) {
     size_t output_len = 0;
-    
-    if (!process_chunk(state, input, output, RX_BUF_SIZE, &output_len)) {
+
+    if(!process_chunk(state, input, output, RX_BUF_SIZE, &output_len)) {
         return false;
     }
-    
+
     char* temp_buffer = malloc(RX_BUF_SIZE);
-    if (!temp_buffer) return false;
-    
+    if(!temp_buffer) return false;
+
     strncpy(temp_buffer, output, RX_BUF_SIZE - 1);
     temp_buffer[RX_BUF_SIZE - 1] = '\0';
-    
+
     bool result = format_line(temp_buffer, output, config);
-    
+
     free(temp_buffer);
     return result;
 }
@@ -564,9 +586,9 @@ static UartLineState* get_line_state(UartContext* uart) {
     return uart->line_state;
 }
 
-void handle_uart_rx_data(uint8_t *buf, size_t len, void *context) {
-    AppState *state = (AppState *)context;
-    
+void handle_uart_rx_data(uint8_t* buf, size_t len, void* context) {
+    AppState* state = (AppState*)context;
+
     if(!state || !state->uart_context || !state->uart_context->is_serial_active) return;
     if(!buf || len == 0) return;
 
@@ -597,9 +619,10 @@ void handle_uart_rx_data(uint8_t *buf, size_t len, void *context) {
         if(new_total_len > MAX_BUFFER_SIZE) {
             size_t keep_size = MAX_BUFFER_SIZE / 2;
             if(state->textBoxBuffer && state->buffer_length > keep_size) {
-                memmove(state->textBoxBuffer, 
-                       state->textBoxBuffer + state->buffer_length - keep_size,
-                       keep_size);
+                memmove(
+                    state->textBoxBuffer,
+                    state->textBoxBuffer + state->buffer_length - keep_size,
+                    keep_size);
                 state->buffer_length = keep_size;
                 new_total_len = keep_size + len + 1;
             } else {
@@ -626,11 +649,13 @@ void handle_uart_rx_data(uint8_t *buf, size_t len, void *context) {
     } else {
         // Filtered handling with instance-specific state
         char output[RX_BUF_SIZE];
-        
-        if(format_line_with_state(&uart_line_state->line_state, (char*)buf, output, state->filter_config)) {
+
+        if(format_line_with_state(
+               &uart_line_state->line_state, (char*)buf, output, state->filter_config)) {
             size_t output_len = strlen(output);
-            if(output_len > 0) {  // Only process non-empty output
-                size_t new_total_len = state->buffer_length + output_len + 2;  // +2 for newline and null
+            if(output_len > 0) { // Only process non-empty output
+                size_t new_total_len =
+                    state->buffer_length + output_len + 2; // +2 for newline and null
 
                 if(new_total_len > MAX_BUFFER_SIZE) {
                     // Find last complete line before truncating
@@ -663,7 +688,7 @@ void handle_uart_rx_data(uint8_t *buf, size_t len, void *context) {
     // Update text box based on view preference
     if(state->textBoxBuffer && state->buffer_length > 0) {
         bool view_from_start = state->settings.view_logs_from_start_index;
-        
+
         if(view_from_start) {
             text_box_set_text(state->text_box, state->textBoxBuffer);
             text_box_set_focus(state->text_box, TextBoxFocusStart);
@@ -673,7 +698,8 @@ void handle_uart_rx_data(uint8_t *buf, size_t len, void *context) {
             if(display_size > (size_t)TEXT_BOX_STORE_SIZE - 1) {
                 display_size = (size_t)TEXT_BOX_STORE_SIZE - 1;
             }
-            const char* display_start = state->textBoxBuffer + 
+            const char* display_start =
+                state->textBoxBuffer +
                 (state->buffer_length > display_size ? state->buffer_length - display_size : 0);
             text_box_set_text(state->text_box, display_start);
             text_box_set_focus(state->text_box, TextBoxFocusEnd);
@@ -681,53 +707,53 @@ void handle_uart_rx_data(uint8_t *buf, size_t len, void *context) {
     }
 
     // Handle logging to file
-    if(state->uart_context->storageContext && 
-       state->uart_context->storageContext->log_file) {
+    if(state->uart_context->storageContext && state->uart_context->storageContext->log_file) {
         storage_file_write(state->uart_context->storageContext->log_file, buf, len);
     }
 
     furi_mutex_release(buffer_mutex);
 }
 // UART worker thread function
-static int32_t uart_worker(void *context) {
-    UartContext *uart = (void *)context;
+static int32_t uart_worker(void* context) {
+    UartContext* uart = (void*)context;
     uint8_t line_buf[RX_BUF_SIZE];
     size_t line_pos = 0;
-    
-    while (1) {
-        uint32_t events = furi_thread_flags_wait(WORKER_ALL_RX_EVENTS, FuriFlagWaitAny, FuriWaitForever);
+
+    while(1) {
+        uint32_t events =
+            furi_thread_flags_wait(WORKER_ALL_RX_EVENTS, FuriFlagWaitAny, FuriWaitForever);
         furi_check((events & FuriFlagError) == 0);
-        
-        if (events & WorkerEvtStop) break;
-        
-        if (events & WorkerEvtRxDone) {
+
+        if(events & WorkerEvtStop) break;
+
+        if(events & WorkerEvtRxDone) {
             size_t len = furi_stream_buffer_receive(uart->rx_stream, uart->rx_buf, RX_BUF_SIZE, 0);
-            
-            if (len > 0) {
+
+            if(len > 0) {
                 // Process received data
                 for(size_t i = 0; i < len; i++) {
                     if(line_pos < sizeof(line_buf) - 1) {
                         line_buf[line_pos++] = uart->rx_buf[i];
                     }
-                    
+
                     // If we hit a newline or buffer is full, process the line
                     if(uart->rx_buf[i] == '\n' || line_pos >= sizeof(line_buf) - 1) {
                         line_buf[line_pos] = '\0';
-                        
-                        if (uart->handle_rx_data_cb)
+
+                        if(uart->handle_rx_data_cb)
                             uart->handle_rx_data_cb(line_buf, line_pos, uart->state);
-                            
+
                         line_pos = 0;
                     }
                 }
             }
         }
-        
-        if (events & WorkerEvtPcapDone) {
-            size_t len = furi_stream_buffer_receive(uart->pcap_stream, uart->rx_buf, RX_BUF_SIZE, 0);
-            if (len > 0) {
-                if (uart->handle_rx_pcap_cb)
-                    uart->handle_rx_pcap_cb(uart->rx_buf, len, uart);
+
+        if(events & WorkerEvtPcapDone) {
+            size_t len =
+                furi_stream_buffer_receive(uart->pcap_stream, uart->rx_buf, RX_BUF_SIZE, 0);
+            if(len > 0) {
+                if(uart->handle_rx_pcap_cb) uart->handle_rx_pcap_cb(uart->rx_buf, len, uart);
             }
         }
     }
@@ -735,10 +761,10 @@ static int32_t uart_worker(void *context) {
 }
 void update_text_box_view(AppState* state) {
     if(!state || !state->text_box || !state->textBoxBuffer) return;
-    
+
     bool view_from_start = state->settings.view_logs_from_start_index;
     size_t content_length = strlen(state->textBoxBuffer);
-    
+
     if(view_from_start) {
         // Show from beginning
         text_box_set_text(state->text_box, state->textBoxBuffer);
@@ -749,7 +775,8 @@ void update_text_box_view(AppState* state) {
         if(display_size > (size_t)TEXT_BOX_STORE_SIZE - 1) {
             display_size = (size_t)TEXT_BOX_STORE_SIZE - 1;
         }
-        const char* display_start = state->textBoxBuffer + 
+        const char* display_start =
+            state->textBoxBuffer +
             (content_length > display_size ? content_length - display_size : 0);
         text_box_set_text(state->text_box, display_start);
         text_box_set_focus(state->text_box, TextBoxFocusEnd);
@@ -757,7 +784,7 @@ void update_text_box_view(AppState* state) {
 }
 UartContext* uart_init(AppState* state) {
     FURI_LOG_I("UART", "Starting UART initialization");
-    
+
     UartContext* uart = malloc(sizeof(UartContext));
     if(!uart) {
         FURI_LOG_E("UART", "Failed to allocate UART context");
@@ -812,7 +839,7 @@ UartContext* uart_init(AppState* state) {
 
     return uart;
 }
-void uart_free(UartContext *uart) {
+void uart_free(UartContext* uart) {
     if(!uart) return;
 
     // Clean up line state
@@ -820,7 +847,6 @@ void uart_free(UartContext *uart) {
         free(uart->line_state);
         uart->line_state = NULL;
     }
-
 
     // Stop receiving new data first
     if(uart->serial_handle) {
@@ -858,36 +884,31 @@ void uart_free(UartContext *uart) {
     free(uart);
 }
 
-
 // Stop the UART thread (typically when exiting)
-void uart_stop_thread(UartContext *uart)
-{
-    if (uart && uart->rx_thread)
-    {
+void uart_stop_thread(UartContext* uart) {
+    if(uart && uart->rx_thread) {
         furi_thread_flags_set(furi_thread_get_id(uart->rx_thread), WorkerEvtStop);
     }
 }
 
 // Send data over UART
-void uart_send(UartContext *uart, const uint8_t *data, size_t len) {
+void uart_send(UartContext* uart, const uint8_t* data, size_t len) {
     // Only try to send if serial is active
-    if (uart && uart->serial_handle && uart->is_serial_active) {
+    if(uart && uart->serial_handle && uart->is_serial_active) {
         furi_hal_serial_tx(uart->serial_handle, data, len);
     }
 }
 void uart_receive_data(
-    UartContext *uart,
-    ViewDispatcher *view_dispatcher,
-    AppState *state,
-    const char *prefix,
-    const char *extension,
-    const char *TargetFolder)
-{
+    UartContext* uart,
+    ViewDispatcher* view_dispatcher,
+    AppState* state,
+    const char* prefix,
+    const char* extension,
+    const char* TargetFolder) {
     UNUSED(uart);
     text_box_set_text(state->text_box, "");
     text_box_set_focus(state->text_box, TextBoxFocusEnd);
-    if (strlen(prefix) > 1)
-    {
+    if(strlen(prefix) > 1) {
         uart->storageContext->HasOpenedFile = sequential_file_open(
             uart->storageContext->storage_api,
             uart->storageContext->current_file,
@@ -901,7 +922,7 @@ void uart_receive_data(
 
 bool uart_is_esp_connected(UartContext* uart) {
     FURI_LOG_D("UART", "Checking ESP connection...");
-    
+
     if(!uart || !uart->serial_handle || !uart->state) {
         FURI_LOG_E("UART", "Invalid UART context");
         return false;
@@ -910,18 +931,18 @@ bool uart_is_esp_connected(UartContext* uart) {
     // Save state
     FilterConfig* saved_config = uart->state->filter_config;
     uart->state->filter_config = NULL;
-    
+
     // Initialize clean buffer with mutex protection
     if(furi_mutex_acquire(buffer_mutex, MUTEX_TIMEOUT_MS) != FuriStatusOk) {
         FURI_LOG_E("UART", "Failed to acquire mutex");
         uart->state->filter_config = saved_config;
         return false;
     }
-    
+
     if(uart->state->textBoxBuffer) {
         free(uart->state->textBoxBuffer);
     }
-    uart->state->textBoxBuffer = malloc(RX_BUF_SIZE);  // Larger buffer
+    uart->state->textBoxBuffer = malloc(RX_BUF_SIZE); // Larger buffer
     if(!uart->state->textBoxBuffer) {
         FURI_LOG_E("UART", "Buffer allocation failed");
         furi_mutex_release(buffer_mutex);
@@ -934,13 +955,13 @@ bool uart_is_esp_connected(UartContext* uart) {
 
     // Try multiple test commands
     const char* test_cmds[] = {
-        "stop\n",      // Stop any running operation
+        "stop\n", // Stop any running operation
     };
-    
+
     bool connected = false;
     const uint32_t RETRY_COUNT = 3;
     const uint32_t CMD_TIMEOUT_MS = 250; // Longer timeout per command
-    
+
     for(uint32_t retry = 0; retry < RETRY_COUNT && !connected; retry++) {
         for(size_t i = 0; i < COUNT_OF(test_cmds) && !connected; i++) {
             // Clear buffer before each command

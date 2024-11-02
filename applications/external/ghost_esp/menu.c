@@ -4,22 +4,21 @@
 #include "uart_utils.h"
 #include "settings_storage.h"
 #include "settings_def.h"
-#include "confirmation_view.h" 
-
+#include "confirmation_view.h"
 
 typedef struct {
-    const char* label;      // Display label in menu 
-    const char* command;    // UART command to send
+    const char* label; // Display label in menu
+    const char* command; // UART command to send
     const char* capture_prefix; // Prefix for capture files (NULL if none)
-    const char* file_ext;      // File extension for captures (NULL if none)
-    const char* folder;        // Folder for captures (NULL if none)
-    bool needs_input;          // Whether command requires text input
-    const char* input_text;    // Text to show in input box (NULL if none)
-    bool needs_confirmation;   // Whether command needs confirmation
+    const char* file_ext; // File extension for captures (NULL if none)
+    const char* folder; // Folder for captures (NULL if none)
+    bool needs_input; // Whether command requires text input
+    const char* input_text; // Text to show in input box (NULL if none)
+    bool needs_confirmation; // Whether command needs confirmation
     const char* confirm_header; // Confirmation dialog header
-    const char* confirm_text;  // Confirmation dialog text
+    const char* confirm_text; // Confirmation dialog text
     const char* details_header; // Header for details view
-    const char* details_text;   // Detailed description/info text
+    const char* details_text; // Detailed description/info text
 } MenuCommand;
 
 typedef struct {
@@ -27,10 +26,14 @@ typedef struct {
     const MenuCommand* command;
 } MenuCommandContext;
 
-
 // Function declarations
-static void show_menu(AppState* state, const MenuCommand* commands, size_t command_count, 
-                     const char* header, Submenu* menu, uint8_t view_id);
+static void show_menu(
+    AppState* state,
+    const MenuCommand* commands,
+    size_t command_count,
+    const char* header,
+    Submenu* menu,
+    uint8_t view_id);
 static void show_command_details(AppState* state, const MenuCommand* command);
 static bool menu_input_handler(InputEvent* event, void* context);
 static void text_input_result_callback(void* context);
@@ -52,11 +55,11 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "WiFi AP Scanner",
         .details_text = "Scans for nearby WiFi\n"
-                       "Access Points and shows:\n"
-                       "- Network names (SSIDs)\n"
-                       "- Signal strength\n"
-                       "- Security type\n"
-                       "- Channel\n",
+                        "Access Points and shows:\n"
+                        "- Network names (SSIDs)\n"
+                        "- Signal strength\n"
+                        "- Security type\n"
+                        "- Channel\n",
     },
     {
         .label = "Scan WiFi Stations",
@@ -71,10 +74,10 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Station Scanner",
         .details_text = "Scans for client devices\n"
-                       "connected to networks:\n"
-                       "- MAC addresses\n"
-                       "- Connected SSID\n"
-                       "- Signal strength\n",
+                        "connected to networks:\n"
+                        "- MAC addresses\n"
+                        "- Connected SSID\n"
+                        "- Signal strength\n",
     },
     {
         .label = "Stop Scan",
@@ -89,8 +92,8 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Stop Scanning",
         .details_text = "Stops any active WiFi\n"
-                       "scanning operations\n"
-                       "currently running.\n",
+                        "scanning operations\n"
+                        "currently running.\n",
     },
     {
         .label = "List APs",
@@ -105,10 +108,10 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "List Access Points",
         .details_text = "Shows list of APs found\n"
-                       "during last scan with:\n"
-                       "- Network details\n"
-                       "- Channel info\n"
-                       "- Security type\n",
+                        "during last scan with:\n"
+                        "- Network details\n"
+                        "- Channel info\n"
+                        "- Security type\n",
 
     },
     {
@@ -122,12 +125,12 @@ static const MenuCommand wifi_commands[] = {
         .needs_confirmation = false,
         .confirm_header = NULL,
         .confirm_text = NULL,
-        .details_header = "List Stations", 
+        .details_header = "List Stations",
         .details_text = "Shows list of clients\n"
-                       "found during last scan:\n"
-                       "- Device MAC address\n"
-                       "- Connected network\n"
-                       "- Signal strength\n",
+                        "found during last scan:\n"
+                        "- Device MAC address\n"
+                        "- Connected network\n"
+                        "- Signal strength\n",
     },
     {
         .label = "Select AP",
@@ -142,11 +145,11 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Select Access Point",
         .details_text = "Select an AP by number\n"
-                       "from the scanned list\n"
-                       "for targeting with\n"
-                       "other commands.\n",
+                        "from the scanned list\n"
+                        "for targeting with\n"
+                        "other commands.\n",
     },
-    
+
     // Beacon Spam Operations
     {
         .label = "Beacon Spam (List)",
@@ -161,9 +164,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "List Beacon Spam",
         .details_text = "Broadcasts fake APs\n"
-                       "using names from a\n"
-                       "predefined list.\n"
-                       "Range: ~50-100m\n",
+                        "using names from a\n"
+                        "predefined list.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Beacon Spam (Random)",
@@ -178,9 +181,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Random Beacon Spam",
         .details_text = "Broadcasts fake APs\n"
-                       "with randomly generated\n"
-                       "network names.\n"
-                       "Range: ~50-100m\n",
+                        "with randomly generated\n"
+                        "network names.\n"
+                        "Range: ~50-100m\n",
 
     },
     {
@@ -196,9 +199,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Rickroll Beacons",
         .details_text = "Broadcasts fake APs\n"
-                       "with names from Rick\n"
-                       "Astley lyrics.\n"
-                       "Range: ~50-100m\n",
+                        "with names from Rick\n"
+                        "Astley lyrics.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Custom Beacon Spam",
@@ -213,9 +216,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Custom Beacons",
         .details_text = "Broadcasts fake APs\n"
-                       "using your custom\n"
-                       "network name.\n"
-                       "Range: ~50-100m\n",
+                        "using your custom\n"
+                        "network name.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Stop Spam",
@@ -230,10 +233,10 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Stop Beacon Spam",
         .details_text = "Stops any active\n"
-                       "beacon spam attacks\n"
-                       "currently running.\n",
+                        "beacon spam attacks\n"
+                        "currently running.\n",
     },
-    
+
     // Attack Operations
     {
         .label = "Deauth",
@@ -248,9 +251,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Deauth Attack",
         .details_text = "Sends deauth frames to\n"
-                       "disconnect clients from\n"
-                       "selected network.\n"
-                       "Range: ~50-100m\n",
+                        "disconnect clients from\n"
+                        "selected network.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Stop Deauth",
@@ -265,10 +268,10 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Stop Deauth",
         .details_text = "Stops any active\n"
-                       "deauthentication\n" 
-                       "attacks running.\n",
+                        "deauthentication\n"
+                        "attacks running.\n",
     },
-    
+
     // Capture Operations
     {
         .label = "Sniff Raw Packets",
@@ -283,9 +286,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Raw Packet Capture",
         .details_text = "Captures all WiFi\n"
-                       "packets in range.\n"
-                       "Saves to PCAP file.\n"
-                       "Range: ~50-100m\n",
+                        "packets in range.\n"
+                        "Saves to PCAP file.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Sniff PMKID",
@@ -300,9 +303,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "PMKID Capture",
         .details_text = "Captures PMKID/EAPOL\n"
-                       "frames for cracking.\n"
-                       "Saves to PCAP file.\n"
-                       "Range: ~50-100m\n",
+                        "frames for cracking.\n"
+                        "Saves to PCAP file.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Sniff Probes",
@@ -317,9 +320,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Probe Capture",
         .details_text = "Captures probe\n"
-                       "requests from clients.\n"
-                       "Saves to PCAP file.\n"
-                       "Range: ~50-100m\n",
+                        "requests from clients.\n"
+                        "Saves to PCAP file.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Sniff WPS",
@@ -334,9 +337,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "WPS Capture",
         .details_text = "Captures WPS data\n"
-                       "exchanges & beacons.\n"
-                       "Saves to PCAP file.\n"
-                       "Range: ~50-100m\n",
+                        "exchanges & beacons.\n"
+                        "Saves to PCAP file.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Sniff Deauth",
@@ -351,9 +354,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Deauth Capture",
         .details_text = "Records deauth and\n"
-                       "disassoc frames.\n"
-                       "Saves to PCAP file.\n"
-                       "Range: ~50-100m\n",
+                        "disassoc frames.\n"
+                        "Saves to PCAP file.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Sniff Beacons",
@@ -368,9 +371,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Beacon Capture",
         .details_text = "Captures beacon\n"
-                       "frames from APs.\n"
-                       "Saves to PCAP file.\n"
-                       "Range: ~50-100m\n",
+                        "frames from APs.\n"
+                        "Saves to PCAP file.\n"
+                        "Range: ~50-100m\n",
     },
     {
         .label = "Stop Capture",
@@ -385,11 +388,11 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Stop Capture",
         .details_text = "Stops any active\n"
-                       "packet captures and\n"
-                       "saves the PCAP file.\n",
+                        "packet captures and\n"
+                        "saves the PCAP file.\n",
     },
-    
-    // Portal & Network Operations  
+
+    // Portal & Network Operations
     {
         .label = "Evil Portal",
         .command = "startportal\n",
@@ -403,11 +406,11 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = "You need to configure\n settings in the WebUI\n for this command.\n\n",
         .details_header = "Evil Portal",
         .details_text = "Starts captive portal\n"
-                       "for credential harvest.\n"
-                       "Configure in WebUI:\n"
-                       "- Portal settings\n"
-                       "- Landing page\n"
-                       "- Credentials DB\n",
+                        "for credential harvest.\n"
+                        "Configure in WebUI:\n"
+                        "- Portal settings\n"
+                        "- Landing page\n"
+                        "- Credentials DB\n",
     },
     {
         .label = "Stop Portal",
@@ -422,10 +425,10 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Stop Portal",
         .details_text = "Stops the running\n"
-                       "Evil Portal and saves\n"
-                       "captured credentials.\n",
+                        "Evil Portal and saves\n"
+                        "captured credentials.\n",
     },
-{
+    {
         .label = "Connect To WiFi",
         .command = "connect",
         .capture_prefix = NULL,
@@ -438,9 +441,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "WiFi Connect",
         .details_text = "Connect ESP to WiFi:\n"
-                       "Enter SSID & password\n"
-                       "separated by comma.\n"
-                       "Example: network,pass\n",
+                        "Enter SSID & password\n"
+                        "separated by comma.\n"
+                        "Example: network,pass\n",
     },
     {
         .label = "Cast Random Video",
@@ -455,9 +458,9 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = NULL,
         .details_header = "Video Cast",
         .details_text = "Casts random videos\n"
-                       "to nearby Cast/DIAL\n"
-                       "enabled devices.\n"
-                       "Range: ~50m\n",
+                        "to nearby Cast/DIAL\n"
+                        "enabled devices.\n"
+                        "Range: ~50m\n",
     },
     {
         .label = "Printer Power",
@@ -472,10 +475,10 @@ static const MenuCommand wifi_commands[] = {
         .confirm_text = "You need to configure\n settings in the WebUI\n for this command.\n",
         .details_header = "WiFi Printer",
         .details_text = "Control power state\n"
-                       "of network printers.\n"
-                       "Configure in WebUI:\n"
-                       "- Printer IP/Port\n"
-                       "- Protocol type\n",
+                        "of network printers.\n"
+                        "Configure in WebUI:\n"
+                        "- Printer IP/Port\n"
+                        "- Protocol type\n",
     },
 };
 
@@ -494,10 +497,10 @@ static const MenuCommand ble_commands[] = {
         .confirm_text = NULL,
         .details_header = "Flipper Scanner",
         .details_text = "Scans for nearby\n"
-                       "Flipper Zero devices.\n"
-                       "Shows device info:\n"
-                       "- Name & Address\n"
-                       "- Signal strength\n",
+                        "Flipper Zero devices.\n"
+                        "Shows device info:\n"
+                        "- Name & Address\n"
+                        "- Signal strength\n",
     },
     {
         .label = "AirTag Scanner",
@@ -512,10 +515,10 @@ static const MenuCommand ble_commands[] = {
         .confirm_text = NULL,
         .details_header = "AirTag Scanner",
         .details_text = "Detects nearby Apple\n"
-                       "AirTags and shows:\n"
-                       "- Device ID\n"
-                       "- Signal strength\n"
-                       "- Last seen time\n",
+                        "AirTags and shows:\n"
+                        "- Device ID\n"
+                        "- Signal strength\n"
+                        "- Last seen time\n",
     },
     {
         .label = "Sniff Bluetooth",
@@ -530,9 +533,9 @@ static const MenuCommand ble_commands[] = {
         .confirm_text = NULL,
         .details_header = "BLE Sniffer",
         .details_text = "Captures Bluetooth LE\n"
-                       "packets & adv data.\n"
-                       "Saves to PCAP file.\n"
-                       "Range: ~50m\n",
+                        "packets & adv data.\n"
+                        "Saves to PCAP file.\n"
+                        "Range: ~50m\n",
     },
     {
         .label = "Stop BLE Scan",
@@ -547,8 +550,8 @@ static const MenuCommand ble_commands[] = {
         .confirm_text = NULL,
         .details_header = "Stop BLE Scan",
         .details_text = "Stops any active\n"
-                       "Bluetooth scanning\n"
-                       "operations.\n",
+                        "Bluetooth scanning\n"
+                        "operations.\n",
     },
 };
 
@@ -567,10 +570,10 @@ static const MenuCommand gps_commands[] = {
         .confirm_text = NULL,
         .details_header = "Street Detector",
         .details_text = "Scans for GPS coords\n"
-                       "and displays nearby:\n"
-                       "- Street names\n"
-                       "- Intersections\n"
-                       "- Points of interest\n",
+                        "and displays nearby:\n"
+                        "- Street names\n"
+                        "- Intersections\n"
+                        "- Points of interest\n",
     },
     {
         .label = "WarDrive",
@@ -585,14 +588,13 @@ static const MenuCommand gps_commands[] = {
         .confirm_text = NULL,
         .details_header = "WarDriving Mode",
         .details_text = "Maps WiFi networks\n"
-                       "with GPS location.\n"
-                       "Saves data to CSV:\n"
-                       "- Network details\n"
-                       "- GPS coordinates\n"
-                       "- Signal strength\n",
+                        "with GPS location.\n"
+                        "Saves data to CSV:\n"
+                        "- Network details\n"
+                        "- GPS coordinates\n"
+                        "- Signal strength\n",
     },
 };
-
 
 void send_uart_command(const char* command, void* state) {
     AppState* app_state = (AppState*)state;
@@ -633,10 +635,18 @@ static void confirmation_cancel_callback(void* context) {
     MenuCommandContext* cmd_ctx = context;
     if(cmd_ctx && cmd_ctx->state) {
         switch(cmd_ctx->state->previous_view) {
-            case 1: show_wifi_menu(cmd_ctx->state); break;
-            case 2: show_ble_menu(cmd_ctx->state); break;
-            case 3: show_gps_menu(cmd_ctx->state); break;
-            default: show_main_menu(cmd_ctx->state); break;
+        case 1:
+            show_wifi_menu(cmd_ctx->state);
+            break;
+        case 2:
+            show_ble_menu(cmd_ctx->state);
+            break;
+        case 3:
+            show_gps_menu(cmd_ctx->state);
+            break;
+        default:
+            show_main_menu(cmd_ctx->state);
+            break;
         }
     }
     free(cmd_ctx);
@@ -646,7 +656,7 @@ static void confirmation_cancel_callback(void* context) {
 static void app_info_ok_callback(void* context) {
     AppState* state = context;
     if(!state) return;
-    
+
     view_dispatcher_switch_to_view(state->view_dispatcher, state->previous_view);
     state->current_view = state->previous_view;
 }
@@ -664,19 +674,14 @@ static void show_command_details(AppState* state, const MenuCommand* command) {
     // Set up callbacks for OK/Cancel to return to previous view
     confirmation_view_set_ok_callback(
         state->confirmation_view,
-        app_info_ok_callback,  // Reuse app info callback since it does the same thing
+        app_info_ok_callback, // Reuse app info callback since it does the same thing
         state);
-    confirmation_view_set_cancel_callback(
-        state->confirmation_view,
-        app_info_ok_callback,
-        state);
+    confirmation_view_set_cancel_callback(state->confirmation_view, app_info_ok_callback, state);
 
     // Switch to confirmation view
     view_dispatcher_switch_to_view(state->view_dispatcher, 7);
     state->current_view = 7;
 }
-
-
 
 static void error_callback(void* context) {
     AppState* state = (AppState*)context;
@@ -690,13 +695,15 @@ static void execute_menu_command(AppState* state, const MenuCommand* command) {
     if(!uart_is_esp_connected(state->uart_context)) {
         // Save current view
         state->previous_view = state->current_view;
-        
+
         // Use confirmation view to show error
         confirmation_view_set_header(state->confirmation_view, "Connection Error");
-        confirmation_view_set_text(state->confirmation_view, "ESP Not Connected!\nTry Rebooting ESP.\nReflash if issues persist.");
+        confirmation_view_set_text(
+            state->confirmation_view,
+            "ESP Not Connected!\nTry Rebooting ESP.\nReflash if issues persist.");
         confirmation_view_set_ok_callback(state->confirmation_view, error_callback, state);
         confirmation_view_set_cancel_callback(state->confirmation_view, error_callback, state);
-        
+
         view_dispatcher_switch_to_view(state->view_dispatcher, 7);
         state->current_view = 7;
         return;
@@ -710,9 +717,11 @@ static void execute_menu_command(AppState* state, const MenuCommand* command) {
 
         confirmation_view_set_header(state->confirmation_view, command->confirm_header);
         confirmation_view_set_text(state->confirmation_view, command->confirm_text);
-        confirmation_view_set_ok_callback(state->confirmation_view, confirmation_ok_callback, cmd_ctx);
-        confirmation_view_set_cancel_callback(state->confirmation_view, confirmation_cancel_callback, cmd_ctx);
-        
+        confirmation_view_set_ok_callback(
+            state->confirmation_view, confirmation_ok_callback, cmd_ctx);
+        confirmation_view_set_cancel_callback(
+            state->confirmation_view, confirmation_cancel_callback, cmd_ctx);
+
         view_dispatcher_switch_to_view(state->view_dispatcher, 7);
         return;
     }
@@ -722,12 +731,7 @@ static void execute_menu_command(AppState* state, const MenuCommand* command) {
         text_input_reset(state->text_input);
         text_input_set_header_text(state->text_input, command->input_text);
         text_input_set_result_callback(
-            state->text_input,
-            text_input_result_callback,
-            state,
-            state->input_buffer,
-            32,
-            true);
+            state->text_input, text_input_result_callback, state, state->input_buffer, 32, true);
         view_dispatcher_switch_to_view(state->view_dispatcher, 6);
         return;
     }
@@ -742,21 +746,18 @@ static void execute_menu_command(AppState* state, const MenuCommand* command) {
         command->folder ? command->folder : "");
 }
 
-
 // Menu display functions
 void show_wifi_menu(AppState* state) {
-    show_menu(state, wifi_commands, COUNT_OF(wifi_commands), 
-              "WiFi Utilities:", state->wifi_menu, 1);
+    show_menu(
+        state, wifi_commands, COUNT_OF(wifi_commands), "WiFi Utilities:", state->wifi_menu, 1);
 }
 
 void show_ble_menu(AppState* state) {
-    show_menu(state, ble_commands, COUNT_OF(ble_commands),
-              "BLE Utilities:", state->ble_menu, 2);
+    show_menu(state, ble_commands, COUNT_OF(ble_commands), "BLE Utilities:", state->ble_menu, 2);
 }
 
 void show_gps_menu(AppState* state) {
-    show_menu(state, gps_commands, COUNT_OF(gps_commands),
-              "GPS Utilities:", state->gps_menu, 3);
+    show_menu(state, gps_commands, COUNT_OF(gps_commands), "GPS Utilities:", state->gps_menu, 3);
 }
 
 // Menu command handlers
@@ -782,25 +783,27 @@ void handle_gps_menu(AppState* state, uint32_t index) {
 static void text_input_result_callback(void* context) {
     AppState* input_state = (AppState*)context;
     send_uart_command_with_text(
-        input_state->uart_command, 
-        input_state->input_buffer, 
-        (AppState*)input_state);
+        input_state->uart_command, input_state->input_buffer, (AppState*)input_state);
     uart_receive_data(
-        input_state->uart_context, 
-        input_state->view_dispatcher, 
-        input_state, "", "", "");
+        input_state->uart_context, input_state->view_dispatcher, input_state, "", "", "");
 }
 
 void submenu_callback(void* context, uint32_t index) {
     AppState* state = (AppState*)context;
-    state->current_index = index;  // Track current selection
+    state->current_index = index; // Track current selection
 
     switch(state->current_view) {
     case 0: // Main Menu
         switch(index) {
-        case 0: show_wifi_menu(state); break;
-        case 1: show_ble_menu(state); break;
-        case 2: show_gps_menu(state); break;
+        case 0:
+            show_wifi_menu(state);
+            break;
+        case 1:
+            show_ble_menu(state);
+            break;
+        case 2:
+            show_gps_menu(state);
+            break;
         case 3: // Settings button
             view_dispatcher_switch_to_view(state->view_dispatcher, 8);
             state->current_view = 8;
@@ -808,9 +811,15 @@ void submenu_callback(void* context, uint32_t index) {
             break;
         }
         break;
-    case 1: handle_wifi_menu(state, index); break;
-    case 2: handle_ble_menu(state, index); break;
-    case 3: handle_gps_menu(state, index); break;
+    case 1:
+        handle_wifi_menu(state, index);
+        break;
+    case 2:
+        handle_ble_menu(state, index);
+        break;
+    case 3:
+        handle_gps_menu(state, index);
+        break;
     }
 }
 
@@ -821,12 +830,12 @@ bool back_event_callback(void* context) {
     uint32_t current_view = state->current_view;
 
     // Do not consume the back button event if the current view is the confirmation view
-    if(current_view == 7) {  // 7 is the ID for the confirmation view
+    if(current_view == 7) { // 7 is the ID for the confirmation view
         // Allow the confirmation view's input callback to handle the back button
         return false;
     }
 
-    if(current_view == 5) {  // Text box view
+    if(current_view == 5) { // Text box view
         FURI_LOG_D("Ghost ESP", "Stopping Thread");
 
         // Cleanup text buffer
@@ -854,10 +863,18 @@ bool back_event_callback(void* context) {
 
         // Return to previous view
         switch(state->previous_view) {
-            case 1: show_wifi_menu(state); break;
-            case 2: show_ble_menu(state); break;
-            case 3: show_gps_menu(state); break;
-            default: show_main_menu(state); break;
+        case 1:
+            show_wifi_menu(state);
+            break;
+        case 2:
+            show_ble_menu(state);
+            break;
+        case 3:
+            show_gps_menu(state);
+            break;
+        default:
+            show_main_menu(state);
+            break;
         }
         state->current_view = state->previous_view;
     } else if(current_view == 8) { // Settings actions menu
@@ -874,22 +891,26 @@ bool back_event_callback(void* context) {
     return true;
 }
 
-
-static void show_menu(AppState* state, const MenuCommand* commands, size_t command_count, 
-                     const char* header, Submenu* menu, uint8_t view_id) {
+static void show_menu(
+    AppState* state,
+    const MenuCommand* commands,
+    size_t command_count,
+    const char* header,
+    Submenu* menu,
+    uint8_t view_id) {
     submenu_reset(menu);
     submenu_set_header(menu, header);
-    
+
     for(size_t i = 0; i < command_count; i++) {
         // Add items without callback
         submenu_add_item(menu, commands[i].label, i, NULL, NULL);
     }
-    
+
     // Set up view with input handler
     View* menu_view = submenu_get_view(menu);
     view_set_context(menu_view, state);
     view_set_input_callback(menu_view, menu_input_handler);
-    
+
     view_dispatcher_switch_to_view(state->view_dispatcher, view_id);
     state->current_view = view_id;
     state->previous_view = view_id;
@@ -917,23 +938,23 @@ static bool menu_input_handler(InputEvent* event, void* context) {
 
     // Determine current menu context
     switch(state->current_view) {
-        case 1:
-            current_menu = state->wifi_menu;
-            commands = wifi_commands;
-            commands_count = COUNT_OF(wifi_commands);
-            break;
-        case 2:
-            current_menu = state->ble_menu;
-            commands = ble_commands;
-            commands_count = COUNT_OF(ble_commands);
-            break;
-        case 3:
-            current_menu = state->gps_menu;
-            commands = gps_commands;
-            commands_count = COUNT_OF(gps_commands);
-            break;
-        default:
-            return false;
+    case 1:
+        current_menu = state->wifi_menu;
+        commands = wifi_commands;
+        commands_count = COUNT_OF(wifi_commands);
+        break;
+    case 2:
+        current_menu = state->ble_menu;
+        commands = ble_commands;
+        commands_count = COUNT_OF(ble_commands);
+        break;
+    case 3:
+        current_menu = state->gps_menu;
+        commands = gps_commands;
+        commands_count = COUNT_OF(gps_commands);
+        break;
+    default:
+        return false;
     }
 
     if(!current_menu || !commands) return false;
@@ -941,87 +962,87 @@ static bool menu_input_handler(InputEvent* event, void* context) {
     uint32_t current_index = submenu_get_selected_item(current_menu);
 
     switch(event->type) {
-        case InputTypeShort:
-            switch(event->key) {
-                case InputKeyUp:
-                    if(current_index > 0) {
-                        submenu_set_selected_item(current_menu, current_index - 1);
-                    }
-                    consumed = true;
-                    break;
+    case InputTypeShort:
+        switch(event->key) {
+        case InputKeyUp:
+            if(current_index > 0) {
+                submenu_set_selected_item(current_menu, current_index - 1);
+            }
+            consumed = true;
+            break;
 
-                case InputKeyDown:
-                    if(current_index < commands_count - 1) {
-                        submenu_set_selected_item(current_menu, current_index + 1);
-                    }
-                    consumed = true;
-                    break;
+        case InputKeyDown:
+            if(current_index < commands_count - 1) {
+                submenu_set_selected_item(current_menu, current_index + 1);
+            }
+            consumed = true;
+            break;
 
-                case InputKeyOk:
-                    if(current_index < commands_count) {
-                        state->current_index = current_index;
-                        // Execute command
-                        execute_menu_command(state, &commands[current_index]);
-                        consumed = true;
-                    }
-                    break;
-
-                case InputKeyBack:
-                    show_main_menu(state);
-                    state->current_view = 0;
-                    consumed = true;
-                    break;
-
-                case InputKeyRight:
-                case InputKeyLeft:
-                case InputKeyMAX:
-                default:
-                    break;
+        case InputKeyOk:
+            if(current_index < commands_count) {
+                state->current_index = current_index;
+                // Execute command
+                execute_menu_command(state, &commands[current_index]);
+                consumed = true;
             }
             break;
 
-        case InputTypeLong:
-            if(event->key == InputKeyOk) {
-                if(current_index < commands_count) {
-                    const MenuCommand* command = &commands[current_index];
-                    if(command->details_header && command->details_text) {
-                        show_command_details(state, command);
-                        consumed = true;
-                    }
-                }
-            }
+        case InputKeyBack:
+            show_main_menu(state);
+            state->current_view = 0;
+            consumed = true;
             break;
 
-        case InputTypeRepeat:
-            switch(event->key) {
-                case InputKeyUp:
-                    if(current_index > 0) {
-                        submenu_set_selected_item(current_menu, current_index - 1);
-                    }
-                    consumed = true;
-                    break;
-
-                case InputKeyDown:
-                    if(current_index < commands_count - 1) {
-                        submenu_set_selected_item(current_menu, current_index + 1);
-                    }
-                    consumed = true;
-                    break;
-
-                case InputKeyRight:
-                case InputKeyLeft:
-                case InputKeyOk:
-                case InputKeyBack:
-                case InputKeyMAX:
-                default:
-                    break;
-            }
-            break;
-
-        case InputTypePress:
-        case InputTypeRelease:
+        case InputKeyRight:
+        case InputKeyLeft:
+        case InputKeyMAX:
         default:
             break;
+        }
+        break;
+
+    case InputTypeLong:
+        if(event->key == InputKeyOk) {
+            if(current_index < commands_count) {
+                const MenuCommand* command = &commands[current_index];
+                if(command->details_header && command->details_text) {
+                    show_command_details(state, command);
+                    consumed = true;
+                }
+            }
+        }
+        break;
+
+    case InputTypeRepeat:
+        switch(event->key) {
+        case InputKeyUp:
+            if(current_index > 0) {
+                submenu_set_selected_item(current_menu, current_index - 1);
+            }
+            consumed = true;
+            break;
+
+        case InputKeyDown:
+            if(current_index < commands_count - 1) {
+                submenu_set_selected_item(current_menu, current_index + 1);
+            }
+            consumed = true;
+            break;
+
+        case InputKeyRight:
+        case InputKeyLeft:
+        case InputKeyOk:
+        case InputKeyBack:
+        case InputKeyMAX:
+        default:
+            break;
+        }
+        break;
+
+    case InputTypePress:
+    case InputTypeRelease:
+    default:
+        break;
     }
 
     return consumed;

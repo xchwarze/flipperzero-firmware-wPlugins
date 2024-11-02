@@ -6,21 +6,20 @@
 #include <storage/storage.h>
 #include "sequential_file.h"
 
-
 #define COMMAND_BUFFER_SIZE 128
 
-void uart_storage_rx_callback(uint8_t *buf, size_t len, void *context) {
-    UartContext *app = context;
+void uart_storage_rx_callback(uint8_t* buf, size_t len, void* context) {
+    UartContext* app = context;
     if(app->storageContext->HasOpenedFile) {
         storage_file_write(app->storageContext->current_file, buf, len);
     }
 }
 
-UartStorageContext *uart_storage_init(UartContext *parentContext) {
+UartStorageContext* uart_storage_init(UartContext* parentContext) {
     uint32_t start_time = furi_get_tick();
     FURI_LOG_D("Storage", "Starting storage initialization");
 
-    UartStorageContext *ctx = malloc(sizeof(UartStorageContext));
+    UartStorageContext* ctx = malloc(sizeof(UartStorageContext));
     if(!ctx) {
         FURI_LOG_E("Storage", "Failed to allocate context");
         return NULL;
@@ -64,12 +63,8 @@ UartStorageContext *uart_storage_init(UartContext *parentContext) {
     // Initialize log file efficiently
     uint32_t log_start = furi_get_tick();
     bool log_ok = sequential_file_open(
-        ctx->storage_api,
-        ctx->log_file,
-        GHOST_ESP_APP_FOLDER_LOGS,
-        "ghost_logs",
-        "txt");
-    
+        ctx->storage_api, ctx->log_file, GHOST_ESP_APP_FOLDER_LOGS, "ghost_logs", "txt");
+
     if(!log_ok) {
         FURI_LOG_W("Storage", "Failed to create initial log file");
     }
@@ -77,11 +72,11 @@ UartStorageContext *uart_storage_init(UartContext *parentContext) {
 
     ctx->HasOpenedFile = log_ok;
 
-    FURI_LOG_I("Storage", "Storage initialization completed in %lums", 
-               furi_get_tick() - start_time);
+    FURI_LOG_I(
+        "Storage", "Storage initialization completed in %lums", furi_get_tick() - start_time);
     return ctx;
 }
-void uart_storage_reset_logs(UartStorageContext *ctx) {
+void uart_storage_reset_logs(UartStorageContext* ctx) {
     if(!ctx || !ctx->storage_api) return;
 
     FURI_LOG_D("Storage", "Resetting log files");
@@ -95,17 +90,13 @@ void uart_storage_reset_logs(UartStorageContext *ctx) {
 
     // Create new log file
     ctx->HasOpenedFile = sequential_file_open(
-        ctx->storage_api,
-        ctx->log_file,
-        GHOST_ESP_APP_FOLDER_LOGS,
-        "ghost_logs",
-        "txt");
+        ctx->storage_api, ctx->log_file, GHOST_ESP_APP_FOLDER_LOGS, "ghost_logs", "txt");
 
     if(!ctx->HasOpenedFile) {
         FURI_LOG_E("Storage", "Failed to create new log file during reset");
     }
 }
-void uart_storage_free(UartStorageContext *ctx) {
+void uart_storage_free(UartStorageContext* ctx) {
     if(!ctx) return;
 
     uint32_t start_time = furi_get_tick();
@@ -116,6 +107,5 @@ void uart_storage_free(UartStorageContext *ctx) {
     if(ctx->storage_api) furi_record_close(RECORD_STORAGE);
 
     free(ctx);
-    FURI_LOG_D("Storage", "Storage cleanup completed in %lums", 
-               furi_get_tick() - start_time);
+    FURI_LOG_D("Storage", "Storage cleanup completed in %lums", furi_get_tick() - start_time);
 }

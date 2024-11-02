@@ -2,11 +2,8 @@
 #include "app_state.h"
 #include "menu.h"
 #include "settings_def.h"
-#include "settings_ui.h" 
+#include "settings_ui.h"
 #include "uart_utils.h"
-
-
-
 
 void on_rgb_mode_changed(VariableItem* item) {
     AppState* app = variable_item_get_context(item);
@@ -64,13 +61,13 @@ void on_reboot_esp_changed(VariableItem* item) {
 
 void logs_clear_confirmed_callback(void* context) {
     FURI_LOG_D("ClearLogs", "Confirmed callback started, context: %p", context);
-    
+
     SettingsConfirmContext* ctx = context;
     if(!ctx) {
         FURI_LOG_E("ClearLogs", "Null context");
         return;
     }
-    
+
     if(!ctx->state) {
         FURI_LOG_E("ClearLogs", "Null state in context");
         free(ctx);
@@ -79,33 +76,33 @@ void logs_clear_confirmed_callback(void* context) {
 
     AppState* app_state = ctx->state;
     uint32_t prev_view = app_state->previous_view;
-    
+
     FURI_LOG_D("ClearLogs", "Previous view: %lu", prev_view);
     clear_log_files(ctx->state);
-    
+
     // Reset callbacks
     FURI_LOG_D("ClearLogs", "Resetting callbacks");
     confirmation_view_set_ok_callback(app_state->confirmation_view, NULL, NULL);
     confirmation_view_set_cancel_callback(app_state->confirmation_view, NULL, NULL);
-    
+
     // Free context first
     free(ctx);
-    
+
     // Switch view last and update current_view
     FURI_LOG_D("ClearLogs", "Switching to view: %lu", prev_view);
     view_dispatcher_switch_to_view(app_state->view_dispatcher, prev_view);
-    app_state->current_view = prev_view;  // Add this line
+    app_state->current_view = prev_view; // Add this line
 }
 
 void logs_clear_cancelled_callback(void* context) {
     FURI_LOG_D("ClearLogs", "Cancel callback started, context: %p", context);
-    
+
     SettingsConfirmContext* ctx = context;
     if(!ctx) {
         FURI_LOG_E("ClearLogs", "Null context");
         return;
     }
-    
+
     if(!ctx->state) {
         FURI_LOG_E("ClearLogs", "Null state in context");
         free(ctx);
@@ -114,21 +111,21 @@ void logs_clear_cancelled_callback(void* context) {
 
     AppState* app_state = ctx->state;
     uint32_t prev_view = app_state->previous_view;
-    
+
     FURI_LOG_D("ClearLogs", "Previous view: %lu", prev_view);
-    
+
     // Reset callbacks before freeing context
     FURI_LOG_D("ClearLogs", "Resetting callbacks");
     confirmation_view_set_ok_callback(app_state->confirmation_view, NULL, NULL);
     confirmation_view_set_cancel_callback(app_state->confirmation_view, NULL, NULL);
-    
+
     // Free context
     free(ctx);
-    
+
     // Switch view last and update current_view
     FURI_LOG_D("ClearLogs", "Switching to view: %lu", prev_view);
     view_dispatcher_switch_to_view(app_state->view_dispatcher, prev_view);
-    app_state->current_view = prev_view;  // Add this line
+    app_state->current_view = prev_view; // Add this line
 }
 
 void on_clear_logs_changed(VariableItem* item) {
@@ -146,15 +143,13 @@ void on_clear_logs_changed(VariableItem* item) {
     }
 }
 
-
-
 void on_clear_nvs_changed(VariableItem* item) {
     AppState* app = variable_item_get_context(item);
     uint8_t index = variable_item_get_current_value_index(item);
     variable_item_set_current_value_text(item, SETTING_VALUE_NAMES_ACTION[index]);
 
     if(index == 0) {
-        show_confirmation_dialog_ex(  // Changed to _ex version
+        show_confirmation_dialog_ex( // Changed to _ex version
             app,
             "Clear NVS",
             "Are you sure you want to clear NVS?\nThis will reset all ESP settings.",
@@ -168,16 +163,16 @@ void nvs_clear_confirmed_callback(void* context) {
     if(ctx && ctx->state) {
         AppState* app_state = ctx->state;
         uint32_t prev_view = app_state->previous_view;
-        
+
         send_uart_command("handle_clearnvs\n", ctx->state);
-        
+
         confirmation_view_set_ok_callback(app_state->confirmation_view, NULL, NULL);
         confirmation_view_set_cancel_callback(app_state->confirmation_view, NULL, NULL);
-        
+
         free(ctx);
-        
+
         view_dispatcher_switch_to_view(app_state->view_dispatcher, prev_view);
-        app_state->current_view = prev_view;  // Add this line
+        app_state->current_view = prev_view; // Add this line
     }
 }
 
@@ -186,29 +181,28 @@ void nvs_clear_cancelled_callback(void* context) {
     if(ctx && ctx->state) {
         AppState* app_state = ctx->state;
         uint32_t prev_view = app_state->previous_view;
-        
+
         confirmation_view_set_ok_callback(app_state->confirmation_view, NULL, NULL);
         confirmation_view_set_cancel_callback(app_state->confirmation_view, NULL, NULL);
-        
+
         free(ctx);
-        
+
         view_dispatcher_switch_to_view(app_state->view_dispatcher, prev_view);
-        app_state->current_view = prev_view;  // Add this line
+        app_state->current_view = prev_view; // Add this line
     }
 }
 void show_app_info(void* context) {
     SettingsUIContext* settings_context = (SettingsUIContext*)context;
     AppState* app = (AppState*)settings_context->context;
-    
+
     FURI_LOG_D("AppInfo", "Show app info called, context: %p", app);
-    
-    const char* info_text = 
-        "Ghost ESP v1.0.5\n\n"
-        "Created by: Spooky\n"
-        "Special Thanks:\n"
-        "- Jay Candel\n"
-        "Built with <3";
-        
+
+    const char* info_text = "Ghost ESP v1.0.5\n\n"
+                            "Created by: Spooky\n"
+                            "Special Thanks:\n"
+                            "- Jay Candel\n"
+                            "Built with <3";
+
     if(app && app->confirmation_view) {
         // Create a new context for the confirmation dialog
         SettingsConfirmContext* confirm_ctx = malloc(sizeof(SettingsConfirmContext));
@@ -217,27 +211,23 @@ void show_app_info(void* context) {
             return;
         }
         confirm_ctx->state = app;
-        
+
         // Save current view before switching
         app->previous_view = app->current_view;
         FURI_LOG_D("AppInfo", "Saved previous view: %d", app->previous_view);
 
         confirmation_view_set_header(app->confirmation_view, "App Info");
         confirmation_view_set_text(app->confirmation_view, info_text);
-        
+
         // Set up callbacks with proper context
         confirmation_view_set_ok_callback(
-            app->confirmation_view, 
-            app_info_ok_callback,
-            confirm_ctx);
+            app->confirmation_view, app_info_ok_callback, confirm_ctx);
         confirmation_view_set_cancel_callback(
-            app->confirmation_view, 
-            app_info_cancel_callback,
-            confirm_ctx);
-        
+            app->confirmation_view, app_info_cancel_callback, confirm_ctx);
+
         // Switch to confirmation view
         FURI_LOG_D("AppInfo", "Switching to confirmation view");
-        view_dispatcher_switch_to_view(app->view_dispatcher, 7);  // 7 is confirmation view
+        view_dispatcher_switch_to_view(app->view_dispatcher, 7); // 7 is confirmation view
         app->current_view = 7;
     } else {
         FURI_LOG_E("AppInfo", "Invalid app state or confirmation view");
@@ -251,19 +241,19 @@ void app_info_ok_callback(void* context) {
         FURI_LOG_E("AppInfo", "Invalid callback context");
         return;
     }
-    
+
     AppState* app_state = ctx->state;
     uint32_t prev_view = app_state->previous_view;
-    
+
     FURI_LOG_D("AppInfo", "OK callback, returning to view: %lu", prev_view);
-    
+
     // Reset callbacks
     confirmation_view_set_ok_callback(app_state->confirmation_view, NULL, NULL);
     confirmation_view_set_cancel_callback(app_state->confirmation_view, NULL, NULL);
-    
+
     // Free the context
     free(ctx);
-    
+
     // Return to previous view
     view_dispatcher_switch_to_view(app_state->view_dispatcher, prev_view);
     app_state->current_view = prev_view;

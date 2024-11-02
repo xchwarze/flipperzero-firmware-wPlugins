@@ -29,19 +29,18 @@
 #define UART_INIT_STACK_SIZE 2048
 static int32_t init_uart_task(void* context) {
     AppState* state = context;
-    
+
     // Add some delay to let system stabilize
     furi_delay_ms(50);
-    
+
     state->uart_context = uart_init(state);
-    if (state->uart_context) {
+    if(state->uart_context) {
         FURI_LOG_I("Ghost_ESP", "UART initialized successfully");
     } else {
         FURI_LOG_E("Ghost_ESP", "UART initialization failed");
     }
     return 0;
 }
-
 
 int32_t ghost_esp_app(void* p) {
     UNUSED(p);
@@ -59,27 +58,28 @@ int32_t ghost_esp_app(void* p) {
 
     // Set up bare minimum UI state
     AppState* state = malloc(sizeof(AppState));
-    if (!state) return -1;
-    memset(state, 0, sizeof(AppState));  // Zero all memory first
+    if(!state) return -1;
+    memset(state, 0, sizeof(AppState)); // Zero all memory first
 
     // Initialize essential text buffers with minimal size
     state->textBoxBuffer = malloc(1);
-    if (state->textBoxBuffer) {
+    if(state->textBoxBuffer) {
         state->textBoxBuffer[0] = '\0';
     }
     state->buffer_length = 0;
     state->input_buffer = malloc(32);
-    if (state->input_buffer) {
+    if(state->input_buffer) {
         memset(state->input_buffer, 0, 32);
     }
 
     // Initialize UI components - core components first
     state->view_dispatcher = view_dispatcher_alloc();
+    view_dispatcher_enable_queue(state->view_dispatcher);
     state->main_menu = main_menu_alloc();
-    if (!state->view_dispatcher || !state->main_menu) {
+    if(!state->view_dispatcher || !state->main_menu) {
         // Clean up and exit if core components fail
-        if (state->view_dispatcher) view_dispatcher_free(state->view_dispatcher);
-        if (state->main_menu) main_menu_free(state->main_menu);
+        if(state->view_dispatcher) view_dispatcher_free(state->view_dispatcher);
+        if(state->main_menu) main_menu_free(state->main_menu);
         free(state->textBoxBuffer);
         free(state->input_buffer);
         free(state);
@@ -136,24 +136,41 @@ int32_t ghost_esp_app(void* p) {
 
     // Start UART init in background thread
     FuriThread* uart_init_thread = furi_thread_alloc_ex(
-        "UartInit", 
-        UART_INIT_STACK_SIZE,  // Increased stack size
+        "UartInit",
+        UART_INIT_STACK_SIZE, // Increased stack size
         init_uart_task,
         state);
 
     // Add views to dispatcher - check each component before adding
     if(state->view_dispatcher) {
-        if(state->main_menu) view_dispatcher_add_view(state->view_dispatcher, 0, main_menu_get_view(state->main_menu));
-        if(state->wifi_menu) view_dispatcher_add_view(state->view_dispatcher, 1, submenu_get_view(state->wifi_menu));
-        if(state->ble_menu) view_dispatcher_add_view(state->view_dispatcher, 2, submenu_get_view(state->ble_menu));
-        if(state->gps_menu) view_dispatcher_add_view(state->view_dispatcher, 3, submenu_get_view(state->gps_menu));
-        if(state->settings_menu) view_dispatcher_add_view(state->view_dispatcher, 4, variable_item_list_get_view(state->settings_menu));
-        if(state->text_box) view_dispatcher_add_view(state->view_dispatcher, 5, text_box_get_view(state->text_box));
-        if(state->text_input) view_dispatcher_add_view(state->view_dispatcher, 6, text_input_get_view(state->text_input));
-        if(state->confirmation_view) view_dispatcher_add_view(state->view_dispatcher, 7, confirmation_view_get_view(state->confirmation_view));
-        if(state->settings_actions_menu) view_dispatcher_add_view(state->view_dispatcher, 8, submenu_get_view(state->settings_actions_menu));
+        if(state->main_menu)
+            view_dispatcher_add_view(
+                state->view_dispatcher, 0, main_menu_get_view(state->main_menu));
+        if(state->wifi_menu)
+            view_dispatcher_add_view(
+                state->view_dispatcher, 1, submenu_get_view(state->wifi_menu));
+        if(state->ble_menu)
+            view_dispatcher_add_view(state->view_dispatcher, 2, submenu_get_view(state->ble_menu));
+        if(state->gps_menu)
+            view_dispatcher_add_view(state->view_dispatcher, 3, submenu_get_view(state->gps_menu));
+        if(state->settings_menu)
+            view_dispatcher_add_view(
+                state->view_dispatcher, 4, variable_item_list_get_view(state->settings_menu));
+        if(state->text_box)
+            view_dispatcher_add_view(
+                state->view_dispatcher, 5, text_box_get_view(state->text_box));
+        if(state->text_input)
+            view_dispatcher_add_view(
+                state->view_dispatcher, 6, text_input_get_view(state->text_input));
+        if(state->confirmation_view)
+            view_dispatcher_add_view(
+                state->view_dispatcher, 7, confirmation_view_get_view(state->confirmation_view));
+        if(state->settings_actions_menu)
+            view_dispatcher_add_view(
+                state->view_dispatcher, 8, submenu_get_view(state->settings_actions_menu));
 
-        view_dispatcher_set_custom_event_callback(state->view_dispatcher, settings_custom_event_callback);
+        view_dispatcher_set_custom_event_callback(
+            state->view_dispatcher, settings_custom_event_callback);
     }
 
     // Show main menu immediately
@@ -182,7 +199,6 @@ int32_t ghost_esp_app(void* p) {
             view_dispatcher_remove_view(state->view_dispatcher, i);
         }
     }
-
 
     // Clear callbacks before cleanup
     if(state->confirmation_view) {

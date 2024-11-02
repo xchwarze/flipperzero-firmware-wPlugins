@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 typedef struct {
     char* filename;
     int index;
@@ -27,21 +26,21 @@ static bool parse_log_index(const char* filename, const char* prefix, int* index
     // Expected format: prefix_NUMBER.txt
     size_t prefix_len = strlen(prefix);
     if(strncmp(filename, prefix, prefix_len) != 0) return false;
-    
+
     const char* num_start = filename + prefix_len;
     if(*num_start != '_') return false;
     num_start++;
-    
+
     char* end;
     *index = strtol(num_start, &end, 10);
     if(*end != '.') return false;
-    
+
     return true;
 }
 
 bool get_latest_log_file(Storage* storage, const char* dir, const char* prefix, char* out_path) {
     if(!storage || !dir || !prefix || !out_path) return false;
-    
+
     File* dir_handle = storage_file_alloc(storage);
     if(!storage_dir_open(dir_handle, dir)) {
         storage_file_free(dir_handle);
@@ -52,17 +51,17 @@ bool get_latest_log_file(Storage* storage, const char* dir, const char* prefix, 
     size_t files_count = 0;
     size_t files_capacity = 16;
     files = malloc(sizeof(LogFile) * files_capacity);
-    
+
     FileInfo file_info;
     char* filename = malloc(MAX_FILENAME_LEN);
-    
+
     // Collect all matching log files
     while(storage_dir_read(dir_handle, &file_info, filename, MAX_FILENAME_LEN)) {
         if(file_info.flags & FSF_DIRECTORY) continue;
-        
+
         int index;
         if(!parse_log_index(filename, prefix, &index)) continue;
-        
+
         if(files_count >= files_capacity) {
             files_capacity *= 2;
             LogFile* new_files = realloc(files, sizeof(LogFile) * files_capacity);
@@ -76,22 +75,22 @@ bool get_latest_log_file(Storage* storage, const char* dir, const char* prefix, 
             }
             files = new_files;
         }
-        
+
         files[files_count].filename = strdup(filename);
         files[files_count].index = index;
         files_count++;
     }
-    
+
     bool result = false;
     if(files_count > 0) {
         // Sort files by index (descending order)
         sort_log_files(files, files_count);
-        
+
         // Get the latest file (highest index)
         snprintf(out_path, MAX_FILENAME_LEN, "%s/%s", dir, files[0].filename);
         result = true;
     }
-    
+
     // Cleanup
     for(size_t i = 0; i < files_count; i++) {
         free(files[i].filename);
@@ -100,6 +99,6 @@ bool get_latest_log_file(Storage* storage, const char* dir, const char* prefix, 
     free(filename);
     storage_dir_close(dir_handle);
     storage_file_free(dir_handle);
-    
+
     return result;
 }

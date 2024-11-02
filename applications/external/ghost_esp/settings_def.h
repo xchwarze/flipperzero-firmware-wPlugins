@@ -51,7 +51,7 @@ typedef struct {
     uint8_t enable_random_ble_mac_index;
     uint8_t stop_on_back_index;
     uint8_t enable_filtering_index;
-    uint8_t view_logs_from_start_index; 
+    uint8_t view_logs_from_start_index;
     uint8_t reboot_esp_index;
     uint8_t clear_logs_index;
     uint8_t clear_nvs_index;
@@ -61,7 +61,7 @@ typedef struct {
 typedef struct {
     const char* name;
     const char* command;
-    void (*callback)(void* context);  // Function pointer for the action
+    void (*callback)(void* context); // Function pointer for the action
 } SettingAction;
 
 typedef struct {
@@ -76,8 +76,6 @@ typedef struct {
     } data;
     bool is_action;
 } SettingMetadata;
-
-
 
 // Value name arrays
 extern const char* const SETTING_VALUE_NAMES_RGB_MODE[];

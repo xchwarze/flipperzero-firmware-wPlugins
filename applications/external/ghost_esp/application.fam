@@ -1,15 +1,14 @@
-# For details & more options, see documentation/AppManifests.md in firmware repo
-
 App(
-    appid="ghost_esp",  # Must be unique
-    name="[ESP32] Ghost ESP",  # Displayed in menus
-    apptype=FlipperAppType.EXTERNAL, # type: ignore
+    appid="ghost_esp",
+    name="Ghost ESP",
+    apptype=FlipperAppType.EXTERNAL,
     entry_point="ghost_esp_app",
     stack_size=6 * 1024,
-    fap_category="GPIO/ESP",
-    # Optional values
-    icon="A_GhostESP_14",
+    fap_icon="ghost_esp.png",
+    fap_icon_assets="images",
+    fap_category="GPIO/ESP32",
+    fap_author="Spooks4576s",
+    fap_weburl="https://github.com/Spooks4576/ghost_esp_app",
     fap_version="1.0.7",
-    fap_icon="ghost_esp.png",  # 10x10 1-bit PNG
-    fap_icon_assets="images",  # Image assets to compile for this application
+    fap_description="A Flipper Zero application for interfacing with the Ghost ESP32 firmware. With Ghost ESP installed on your ESP32, you can leverage the power of your ESP32 device to conduct in-depth WiFi and Bluetooth Low Energy (BLE) analysis, launch strategic wireless attacks, and explore a wide range of wireless environments.",
 )

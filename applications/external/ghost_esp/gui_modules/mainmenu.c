@@ -6,13 +6,13 @@
 
 #include <ghost_esp_icons.h>
 
-#define CARD_WIDTH 28
-#define CARD_HEIGHT 44
-#define CARD_MARGIN 1
-#define BASE_Y_POSITION 5
-#define SELECTED_OFFSET 3
-#define ICON_WIDTH 20
-#define ICON_PADDING 3
+#define CARD_WIDTH         28
+#define CARD_HEIGHT        44
+#define CARD_MARGIN        1
+#define BASE_Y_POSITION    5
+#define SELECTED_OFFSET    3
+#define ICON_WIDTH         20
+#define ICON_PADDING       3
 #define TEXT_BOTTOM_MARGIN 8
 
 typedef struct {
@@ -102,15 +102,15 @@ static bool is_valid_icon_index(size_t position) {
 static void draw_header(Canvas* canvas, const FuriString* header, uint8_t y_position) {
     if(!furi_string_empty(header)) {
         canvas_set_font(canvas, FontSecondary);
-        
+
         const char* header_text = furi_string_get_cstr(header);
         int width = canvas_string_width(canvas, header_text);
         int x_pos = (canvas_width(canvas) - width) / 2;
-        
+
         // Draw shadow
         canvas_set_color(canvas, ColorWhite);
         canvas_draw_str(canvas, x_pos + 1, y_position + 1, header_text);
-        
+
         // Draw main text
         canvas_set_color(canvas, ColorBlack);
         canvas_draw_str(canvas, x_pos, y_position, header_text);
@@ -122,64 +122,43 @@ static CardLayout calculate_card_layout(
     size_t visible_cards,
     size_t position,
     bool is_selected) {
-    
     UNUSED(total_cards);
     CardLayout layout = {0};
-    
+
     if(visible_cards == 0) {
         return layout;
     }
-    
+
     const uint8_t total_width = visible_cards * CARD_WIDTH + (visible_cards - 1) * CARD_MARGIN;
-    layout.x = (canvas_width(canvas) - total_width) / 2 + 
+    layout.x = (canvas_width(canvas) - total_width) / 2 +
                (position < visible_cards ? position : 0) * (CARD_WIDTH + CARD_MARGIN);
-    
+
     layout.y = is_selected ? BASE_Y_POSITION - SELECTED_OFFSET : BASE_Y_POSITION;
     layout.width = CARD_WIDTH;
     layout.height = CARD_HEIGHT;
-    
+
     return layout;
 }
 
-static void draw_card_background(
-    Canvas* canvas,
-    const CardLayout* layout,
-    bool is_selected) {
+static void draw_card_background(Canvas* canvas, const CardLayout* layout, bool is_selected) {
     // Draw shadow effect
     canvas_set_color(canvas, ColorBlack);
     elements_slightly_rounded_box(
-        canvas,
-        layout->x + 2,
-        layout->y + 2,
-        layout->width,
-        layout->height);
+        canvas, layout->x + 2, layout->y + 2, layout->width, layout->height);
 
     // Draw main background
     canvas_set_color(canvas, is_selected ? ColorBlack : ColorWhite);
-    elements_slightly_rounded_box(
-        canvas,
-        layout->x,
-        layout->y,
-        layout->width,
-        layout->height);
+    elements_slightly_rounded_box(canvas, layout->x, layout->y, layout->width, layout->height);
 
     // Draw outline
     canvas_set_color(canvas, ColorBlack);
-    elements_slightly_rounded_frame(
-        canvas,
-        layout->x,
-        layout->y,
-        layout->width,
-        layout->height);
+    elements_slightly_rounded_frame(canvas, layout->x, layout->y, layout->width, layout->height);
 }
 
-static void draw_card_icon(
-    Canvas* canvas,
-    const CardLayout* layout,
-    const Icon* icon,
-    bool is_selected) {
+static void
+    draw_card_icon(Canvas* canvas, const CardLayout* layout, const Icon* icon, bool is_selected) {
     const uint8_t icon_x = layout->x + (layout->width - ICON_WIDTH) / 2;
-    const uint8_t icon_y = layout->y + ICON_PADDING;    
+    const uint8_t icon_y = layout->y + ICON_PADDING;
     // Draw main icon
     canvas_set_color(canvas, is_selected ? ColorWhite : ColorBlack);
     canvas_draw_icon(canvas, icon_x, icon_y, icon);
@@ -191,15 +170,14 @@ static void draw_card_label(
     FuriString* label,
     bool is_selected,
     bool is_last_card) {
-    
     elements_string_fit_width(canvas, label, layout->width + 40);
-    
+
     // Draw text shadow first
     if(!is_selected) {
         canvas_set_color(canvas, ColorWhite);
         canvas_draw_str(
             canvas,
-            is_last_card ? layout->x + 4 : layout->x + 6,  // Offset by 1 for shadow
+            is_last_card ? layout->x + 4 : layout->x + 6, // Offset by 1 for shadow
             layout->y + layout->height - TEXT_BOTTOM_MARGIN + 1,
             furi_string_get_cstr(label));
     }
@@ -217,47 +195,49 @@ static void main_menu_view_draw_callback(Canvas* canvas, void* _model) {
     MainMenuModel* model = _model;
     const size_t total_cards = MainMenuItemArray_size(model->items);
     const size_t visible_cards = total_cards;
-    
+
     canvas_clear(canvas);
-    
+
     if(!furi_string_empty(model->header)) {
         draw_header(canvas, model->header, BASE_Y_POSITION + CARD_HEIGHT + 10);
     }
-    
+
     size_t position = 0;
     MainMenuItemArray_it_t it;
     for(MainMenuItemArray_it(it, model->items); !MainMenuItemArray_end_p(it);
         MainMenuItemArray_next(it)) {
         const bool is_selected = (position == model->position);
         const bool is_last_card = position + 1 == total_cards;
-        
-        CardLayout layout = calculate_card_layout(
-            canvas,
-            total_cards,
-            visible_cards,
-            position,
-            is_selected);
-            
+
+        CardLayout layout =
+            calculate_card_layout(canvas, total_cards, visible_cards, position, is_selected);
+
         draw_card_background(canvas, &layout, is_selected);
-        
+
         const Icon* icon = NULL;
         if(is_valid_icon_index(position)) {
             switch(position) {
-                case 0: icon = &I_Wifi_icon; break;
-                case 1: icon = &I_BLE_icon; break;
-                // case 2: icon = &I_GPS; break;
-                case 2: icon = &I_Cog; break;
+            case 0:
+                icon = &I_Wifi_icon;
+                break;
+            case 1:
+                icon = &I_BLE_icon;
+                break;
+            // case 2: icon = &I_GPS; break;
+            case 2:
+                icon = &I_Cog;
+                break;
             }
         }
-        
+
         if(icon) {
             draw_card_icon(canvas, &layout, icon, is_selected);
         }
-        
+
         FuriString* disp_str = furi_string_alloc_set(MainMenuItemArray_cref(it)->label);
         draw_card_label(canvas, &layout, disp_str, is_selected, is_last_card);
         furi_string_free(disp_str);
-        
+
         position++;
     }
 }

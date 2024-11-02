@@ -13,9 +13,9 @@ struct ConfirmationView {
 typedef struct {
     const char* header;
     const char* text;
-    uint8_t scroll_position;     // Current scroll position
-    uint8_t total_lines;         // Total number of lines in text
-    bool can_scroll;             // Whether text needs scrolling
+    uint8_t scroll_position; // Current scroll position
+    uint8_t total_lines; // Total number of lines in text
+    bool can_scroll; // Whether text needs scrolling
 } ConfirmationViewModel;
 
 static void confirmation_view_draw_callback(Canvas* canvas, void* _model) {
@@ -34,25 +34,25 @@ static void confirmation_view_draw_callback(Canvas* canvas, void* _model) {
 
     // Text area
     canvas_set_font(canvas, FontSecondary);
-    
+
     // Calculate visible area for text (leave space for header and OK button)
     uint8_t text_y = 20;
-    
+
     if(model->text) {
         // Create a temporary buffer for visible text
-        const size_t max_visible_chars = 128;  // Reduced size
+        const size_t max_visible_chars = 128; // Reduced size
         char visible_text[max_visible_chars];
         uint8_t current_line = 0;
         uint8_t visible_lines = 0;
         const char* p = model->text;
         size_t buffer_pos = 0;
-        
+
         // Skip lines before scroll position
         while(*p && current_line < model->scroll_position) {
             if(*p == '\n') current_line++;
             p++;
         }
-        
+
         // Copy only the visible portion of text
         while(*p && visible_lines < 4 && buffer_pos < (max_visible_chars - 1)) {
             if(*p == '\n') {
@@ -62,15 +62,9 @@ static void confirmation_view_draw_callback(Canvas* canvas, void* _model) {
             visible_text[buffer_pos++] = *p++;
         }
         visible_text[buffer_pos] = '\0';
-        
+
         // Draw visible portion
-        elements_multiline_text_aligned(
-            canvas, 
-            63, 
-            text_y, 
-            AlignCenter, 
-            AlignTop, 
-            visible_text);
+        elements_multiline_text_aligned(canvas, 63, text_y, AlignCenter, AlignTop, visible_text);
 
         // Draw scroll indicators if needed
         if(model->can_scroll) {
@@ -90,7 +84,7 @@ static void confirmation_view_draw_callback(Canvas* canvas, void* _model) {
 
 static bool confirmation_view_input_callback(InputEvent* event, void* context) {
     FURI_LOG_D("ConfView", "Input received - Type: %d, Key: %d", event->type, event->key);
-    
+
     if(!event || !context) {
         FURI_LOG_E("ConfView", "Null event or context in input callback");
         return false;
@@ -106,15 +100,15 @@ static bool confirmation_view_input_callback(InputEvent* event, void* context) {
 
     with_view_model(
         instance->view,
-        ConfirmationViewModel* model,
+        ConfirmationViewModel * model,
         {
             if(event->type == InputTypeShort || event->type == InputTypeRepeat) {
                 if(event->key == InputKeyUp && model->scroll_position > 0) {
                     model->scroll_position--;
                     consumed = true;
-                } else if(event->key == InputKeyDown && 
-                         model->can_scroll && 
-                         model->scroll_position < model->total_lines - 4) {
+                } else if(
+                    event->key == InputKeyDown && model->can_scroll &&
+                    model->scroll_position < model->total_lines - 4) {
                     model->scroll_position++;
                     consumed = true;
                 }
@@ -165,7 +159,7 @@ __attribute__((used)) ConfirmationView* confirmation_view_alloc(void) {
 
     with_view_model(
         instance->view,
-        ConfirmationViewModel* model,
+        ConfirmationViewModel * model,
         {
             model->header = NULL;
             model->text = NULL;
@@ -188,26 +182,23 @@ __attribute__((used)) View* confirmation_view_get_view(ConfirmationView* instanc
     return instance ? instance->view : NULL;
 }
 
-__attribute__((used)) void confirmation_view_set_header(ConfirmationView* instance, const char* text) {
+__attribute__((used)) void
+    confirmation_view_set_header(ConfirmationView* instance, const char* text) {
     if(!instance || !instance->view) return;
     with_view_model(
-        instance->view,
-        ConfirmationViewModel* model,
-        {
-            model->header = text;
-        },
-        true);
+        instance->view, ConfirmationViewModel * model, { model->header = text; }, true);
 }
 
-__attribute__((used)) void confirmation_view_set_text(ConfirmationView* instance, const char* text) {
+__attribute__((used)) void
+    confirmation_view_set_text(ConfirmationView* instance, const char* text) {
     if(!instance || !instance->view) return;
     with_view_model(
         instance->view,
-        ConfirmationViewModel* model,
+        ConfirmationViewModel * model,
         {
             model->text = text;
             model->scroll_position = 0;
-            
+
             if(text) {
                 uint8_t lines = 1;
                 const char* p = text;

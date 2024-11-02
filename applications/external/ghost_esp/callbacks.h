@@ -7,8 +7,6 @@
 #include "utils.h"
 #include <storage/storage.h>
 
-
-
 // Function declarations
 void update_settings_and_write(AppState* app, Settings* settings);
 void on_rgb_mode_changed(VariableItem* item);

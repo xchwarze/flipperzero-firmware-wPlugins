@@ -12,13 +12,13 @@
 #include "settings_ui_types.h"
 
 typedef struct {
-    bool enabled;  // Master switch for filtering
+    bool enabled; // Master switch for filtering
     bool show_ble_status;
     bool show_wifi_status;
     bool show_flipper_devices;
     bool show_wifi_networks;
     bool strip_ansi_codes;
-    bool add_prefixes;  // Whether to add [BLE], [WIFI] etc prefixes
+    bool add_prefixes; // Whether to add [BLE], [WIFI] etc prefixes
 } FilterConfig;
 
 struct AppState {
@@ -41,14 +41,14 @@ struct AppState {
     Settings settings;
     SettingsUIContext settings_ui_context;
     Submenu* settings_actions_menu;
-    
+
     // State
-    uint32_t current_index; 
+    uint32_t current_index;
     uint8_t current_view;
     uint8_t previous_view;
     char* input_buffer;
     const char* uart_command;
     char* textBoxBuffer;
     size_t buffer_length;
-    size_t buffer_capacity; 
+    size_t buffer_capacity;
 };
