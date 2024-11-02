@@ -118,7 +118,7 @@ static FlipWeatherApp* flip_weather_app_alloc() {
     if(!easy_flipper_set_submenu(
            &app->submenu,
            FlipWeatherViewSubmenu,
-           "FlipWeather v1.0",
+           "FlipWeather v1.1",
            callback_exit_app,
            &app->view_dispatcher)) {
         return NULL;
