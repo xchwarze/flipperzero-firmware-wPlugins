@@ -204,7 +204,9 @@ char* app_ids[7] = {
 void save_settings(const char* ssid, const char* password) {
     char edited_directory_path[128];
     char edited_file_path[128];
+
     for(size_t i = 0; i < 7; i++) {
+        // Construct the directory and file paths for the current app
         snprintf(
             edited_directory_path,
             sizeof(edited_directory_path),
@@ -215,14 +217,18 @@ void save_settings(const char* ssid, const char* password) {
             sizeof(edited_file_path),
             STORAGE_EXT_PATH_PREFIX "/apps_data/%s/settings.bin",
             app_ids[i]);
+
+        // Open the storage record
         Storage* storage = furi_record_open(RECORD_STORAGE);
         if(!storage) {
             FURI_LOG_E(TAG, "Failed to open storage record for app: %s", app_ids[i]);
             continue; // Skip to the next app
         }
 
+        // Ensure the directory exists
         storage_common_mkdir(storage, edited_directory_path);
 
+        // Allocate a file handle
         File* file = storage_file_alloc(storage);
         if(!file) {
             FURI_LOG_E(TAG, "Failed to allocate storage file for app: %s", app_ids[i]);
@@ -230,82 +236,158 @@ void save_settings(const char* ssid, const char* password) {
             continue; // Skip to the next app
         }
 
+        // Open the file in read mode to read existing data
+        bool file_opened =
+            storage_file_open(file, edited_file_path, FSAM_READ, FSOM_OPEN_EXISTING);
+        size_t file_size = 0;
+        uint8_t* buffer = NULL;
+
+        if(file_opened) {
+            // Get the file size
+            file_size = storage_file_size(file);
+            buffer = malloc(file_size);
+            if(!buffer) {
+                FURI_LOG_E(TAG, "Failed to allocate buffer for app: %s", app_ids[i]);
+                storage_file_close(file);
+                storage_file_free(file);
+                furi_record_close(RECORD_STORAGE);
+                continue;
+            }
+
+            // Read the existing data
+            if(storage_file_read(file, buffer, file_size) != file_size) {
+                FURI_LOG_E(TAG, "Failed to read settings file for app: %s", app_ids[i]);
+                free(buffer);
+                storage_file_close(file);
+                storage_file_free(file);
+                furi_record_close(RECORD_STORAGE);
+                continue;
+            }
+
+            storage_file_close(file);
+            storage_file_free(file);
+        } else {
+            // If the file doesn't exist, initialize an empty buffer
+            file_size = 0;
+            buffer = NULL;
+        }
+
+        // Prepare new SSID and Password
+        size_t new_ssid_length = strlen(ssid) + 1; // Including null terminator
+        size_t new_password_length = strlen(password) + 1; // Including null terminator
+
+        // Calculate the new file size
+        size_t new_file_size =
+            sizeof(size_t) + new_ssid_length + sizeof(size_t) + new_password_length;
+
+        // If there is additional data beyond SSID and Password, preserve it
+        size_t additional_data_size = 0;
+        uint8_t* additional_data = NULL;
+
+        if(buffer) {
+            // Parse existing SSID length
+            if(file_size >= sizeof(size_t)) {
+                size_t existing_ssid_length;
+                memcpy(&existing_ssid_length, buffer, sizeof(size_t));
+
+                // Parse existing Password length
+                if(file_size >= sizeof(size_t) + existing_ssid_length + sizeof(size_t)) {
+                    size_t existing_password_length;
+                    memcpy(
+                        &existing_password_length,
+                        buffer + sizeof(size_t) + existing_ssid_length,
+                        sizeof(size_t));
+
+                    // Calculate the offset where additional data starts
+                    size_t additional_offset = sizeof(size_t) + existing_ssid_length +
+                                               sizeof(size_t) + existing_password_length;
+                    if(additional_offset < file_size) {
+                        additional_data_size = file_size - additional_offset;
+                        additional_data = malloc(additional_data_size);
+                        if(additional_data) {
+                            memcpy(
+                                additional_data, buffer + additional_offset, additional_data_size);
+                        } else {
+                            FURI_LOG_E(
+                                TAG,
+                                "Failed to allocate memory for additional data for app: %s",
+                                app_ids[i]);
+                            free(buffer);
+                            furi_record_close(RECORD_STORAGE);
+                            continue;
+                        }
+                    }
+                } else {
+                    FURI_LOG_E(TAG, "Settings file format invalid for app: %s", app_ids[i]);
+                }
+            } else {
+                FURI_LOG_E(TAG, "Settings file too small for app: %s", app_ids[i]);
+            }
+        }
+
+        // Allocate a new buffer for updated data
+        size_t total_new_size = new_file_size + additional_data_size;
+        uint8_t* new_buffer = malloc(total_new_size);
+        if(!new_buffer) {
+            FURI_LOG_E(TAG, "Failed to allocate new buffer for app: %s", app_ids[i]);
+            if(buffer) free(buffer);
+            if(additional_data) free(additional_data);
+            furi_record_close(RECORD_STORAGE);
+            continue;
+        }
+
+        size_t offset = 0;
+
+        // Write new SSID length and SSID
+        memcpy(new_buffer + offset, &new_ssid_length, sizeof(size_t));
+        offset += sizeof(size_t);
+        memcpy(new_buffer + offset, ssid, new_ssid_length);
+        offset += new_ssid_length;
+
+        // Write new Password length and Password
+        memcpy(new_buffer + offset, &new_password_length, sizeof(size_t));
+        offset += sizeof(size_t);
+        memcpy(new_buffer + offset, password, new_password_length);
+        offset += new_password_length;
+
+        // Append any additional data if present
+        if(additional_data_size > 0 && additional_data) {
+            memcpy(new_buffer + offset, additional_data, additional_data_size);
+            offset += additional_data_size;
+        }
+
+        // Free temporary buffers
+        if(buffer) free(buffer);
+        if(additional_data) free(additional_data);
+
+        // Open the file in write mode with FSOM_CREATE_ALWAYS to overwrite it
+        file = storage_file_alloc(storage);
+        if(!file) {
+            FURI_LOG_E(TAG, "Failed to allocate storage file for writing: %s", app_ids[i]);
+            free(new_buffer);
+            furi_record_close(RECORD_STORAGE);
+            continue;
+        }
+
         if(!storage_file_open(file, edited_file_path, FSAM_WRITE, FSOM_CREATE_ALWAYS)) {
             FURI_LOG_E(TAG, "Failed to open settings file for writing: %s", edited_file_path);
             storage_file_free(file);
+            free(new_buffer);
             furi_record_close(RECORD_STORAGE);
-            continue; // Skip to the next app
+            continue;
         }
 
-        // Save the ssid length and data
-        size_t ssid_length = strlen(ssid) + 1; // Include null terminator
-        if(storage_file_write(file, &ssid_length, sizeof(size_t)) != sizeof(size_t) ||
-           storage_file_write(file, ssid, ssid_length) != ssid_length) {
-            FURI_LOG_E(TAG, "Failed to write SSID for app: %s", app_ids[i]);
-            // Continue to attempt writing password
+        // Write the updated buffer back to the file
+        if(storage_file_write(file, new_buffer, total_new_size) != total_new_size) {
+            FURI_LOG_E(TAG, "Failed to write updated settings for app: %s", app_ids[i]);
         }
 
-        // Save the password length and data
-        size_t password_length = strlen(password) + 1; // Include null terminator
-        if(storage_file_write(file, &password_length, sizeof(size_t)) != sizeof(size_t) ||
-           storage_file_write(file, password, password_length) != password_length) {
-            FURI_LOG_E(TAG, "Failed to write password for app: %s", app_ids[i]);
-        }
-
+        // Clean up
+        free(new_buffer);
         storage_file_close(file);
         storage_file_free(file);
         furi_record_close(RECORD_STORAGE);
     }
 }
-
-// static bool load_settings(
-//     char *ssid,
-//     size_t ssid_size,
-//     char *password,
-//     size_t password_size)
-// {
-//     Storage *storage = furi_record_open(RECORD_STORAGE);
-//     File *file = storage_file_alloc(storage);
-
-//     if (!storage_file_open(file, SETTINGS_PATH, FSAM_READ, FSOM_OPEN_EXISTING))
-//     {
-//         FURI_LOG_E(TAG, "Failed to open settings file for reading: %s", SETTINGS_PATH);
-//         storage_file_free(file);
-//         furi_record_close(RECORD_STORAGE);
-//         return false; // Return false if the file does not exist
-//     }
-
-//     // Load the ssid
-//     size_t ssid_length;
-//     if (storage_file_read(file, &ssid_length, sizeof(size_t)) != sizeof(size_t) || ssid_length > ssid_size ||
-//         storage_file_read(file, ssid, ssid_length) != ssid_length)
-//     {
-//         FURI_LOG_E(TAG, "Failed to read SSID");
-//         storage_file_close(file);
-//         storage_file_free(file);
-//         furi_record_close(RECORD_STORAGE);
-//         return false;
-//     }
-//     ssid[ssid_length - 1] = '\0'; // Ensure null-termination
-
-//     // Load the password
-//     size_t password_length;
-//     if (storage_file_read(file, &password_length, sizeof(size_t)) != sizeof(size_t) || password_length > password_size ||
-//         storage_file_read(file, password, password_length) != password_length)
-//     {
-//         FURI_LOG_E(TAG, "Failed to read password");
-//         storage_file_close(file);
-//         storage_file_free(file);
-//         furi_record_close(RECORD_STORAGE);
-//         return false;
-//     }
-//     password[password_length - 1] = '\0'; // Ensure null-termination
-
-//     storage_file_close(file);
-//     storage_file_free(file);
-//     furi_record_close(RECORD_STORAGE);
-
-//     return true;
-// }
 
 #endif
