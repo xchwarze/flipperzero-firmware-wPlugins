@@ -1,0 +1,12 @@
+App(
+    appid="cells_sim_app",
+    name="Cells simulation",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="cells_app_main",
+    stack_size=1 * 1024,
+    fap_category="Games",
+    fap_icon="icon.png",
+    fap_version="0.1",
+    fap_description="Simple Cellular Automaton with Genetic Algorithm for Flipper Zero",
+    fap_author="Pilot Of Asuka",
+)
