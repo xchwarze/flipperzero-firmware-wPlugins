@@ -18,11 +18,6 @@ static void flip_social_app_free(FlipSocialApp* app) {
         return;
     }
 
-    // Disconnect from WiFi
-    if(!flipper_http_disconnect_wifi()) {
-        FURI_LOG_E(TAG, "Failed to disconnect from WiFi");
-    }
-
     // Free Submenu(s)
     if(app->submenu_logged_out) {
         view_dispatcher_remove_view(app->view_dispatcher, FlipSocialViewLoggedOutSubmenu);
@@ -247,7 +242,6 @@ static void flip_social_app_free(FlipSocialApp* app) {
 
     // Free the app structure
     if(app_instance) free(app_instance);
-    if(app) free(app);
 }
 
 #endif // FLIP_SOCIAL_FREE_H
