@@ -9,73 +9,6 @@ static FlipLibraryApp* app_instance = NULL;
 
 #define MAX_TOKENS 512 // Adjust based on expected JSON size
 
-// Helper function to compare JSON keys
-int jsoneq(const char* json, jsmntok_t* tok, const char* s) {
-    if(tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
-       strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
-        return 0;
-    }
-    return -1;
-}
-
-// return the value of the key in the JSON data
-// works for the first level of the JSON data
-char* get_json_value(char* key, char* json_data, uint32_t max_tokens) {
-    // Parse the JSON feed
-    if(json_data != NULL) {
-        jsmn_parser parser;
-        jsmn_init(&parser);
-
-        // Allocate tokens array on the heap
-        jsmntok_t* tokens = malloc(sizeof(jsmntok_t) * max_tokens);
-        if(tokens == NULL) {
-            FURI_LOG_E(TAG, "Failed to allocate memory for JSON tokens.");
-            return NULL;
-        }
-
-        int ret = jsmn_parse(&parser, json_data, strlen(json_data), tokens, max_tokens);
-        if(ret < 0) {
-            // Handle parsing errors
-            FURI_LOG_E(TAG, "Failed to parse JSON: %d", ret);
-            free(tokens);
-            return NULL;
-        }
-
-        // Ensure that the root element is an object
-        if(ret < 1 || tokens[0].type != JSMN_OBJECT) {
-            FURI_LOG_E(TAG, "Root element is not an object.");
-            free(tokens);
-            return NULL;
-        }
-
-        // Loop through the tokens to find the key
-        for(int i = 1; i < ret; i++) {
-            if(jsoneq(json_data, &tokens[i], key) == 0) {
-                // We found the key. Now, return the associated value.
-                int length = tokens[i + 1].end - tokens[i + 1].start;
-                char* value = malloc(length + 1);
-                if(value == NULL) {
-                    FURI_LOG_E(TAG, "Failed to allocate memory for value.");
-                    free(tokens);
-                    return NULL;
-                }
-                strncpy(value, json_data + tokens[i + 1].start, length);
-                value[length] = '\0'; // Null-terminate the string
-
-                free(tokens); // Free the token array
-                return value; // Return the extracted value
-            }
-        }
-
-        // Free the token array if key was not found
-        free(tokens);
-    } else {
-        FURI_LOG_E(TAG, "JSON data is NULL");
-    }
-    FURI_LOG_E(TAG, "Failed to find the key in the JSON.");
-    return NULL; // Return NULL if something goes wrong
-}
-
 // Parse JSON to find the "text" key
 char* flip_library_parse_random_fact() {
     return get_json_value("text", fhttp.received_data, 128);
@@ -227,6 +160,7 @@ static void view_draw_callback_random_facts(Canvas* canvas, void* model) {
                 canvas_draw_str(canvas, 0, 22, "Processing...");
                 // success
                 // check status
+                // unnecessary check
                 if(fhttp.state == ISSUE || fhttp.received_data == NULL) {
                     flip_library_request_error(canvas);
                     FURI_LOG_E(TAG, "HTTP request failed or received data is NULL");
