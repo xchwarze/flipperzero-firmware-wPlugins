@@ -12,6 +12,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <expansion/expansion.h>
 
 #include "menu.h"
 #include "uart_utils.h"
@@ -45,16 +46,18 @@ static int32_t init_uart_task(void* context) {
 int32_t ghost_esp_app(void* p) {
     UNUSED(p);
 
-    // Quick power check and initialization
+    // Disable expansion protocol to avoid UART interference
+    Expansion* expansion = furi_record_open(RECORD_EXPANSION);
+    expansion_disable(expansion);
+
+    // Power initialization
+    uint8_t attempts = 0;
     bool otg_was_enabled = furi_hal_power_is_otg_enabled();
-    if(!otg_was_enabled) {
-        uint8_t attempts = 0;
-        while(!furi_hal_power_is_otg_enabled() && attempts++ < 3) {
-            furi_hal_power_enable_otg();
-            furi_delay_ms(10);
-        }
-        furi_delay_ms(50);
+    while(!furi_hal_power_is_otg_enabled() && attempts++ < 5) {
+        furi_hal_power_enable_otg();
+        furi_delay_ms(10);
     }
+    furi_delay_ms(200); // Longer delay for power stabilization
 
     // Set up bare minimum UI state
     AppState* state = malloc(sizeof(AppState));
@@ -135,11 +138,8 @@ int32_t ghost_esp_app(void* p) {
     settings_setup_gui(state->settings_menu, &state->settings_ui_context);
 
     // Start UART init in background thread
-    FuriThread* uart_init_thread = furi_thread_alloc_ex(
-        "UartInit",
-        UART_INIT_STACK_SIZE, // Increased stack size
-        init_uart_task,
-        state);
+    FuriThread* uart_init_thread =
+        furi_thread_alloc_ex("UartInit", UART_INIT_STACK_SIZE, init_uart_task, state);
 
     // Add views to dispatcher - check each component before adding
     if(state->view_dispatcher) {
@@ -270,10 +270,15 @@ int32_t ghost_esp_app(void* p) {
         free(state->filter_config);
         state->filter_config = NULL;
     }
+
     // Final state cleanup
     free(state);
 
-    // Handle OTG state
+    // Return previous state of expansion
+    expansion_enable(expansion);
+    furi_record_close(RECORD_EXPANSION);
+
+    // Power cleanup
     if(furi_hal_power_is_otg_enabled() && !otg_was_enabled) {
         furi_hal_power_disable_otg();
     }
