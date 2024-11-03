@@ -1,6 +1,6 @@
 App(
     appid="lishi",
-    name="Lishi HU66",
+    name="Lishi",
     apptype=FlipperAppType.EXTERNAL,
     entry_point="lishiapp",
     requires=[
@@ -11,6 +11,5 @@ App(
     fap_icon_assets="icons",
     fap_description="App for saving obtained vaules from lishi tool.",
     fap_author="@evillero",
-    fap_version="0.1",
+    fap_version="0.2",
 )
-
