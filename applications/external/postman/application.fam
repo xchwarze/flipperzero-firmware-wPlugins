@@ -1,6 +1,6 @@
 App(
     appid="postman",
-    name="Flipper Postman",
+    name="Postman",
     apptype=FlipperAppType.EXTERNAL,
     entry_point="app",
     stack_size=2 * 1024,
