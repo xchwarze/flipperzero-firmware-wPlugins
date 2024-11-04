@@ -147,7 +147,8 @@ static int flappy_game_load_score() {
 }
 
 static inline int get_gap_height(BirdType bird_type) {
-    return (bird_type == BirdTypeYapper || bird_type == BirdTypeGhost) ? YAPPER_GAB_HEIGHT : FLAPPY_GAB_HEIGHT;
+    return (bird_type == BirdTypeYapper || bird_type == BirdTypeGhost) ? YAPPER_GAB_HEIGHT :
+                                                                         FLAPPY_GAB_HEIGHT;
 }
 
 // Modify the random pilar function to use dynamic gap height
