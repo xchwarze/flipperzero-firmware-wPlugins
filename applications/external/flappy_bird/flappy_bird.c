@@ -41,15 +41,10 @@ typedef enum {
 
 typedef enum {
     BirdTypeDefault = 0,
-    BirdTypeYapper, // Changed to just have Default and Yapper
+    BirdTypeYapper,
+    BirdTypeGhost,
     BirdTypeMAX
 } BirdType;
-
-const Icon* bird_states[BirdStateMAX] = {
-    &I_bird_01,
-    &I_bird_02,
-    &I_bird_03,
-};
 
 // Add this structure definition
 typedef struct {
@@ -61,12 +56,14 @@ typedef struct {
 static const CharacterDimensions character_dimensions[] = {
     {FLAPPY_BIRD_WIDTH, FLAPPY_BIRD_HEIGHT}, // Default bird
     {YAPPER_WIDTH, YAPPER_HEIGHT}, // Yapper
+    {YAPPER_WIDTH, YAPPER_HEIGHT}, // GHOST
 };
 
 // Update your bird_sets array
 const Icon* bird_sets[BirdTypeMAX][BirdStateMAX] = {
     {&I_bird_01, &I_bird_02, &I_bird_03}, // Default bird
     {&I_yapper_01, &I_yapper_02, &I_yapper_03}, // Yapper assets
+    {&I_ghost_01, &I_ghost_02, &I_ghost_03}, // Ghost assets
 };
 
 typedef enum {
@@ -150,7 +147,7 @@ static int flappy_game_load_score() {
 }
 
 static inline int get_gap_height(BirdType bird_type) {
-    return (bird_type == BirdTypeYapper) ? YAPPER_GAB_HEIGHT : FLAPPY_GAB_HEIGHT;
+    return (bird_type == BirdTypeYapper || bird_type == BirdTypeGhost) ? YAPPER_GAB_HEIGHT : FLAPPY_GAB_HEIGHT;
 }
 
 // Modify the random pilar function to use dynamic gap height
@@ -205,7 +202,7 @@ static bool check_collision(
     int gap_height) {
     // Different collision margins for each character type
     int margin_x, margin_y;
-    if(game_state->selected_bird == BirdTypeYapper) {
+    if(game_state->selected_bird == BirdTypeYapper || game_state->selected_bird == BirdTypeGhost) {
         margin_x = 1; // Very small horizontal margin for precise side collisions
         margin_y = 2; // Slightly larger vertical margin for playability
     } else {
@@ -329,6 +326,8 @@ static void flappy_game_render_callback(Canvas* const canvas, void* ctx) {
             // Change title based on selected character
             if(game_state->selected_bird == BirdTypeYapper) {
                 canvas_draw_str_aligned(canvas, 64, 20, AlignCenter, AlignBottom, "Yappy Bird");
+            } else if(game_state->selected_bird == BirdTypeGhost) {
+                canvas_draw_str_aligned(canvas, 64, 20, AlignCenter, AlignBottom, "Ghost");
             } else {
                 canvas_draw_str_aligned(canvas, 64, 20, AlignCenter, AlignBottom, "Flappy Bird");
             }
