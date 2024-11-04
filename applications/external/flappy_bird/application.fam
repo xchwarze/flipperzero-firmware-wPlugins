@@ -13,5 +13,5 @@ App(
     #  [Flappy: Border hitboxes, bigger Pilars (By TQMatvey)](https://github.com/DarkFlippers/unleashed-firmware/pull/114)
     #  [Increase pilars line width to improve visibility (By ahumeniy)](https://github.com/DarkFlippers/unleashed-firmware/pull/140)
     #  [Yappy Bird mode, highscore system (By jaylikesbunda & the1anonlypr3)](https://github.com/Next-Flip/Momentum-Apps/pull/30)
-    #  [Ghost mode (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/d1d5eab121c04a15d09705ecf0222ad5fc1afee0)
+    #  [Ghost mode (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/6ed136bcba4333dca5af896623eb0dfd8a996f08)
 )
