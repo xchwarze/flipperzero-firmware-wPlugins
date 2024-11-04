@@ -40,4 +40,3 @@ bool write_post_url_to_csv(App* app, const PostUrlList* post_url);
  * @return true if deletion was successful, false otherwise.
  */
 bool delete_post_url_from_csv(App* app, const char* url);
-
