@@ -8,6 +8,7 @@ App(
     fap_icon_assets="assets",
     fap_category="Games",
     fap_author="DroomOne, xMasterX, jaylikesbunda, the1anonlypr3",
+    fap_weburl="https://github.com/DroomOne/flipperzero-firmware/tree/dev/applications/flappy_bird",  #  OG SOURCE
     fap_version="1.4",
     fap_description="Flappy Bird Game",
     #  [Flappy: Border hitboxes, bigger Pilars (By TQMatvey)](https://github.com/DarkFlippers/unleashed-firmware/pull/114)
