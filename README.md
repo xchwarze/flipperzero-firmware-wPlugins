@@ -6,8 +6,9 @@ FlipLibrary uses the FlipperHTTP flash for the WiFi Devboard, first introduced i
 
 
 ## Requirements
-- WiFi Dev Board for Flipper Zero with FlipperHTTP Flash: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
+- WiFi Dev Board or Raspberry Pi Pico W for Flipper Zero with FlipperHTTP Flash: https://github.com/jblanked/FlipperHTTP
 - WiFi Access Point
+
 
 ## Features
 - **Dictionary**: Look up definitions of words directly on your Flipper Zero. Simply enter a word, and the app will provide its definition, making it easy to learn new vocabulary or clarify meaning.
@@ -25,7 +26,7 @@ FlipLibrary uses the FlipperHTTP flash for the WiFi Devboard, first introduced i
 The app automatically allocates necessary resources and initializes settings. If previously saved WiFi settings exist, they are loaded and displayed in the settings section.
 
 ## How to Use
-1. **Flash**: Flash your WiFi Devboard: https://github.com/jblanked/WebCrawler-FlipperZero/tree/main/assets/FlipperHTTP
+1. **Flash**: Flash your WiFi Devboard: https://github.com/jblanked/FlipperHTTP
 2. **Install**: Install the app from the App Store: https://lab.flipper.net/apps/flip_library
 3. **Launch**: Open the FlipLibrary app.
 4. **Navigate**:
