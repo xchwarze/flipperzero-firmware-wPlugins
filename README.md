@@ -4,8 +4,9 @@ FlipWeather is an innovative app for the Flipper Zero that uses WiFi to fetch GP
 
 ## Requirements
 
-- WiFi Dev Board for Flipper Zero with FlipperHTTP Flash: https://github.com/jblanked/FlipperHTTP/
+- WiFi Dev Board or Raspberry Pi Pico W for Flipper Zero with FlipperHTTP Flash: https://github.com/jblanked/FlipperHTTP
 - WiFi Access Point
+
 
 ## Features
 
