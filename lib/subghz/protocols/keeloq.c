@@ -357,12 +357,12 @@ bool subghz_protocol_keeloq_create_data(
     instance->generic.cnt = cnt;
     instance->manufacture_name = manufacture_name;
     instance->generic.data_count_bit = 64;
-    bool res = subghz_protocol_keeloq_gen_data(instance, btn, false);
-    if(res) {
-        return SubGhzProtocolStatusOk ==
-               subghz_block_generic_serialize(&instance->generic, flipper_format, preset);
+    if(subghz_protocol_keeloq_gen_data(instance, btn, false)) {
+        return (
+            subghz_block_generic_serialize(&instance->generic, flipper_format, preset) ==
+            SubGhzProtocolStatusOk);
     }
-    return res;
+    return false;
 }
 
 bool subghz_protocol_keeloq_bft_create_data(
@@ -382,12 +382,13 @@ bool subghz_protocol_keeloq_bft_create_data(
     instance->generic.seed = seed;
     instance->manufacture_name = manufacture_name;
     instance->generic.data_count_bit = 64;
-    bool res = subghz_protocol_keeloq_gen_data(instance, btn, false);
-    if(res) {
-        return SubGhzProtocolStatusOk ==
-               subghz_block_generic_serialize(&instance->generic, flipper_format, preset);
+    // hehehehe
+    if(subghz_protocol_keeloq_gen_data(instance, btn, false)) {
+        return (
+            subghz_block_generic_serialize(&instance->generic, flipper_format, preset) ==
+            SubGhzProtocolStatusOk);
     }
-    return res;
+    return false;
 }
 
 /**
@@ -763,7 +764,7 @@ static inline bool subghz_protocol_keeloq_check_decrypt_centurion(
     uint8_t btn) {
     furi_assert(instance);
 
-    if((decrypt >> 28 == btn) && (((((uint16_t)(decrypt >> 16)) & 0x3FF) == 0x1CE))) {
+    if((decrypt >> 28 == btn) && ((((uint16_t)(decrypt >> 16)) & 0x3FF) == 0x1CE)) {
         instance->cnt = decrypt & 0x0000FFFF;
         /*FURI_LOG_I(
             "KL",
@@ -832,7 +833,7 @@ static uint8_t subghz_protocol_keeloq_check_remote_controller_selector(
                     man =
                         subghz_protocol_keeloq_common_normal_learning(fix, manufacture_code->key);
                     decrypt = subghz_protocol_keeloq_common_decrypt(hop, man);
-                    if((strcmp(furi_string_get_cstr(manufacture_code->name), "Centurion") == 0)) {
+                    if(strcmp(furi_string_get_cstr(manufacture_code->name), "Centurion") == 0) {
                         if(subghz_protocol_keeloq_check_decrypt_centurion(instance, decrypt, btn)) {
                             *manufacture_name = furi_string_get_cstr(manufacture_code->name);
                             keystore->mfname = *manufacture_name;
