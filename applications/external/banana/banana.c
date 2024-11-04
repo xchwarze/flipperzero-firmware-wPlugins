@@ -86,20 +86,20 @@ int32_t banana_main(void* p) {
         if(furi_message_queue_get(event_queue, &event, 100) == FuriStatusOk) {
             if(event.type == InputTypePress) {
                 switch(event.key) {
-                    case InputKeyOk:
-                        state.counter++;
-                        state.inverted = true;
-                        view_port_update(view_port);
-                        furi_hal_vibro_on(true);
-                        furi_delay_ms(100);
-                        furi_hal_vibro_on(false);
-                        state.inverted = false;
-                        break;
-                    case InputKeyBack:
-                        running = false;
-                        break;
-                    default:
-                        break;
+                case InputKeyOk:
+                    state.counter++;
+                    state.inverted = true;
+                    view_port_update(view_port);
+                    furi_hal_vibro_on(true);
+                    furi_delay_ms(100);
+                    furi_hal_vibro_on(false);
+                    state.inverted = false;
+                    break;
+                case InputKeyBack:
+                    running = false;
+                    break;
+                default:
+                    break;
                 }
             }
         }
