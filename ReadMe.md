@@ -27,10 +27,10 @@ This software is for experimental purposes only and is not meant for any illegal
 
 <a name="latest">
 
-## Latest Updates - [PATREON: Latest Release RM1101-2242-0.420.0-7568a57](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
+## Latest Updates - [PATREON: Latest Release RM1103-2115-0.420.0-dced0f7](https://www.patreon.com/RogueMaster?filters[tag]=Latest%20Release)
 
-- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-11-01 22:42 EST`
-- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-11-01 22:42 EST`
+- Last Synced/Checked OFW, changes in [commits](https://github.com/flipperdevices/flipperzero-firmware/commits/dev): `2024-11-03 21:15 EST`
+- Last Synced/Checked Unleashed, changes in [changelog](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/CHANGELOG.md): `2024-11-03 21:15 EST`
 - [NFC: Plaintain parser fix (By mxcdoam)](https://github.com/flipperdevices/flipperzero-firmware/pull/3975)
 - Updated: [NFC: NDEF Parser support (By Willy-JL)](https://github.com/flipperdevices/flipperzero-firmware/pull/3973)
 - Updated: [Web Crawler v0.6 (By jblanked)](https://github.com/jblanked/WebCrawler-FlipperZero)
