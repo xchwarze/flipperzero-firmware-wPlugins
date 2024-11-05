@@ -416,6 +416,15 @@ static void flip_social_callback_draw_feed(Canvas* canvas, void* model) {
         break;
     case ActionFlip:
         canvas_clear(canvas);
+        // Moved to above the is_flipped check
+        if(!flip_social_feed->is_flipped[flip_social_feed->index]) {
+            // increase the flip count
+            flip_social_feed->flips[flip_social_feed->index]++;
+        } else {
+            // decrease the flip count
+            flip_social_feed->flips[flip_social_feed->index]--;
+        }
+        // change the flip status
         flip_social_feed->is_flipped[flip_social_feed->index] =
             !flip_social_feed->is_flipped[flip_social_feed->index];
         // send post request to flip the message
@@ -434,13 +443,6 @@ static void flip_social_callback_draw_feed(Canvas* canvas, void* model) {
             "https://www.flipsocial.net/api/feed/flip/",
             "{\"Content-Type\":\"application/json\"}",
             payload);
-        if(!flip_social_feed->is_flipped[flip_social_feed->index]) {
-            // increase the flip count
-            flip_social_feed->flips[flip_social_feed->index]++;
-        } else {
-            // decrease the flip count
-            flip_social_feed->flips[flip_social_feed->index]--;
-        }
         flip_social_canvas_draw_message(
             canvas,
             flip_social_feed->usernames[flip_social_feed->index],

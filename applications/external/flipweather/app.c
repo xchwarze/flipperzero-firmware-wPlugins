@@ -11,15 +11,13 @@ int32_t flip_weather_app(void* p) {
 
     // Initialize the FlipWeather application
     FlipWeatherApp* app = flip_weather_app_alloc();
-
-    if(!flipper_http_ping()) {
-        FURI_LOG_E(TAG, "Failed to ping the device");
+    if(!app) {
+        FURI_LOG_E(TAG, "Failed to allocate FlipWeatherApp");
         return -1;
     }
 
-    // connect wifi
-    if(!flipper_http_connect_wifi()) {
-        FURI_LOG_E(TAG, "Failed to connect to WiFi");
+    if(!flipper_http_ping()) {
+        FURI_LOG_E(TAG, "Failed to ping the device");
         return -1;
     }
 

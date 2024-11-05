@@ -8,10 +8,6 @@ static void flip_weather_app_free(FlipWeatherApp* app) {
         return;
     }
 
-    if(!flipper_http_disconnect_wifi()) {
-        FURI_LOG_E(TAG, "Failed to disconnect from wifi");
-    }
-
     // Free View(s)
     if(app->view_weather) {
         view_dispatcher_remove_view(app->view_dispatcher, FlipWeatherViewWeather);

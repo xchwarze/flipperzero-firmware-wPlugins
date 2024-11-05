@@ -11,15 +11,13 @@ int32_t flip_trader_app(void* p) {
 
     // Initialize the FlipTrader application
     FlipTraderApp* app = flip_trader_app_alloc();
-
-    if(!flipper_http_ping()) {
-        FURI_LOG_E(TAG, "Failed to ping the device");
+    if(!app) {
+        FURI_LOG_E(TAG, "Failed to allocate FlipTraderApp");
         return -1;
     }
 
-    // send settings and connect wifi
-    if(!flipper_http_connect_wifi()) {
-        FURI_LOG_E(TAG, "Failed to connect to WiFi");
+    if(!flipper_http_ping()) {
+        FURI_LOG_E(TAG, "Failed to ping the device");
         return -1;
     }
 

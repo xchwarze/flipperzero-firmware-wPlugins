@@ -16,10 +16,10 @@
 #define FLAPPY_PILAR_MAX  6
 #define FLAPPY_PILAR_DIST 35
 
-#define FLAPPY_GAB_HEIGHT 24
-#define YAPPER_GAB_HEIGHT 32
-#define GHOST_GAB_HEIGHT  28
-#define FLAPPY_GAB_WIDTH  10
+#define FLAPPY_GAB_HEIGHT   24
+#define YAPPER_GAB_HEIGHT   32
+#define GHOSTESP_GAB_HEIGHT 28
+#define FLAPPY_GAB_WIDTH    10
 
 #define YAPPER_HEIGHT 22
 #define YAPPER_WIDTH  16
@@ -69,12 +69,7 @@ static const CharacterDimensions character_dimensions[] = {
      4,
      YAPPER_WIDTH - 8,
      YAPPER_HEIGHT - 8}, // Yapper with larger offset
-    {YAPPER_WIDTH,
-     YAPPER_HEIGHT,
-     5,
-     5,
-     YAPPER_WIDTH - 8,
-     YAPPER_HEIGHT - 8}, // Ghost 
+    {YAPPER_WIDTH, YAPPER_HEIGHT, 5, 5, YAPPER_WIDTH - 8, YAPPER_HEIGHT - 8}, // Ghost
     {YAPPER_WIDTH,
      YAPPER_HEIGHT,
      5,
@@ -176,7 +171,7 @@ static inline int get_gap_height(BirdType bird_type) {
     case BirdTypeGhost:
         return YAPPER_GAB_HEIGHT;
     case BirdTypeGhostESP:
-        return GHOST_GAB_HEIGHT;
+        return GHOSTESP_GAB_HEIGHT;
     default:
         return FLAPPY_GAB_HEIGHT;
     }
@@ -249,7 +244,8 @@ static bool check_collision(
     }
 
     // Extra forgiving collision for Yapper/Ghost
-    if(game_state->selected_bird == BirdTypeYapper || game_state->selected_bird == BirdTypeGhost || game_state->selected_bird == BirdTypeGhostESP) {
+    if(game_state->selected_bird == BirdTypeYapper || game_state->selected_bird == BirdTypeGhost ||
+       game_state->selected_bird == BirdTypeGhostESP) {
         // Add small grace area for top and bottom pipes
         top_pipe_bottom += 2;
         bottom_pipe_top -= 2;
